@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeVaCI - Global Economic Data</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            padding: 20px;
+        }
+        #clock-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px; /* Added margin to separate from title */
+            margin-bottom: 25px;
+        }
+        .clock {
+            background-color: #ffffff;
+            padding: 5px 10px; /* Reduced padding */
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .clock-city {
+            font-weight: bold;
+            font-size: 0.7em; /* Reduced font size */
+            color: #34495e;
+        }
+        .clock-time {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em; /* Reduced font size */
+            color: #2c3e50;
+            font-weight: bold; /* Made the time bold */
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 5px; /* Reduced margin */
+        }
+        table {
+            width: 100%;
+            min-width: 1500px; /* Increased min-width for new column */
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+            table-layout: fixed; 
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: center; /* Default alignment for all cells */
+            vertical-align: top;
+        }
+        .country-name-col {
+            text-align: left; /* Specific alignment for the first column */
+        }
+        th {
+            vertical-align: middle;
+        }
+        thead tr {
+            background-color: #34495e;
+            color: #ffffff;
+        }
+        tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+        tbody tr:hover {
+            background-color: #e8f4f8;
+        }
+        .continent-header {
+            font-weight: bold;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        .positive {
+            color: #0000FF; /* Blue */
+        }
+        .negative {
+            color: #FF0000; /* Red */
+        }
+        .change-value {
+            font-size: 0.85em;
+            font-style: italic;
+            color: #666;
+            display: block; 
+            margin-top: 4px;
+        }
+        .change-value.positive {
+            color: #0000FF; /* Blue */
+        }
+        .change-value.negative {
+            color: #FF0000; /* Red */
+        }
+        .empty-row td {
+            border: none;
+            height: 20px;
+            background-color: #f4f7f9;
+        }
+        .loader {
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Global Economic Data Summary</h1>
+    <div id="clock-container"></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="country-name-col" style="width: 11%;">Country Name</th>
+                <th style="width: 8%;">Currency</th>
+                <th style="width: 5%;">FX Code</th>
+                <th style="width: 8%;">Interest<br>Rate</th>
+                <th style="width: 8%;">Inflation<br>Rate</th>
+                <th style="width: 8%;">Core CPI /<br>HICP</th>
+                <th style="width: 11%;">Unemployment<br>Rate</th>
+                <th style="width: 8%;">PPI</th>
+                <th style="width: 8%;">GDP<br>AGR</th>
+                <th style="width: 8%;">Retail<br>Sales</th>
+                <th style="width: 8%;">Central<br>Bank</th>
+                <th style="width: 9%;">Next Meeting</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="continent-header">
+                <td colspan="12" class="country-name-col">North America</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">United States</td>
+                <td>US Dollar</td>
+                <td>USD</td>
+                <td id="us-interest-rate"><span class="loader">Loading...</span></td>
+                <td id="us-inflation-rate"><span class="loader">Loading...</span></td>
+                <td id="us-core-cpi"><span class="loader">Loading...</span></td>
+                <td id="us-unemployment-rate"><span class="loader">Loading...</span></td>
+                <td id="us-ppi"><span class="loader">Loading...</span></td>
+                <td id="us-gdp"><span class="loader">Loading...</span></td>
+                <td id="us-retail-sales"><span class="loader">Loading...</span></td>
+                <td>Federal Reserve</td>
+                <td>2025-09-18</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">Canada</td>
+                <td>Canadian Dollar</td>
+                <td>CAD</td>
+                <td><span class="positive">4.75%</span><span class="change-value negative">(-0.25%)</span></td>
+                <td><span class="positive">2.9%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td><span class="positive">2.8%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">6.2%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">1.8%</span><span class="change-value negative">(-0.3%)</span></td>
+                <td><span class="positive">1.0%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td><span class="positive">0.7%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td>Bank of Canada</td>
+                <td>2025-09-04</td>
+            </tr>
+             <tr>
+                <td class="country-name-col">Mexico</td>
+                <td>Mexican Peso</td>
+                <td>MXN</td>
+                <td><span class="positive">11.00%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">4.7%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td><span class="positive">4.6%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td><span class="positive">2.6%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">3.2%</span><span class="change-value positive">(+0.5%)</span></td>
+                <td><span class="positive">1.6%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">3.0%</span><span class="change-value negative">(-0.2%)</span></td>
+                <td>Banxico</td>
+                <td>2025-09-26</td>
+            </tr>
+            <tr class="empty-row"><td colspan="12"></td></tr>
+            <tr class="continent-header">
+                <td colspan="12" class="country-name-col">South America</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">Brazil</td>
+                <td>Brazilian Real</td>
+                <td>BRL</td>
+                <td><span class="positive">10.50%</span><span class="change-value negative">(-0.25%)</span></td>
+                <td><span class="positive">3.9%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td><span class="positive">3.8%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">7.5%</span><span class="change-value negative">(-0.3%)</span></td>
+                <td><span class="negative">-2.9%</span><span class="change-value positive">(+0.4%)</span></td>
+                <td><span class="positive">2.5%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">2.2%</span><span class="change-value negative">(-1.1%)</span></td>
+                <td>BCB</td>
+                <td>2025-09-18</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">Argentina</td>
+                <td>Argentine Peso</td>
+                <td>ARS</td>
+                <td><span class="positive">40.00%</span><span class="change-value negative">(-10.0%)</span></td>
+                <td><span class="positive">289.4%</span><span class="change-value negative">(-1.2%)</span></td>
+                <td><span class="positive">290%</span><span class="change-value positive">(+1.5%)</span></td>
+                <td><span class="positive">5.7%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">328%</span><span class="change-value negative">(-5.0%)</span></td>
+                <td><span class="negative">-5.1%</span><span class="change-value negative">(-0.8%)</span></td>
+                <td><span class="negative">-1.1%</span><span class="change-value positive">(+0.3%)</span></td>
+                <td>BCRA</td>
+                <td>N/A</td>
+            </tr>
+            <tr class="empty-row"><td colspan="12"></td></tr>
+            <tr class="continent-header">
+                <td colspan="12" class="country-name-col">Europe</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">Euro Zone</td>
+                <td>Euro</td>
+                <td>EUR</td>
+                <td><span class="positive">4.25%</span><span class="change-value negative">(-0.25%)</span></td>
+                <td><span class="positive">2.4%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">2.9%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">6.4%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td><span class="negative">-5.7%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td><span class="positive">0.4%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">0.0%</span><span class="change-value negative">(-0.2%)</span></td>
+                <td>ECB</td>
+                <td>2025-09-12</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">United Kingdom</td>
+                <td>Pound Sterling</td>
+                <td>GBP</td>
+                <td><span class="positive">5.25%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">2.0%</span><span class="change-value negative">(-0.3%)</span></td>
+                <td><span class="positive">3.5%</span><span class="change-value negative">(-0.3%)</span></td>
+                <td><span class="positive">4.4%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="negative">-1.1%</span><span class="change-value negative">(-0.5%)</span></td>
+                <td><span class="positive">0.6%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td><span class="positive">2.9%</span><span class="change-value positive">(+1.2%)</span></td>
+                <td>Bank of England</td>
+                <td>2025-09-19</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">Switzerland</td>
+                <td>Swiss Franc</td>
+                <td>CHF</td>
+                <td><span class="positive">1.25%</span><span class="change-value negative">(-0.25%)</span></td>
+                <td><span class="positive">1.4%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">1.2%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">2.3%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="negative">-0.7%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td><span class="positive">0.9%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">2.1%</span><span class="change-value positive">(+0.3%)</span></td>
+                <td>SNB</td>
+                <td>2025-09-19</td>
+            </tr>
+            <tr class="empty-row"><td colspan="12"></td></tr>
+            <tr class="continent-header">
+                <td colspan="12" class="country-name-col">Asia</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">China</td>
+                <td>Chinese Yuan</td>
+                <td>CNY</td>
+                <td><span class="positive">3.45%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">0.3%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td><span class="positive">0.6%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td><span class="positive">5.0%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="negative">-2.5%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td><span class="positive">5.3%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">2.3%</span><span class="change-value negative">(-0.4%)</span></td>
+                <td>PBoC</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">Japan</td>
+                <td>Japanese Yen</td>
+                <td>JPY</td>
+                <td><span class="positive">0.10%</span><span class="change-value positive">(+0.10%)</span></td>
+                <td><span class="positive">2.5%</span><span class="change-value negative">(-0.2%)</span></td>
+                <td><span class="positive">2.2%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">2.6%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">0.7%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="negative">-0.5%</span><span class="change-value negative">(-0.3%)</span></td>
+                <td><span class="positive">2.4%</span><span class="change-value positive">(+0.5%)</span></td>
+                <td>Bank of Japan</td>
+                <td>2025-09-20</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">India</td>
+                <td>Indian Rupee</td>
+                <td>INR</td>
+                <td><span class="positive">6.50%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">4.8%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td><span class="positive">3.2%</span><span class="change-value negative">(-0.4%)</span></td>
+                <td><span class="positive">7.9%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">0.1%</span><span class="change-value negative">(-0.2%)</span></td>
+                <td><span class="positive">8.2%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">4.6%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td>RBI</td>
+                <td>2025-10-04</td>
+            </tr>
+            <tr class="empty-row"><td colspan="12"></td></tr>
+            <tr class="continent-header">
+                <td colspan="12" class="country-name-col">Africa</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">South Africa</td>
+                <td>South African Rand</td>
+                <td>ZAR</td>
+                <td><span class="positive">8.25%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">5.2%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td><span class="positive">4.6%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">32.9%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">5.1%</span><span class="change-value positive">(+0.3%)</span></td>
+                <td><span class="positive">0.5%</span><span class="change-value negative">(-0.2%)</span></td>
+                <td><span class="positive">0.6%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td>SARB</td>
+                <td>2025-09-19</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">Nigeria</td>
+                <td>Nigerian Naira</td>
+                <td>NGN</td>
+                <td><span class="positive">26.25%</span><span class="change-value positive">(+1.5%)</span></td>
+                <td><span class="positive">33.7%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td><span class="positive">29.5%</span><span class="change-value positive">(+0.5%)</span></td>
+                <td><span class="positive">4.2%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">21.8%</span><span class="change-value negative">(-1.2%)</span></td>
+                <td><span class="positive">2.9%</span><span class="change-value">(0.0%)</span></td>
+                <td>N/A<span class="change-value">(0.0%)</span></td>
+                <td>CBN</td>
+                <td>2025-09-24</td>
+            </tr>
+            <tr class="empty-row"><td colspan="12"></td></tr>
+            <tr class="continent-header">
+                <td colspan="12" class="country-name-col">Oceania</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">Australia</td>
+                <td>Australian Dollar</td>
+                <td>AUD</td>
+                <td><span class="positive">4.35%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">3.6%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">4.0%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">4.1%</span><span class="change-value positive">(+0.1%)</span></td>
+                <td><span class="positive">4.3%</span><span class="change-value negative">(-0.2%)</span></td>
+                <td><span class="positive">1.1%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td><span class="positive">1.3%</span><span class="change-value positive">(+0.4%)</span></td>
+                <td>RBA</td>
+                <td>2025-09-24</td>
+            </tr>
+            <tr>
+                <td class="country-name-col">New Zealand</td>
+                <td>New Zealand Dollar</td>
+                <td>NZD</td>
+                <td><span class="positive">5.50%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">4.0%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">3.8%</span><span class="change-value negative">(-0.2%)</span></td>
+                <td><span class="positive">4.3%</span><span class="change-value">(0.0%)</span></td>
+                <td><span class="positive">0.9%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td><span class="positive">0.2%</span><span class="change-value negative">(-0.1%)</span></td>
+                <td><span class="positive">0.5%</span><span class="change-value positive">(+0.2%)</span></td>
+                <td>RBNZ</td>
+                <td>2025-10-09</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function updateClocks() {
+            const clockContainer = document.getElementById('clock-container');
+            const now = new Date();
+
+            const cities = [
+                { name: 'New York', timeZone: 'America/New_York' },
+                { name: 'São Paulo', timeZone: 'America/Sao_Paulo' },
+                { name: 'London', timeZone: 'Europe/London' },
+                { name: 'Paris', timeZone: 'Europe/Paris' },
+                { name: 'Johannesburg', timeZone: 'Africa/Johannesburg' },
+                { name: 'Mumbai', timeZone: 'Asia/Kolkata' },
+                { name: 'Shanghai', timeZone: 'Asia/Shanghai' },
+                { name: 'Hong Kong', timeZone: 'Asia/Hong_Kong' },
+                { name: 'Tokyo', timeZone: 'Asia/Tokyo' },
+                { name: 'Sydney', timeZone: 'Australia/Sydney' }
+            ];
+
+            let clocksHTML = '';
+
+            for (const city of cities) {
+                 const timeString = new Date().toLocaleTimeString('en-US', {
+                    timeZone: city.timeZone,
+                    hour12: false,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                
+                clocksHTML += `
+                    <div class="clock">
+                        <div class="clock-city">${city.name}</div>
+                        <div class="clock-time">${timeString}</div>
+                    </div>
+                `;
+            }
+            clockContainer.innerHTML = clocksHTML;
+        }
+
+        setInterval(updateClocks, 1000);
+        updateClocks(); // Initial call
+
+        // --- FRED DATA FETCHING SCRIPT ---
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchFREDData();
+        });
+
+        async function fetchFREDData() {
+            const apiKey = '6fa4cffb01961faff2ba8eb4513e50fc';
+
+            const series = {
+                interestRate: 'DFF',            // Corrected: Daily Effective Federal Funds Rate
+                inflationRate: 'CPIAUCSL_PC1',    // Correct: YoY % Change in Consumer Price Index
+                coreCpi: 'CPILFESL_PC1',        // Correct: YoY % Change in Core Consumer Price Index
+                unemploymentRate: 'UNRATE',     // Correct: Civilian Unemployment Rate, Seasonally Adjusted
+                ppi: 'PPIACO_PC1',              // Correct: YoY % Change in Producer Price Index for All Commodities
+                gdp: 'A191RP1Q027SBEA',         // Correct: Real GDP, Quarterly, Percent Change from Preceding Period
+                retailSales: 'RSAFS_PC1'        // Correct: YoY % Change in Retail Sales
+            };
+
+            const fredBaseUrl = 'https://api.stlouisfed.org/fred/series/observations';
+            const proxyUrl = 'https://thingproxy.freeboard.io/fetch/'; // Switched to a more reliable proxy
+
+            for (const [key, id] of Object.entries(series)) {
+                const fredApiUrl = `${fredBaseUrl}?series_id=${id}&api_key=${apiKey}&file_type=json&limit=2&sort_order=desc`;
+                const requestUrl = `${proxyUrl}${fredApiUrl}`; // New proxy URL structure
+                
+                try {
+                    const response = await fetch(requestUrl);
+                    
+                    if (!response.ok) {
+                         const errorText = await response.text();
+                         throw new Error(`Proxy Error: ${response.status} - ${errorText}`);
+                    }
+
+                    const data = await response.json();
+                    
+                    if (data.error_message) {
+                        throw new Error(data.error_message);
+                    }
+                    
+                    if (data && data.observations && data.observations.length > 0) {
+                        updateTableCell(key, data.observations);
+                    } else {
+                        throw new Error(`No observations for ${id}`);
+                    }
+                } catch (error) {
+                    console.error(`Failed to fetch ${id}:`, error);
+                    updateTableCell(key, null, true, "Failed to fetch. See console for details.");
+                }
+            }
+        }
+
+        function updateTableCell(indicatorKey, observations, isError = false, errorMessage = 'Error') {
+            const elementId = `us-${indicatorKey.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
+            const cell = document.getElementById(elementId);
+
+            if (!cell) {
+                console.error(`HTML element with ID ${elementId} not found.`);
+                return;
+            }
+            
+            if(isError){
+                cell.innerHTML = `<span class="negative" style="font-size: 0.8em;">${errorMessage}</span>`;
+                return;
+            }
+
+            if (!observations || observations.length === 0) {
+                cell.innerHTML = `<span class="negative">No Data</span>`;
+                return;
+            }
+
+            const latestValue = parseFloat(observations[0].value);
+            const previousValue = observations.length > 1 ? parseFloat(observations[1].value) : latestValue;
+            
+            if (isNaN(latestValue)) {
+                 cell.innerHTML = `<span>N/A</span>`;
+                 return;
+            }
+
+            const change = latestValue - previousValue;
+            
+            const valueClass = latestValue >= 0 ? 'positive' : 'negative';
+            const changeClass = change >= 0 ? 'positive' : 'negative';
+            
+            const displayValue = latestValue.toFixed(2) + '%';
+            const changeSign = change > 0 ? '+' : '';
+            // For interest rate, the change is usually very small, so show more precision
+            const changeDecimalPoints = (indicatorKey === 'interestRate') ? 2 : 2;
+            const changeDisplay = `(${changeSign}${change.toFixed(changeDecimalPoints)}%)`;
+
+            cell.innerHTML = `
+                <span class="${valueClass}">${displayValue}</span>
+                <span class="change-value ${changeClass}">${changeDisplay}</span>
+            `;
+        }
+    </script>
+</body>
+</html>
+
