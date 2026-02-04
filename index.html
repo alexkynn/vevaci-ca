@@ -1,511 +1,499 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VeVaCI - Global Economic Data</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f4f7f9;
-            color: #333;
-            padding: 20px;
-        }
-        #clock-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px; /* Added margin to separate from title */
-            margin-bottom: 25px;
-        }
-        .clock {
-            background-color: #ffffff;
-            padding: 5px 10px; /* Reduced padding */
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .clock-city {
-            font-weight: bold;
-            font-size: 0.7em; /* Reduced font size */
-            color: #34495e;
-        }
-        .clock-time {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9em; /* Reduced font size */
-            color: #2c3e50;
-            font-weight: bold; /* Made the time bold */
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 5px; /* Reduced margin */
-        }
-        table {
-            width: 100%;
-            min-width: 1500px; /* Increased min-width for new column */
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.9em;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            background-color: #ffffff;
-            table-layout: fixed; 
-        }
-        th, td {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            text-align: center; /* Default alignment for all cells */
-            vertical-align: top;
-        }
-        .country-name-col {
-            text-align: left; /* Specific alignment for the first column */
-        }
-        th {
-            vertical-align: middle;
-        }
-        thead tr {
-            background-color: #34495e;
-            color: #ffffff;
-        }
-        tbody tr:nth-of-type(even) {
-            background-color: #f3f3f3;
-        }
-        tbody tr:hover {
-            background-color: #e8f4f8;
-        }
-        .continent-header {
-            font-weight: bold;
-            background-color: #ecf0f1;
-            color: #2c3e50;
-        }
-        .positive {
-            color: #0000FF; /* Blue */
-        }
-        .negative {
-            color: #FF0000; /* Red */
-        }
-        .change-value {
-            font-size: 0.85em;
-            font-style: italic;
-            color: #666;
-            display: block; 
-            margin-top: 4px;
-        }
-        .change-value.positive {
-            color: #0000FF; /* Blue */
-        }
-        .change-value.negative {
-            color: #FF0000; /* Red */
-        }
-        .empty-row td {
-            border: none;
-            height: 20px;
-            background-color: #f4f7f9;
-        }
-        .loader {
-            font-size: 0.9em;
-            color: #888;
-        }
-    </style>
-</head>
-<body>
+import React, { useState, useEffect } from 'react';
+import { 
+  ChevronRight, 
+  BookOpen, 
+  ShieldCheck, 
+  TrendingUp, 
+  Globe, 
+  Menu, 
+  X, 
+  Calendar,
+  Layers,
+  Unlock,
+  Building2,
+  ArrowRight,
+  PiggyBank,
+  Briefcase,
+  AlertTriangle,
+  Zap,
+  Scale,
+  HeartPulse,
+  Lock,
+  UserCheck,
+  BarChart3,
+  Award,
+  Users,
+  FileText,
+  Send,
+  CheckCircle2
+} from 'lucide-react';
 
-    <h1>Global Economic Data Summary</h1>
-    <div id="clock-container"></div>
+const App = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [language, setLanguage] = useState('en');
+  const [currentPage, setCurrentPage] = useState('home');
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-    <table>
-        <thead>
-            <tr>
-                <th class="country-name-col" style="width: 11%;">Country Name</th>
-                <th style="width: 8%;">Currency</th>
-                <th style="width: 5%;">FX Code</th>
-                <th style="width: 8%;">Interest<br>Rate</th>
-                <th style="width: 8%;">Inflation<br>Rate</th>
-                <th style="width: 8%;">Core CPI /<br>HICP</th>
-                <th style="width: 11%;">Unemployment<br>Rate</th>
-                <th style="width: 8%;">PPI</th>
-                <th style="width: 8%;">GDP<br>AGR</th>
-                <th style="width: 8%;">Retail<br>Sales</th>
-                <th style="width: 8%;">Central<br>Bank</th>
-                <th style="width: 9%;">Next Meeting</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="continent-header">
-                <td colspan="12" class="country-name-col">North America</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">United States</td>
-                <td>US Dollar</td>
-                <td>USD</td>
-                <td id="us-interest-rate"><span class="loader">Loading...</span></td>
-                <td id="us-inflation-rate"><span class="loader">Loading...</span></td>
-                <td id="us-core-cpi"><span class="loader">Loading...</span></td>
-                <td id="us-unemployment-rate"><span class="loader">Loading...</span></td>
-                <td id="us-ppi"><span class="loader">Loading...</span></td>
-                <td id="us-gdp"><span class="loader">Loading...</span></td>
-                <td id="us-retail-sales"><span class="loader">Loading...</span></td>
-                <td>Federal Reserve</td>
-                <td>2025-09-18</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">Canada</td>
-                <td>Canadian Dollar</td>
-                <td>CAD</td>
-                <td><span class="positive">4.75%</span><span class="change-value negative">(-0.25%)</span></td>
-                <td><span class="positive">2.9%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td><span class="positive">2.8%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">6.2%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">1.8%</span><span class="change-value negative">(-0.3%)</span></td>
-                <td><span class="positive">1.0%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td><span class="positive">0.7%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td>Bank of Canada</td>
-                <td>2025-09-04</td>
-            </tr>
-             <tr>
-                <td class="country-name-col">Mexico</td>
-                <td>Mexican Peso</td>
-                <td>MXN</td>
-                <td><span class="positive">11.00%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">4.7%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td><span class="positive">4.6%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td><span class="positive">2.6%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">3.2%</span><span class="change-value positive">(+0.5%)</span></td>
-                <td><span class="positive">1.6%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">3.0%</span><span class="change-value negative">(-0.2%)</span></td>
-                <td>Banxico</td>
-                <td>2025-09-26</td>
-            </tr>
-            <tr class="empty-row"><td colspan="12"></td></tr>
-            <tr class="continent-header">
-                <td colspan="12" class="country-name-col">South America</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">Brazil</td>
-                <td>Brazilian Real</td>
-                <td>BRL</td>
-                <td><span class="positive">10.50%</span><span class="change-value negative">(-0.25%)</span></td>
-                <td><span class="positive">3.9%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td><span class="positive">3.8%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">7.5%</span><span class="change-value negative">(-0.3%)</span></td>
-                <td><span class="negative">-2.9%</span><span class="change-value positive">(+0.4%)</span></td>
-                <td><span class="positive">2.5%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">2.2%</span><span class="change-value negative">(-1.1%)</span></td>
-                <td>BCB</td>
-                <td>2025-09-18</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">Argentina</td>
-                <td>Argentine Peso</td>
-                <td>ARS</td>
-                <td><span class="positive">40.00%</span><span class="change-value negative">(-10.0%)</span></td>
-                <td><span class="positive">289.4%</span><span class="change-value negative">(-1.2%)</span></td>
-                <td><span class="positive">290%</span><span class="change-value positive">(+1.5%)</span></td>
-                <td><span class="positive">5.7%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">328%</span><span class="change-value negative">(-5.0%)</span></td>
-                <td><span class="negative">-5.1%</span><span class="change-value negative">(-0.8%)</span></td>
-                <td><span class="negative">-1.1%</span><span class="change-value positive">(+0.3%)</span></td>
-                <td>BCRA</td>
-                <td>N/A</td>
-            </tr>
-            <tr class="empty-row"><td colspan="12"></td></tr>
-            <tr class="continent-header">
-                <td colspan="12" class="country-name-col">Europe</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">Euro Zone</td>
-                <td>Euro</td>
-                <td>EUR</td>
-                <td><span class="positive">4.25%</span><span class="change-value negative">(-0.25%)</span></td>
-                <td><span class="positive">2.4%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">2.9%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">6.4%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td><span class="negative">-5.7%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td><span class="positive">0.4%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">0.0%</span><span class="change-value negative">(-0.2%)</span></td>
-                <td>ECB</td>
-                <td>2025-09-12</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">United Kingdom</td>
-                <td>Pound Sterling</td>
-                <td>GBP</td>
-                <td><span class="positive">5.25%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">2.0%</span><span class="change-value negative">(-0.3%)</span></td>
-                <td><span class="positive">3.5%</span><span class="change-value negative">(-0.3%)</span></td>
-                <td><span class="positive">4.4%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="negative">-1.1%</span><span class="change-value negative">(-0.5%)</span></td>
-                <td><span class="positive">0.6%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td><span class="positive">2.9%</span><span class="change-value positive">(+1.2%)</span></td>
-                <td>Bank of England</td>
-                <td>2025-09-19</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">Switzerland</td>
-                <td>Swiss Franc</td>
-                <td>CHF</td>
-                <td><span class="positive">1.25%</span><span class="change-value negative">(-0.25%)</span></td>
-                <td><span class="positive">1.4%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">1.2%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">2.3%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="negative">-0.7%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td><span class="positive">0.9%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">2.1%</span><span class="change-value positive">(+0.3%)</span></td>
-                <td>SNB</td>
-                <td>2025-09-19</td>
-            </tr>
-            <tr class="empty-row"><td colspan="12"></td></tr>
-            <tr class="continent-header">
-                <td colspan="12" class="country-name-col">Asia</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">China</td>
-                <td>Chinese Yuan</td>
-                <td>CNY</td>
-                <td><span class="positive">3.45%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">0.3%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td><span class="positive">0.6%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td><span class="positive">5.0%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="negative">-2.5%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td><span class="positive">5.3%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">2.3%</span><span class="change-value negative">(-0.4%)</span></td>
-                <td>PBoC</td>
-                <td>N/A</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">Japan</td>
-                <td>Japanese Yen</td>
-                <td>JPY</td>
-                <td><span class="positive">0.10%</span><span class="change-value positive">(+0.10%)</span></td>
-                <td><span class="positive">2.5%</span><span class="change-value negative">(-0.2%)</span></td>
-                <td><span class="positive">2.2%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">2.6%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">0.7%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="negative">-0.5%</span><span class="change-value negative">(-0.3%)</span></td>
-                <td><span class="positive">2.4%</span><span class="change-value positive">(+0.5%)</span></td>
-                <td>Bank of Japan</td>
-                <td>2025-09-20</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">India</td>
-                <td>Indian Rupee</td>
-                <td>INR</td>
-                <td><span class="positive">6.50%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">4.8%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td><span class="positive">3.2%</span><span class="change-value negative">(-0.4%)</span></td>
-                <td><span class="positive">7.9%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">0.1%</span><span class="change-value negative">(-0.2%)</span></td>
-                <td><span class="positive">8.2%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">4.6%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td>RBI</td>
-                <td>2025-10-04</td>
-            </tr>
-            <tr class="empty-row"><td colspan="12"></td></tr>
-            <tr class="continent-header">
-                <td colspan="12" class="country-name-col">Africa</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">South Africa</td>
-                <td>South African Rand</td>
-                <td>ZAR</td>
-                <td><span class="positive">8.25%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">5.2%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td><span class="positive">4.6%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">32.9%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">5.1%</span><span class="change-value positive">(+0.3%)</span></td>
-                <td><span class="positive">0.5%</span><span class="change-value negative">(-0.2%)</span></td>
-                <td><span class="positive">0.6%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td>SARB</td>
-                <td>2025-09-19</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">Nigeria</td>
-                <td>Nigerian Naira</td>
-                <td>NGN</td>
-                <td><span class="positive">26.25%</span><span class="change-value positive">(+1.5%)</span></td>
-                <td><span class="positive">33.7%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td><span class="positive">29.5%</span><span class="change-value positive">(+0.5%)</span></td>
-                <td><span class="positive">4.2%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">21.8%</span><span class="change-value negative">(-1.2%)</span></td>
-                <td><span class="positive">2.9%</span><span class="change-value">(0.0%)</span></td>
-                <td>N/A<span class="change-value">(0.0%)</span></td>
-                <td>CBN</td>
-                <td>2025-09-24</td>
-            </tr>
-            <tr class="empty-row"><td colspan="12"></td></tr>
-            <tr class="continent-header">
-                <td colspan="12" class="country-name-col">Oceania</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">Australia</td>
-                <td>Australian Dollar</td>
-                <td>AUD</td>
-                <td><span class="positive">4.35%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">3.6%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">4.0%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">4.1%</span><span class="change-value positive">(+0.1%)</span></td>
-                <td><span class="positive">4.3%</span><span class="change-value negative">(-0.2%)</span></td>
-                <td><span class="positive">1.1%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td><span class="positive">1.3%</span><span class="change-value positive">(+0.4%)</span></td>
-                <td>RBA</td>
-                <td>2025-09-24</td>
-            </tr>
-            <tr>
-                <td class="country-name-col">New Zealand</td>
-                <td>New Zealand Dollar</td>
-                <td>NZD</td>
-                <td><span class="positive">5.50%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">4.0%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">3.8%</span><span class="change-value negative">(-0.2%)</span></td>
-                <td><span class="positive">4.3%</span><span class="change-value">(0.0%)</span></td>
-                <td><span class="positive">0.9%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td><span class="positive">0.2%</span><span class="change-value negative">(-0.1%)</span></td>
-                <td><span class="positive">0.5%</span><span class="change-value positive">(+0.2%)</span></td>
-                <td>RBNZ</td>
-                <td>2025-10-09</td>
-            </tr>
-        </tbody>
-    </table>
+  // Auto-scroll to top on page change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setIsMenuOpen(false);
+  }, [currentPage]);
 
-    <script>
-        function updateClocks() {
-            const clockContainer = document.getElementById('clock-container');
-            const now = new Date();
+  const content = {
+    en: {
+      headline: "Strategic Wealth. Unlocked Liquidity.",
+      subheadline: "Maximize your corporate capital through the power of Immediate Financing Arrangements (IFA).",
+      oneDollarTitle: "One Dollar, Two Jobs",
+      oneDollarDesc: "A foundational permanent life insurance policy allows business owners to secure essential protection while reinvesting the premium back into their company.",
+      studyCta: "Request Feasibility Study",
+      disclosure: "Sales of insurance products are conducted by Alex Kynn Lee, a Licensed Life Insurance Agent and founder of VeVa Consultancy Inc. Mr. Lee is professionally sponsored by iA Financial Group and operates through the Managing General Agency (MGA), A.T. Financial Group.",
+      ifaTitle: "The IFA Mechanics Guide",
+      ifaDesc: "Pay premiums, leverage the cash value through lenders like Equitable Bank, and redeploy capital into your business growth.",
+      surplusTitle: "The Corporate Surplus Trap",
+      surplusDesc: "Discover how to unlock excess corporate cash tax-effectively through the Capital Dividend Account (CDA).",
+      engineTitle: "Par vs. UL: The Engine Room",
+      engineDesc: "Compare Participating Whole Life and Universal Life to determine the optimal chassis for your IFA strategy.",
+      protectionTitle: "Holistic Protection",
+      protectionDesc: "Safeguard your business continuity and personal legacy through Critical Illness and Segregated Fund strategies.",
+      casesTitle: "Case Studies",
+      casesDesc: "See how these strategies solve high-stakes problems for Canadian business owners and corporations.",
+      aboutTitle: "About Alex Kynn Lee",
+      aboutDesc: "The strategy behind VeVa Consultancy: 25 years of financial precision and a commitment to professional salesmanship.",
+      feasibilityTitle: "Feasibility Request",
+      back: "Back to Strategy",
+      submit: "Submit Study Request",
+      received: "Study Request Received",
+      followup: "Alex Kynn Lee will personally review your profile. Expect a follow-up within 48 business hours."
+    },
+    zh: {
+      headline: "財富策略. 流動性解鎖.",
+      subheadline: "通過即時融資安排 (IFA) 的力量最大化您的公司資本。",
+      oneDollarTitle: "一塊錢，兩份工",
+      oneDollarDesc: "基礎永久人壽保險政策讓企業主在獲得基本保障的同時，將保費重新投入公司。",
+      studyCta: "申請可行性評估",
+      disclosure: "保險產品銷售由 VeVa Consultancy Inc. 創辦人 Alex Kynn Lee 負責。Mr. Lee 為 iA Financial Group 贊助之持牌人壽保險經紀，並透過管理總代理 (MGA) A.T. Financial Group 提供服務。",
+      ifaTitle: "IFA 運作機制指南",
+      ifaDesc: "支付保費，通過 Equitable Bank 等貸款機構利用現金價值，並將資本重新部署到業務增長中。",
+      surplusTitle: "公司盈餘陷阱",
+      surplusDesc: "了解如何通過資本股息賬戶 (CDA) 以稅務高效的方式解鎖過剩的公司現金。",
+      engineTitle: "分紅型 vs 萬用型：引擎室",
+      engineDesc: "比較分紅型終身壽險與萬用壽險，為您的 IFA 策略選擇最佳底盤。",
+      protectionTitle: "全面保障策略",
+      protectionDesc: "透過重大疾病保險和隔離基金策略，守護您的企業持續經營和個人遺產。",
+      casesTitle: "案例研究",
+      casesDesc: "了解這些策略如何解決加拿大企業主和公司面臨的高風險問題。",
+      aboutTitle: "關於 Alex Kynn Lee",
+      aboutDesc: "VeVa Consultancy 背後的策略：25年的金融精準度以及對專業銷售精神的承諾。",
+      feasibilityTitle: "可行性評估請求",
+      back: "返回策略中心",
+      submit: "提交評估申請",
+      received: "評估請求已接收",
+      followup: "Alex Kynn Lee 將親自審核您的公司概況。預計在 48 小時內會收到回覆。"
+    },
+    cn: {
+      headline: "财富策略. 流动性解锁.",
+      subheadline: "通过即时融资安排 (IFA) 的力量最大化您的公司资本。",
+      oneDollarTitle: "一块钱，两份工",
+      oneDollarDesc: "基础永久人寿保险政策让企业主在获得基本保障的同时，将保费重新投入公司。",
+      studyCta: "申请可行性评估",
+      disclosure: "保险产品销售由 VeVa Consultancy Inc. 创始人 Alex Kynn Lee 负责。Mr. Lee 为 iA Financial Group 赞助之持牌人寿保险经纪，并通过管理总代理 (MGA) A.T. Financial Group 提供服务。",
+      ifaTitle: "IFA 运作机制指南",
+      ifaDesc: "支付保费，通过 Equitable Bank 等金融机构利用现金价值，并将资本重新部署到业务增长中。",
+      surplusTitle: "公司盈余陷阱",
+      surplusDesc: "了解如何通过资本股息账户 (CDA) 以税务高效的方式解锁过剩的公司现金。",
+      engineTitle: "分红型 vs 万用型：引擎室",
+      engineDesc: "比较分红型终身寿险与万用寿险，为您 IFA 策略选择最佳底盘。",
+      protectionTitle: "全面保障策略",
+      protectionDesc: "通过重大疾病保险和隔离基金策略，守护您的企业持续经营和个人遗产。",
+      casesTitle: "案例研究",
+      casesDesc: "了解这些策略如何解决战略上的企业主和公司面临的高风险问题。",
+      aboutTitle: "关于 Alex Kynn Lee",
+      aboutDesc: "VeVa Consultancy 背后的策略：25年的金融精准度以及对专业销售精神的承诺。",
+      feasibilityTitle: "可行性评估请求",
+      back: "返回策略中心",
+      submit: "提交评估申请",
+      received: "评估请求已接收",
+      followup: "Alex Kynn Lee 将亲自审核您的公司概况。预计在 48 小时内会收到回复。"
+    }
+  };
 
-            const cities = [
-                { name: 'New York', timeZone: 'America/New_York' },
-                { name: 'São Paulo', timeZone: 'America/Sao_Paulo' },
-                { name: 'London', timeZone: 'Europe/London' },
-                { name: 'Paris', timeZone: 'Europe/Paris' },
-                { name: 'Johannesburg', timeZone: 'Africa/Johannesburg' },
-                { name: 'Mumbai', timeZone: 'Asia/Kolkata' },
-                { name: 'Shanghai', timeZone: 'Asia/Shanghai' },
-                { name: 'Hong Kong', timeZone: 'Asia/Hong_Kong' },
-                { name: 'Tokyo', timeZone: 'Asia/Tokyo' },
-                { name: 'Sydney', timeZone: 'Australia/Sydney' }
-            ];
+  const t = content[language];
 
-            let clocksHTML = '';
+  // Responsive Link
+  const NavLink = ({ label, target, mobile = false }) => (
+    <button 
+      onClick={() => setCurrentPage(target)}
+      className={`transition-all uppercase tracking-widest font-black ${mobile ? 'text-xl py-4 block' : 'text-[10px] text-gray-500 hover:text-white'} ${currentPage === target ? 'text-[#c5a059]' : ''}`}
+    >
+      {label}
+    </button>
+  );
 
-            for (const city of cities) {
-                 const timeString = new Date().toLocaleTimeString('en-US', {
-                    timeZone: city.timeZone,
-                    hour12: false,
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit'
-                });
-                
-                clocksHTML += `
-                    <div class="clock">
-                        <div class="clock-city">${city.name}</div>
-                        <div class="clock-time">${timeString}</div>
-                    </div>
-                `;
-            }
-            clockContainer.innerHTML = clocksHTML;
-        }
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-gray-100 font-sans selection:bg-[#c5a059]/30 scroll-smooth overflow-x-hidden">
+      {/* Navigation - iPhone Friendly Padding */}
+      <nav className="fixed w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 safe-top">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentPage('home')}>
+            <img src="logo.png" alt="Logo" className="w-9 h-9 object-contain" onError={(e) => {e.target.style.display='none'; e.target.nextSibling.style.display='flex';}}/>
+            <div className="hidden w-9 h-9 bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded-lg items-center justify-center"><span className="text-white font-bold text-lg">V</span></div>
+            <span className="text-lg md:text-xl font-black tracking-tighter text-white">VEVACI</span>
+          </div>
 
-        setInterval(updateClocks, 1000);
-        updateClocks(); // Initial call
-
-        // --- FRED DATA FETCHING SCRIPT ---
-
-        document.addEventListener('DOMContentLoaded', function() {
-            fetchFREDData();
-        });
-
-        async function fetchFREDData() {
-            const apiKey = '6fa4cffb01961faff2ba8eb4513e50fc';
-
-            const series = {
-                interestRate: 'DFF',            // Corrected: Daily Effective Federal Funds Rate
-                inflationRate: 'CPIAUCSL_PC1',    // Correct: YoY % Change in Consumer Price Index
-                coreCpi: 'CPILFESL_PC1',        // Correct: YoY % Change in Core Consumer Price Index
-                unemploymentRate: 'UNRATE',     // Correct: Civilian Unemployment Rate, Seasonally Adjusted
-                ppi: 'PPIACO_PC1',              // Correct: YoY % Change in Producer Price Index for All Commodities
-                gdp: 'A191RP1Q027SBEA',         // Correct: Real GDP, Quarterly, Percent Change from Preceding Period
-                retailSales: 'RSAFS_PC1'        // Correct: YoY % Change in Retail Sales
-            };
-
-            const fredBaseUrl = 'https://api.stlouisfed.org/fred/series/observations';
-            const proxyUrl = 'https://thingproxy.freeboard.io/fetch/'; // Switched to a more reliable proxy
-
-            for (const [key, id] of Object.entries(series)) {
-                const fredApiUrl = `${fredBaseUrl}?series_id=${id}&api_key=${apiKey}&file_type=json&limit=2&sort_order=desc`;
-                const requestUrl = `${proxyUrl}${fredApiUrl}`; // New proxy URL structure
-                
-                try {
-                    const response = await fetch(requestUrl);
-                    
-                    if (!response.ok) {
-                         const errorText = await response.text();
-                         throw new Error(`Proxy Error: ${response.status} - ${errorText}`);
-                    }
-
-                    const data = await response.json();
-                    
-                    if (data.error_message) {
-                        throw new Error(data.error_message);
-                    }
-                    
-                    if (data && data.observations && data.observations.length > 0) {
-                        updateTableCell(key, data.observations);
-                    } else {
-                        throw new Error(`No observations for ${id}`);
-                    }
-                } catch (error) {
-                    console.error(`Failed to fetch ${id}:`, error);
-                    updateTableCell(key, null, true, "Failed to fetch. See console for details.");
-                }
-            }
-        }
-
-        function updateTableCell(indicatorKey, observations, isError = false, errorMessage = 'Error') {
-            const elementId = `us-${indicatorKey.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
-            const cell = document.getElementById(elementId);
-
-            if (!cell) {
-                console.error(`HTML element with ID ${elementId} not found.`);
-                return;
-            }
+          <div className="hidden lg:flex items-center gap-8">
+            <NavLink label={language === 'en' ? 'Strategy' : (language === 'zh' ? '策略' : '策略')} target="home" />
+            <NavLink label="IFA" target="ifa" />
+            <NavLink label={language === 'en' ? 'Cases' : (language === 'zh' ? '案例' : '案例')} target="cases" />
+            <NavLink label={language === 'en' ? 'About' : (language === 'zh' ? '關於' : '关于')} target="about" />
             
-            if(isError){
-                cell.innerHTML = `<span class="negative" style="font-size: 0.8em;">${errorMessage}</span>`;
-                return;
-            }
+            <div className="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10 ml-2">
+              <Globe className="w-3.5 h-3.5 text-[#c5a059]" />
+              <button onClick={() => setLanguage('en')} className={`text-[9px] ${language === 'en' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>EN</button>
+              <button onClick={() => setLanguage('zh')} className={`text-[9px] ${language === 'zh' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>繁</button>
+              <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>简</button>
+            </div>
 
-            if (!observations || observations.length === 0) {
-                cell.innerHTML = `<span class="negative">No Data</span>`;
-                return;
-            }
+            <button onClick={() => setCurrentPage('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all hover:brightness-110 shadow-lg">
+              {language === 'en' ? 'Study Request' : (language === 'zh' ? '申請評估' : '申请评估')}
+            </button>
+          </div>
 
-            const latestValue = parseFloat(observations[0].value);
-            const previousValue = observations.length > 1 ? parseFloat(observations[1].value) : latestValue;
-            
-            if (isNaN(latestValue)) {
-                 cell.innerHTML = `<span>N/A</span>`;
-                 return;
-            }
+          <button className="lg:hidden text-white p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+        
+        {/* Mobile Navigation Panel */}
+        {isMenuOpen && (
+          <div className="lg:hidden fixed inset-0 top-20 bg-[#0a0a0a] z-40 p-8 flex flex-col items-center space-y-4 animate-in fade-in slide-in-from-top-4 duration-300">
+             <NavLink label="Strategy" target="home" mobile />
+             <NavLink label="IFA Guide" target="ifa" mobile />
+             <NavLink label="Case Studies" target="cases" mobile />
+             <NavLink label="About Alex" target="about" mobile />
+             <NavLink label="Study Request" target="feasibility" mobile />
+             <div className="pt-8 flex gap-8 text-xl font-bold border-t border-white/5 w-full justify-center">
+               <button onClick={() => setLanguage('en')} className={language === 'en' ? 'text-[#c5a059]' : 'text-gray-600'}>EN</button>
+               <button onClick={() => setLanguage('zh')} className={language === 'zh' ? 'text-[#c5a059]' : 'text-gray-600'}>繁</button>
+               <button onClick={() => setLanguage('cn')} className={language === 'cn' ? 'text-[#c5a059]' : 'text-gray-600'}>简</button>
+             </div>
+          </div>
+        )}
+      </nav>
 
-            const change = latestValue - previousValue;
-            
-            const valueClass = latestValue >= 0 ? 'positive' : 'negative';
-            const changeClass = change >= 0 ? 'positive' : 'negative';
-            
-            const displayValue = latestValue.toFixed(2) + '%';
-            const changeSign = change > 0 ? '+' : '';
-            // For interest rate, the change is usually very small, so show more precision
-            const changeDecimalPoints = (indicatorKey === 'interestRate') ? 2 : 2;
-            const changeDisplay = `(${changeSign}${change.toFixed(changeDecimalPoints)}%)`;
+      {/* Main Content Areas */}
+      <main className="w-full">
+        {currentPage === 'home' && <HomePage t={t} setCurrentPage={setCurrentPage} language={language} />}
+        {currentPage === 'ifa' && <IFAPage t={t} setCurrentPage={setCurrentPage} language={language} />}
+        {currentPage === 'surplus' && <SurplusPage t={t} setCurrentPage={setCurrentPage} language={language} />}
+        {currentPage === 'compare' && <ComparePage t={t} setCurrentPage={setCurrentPage} language={language} />}
+        {currentPage === 'protection' && <ProtectionPage t={t} setCurrentPage={setCurrentPage} language={language} />}
+        {currentPage === 'cases' && <CaseStudyPage t={t} setCurrentPage={setCurrentPage} language={language} />}
+        {currentPage === 'about' && <AboutPage t={t} setCurrentPage={setCurrentPage} language={language} />}
+        {currentPage === 'feasibility' && <FeasibilityPage t={t} setCurrentPage={setCurrentPage} language={language} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />}
+      </main>
 
-            cell.innerHTML = `
-                <span class="${valueClass}">${displayValue}</span>
-                <span class="change-value ${changeClass}">${changeDisplay}</span>
-            `;
-        }
-    </script>
-</body>
-</html>
+      {/* Corporate Compliance Footer */}
+      <footer className="pt-24 pb-12 bg-black border-t border-white/5 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-4 gap-16 mb-20 text-center lg:text-left">
+            <div className="lg:col-span-2 space-y-6">
+              <div className="flex items-center justify-center lg:justify-start gap-3">
+                <img src="logo.png" alt="Logo" className="w-8 h-8 object-contain" onError={(e) => e.target.style.display='none'}/>
+                <span className="text-xl font-black tracking-tighter text-white uppercase tracking-widest">VEVACI</span>
+              </div>
+              <p className="text-gray-500 text-[11px] leading-relaxed border-l-0 lg:border-l-2 border-[#b36b39] lg:pl-6 uppercase tracking-tight font-medium italic max-w-xl mx-auto lg:mx-0">
+                {t.disclosure}
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h4 className="text-white font-black text-[10px] tracking-[0.2em] uppercase">{language === 'en' ? 'Navigate' : (language === 'zh' ? '導航' : '导航')}</h4>
+              <ul className="space-y-3 text-gray-500 text-sm">
+                <li className="cursor-pointer hover:text-[#c5a059]" onClick={() => setCurrentPage('ifa')}>{t.ifaTitle}</li>
+                <li className="cursor-pointer hover:text-[#c5a059]" onClick={() => setCurrentPage('surplus')}>{t.surplusTitle}</li>
+                <li className="cursor-pointer hover:text-[#c5a059]" onClick={() => setCurrentPage('compare')}>{t.engineTitle}</li>
+                <li className="cursor-pointer hover:text-[#c5a059]" onClick={() => setCurrentPage('about')}>{t.aboutTitle}</li>
+              </ul>
+            </div>
+            <div className="space-y-4">
+              <h4 className="text-white font-black text-[10px] tracking-[0.2em] uppercase">{language === 'en' ? 'Region' : (language === 'zh' ? '服務區域' : '服务区域')}</h4>
+              <ul className="space-y-3 text-gray-500 text-sm italic font-light">
+                <li>Markham & Richmond Hill</li>
+                <li>Greater Toronto Area</li>
+                <li>Ontario, Canada</li>
+                <li><a href="mailto:info@vevaci.ca" className="hover:text-[#c5a059]">info@vevaci.ca</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-4">
+            <p className="text-[10px] text-gray-700">© 2026 VeVa Consultancy Inc. | Alex Kynn Lee</p>
+            <div className="flex gap-6 text-[10px] text-gray-700 font-bold uppercase tracking-widest">
+              <a href="#" className="hover:text-[#c5a059]">Privacy</a>
+              <a href="#" className="hover:text-[#c5a059]">Terms</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
 
+// --- Page Level Fragments ---
+
+const HomePage = ({ t, setCurrentPage, language }) => (
+  <div className="w-full overflow-hidden px-6">
+    <section className="pt-40 sm:pt-48 pb-24 sm:pb-32 relative text-center">
+      <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[#c5a059]/5 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div className="max-w-5xl mx-auto relative z-10">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#c5a059] text-[9px] sm:text-[10px] font-bold tracking-[0.2em] uppercase mb-8 italic">
+          <ShieldCheck className="w-3.5 h-3.5" /> Strategic IFA & Corporate Wealth Design
+        </div>
+        <h1 className="text-4xl sm:text-7xl md:text-8xl font-black mb-6 sm:mb-8 tracking-tighter leading-[1.1] bg-gradient-to-b from-white via-white to-[#c5a059]/50 bg-clip-text text-transparent italic">
+          {t.headline}
+        </h1>
+        <p className="text-lg sm:text-xl md:text-2xl text-gray-400 mb-10 sm:mb-12 max-w-3xl mx-auto font-light leading-relaxed">
+          {t.subheadline}
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
+          <button onClick={() => setCurrentPage('feasibility')} className="w-full sm:w-auto bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-10 sm:px-12 py-4 sm:py-5 rounded-full text-base sm:text-lg font-bold transition-all shadow-2xl active:scale-95">
+            {t.studyCta}
+          </button>
+          <button onClick={() => setCurrentPage('ifa')} className="w-full sm:w-auto bg-white/5 text-white border border-white/10 px-10 sm:px-12 py-4 sm:py-5 rounded-full text-base sm:text-lg font-bold backdrop-blur-sm hover:bg-white/10 transition-colors">
+            {language === 'en' ? 'Learn the Mechanics' : (language === 'zh' ? '了解運作機制' : '了解运作机制')}
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section className="py-20 sm:py-32 bg-[#0c0c0c] border-y border-white/5 -mx-6 px-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <EducationCard icon={<Layers className="w-7 h-7 text-[#c5a059]" />} title={t.ifaTitle} desc={t.ifaDesc} onClick={() => setCurrentPage('ifa')} label={language === 'en' ? 'Read Mechanics' : (language === 'zh' ? '閱讀機制' : '阅读机制')} />
+        <EducationCard icon={<Unlock className="w-7 h-7 text-[#c5a059]" />} title={t.surplusTitle} desc={t.surplusDesc} onClick={() => setCurrentPage('surplus')} label={language === 'en' ? 'Analyze Tax' : (language === 'zh' ? '稅務分析' : '税务分析')} />
+        <EducationCard icon={<BarChart3 className="w-7 h-7 text-[#c5a059]" />} title={t.casesTitle} desc={t.casesDesc} onClick={() => setCurrentPage('cases')} label={language === 'en' ? 'View Cases' : (language === 'zh' ? '查看案例' : '查看案例')} />
+      </div>
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mt-6 sm:mt-8">
+        <EducationCard icon={<Users className="w-7 h-7 text-[#c5a059]" />} title={t.aboutTitle} desc={t.aboutDesc} onClick={() => setCurrentPage('about')} label={language === 'en' ? 'Meet Alex' : (language === 'zh' ? '關於 Alex' : '关于 Alex')} />
+        <EducationCard icon={<FileText className="w-7 h-7 text-[#c5a059]" />} title={t.feasibilityTitle} desc={t.feasibilityDesc} onClick={() => setCurrentPage('feasibility')} label={language === 'en' ? 'Request Study' : (language === 'zh' ? '申請評估' : '申请评估')} />
+      </div>
+    </section>
+  </div>
+);
+
+const IFAPage = ({ t, language, setCurrentPage }) => (
+  <div className="pt-32 sm:pt-40 pb-20 px-6 max-w-4xl mx-auto">
+    <button onClick={() => setCurrentPage('home')} className="flex items-center gap-2 text-[#c5a059] text-[10px] font-black tracking-widest uppercase mb-10"><ArrowRight className="w-4 h-4 rotate-180" /> {t.back}</button>
+    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter leading-[1.1] mb-12 sm:mb-20 italic">
+      {language === 'en' ? 'IFA ' : (language === 'zh' ? 'IFA 運作' : 'IFA 运作')}<span className="text-[#c5a059]">{language === 'en' ? 'Mechanics' : (language === 'zh' ? '機制' : '机制')}</span>
+    </h1>
+    <div className="space-y-12 sm:space-y-20 relative before:absolute before:left-[31px] before:top-10 before:bottom-10 before:w-px before:bg-white/10">
+      <MechanicStep num="01" title={language === 'en' ? "Engine Selection" : (language === 'zh' ? "引擎選擇" : "引擎选择")} desc={language === 'en' ? "Selecting high-CSV Participating policies for optimized early collateral." : (language === 'zh' ? "選擇高現金價值的分紅保單，以優化早期抵押資產。" : "选择高现金价值的分红保单，以优化早期抵押资产。")} icon={<ShieldCheck className="w-8 h-8" />} />
+      <MechanicStep num="02" title={language === 'en' ? "Premium Funding" : (language === 'zh' ? "保費注入" : "保费注入")} desc={language === 'en' ? "Annual corporate funding that creates a tax-exempt balance sheet asset." : (language === 'zh' ? "年度公司注資，建立免稅的資產負債表資產。" : "年度公司注资，建立免税的资产负债表资产。")} icon={<PiggyBank className="w-8 h-8" />} />
+      <MechanicStep num="03" title={language === 'en' ? "Collateral Leverage" : (language === 'zh' ? "貸款槓桿" : "贷款杠杆")} desc={language === 'en' ? "Lender provides an immediate line of credit against the policy cash value." : (language === 'zh' ? "貸款機構針對保單現金價值提供即時信用額度。" : "贷款机构针对保单现金价值提供即时信用额度。")} icon={<Layers className="w-8 h-8" />} />
+      <MechanicStep num="04" title={language === 'en' ? "Active Deployment" : (language === 'zh' ? "資本運營" : "资本运营")} desc={language === 'en' ? "Capital is reinvested into the business, generating potential interest deductions." : (language === 'zh' ? "資本重新投入業務運營，產生潛在的利息抵稅。" : "资本重新投入业务运营，产生潜在的利息抵税。")} icon={<TrendingUp className="w-8 h-8" />} />
+      <MechanicStep num="05" title={language === 'en' ? "Wealth Realization" : (language === 'zh' ? "財富實現" : "财富实现")} desc={language === 'en' ? "Benefit retires the bank loan; surplus flows tax-free via the CDA." : (language === 'zh' ? "保險金償還貸款；餘額通過 CDA 免稅流向繼承人。" : "保险金偿还贷款；余额通过 CDA 免税流向继承人。")} icon={<Unlock className="w-8 h-8" />} />
+    </div>
+  </div>
+);
+
+const SurplusPage = ({ t, language, setCurrentPage }) => (
+  <div className="pt-32 sm:pt-40 pb-20 px-6 max-w-4xl mx-auto">
+    <button onClick={() => setCurrentPage('home')} className="flex items-center gap-2 text-[#c5a059] text-[10px] font-black tracking-widest uppercase mb-10"><ArrowRight className="w-4 h-4 rotate-180" /> {t.back}</button>
+    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-[10px] font-bold tracking-[0.2em] uppercase mb-10 italic">Tax Diagnostic</div>
+    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter leading-[1.1] mb-12 italic">
+      {language === 'en' ? 'Surplus ' : (language === 'zh' ? '公司盈餘' : '公司盈余')}<span className="text-[#c5a059]">{language === 'en' ? 'Trap' : (language === 'zh' ? '陷阱' : '陷阱')}</span>
+    </h1>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-300 italic font-light">
+      <div className="p-8 rounded-[2rem] bg-white/5 border border-white/10 leading-relaxed">
+        {language === 'en' ? 'Ontario CCPC Passive Tax: ~50.17%' : (language === 'zh' ? '安省公司被動收入稅率：~50.17%' : '安省公司被动收入税率：~50.17%')}
+      </div>
+      <div className="p-8 rounded-[2rem] bg-white/5 border border-white/10 leading-relaxed">
+        {language === 'en' ? 'SBD Threshold: $50k Passive Income limit.' : (language === 'zh' ? 'SBD 門檻：$50,000 被動收入。' : 'SBD 门槛：$50,000 被动收入。')}
+      </div>
+    </div>
+    <div className="mt-16 p-12 bg-[#121212] border border-[#c5a059]/20 rounded-[3rem] text-lg sm:text-xl text-gray-400 italic font-light leading-relaxed">
+      {language === 'en' 
+        ? "Passive investment inside a corporation is heavily penalized. We engineer strategies to relocate dormant cash into high-value, tax-exempt engines." 
+        : (language === 'zh' ? "公司內部的被動投資會受到嚴厲課稅。我們設計策略將閒置現金轉移至高價值的免稅引擎中。" : "公司内部的被动投资会受到严厉课税。我们设计策略将闲置现金转移至高价值的免税引擎中。")}
+    </div>
+  </div>
+);
+
+const CaseStudyPage = ({ language, setCurrentPage, t }) => (
+  <div className="pt-32 sm:pt-40 pb-20 px-6 max-w-6xl mx-auto">
+    <button onClick={() => setCurrentPage('home')} className="flex items-center gap-2 text-[#c5a059] text-[10px] font-black tracking-widest uppercase mb-10"><ArrowRight className="w-4 h-4 rotate-180" /> {t.back}</button>
+    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter leading-[1.1] mb-20 italic">Case <span className="text-[#c5a059]">{language === 'en' ? 'Studies' : (language === 'zh' ? '研究' : '研究')}</span></h1>
+    <div className="space-y-24">
+      <CaseSection 
+        title={language === 'en' ? "Specialist MD Strategy" : (language === 'zh' ? "專科醫生策略" : "专科医生策略")}
+        profile={language === 'en' ? "Medical Professional Corp (Ontario)." : (language === 'zh' ? "安省醫療專業公司" : "安省医疗专业公司")}
+        problem={language === 'en' ? "Relocating excess earnings for growth." : (language === 'zh' ? "將過剩收益重新部署以實現增長" : "将过剩收益重新部署以实现增长")}
+        outcome={language === 'en' ? "Accessed $1.5M liquid for investment while securing $4M in estate value." : (language === 'zh' ? "獲得 150 萬美元流動投資資金，同時確保 400 萬美元遺產價值" : "获得 150 万美元流动投资资金，同时确保 400 万美元遗产价值")}
+        icon={<UserCheck className="w-10 h-10" />}
+        lang={language}
+      />
+      <CaseSection 
+        title={language === 'en' ? "The Legacy Bond" : (language === 'zh' ? "傳承債券" : "传承债券")}
+        profile={language === 'en' ? "Family Enterprise with $10M Surplus." : (language === 'zh' ? "擁有 1000 萬美元盈餘的家族企業" : "拥有 1000 万美元盈余的家族企业")}
+        problem={language === 'en' ? "Mitigating tax liabilities for heirs." : (language === 'zh' ? "減輕繼承人的稅務負債" : "减轻继承人的税务负债")}
+        outcome={language === 'en' ? "Converted taxable surplus into a CDA credit, eliminating death taxes." : (language === 'zh' ? "將應稅盈餘轉化為 CDA 額度，消除了遺產稅。" : "将应税盈余转化为 CDA 额度，消除了遗产税。")}
+        icon={<Briefcase className="w-10 h-10" />}
+        isReversed
+        lang={language}
+      />
+    </div>
+  </div>
+);
+
+const AboutPage = ({ language, setCurrentPage, t }) => (
+  <div className="pt-32 sm:pt-40 pb-20 px-6 max-w-6xl mx-auto">
+    <button onClick={() => setCurrentPage('home')} className="flex items-center gap-2 text-[#c5a059] text-[10px] font-black tracking-widest uppercase mb-10"><ArrowRight className="w-4 h-4 rotate-180" /> {t.back}</button>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div className="space-y-8 text-center lg:text-left">
+         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#c5a059] text-[10px] font-bold uppercase tracking-widest italic">Founder of VeVa Consultancy Inc.</div>
+         <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter leading-[1.1] italic">Alex Kynn <span className="text-[#c5a059]">Lee</span></h1>
+         <p className="text-lg sm:text-xl text-gray-400 font-light leading-relaxed">
+           {language === 'en' 
+             ? "25 years in financial sector, mentored by Amy Tong (CEO of A.T. Financial Group). Expert in algorithmic structures and IFA design." 
+             : (language === 'zh' ? "25年金融行業經驗，由 A.T. Financial Group 行政總裁 Amy Tong 指導。專精於算法結構及 IFA 設計。" : "25年金融行业经验，由 A.T. Financial Group 行政总裁 Amy Tong 指导。专精于算法结构及 IFA 设计。")}
+         </p>
+         <div className="grid grid-cols-2 gap-4">
+            <div className="p-6 rounded-2xl bg-[#121212] border border-white/5"><TrendingUp className="w-6 h-6 text-[#c5a059] mb-4 mx-auto lg:mx-0" /><h4 className="text-white font-black text-[9px] uppercase tracking-widest">Quant Expert</h4></div>
+            <div className="p-6 rounded-2xl bg-[#121212] border border-white/5"><Award className="w-6 h-6 text-[#c5a059] mb-4 mx-auto lg:mx-0" /><h4 className="text-white font-black text-[9px] uppercase tracking-widest">Sector Veteran</h4></div>
+         </div>
+      </div>
+      <div className="p-8 sm:p-12 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/20 text-center lg:text-left">
+         <h3 className="text-xl font-bold text-white mb-6 italic uppercase tracking-[0.2em]">{language === 'en' ? 'Professional Creed' : (language === 'zh' ? '專業信條' : '专业信条')}</h3>
+         <p className="text-white font-medium italic leading-relaxed text-xl sm:text-2xl">
+           "{language === 'en' 
+             ? "True professionalism is selling the right product to the right person, at the right time and place—with timely follow-up." 
+             : (language === 'zh' ? "真正的專業是將合適的產品，在合適的時間和地點賣給合適的人，並及時進行跟進。" : "真正的专业是将合适的产品，在合适的时间和地点卖给合适的人，并及时进行跟进。")}"
+         </p>
+      </div>
+    </div>
+  </div>
+);
+
+const FeasibilityPage = ({ t, language, setCurrentPage, formSubmitted, setFormSubmitted }) => {
+  if (formSubmitted) {
+    return (
+      <div className="pt-32 sm:pt-40 pb-20 px-6 flex justify-center text-center">
+        <div className="max-w-2xl bg-[#121212] p-10 sm:p-16 rounded-[2.5rem] border border-[#c5a059]/20 space-y-8">
+           <CheckCircle2 className="w-16 sm:w-20 h-16 sm:h-20 text-[#c5a059] mx-auto animate-bounce" />
+           <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight italic">{t.received}</h2>
+           <p className="text-gray-400 text-base sm:text-lg font-light">{t.followup}</p>
+           <button onClick={() => {setFormSubmitted(false); setCurrentPage('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-xs flex items-center gap-2 mx-auto underline">{t.back}</button>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="pt-32 sm:pt-40 pb-20 px-6 max-w-4xl mx-auto">
+      <button onClick={() => setCurrentPage('home')} className="flex items-center gap-2 text-[#c5a059] text-[10px] font-black tracking-widest uppercase mb-10"><ArrowRight className="w-4 h-4 rotate-180" /> {t.back}</button>
+      <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tighter leading-[1.1] mb-12 italic">Feasibility <span className="text-[#c5a059]">Request</span></h1>
+      <form onSubmit={(e) => {e.preventDefault(); setFormSubmitted(true);}} className="space-y-8 sm:space-y-10 bg-[#121212] p-8 sm:p-12 rounded-[2.5rem] border border-white/5">
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+            <FormGroup label={language === 'en' ? "Principal Name" : (language === 'zh' ? "負責人姓名" : "负责人姓名")} placeholder="Alex Kynn Lee" type="text" />
+            <FormGroup label={language === 'en' ? "Corporation Name" : (language === 'zh' ? "公司名稱" : "公司名称")} placeholder="VeVa Consultancy Inc." type="text" />
+            <FormGroup label={language === 'en' ? "Annual Corporate Net Income" : (language === 'zh' ? "公司年度淨收入" : "公司年度净收入")} placeholder="e.g. $250k+" type="text" />
+            <FormGroup label={language === 'en' ? "Contact Details" : (language === 'zh' ? "聯繫詳情" : "联系详情")} placeholder="Email or Phone" type="text" />
+         </div>
+         <button type="submit" className="w-full bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white py-5 rounded-full text-lg font-bold shadow-2xl active:scale-95 transition-transform">
+           {t.submit}
+         </button>
+      </form>
+    </div>
+  );
+};
+
+// --- Atomic Layout Units ---
+
+const EducationCard = ({ icon, title, desc, onClick, label }) => (
+  <div onClick={onClick} className="p-8 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#b36b39]/40 transition-all group flex flex-col h-full cursor-pointer relative overflow-hidden">
+    <div className="w-14 h-14 rounded-2xl bg-[#c5a059]/5 flex items-center justify-center mb-8 border border-[#c5a059]/10 group-hover:bg-[#c5a059]/10 transition-colors">{icon}</div>
+    <h3 className="text-xl font-bold text-white mb-4 tracking-tight group-hover:text-[#c5a059] transition-colors">{title}</h3>
+    <p className="text-gray-500 text-xs sm:text-sm font-light leading-relaxed mb-10 flex-grow">{desc}</p>
+    <div className="text-[10px] font-black uppercase tracking-[0.3em] text-[#c5a059] flex items-center gap-3 group-hover:gap-5 transition-all">{label} <ArrowRight className="w-4 h-4" /></div>
+  </div>
+);
+
+const MechanicStep = ({ num, title, desc, icon }) => (
+  <div className="flex gap-6 sm:gap-10 group relative z-10 text-left">
+    <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-[#121212] border border-white/10 flex items-center justify-center text-[#c5a059] shadow-xl group-hover:border-[#c5a059]/50 transition-all">{icon}</div>
+    <div className="pt-2">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mb-3">
+        <span className="text-[#c5a059] text-[10px] font-black tracking-widest">{num}</span>
+        <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">{title}</h3>
+      </div>
+      <p className="text-gray-400 text-base leading-relaxed font-light">{desc}</p>
+    </div>
+  </div>
+);
+
+const CaseSection = ({ title, profile, problem, outcome, icon, isReversed = false, lang }) => (
+  <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center text-left ${isReversed ? 'lg:flex-row-reverse' : ''}`}>
+    <div className={isReversed ? 'lg:order-2' : ''}>
+       <div className="w-14 h-14 rounded-2xl bg-[#c5a059]/10 border border-[#c5a059]/20 flex items-center justify-center text-[#c5a059] mb-4 shadow-[0_0_20px_rgba(197,160,89,0.1)]">{icon}</div>
+       <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight italic underline decoration-[#c5a059]/30 decoration-4 underline-offset-8">{title}</h3>
+       <div className="space-y-4 pt-6 text-sm">
+          <div><span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest block">{lang === 'en' ? 'Profile' : (lang === 'zh' ? '客戶概況' : '客户概况')}</span><p className="text-gray-300 italic text-base">{profile}</p></div>
+          <div><span className="text-[10px] font-black text-red-400 uppercase tracking-widest block">{lang === 'en' ? 'Challenge' : (lang === 'zh' ? '戰略挑戰' : '战略挑战')}</span><p className="text-gray-400 font-light text-base leading-relaxed">{problem}</p></div>
+       </div>
+    </div>
+    <div className={`p-8 sm:p-10 rounded-[2.5rem] bg-[#121212] border border-white/5 ${isReversed ? 'lg:order-1' : ''}`}>
+       <span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest block mb-4 italic font-black">{lang === 'en' ? 'Outcome' : (lang === 'zh' ? '戰略成果' : '战略成果')}</span>
+       <p className="text-lg sm:text-xl text-white font-light leading-relaxed italic">"{outcome}"</p>
+    </div>
+  </div>
+);
+
+const FormGroup = ({ label, placeholder, type }) => (
+  <div className="space-y-2">
+    <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{label}</label>
+    <input type={type} placeholder={placeholder} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-700 focus:border-[#c5a059]/50 focus:outline-none transition-all text-sm" />
+  </div>
+);
+
+const ProtectionFeature = ({ title, desc }) => (
+  <div className="flex gap-4 group">
+    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#c5a059] flex-shrink-0 group-hover:scale-125 transition-transform"></div>
+    <div><p className="font-bold text-white text-sm mb-1">{title}</p><p className="text-gray-500 text-sm leading-relaxed">{desc}</p></div>
+  </div>
+);
+
+const ComparePage = ({ setCurrentPage, t, language }) => (
+  <div className="pt-32 sm:pt-40 pb-20 px-6 max-w-4xl mx-auto">
+    <button onClick={() => setCurrentPage('home')} className="flex items-center gap-2 text-[#c5a059] text-[10px] font-black tracking-widest uppercase mb-10"><ArrowRight className="w-4 h-4 rotate-180" /> {t.back}</button>
+    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter leading-[1.1] mb-12 italic">Par vs. <span className="text-[#c5a059]">UL</span> Engines</h1>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+       <div className="p-8 sm:p-12 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/30">
+          <h3 className="text-2xl font-bold text-white mb-6 italic">{t.wholeLifeTitle}</h3>
+          <p className="text-gray-400 font-light italic leading-relaxed text-base">
+            {language === 'en' ? 'Preferred for IFA due to stable, guaranteed CSV and actuarial fund management.' : (language === 'zh' ? 'IFA 的首選，因其穩定的保證現金價值和精算基金管理。' : 'IFA 的首选，因其稳定的保证现金价值和精算基金管理。')}
+          </p>
+       </div>
+       <div className="p-8 sm:p-12 rounded-[2.5rem] bg-[#121212] border border-white/5">
+          <h3 className="text-2xl font-bold text-white mb-6 italic">{t.ulTitle}</h3>
+          <p className="text-gray-400 font-light italic leading-relaxed text-base">
+            {language === 'en' ? 'Ideal for high-flexibility funding and client-directed asset options.' : (language === 'zh' ? '理想的高靈活性融資和客戶導向資產選擇。' : '理想的高灵活性融资和客户导向资产选择。')}
+          </p>
+       </div>
+    </div>
+  </div>
+);
+
+const ProtectionPage = ({ setCurrentPage, language, t }) => (
+  <div className="pt-32 sm:pt-40 pb-20 px-6 max-w-4xl mx-auto">
+    <button onClick={() => setCurrentPage('home')} className="flex items-center gap-2 text-[#c5a059] text-[10px] font-black tracking-widest uppercase mb-10"><ArrowRight className="w-4 h-4 rotate-180" /> {t.back}</button>
+    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter leading-[1.1] mb-12 italic">{language === 'en' ? 'Holistic ' : (language === 'zh' ? '全面 ' : '全面 ')}<span className="text-[#c5a059]">{language === 'en' ? 'Protection' : (language === 'zh' ? '保障' : '保障')}</span></h1>
+    <div className="p-8 sm:p-12 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/20 space-y-8">
+       <div className="inline-flex items-center gap-2 text-red-400 uppercase font-black text-[10px] tracking-widest italic"><HeartPulse className="w-5 h-5" /> {language === 'en' ? 'Business Continuity' : (language === 'zh' ? '企業持續經營' : '企业持续经营')}</div>
+       <p className="text-lg sm:text-xl text-gray-400 font-light leading-relaxed italic">
+         {language === 'en' 
+           ? "Corporate Critical Illness and Segregated Funds provide a legal and financial moat for the professional corporation." 
+           : (language === 'zh' ? "企業重大疾病保險和隔離基金為專業公司提供了法律和財務上的護城河。" : "企业重大疾病保险和隔离基金为专业公司提供了法律和财务上的护城河。")}
+       </p>
+    </div>
+  </div>
+);
+
+export default App;
