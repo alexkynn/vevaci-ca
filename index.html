@@ -1,21 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VEVACI | Strategic Wealth. Unlocked Liquidity.</title>
-    <!-- React & Babel for In-Browser Transpilation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>VEVACI | 財富策略. 流動性解鎖.</title>
+    <!-- 必要的 React 與 Babel CDN -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS 用於樣式 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
+    <!-- Lucide 圖標庫 -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap');
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background-color: #0a0a0a;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* 針對 iPhone 的安全區域優化 */
         .safe-top { padding-top: env(safe-area-inset-top); }
+        .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+        /* 金屬質感漸變 */
+        .text-gradient-gold {
+            background: linear-gradient(to bottom, #ffffff, #ffffff, #c5a059);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-copper-gradient {
+            background: linear-gradient(to right, #b36b39, #8c6239);
+        }
     </style>
 </head>
 <body>
@@ -23,11 +38,13 @@
 
     <script type="text/babel">
         const { useState, useEffect } = React;
-        
-        // Custom Lucide Icon Wrapper for Browser CDN
-        const Icon = ({ name, className, size = 24 }) => {
+
+        // 圖標組件：確保在 CDN 環境下能正確渲染
+        const Icon = ({ name, className = "", size = 24 }) => {
             useEffect(() => {
-                lucide.createIcons();
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
             }, [name]);
             return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
         };
@@ -41,7 +58,7 @@
             useEffect(() => {
                 window.scrollTo(0, 0);
                 setIsMenuOpen(false);
-                lucide.createIcons();
+                if (window.lucide) window.lucide.createIcons();
             }, [currentPage, language]);
 
             const content = {
@@ -94,18 +111,22 @@
 
             const t = content[language];
 
-            const NavLink = ({ label, target }) => (
-                <button onClick={() => setCurrentPage(target)} className={`text-[10px] uppercase tracking-widest font-black ${currentPage === target ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>
+            const NavLink = ({ label, target, mobile = false }) => (
+                <button 
+                    onClick={() => setCurrentPage(target)}
+                    className={`${mobile ? 'text-2xl py-4' : 'text-[10px]'} uppercase tracking-widest font-black ${currentPage === target ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'} transition-colors`}
+                >
                     {label}
                 </button>
             );
 
             return (
-                <div className="min-h-screen text-gray-100 selection:bg-[#c5a059]/30">
-                    <nav className="fixed w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 h-20 flex items-center">
-                        <div className="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+                <div className="min-h-screen text-gray-100 flex flex-col">
+                    {/* 導航欄 */}
+                    <nav className="fixed w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 safe-top">
+                        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
                             <div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentPage('home')}>
-                                <div className="w-9 h-9 bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded-lg flex items-center justify-center font-bold text-white text-lg">V</div>
+                                <div className="w-9 h-9 bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded-lg flex items-center justify-center font-bold text-white">V</div>
                                 <span className="text-xl font-black tracking-tighter">VEVACI</span>
                             </div>
                             <div className="hidden lg:flex items-center gap-8">
@@ -114,11 +135,11 @@
                                 <NavLink label="Cases" target="cases" />
                                 <NavLink label="About" target="about" />
                                 <div className="flex gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-                                    <button onClick={() => setLanguage('en')} className={`text-[9px] ${language === 'en' ? 'text-[#e5c185]' : 'text-gray-600'}`}>EN</button>
-                                    <button onClick={() => setLanguage('zh')} className={`text-[9px] ${language === 'zh' ? 'text-[#e5c185]' : 'text-gray-600'}`}>繁</button>
-                                    <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185]' : 'text-gray-600'}`}>简</button>
+                                    <button onClick={() => setLanguage('en')} className={`text-[9px] ${language === 'en' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>EN</button>
+                                    <button onClick={() => setLanguage('zh')} className={`text-[9px] ${language === 'zh' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>繁</button>
+                                    <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>简</button>
                                 </div>
-                                <button onClick={() => setCurrentPage('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">Study Request</button>
+                                <button onClick={() => setCurrentPage('feasibility')} className="bg-copper-gradient text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg active:scale-95 transition-transform">Study Request</button>
                             </div>
                             <button className="lg:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                 <Icon name={isMenuOpen ? "x" : "menu"} />
@@ -126,82 +147,115 @@
                         </div>
                     </nav>
 
-                    <main className="pt-20">
+                    {/* 行動端菜單 */}
+                    {isMenuOpen && (
+                        <div className="fixed inset-0 z-40 bg-[#0a0a0a] pt-24 px-8 flex flex-col items-center space-y-6">
+                            <NavLink label="Strategy" target="home" mobile />
+                            <NavLink label="IFA Guide" target="ifa" mobile />
+                            <NavLink label="Cases" target="cases" mobile />
+                            <NavLink label="About" target="about" mobile />
+                            <NavLink label="Study Request" target="feasibility" mobile />
+                        </div>
+                    )}
+
+                    <main className="flex-grow pt-20">
                         {currentPage === 'home' && (
-                            <section className="pt-32 pb-24 text-center px-6">
-                                <h1 className="text-5xl md:text-8xl font-black mb-8 italic bg-gradient-to-b from-white to-[#c5a059]/50 bg-clip-text text-transparent">{t.headline}</h1>
-                                <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12 font-light">{t.subheadline}</p>
-                                <div className="flex flex-col sm:flex-row justify-center gap-4">
-                                    <button onClick={() => setCurrentPage('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] px-12 py-5 rounded-full font-bold text-lg shadow-2xl">{t.studyCta}</button>
-                                    <button onClick={() => setCurrentPage('ifa')} className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-bold text-lg">Learn More</button>
+                            <div className="animate-in fade-in duration-700">
+                                <section className="pt-32 pb-24 text-center px-6 relative">
+                                    <div className="absolute top-0 right-0 w-96 h-96 bg-[#c5a059]/5 blur-[120px] -z-10"></div>
+                                    <h1 className="text-5xl md:text-8xl font-black mb-8 italic text-gradient-gold tracking-tighter">{t.headline}</h1>
+                                    <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">{t.subheadline}</p>
+                                    <div className="flex flex-col sm:flex-row justify-center gap-4">
+                                        <button onClick={() => setCurrentPage('feasibility')} className="bg-copper-gradient px-12 py-5 rounded-full font-bold text-lg shadow-2xl active:scale-95 transition-transform">{t.studyCta}</button>
+                                        <button onClick={() => setCurrentPage('ifa')} className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors">Learn More</button>
+                                    </div>
+                                </section>
+
+                                <section className="py-24 bg-[#0c0c0c] border-y border-white/5 px-6">
+                                    <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+                                        <Card icon="layers" title={t.ifaTitle} onClick={() => setCurrentPage('ifa')} />
+                                        <Card icon="unlock" title={t.surplusTitle} onClick={() => setCurrentPage('surplus')} />
+                                        <Card icon="bar-chart-3" title={t.casesTitle} onClick={() => setCurrentPage('cases')} />
+                                    </div>
+                                </section>
+                            </div>
+                        )}
+
+                        {currentPage === 'ifa' && (
+                            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 duration-500">
+                                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                                <h2 className="text-6xl font-black italic mb-20 tracking-tighter">IFA <span className="text-[#c5a059]">Mechanics</span></h2>
+                                <div className="space-y-16 border-l border-white/10 pl-8 ml-4">
+                                    <Step num="01" title="Engine Selection" desc="Selecting high-CSV Participating Whole Life policies for optimized collateral speed." />
+                                    <Step num="02" title="Premium Funding" desc="Annual corporate funding transforms high-tax income into a tax-exempt corporate asset." />
+                                    <Step num="03" title="Lending Leverage" desc="Banks provide a line of credit up to 100% of CSV, allowing immediate capital access." />
                                 </div>
                             </section>
                         )}
 
-                        {currentPage === 'ifa' && (
-                            <section className="max-w-4xl mx-auto pt-20 px-6 pb-20">
-                                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                                <h2 className="text-6xl font-black italic mb-20">IFA <span className="text-[#c5a059]">Mechanics</span></h2>
-                                <div className="space-y-16">
-                                    <div className="flex gap-8">
-                                        <div className="text-[#c5a059] font-black text-2xl">01</div>
-                                        <div>
-                                            <h3 className="text-2xl font-bold mb-4">Engine Selection</h3>
-                                            <p className="text-gray-400 font-light leading-relaxed">Selecting high-CSV Participating policies for optimized early collateral leverage.</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-8">
-                                        <div className="text-[#c5a059] font-black text-2xl">02</div>
-                                        <div>
-                                            <h3 className="text-2xl font-bold mb-4">Premium Funding</h3>
-                                            <p className="text-gray-400 font-light leading-relaxed">Corporate funding that builds a tax-exempt balance sheet asset over time.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        )}
-                        
                         {currentPage === 'feasibility' && (
-                            <section className="max-w-4xl mx-auto pt-20 px-6 pb-20">
-                                <h2 className="text-6xl font-black italic mb-10">Feasibility <span className="text-[#c5a059]">Request</span></h2>
+                            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 duration-500 text-center md:text-left">
+                                <h2 className="text-6xl font-black italic mb-10 tracking-tighter">Study <span className="text-[#c5a059]">Request</span></h2>
                                 {!formSubmitted ? (
-                                    <form onSubmit={(e) => {e.preventDefault(); setFormSubmitted(true);}} className="bg-[#121212] p-12 rounded-[3rem] border border-white/5 space-y-8">
-                                        <div className="grid md:grid-cols-2 gap-8">
-                                            <input type="text" placeholder="Principal Name" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:border-[#c5a059]/50 outline-none" required />
-                                            <input type="text" placeholder="Corporation Name" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white focus:border-[#c5a059]/50 outline-none" required />
+                                    <form onSubmit={(e) => {e.preventDefault(); setFormSubmitted(true);}} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8">
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            <div className="space-y-2 text-left">
+                                                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Name</label>
+                                                <input type="text" placeholder="Alex Lee" className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors" required />
+                                            </div>
+                                            <div className="space-y-2 text-left">
+                                                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Corporation</label>
+                                                <input type="text" placeholder="Your Co. Inc" className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors" required />
+                                            </div>
                                         </div>
-                                        <button type="submit" className="w-full bg-gradient-to-r from-[#b36b39] to-[#8c6239] py-5 rounded-full font-bold text-lg">{t.submit}</button>
+                                        <button type="submit" className="w-full bg-copper-gradient py-5 rounded-full font-bold text-lg shadow-xl active:scale-95 transition-transform">{t.submit}</button>
                                     </form>
                                 ) : (
                                     <div className="bg-[#121212] p-16 rounded-[3rem] text-center border border-[#c5a059]/30">
-                                        <Icon name="check-circle" className="text-[#c5a059] mx-auto mb-6" size={64} />
+                                        <Icon name="check-circle-2" className="text-[#c5a059] mx-auto mb-6" size={64} />
                                         <h3 className="text-3xl font-bold mb-4">{t.received}</h3>
-                                        <p className="text-gray-400 font-light">{t.followup}</p>
-                                        <button onClick={() => {setFormSubmitted(false); setCurrentPage('home');}} className="mt-8 text-[#c5a059] font-bold underline">Return Home</button>
+                                        <p className="text-gray-400 font-light mb-8">{t.followup}</p>
+                                        <button onClick={() => {setFormSubmitted(false); setCurrentPage('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-xs underline">Return Home</button>
                                     </div>
                                 )}
                             </section>
                         )}
                     </main>
 
-                    <footer className="bg-black border-t border-white/5 pt-20 pb-10 px-6">
-                        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
-                            <div>
-                                <div className="flex items-center gap-3 mb-6">
+                    <footer className="bg-black border-t border-white/5 pt-24 pb-12 px-6 safe-bottom">
+                        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
+                            <div className="space-y-6">
+                                <div className="flex items-center justify-center md:justify-start gap-3">
                                     <div className="w-8 h-8 bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded flex items-center justify-center font-bold text-white">V</div>
-                                    <span className="text-xl font-black">VEVACI</span>
+                                    <span className="text-xl font-black tracking-widest">VEVACI</span>
                                 </div>
-                                <p className="text-gray-500 text-[11px] leading-relaxed italic border-l-2 border-[#b36b39] pl-6 uppercase max-w-lg">{t.disclosure}</p>
+                                <p className="text-gray-500 text-[11px] leading-relaxed italic border-l-0 md:border-l-2 border-[#b36b39] md:pl-6 uppercase max-w-lg mx-auto md:mx-0">{t.disclosure}</p>
                             </div>
-                            <div className="text-right">
+                            <div className="space-y-2">
                                 <p className="text-xs text-gray-700">© 2026 VeVa Consultancy Inc. | Alex Kynn Lee</p>
-                                <p className="text-xs text-gray-800 mt-2 italic">Markham & Richmond Hill, Ontario</p>
+                                <p className="text-[10px] text-gray-800 tracking-widest uppercase">Markham & Richmond Hill, Ontario</p>
                             </div>
                         </div>
                     </footer>
                 </div>
             );
         };
+
+        const Card = ({ icon, title, onClick }) => (
+            <div onClick={onClick} className="p-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/30 transition-all cursor-pointer group">
+                <Icon name={icon} className="text-[#c5a059] mb-6 group-hover:scale-110 transition-transform" size={32} />
+                <h3 className="text-xl font-bold mb-4">{title}</h3>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#c5a059] flex items-center gap-2">Read More <Icon name="chevron-right" size={12} /></div>
+            </div>
+        );
+
+        const Step = ({ num, title, desc }) => (
+            <div className="relative">
+                <div className="absolute -left-[53px] top-0 w-10 h-10 bg-[#0a0a0a] border border-[#c5a059] rounded-full flex items-center justify-center text-[10px] font-black text-[#c5a059]">{num}</div>
+                <h3 className="text-2xl font-bold mb-4">{title}</h3>
+                <p className="text-gray-400 font-light leading-relaxed">{desc}</p>
+            </div>
+        );
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
