@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>VEVACI | 財富策略. 流動性解鎖.</title>
+    <!-- Favicon Link: Replaces the earth sign on the browser tab -->
+    <link rel="icon" type="image/png" href="logo.png">
+    
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -60,11 +63,11 @@
                     aboutTitle: "About Alex Kynn Lee",
                     aboutDesc: "25 years of financial precision and professional salesmanship.",
                     feasibilityTitle: "Feasibility Request",
-                    back: "Back to Strategy",
+                    back: "Back to Home",
                     submit: "Submit Study Request",
                     received: "Study Request Received",
                     followup: "Alex Kynn Lee will review your profile. Expect a follow-up within 48 business hours.",
-                    navStrategy: "Strategy",
+                    navHome: "Home",
                     navCases: "Cases",
                     navAbout: "About"
                 },
@@ -78,11 +81,11 @@
                     casesTitle: "案例研究",
                     aboutTitle: "關於 Alex Kynn Lee",
                     feasibilityTitle: "可行性評估請求",
-                    back: "返回策略中心",
+                    back: "返回首頁",
                     submit: "提交評估申請",
                     received: "評估請求已接收",
                     followup: "Alex Kynn Lee 將親自審核您的公司概況。預計在 48 小時內會收到回覆。",
-                    navStrategy: "策略",
+                    navHome: "首頁",
                     navCases: "案例",
                     navAbout: "關於"
                 },
@@ -90,17 +93,17 @@
                     headline: "财富策略. 流动性解锁.",
                     subheadline: "通过即时融资安排 (IFA) 的力量最大化您的公司资本。",
                     studyCta: "申请可行性评估",
-                    disclosure: "保险产品销售由 VeVa Consultancy Inc. 创始人 Alex Kynn Lee 负责。Mr. Lee 为 iA Financial Group 赞助之持牌人寿保险经纪，并通过管理总代理 (MGA) A.T. Financial Group 提供服务。",
+                    disclosure: "保险产品销售由 VeVa Consultancy Inc. 创始人 Alex Kynn Lee 负责. Mr. Lee 为 iA Financial Group 赞助之持牌人寿保险经纪，并通过管理总代理 (MGA) A.T. Financial Group 提供服务。",
                     ifaTitle: "IFA 运作机制指南",
                     surplusTitle: "公司盈余陷阱",
                     casesTitle: "案例研究",
                     aboutTitle: "关于 Alex Kynn Lee",
                     feasibilityTitle: "可行性评估请求",
-                    back: "返回策略中心",
+                    back: "返回首页",
                     submit: "提交评估申请",
                     received: "评估请求已接收",
                     followup: "Alex Kynn Lee 将亲自审核您的公司概况。预计在 48 小时内会收到回复。",
-                    navStrategy: "策略",
+                    navHome: "首页",
                     navCases: "案例",
                     navAbout: "关于"
                 }
@@ -119,11 +122,9 @@
 
             return (
                 <div className="min-h-screen text-gray-100 flex flex-col selection:bg-[#c5a059]/30">
-                    {/* Navigation */}
                     <nav className="fixed w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 h-20 flex items-center safe-top">
                         <div className="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
                             <div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentPage('home')}>
-                                {/* Logo Priority with Fallback */}
                                 <div className="relative w-10 h-10 flex items-center justify-center">
                                     <img 
                                         src="logo.png" 
@@ -131,21 +132,20 @@
                                         className="absolute inset-0 w-full h-full object-contain z-10" 
                                         onError={(e) => {e.target.style.display='none';}}
                                     />
-                                    {/* Fallback "V" is hidden behind unless logo fails */}
                                     <div className="w-full h-full bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded-lg flex items-center justify-center font-bold text-white text-lg">V</div>
                                 </div>
                                 <span className="text-xl font-black tracking-tighter">VEVACI</span>
                             </div>
                             
                             <div className="hidden lg:flex items-center gap-8">
-                                <NavLink label={t.navStrategy} target="home" />
+                                <NavLink label={t.navHome} target="home" />
                                 <NavLink label="IFA" target="ifa" />
                                 <NavLink label={t.navCases} target="cases" />
                                 <NavLink label={t.navAbout} target="about" />
                                 <div className="flex gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-                                    <button onClick={() => setLanguage('en')} className={`text-[9px] ${language === 'en' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>EN</button>
-                                    <button onClick={() => setLanguage('zh')} className={`text-[9px] ${language === 'zh' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>繁</button>
-                                    <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>简</button>
+                                    <button onClick={() => setLanguage('en')} className={`text-[9px] ${language === 'en' ? 'text-[#e5c185]' : 'text-gray-600'}`}>EN</button>
+                                    <button onClick={() => setLanguage('zh')} className={`text-[9px] ${language === 'zh' ? 'text-[#e5c185]' : 'text-gray-600'}`}>繁</button>
+                                    <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185]' : 'text-gray-600'}`}>简</button>
                                 </div>
                                 <button onClick={() => setCurrentPage('feasibility')} className="bg-copper-gradient text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">Study Request</button>
                             </div>
@@ -155,11 +155,11 @@
 
                     {isMenuOpen && (
                         <div className="fixed inset-0 z-40 bg-[#0a0a0a] pt-24 px-8 flex flex-col items-center space-y-6 animate-in slide-in-from-top-4">
-                            <NavLink label="Strategy" target="home" mobile />
+                            <NavLink label={t.navHome} target="home" mobile />
                             <NavLink label="IFA Guide" target="ifa" mobile />
-                            <NavLink label="Case Studies" target="cases" mobile />
-                            <NavLink label="About Alex" target="about" mobile />
-                            <NavLink label="Study Request" target="feasibility" mobile />
+                            <NavLink label={t.navCases} target="cases" mobile />
+                            <NavLink label={t.navAbout} target="about" mobile />
+                            <NavLink label={t.feasibilityTitle} target="feasibility" mobile />
                         </div>
                     )}
 
