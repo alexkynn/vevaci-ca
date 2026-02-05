@@ -4,33 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>VEVACI | 財富策略. 流動性解鎖.</title>
-    <!-- 必要的 React 與 Babel CDN -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Tailwind CSS 用於樣式 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide 圖標庫 -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap');
-        body { 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: #0a0a0a;
-            -webkit-tap-highlight-color: transparent;
-        }
-        /* 針對 iPhone 的安全區域優化 */
+        body { font-family: 'Inter', -apple-system, sans-serif; background-color: #0a0a0a; -webkit-tap-highlight-color: transparent; }
         .safe-top { padding-top: env(safe-area-inset-top); }
         .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
-        /* 金屬質感漸變 */
-        .text-gradient-gold {
-            background: linear-gradient(to bottom, #ffffff, #ffffff, #c5a059);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .bg-copper-gradient {
-            background: linear-gradient(to right, #b36b39, #8c6239);
-        }
+        .text-gradient-gold { background: linear-gradient(to bottom, #ffffff, #ffffff, #c5a059); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
 <body>
@@ -39,13 +23,8 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // 圖標組件：確保在 CDN 環境下能正確渲染
         const Icon = ({ name, className = "", size = 24 }) => {
-            useEffect(() => {
-                if (window.lucide) {
-                    window.lucide.createIcons();
-                }
-            }, [name]);
+            useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, [name]);
             return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
         };
 
@@ -55,11 +34,7 @@
             const [isMenuOpen, setIsMenuOpen] = useState(false);
             const [formSubmitted, setFormSubmitted] = useState(false);
 
-            useEffect(() => {
-                window.scrollTo(0, 0);
-                setIsMenuOpen(false);
-                if (window.lucide) window.lucide.createIcons();
-            }, [currentPage, language]);
+            useEffect(() => { window.scrollTo(0, 0); setIsMenuOpen(false); if (window.lucide) window.lucide.createIcons(); }, [currentPage, language]);
 
             const content = {
                 en: {
@@ -68,14 +43,22 @@
                     studyCta: "Request Feasibility Study",
                     disclosure: "Sales of insurance products are conducted by Alex Kynn Lee, a Licensed Life Insurance Agent and founder of VeVa Consultancy Inc. Mr. Lee is professionally sponsored by iA Financial Group and operates through the Managing General Agency (MGA), A.T. Financial Group.",
                     ifaTitle: "The IFA Mechanics Guide",
+                    ifaDesc: "Pay premiums, leverage the cash value through lenders, and redeploy capital into your business.",
                     surplusTitle: "The Corporate Surplus Trap",
+                    surplusDesc: "Unlock excess corporate cash tax-effectively through the Capital Dividend Account (CDA).",
+                    engineTitle: "Par vs. UL: The Engine Room",
+                    engineDesc: "Compare Participating Whole Life and Universal Life for your strategy.",
+                    protectionTitle: "Holistic Protection",
+                    protectionDesc: "Safeguard continuity through Critical Illness and Segregated Funds.",
                     casesTitle: "Case Studies",
+                    casesDesc: "Strategies solving high-stakes problems for Canadian business owners.",
                     aboutTitle: "About Alex Kynn Lee",
+                    aboutDesc: "25 years of financial precision and professional salesmanship.",
                     feasibilityTitle: "Feasibility Request",
                     back: "Back to Strategy",
                     submit: "Submit Study Request",
                     received: "Study Request Received",
-                    followup: "Alex Kynn Lee will personally review your profile. Expect a follow-up within 48 business hours."
+                    followup: "Alex Kynn Lee will review your profile. Expect a follow-up within 48 hours."
                 },
                 zh: {
                     headline: "財富策略. 流動性解鎖.",
@@ -111,128 +94,63 @@
 
             const t = content[language];
 
-            const NavLink = ({ label, target, mobile = false }) => (
-                <button 
-                    onClick={() => setCurrentPage(target)}
-                    className={`${mobile ? 'text-2xl py-4' : 'text-[10px]'} uppercase tracking-widest font-black ${currentPage === target ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'} transition-colors`}
-                >
-                    {label}
-                </button>
-            );
-
             return (
-                <div className="min-h-screen text-gray-100 flex flex-col">
-                    {/* 導航欄 */}
-                    <nav className="fixed w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 safe-top">
-                        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                <div className="min-h-screen text-gray-100 flex flex-col selection:bg-[#c5a059]/30">
+                    <nav className="fixed w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 h-20 flex items-center safe-top">
+                        <div className="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
                             <div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentPage('home')}>
-                                <div className="w-9 h-9 bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded-lg flex items-center justify-center font-bold text-white">V</div>
+                                <img src="logo.png" alt="Logo" className="w-10 h-10 object-contain" onError={(e) => {e.target.style.display='none'; e.target.nextSibling.style.display='flex';}}/>
+                                <div className="hidden w-10 h-10 bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded-lg items-center justify-center font-bold text-white text-lg">V</div>
                                 <span className="text-xl font-black tracking-tighter">VEVACI</span>
                             </div>
                             <div className="hidden lg:flex items-center gap-8">
-                                <NavLink label="Strategy" target="home" />
-                                <NavLink label="IFA" target="ifa" />
-                                <NavLink label="Cases" target="cases" />
-                                <NavLink label="About" target="about" />
+                                <button onClick={() => setCurrentPage('home')} className={`text-[10px] uppercase font-black ${currentPage === 'home' ? 'text-[#c5a059]' : 'text-gray-500'}`}>Strategy</button>
+                                <button onClick={() => setCurrentPage('ifa')} className={`text-[10px] uppercase font-black ${currentPage === 'ifa' ? 'text-[#c5a059]' : 'text-gray-500'}`}>IFA</button>
+                                <button onClick={() => setCurrentPage('cases')} className={`text-[10px] uppercase font-black ${currentPage === 'cases' ? 'text-[#c5a059]' : 'text-gray-500'}`}>Cases</button>
+                                <button onClick={() => setCurrentPage('about')} className={`text-[10px] uppercase font-black ${currentPage === 'about' ? 'text-[#c5a059]' : 'text-gray-500'}`}>About</button>
                                 <div className="flex gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-                                    <button onClick={() => setLanguage('en')} className={`text-[9px] ${language === 'en' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>EN</button>
-                                    <button onClick={() => setLanguage('zh')} className={`text-[9px] ${language === 'zh' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>繁</button>
-                                    <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>简</button>
+                                    <button onClick={() => setLanguage('en')} className={`text-[9px] ${language === 'en' ? 'text-[#e5c185]' : 'text-gray-600'}`}>EN</button>
+                                    <button onClick={() => setLanguage('zh')} className={`text-[9px] ${language === 'zh' ? 'text-[#e5c185]' : 'text-gray-600'}`}>繁</button>
+                                    <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185]' : 'text-gray-600'}`}>简</button>
                                 </div>
-                                <button onClick={() => setCurrentPage('feasibility')} className="bg-copper-gradient text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg active:scale-95 transition-transform">Study Request</button>
+                                <button onClick={() => setCurrentPage('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">Study Request</button>
                             </div>
-                            <button className="lg:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                                <Icon name={isMenuOpen ? "x" : "menu"} />
-                            </button>
+                            <button className="lg:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}><Icon name={isMenuOpen ? "x" : "menu"} /></button>
                         </div>
                     </nav>
 
-                    {/* 行動端菜單 */}
                     {isMenuOpen && (
-                        <div className="fixed inset-0 z-40 bg-[#0a0a0a] pt-24 px-8 flex flex-col items-center space-y-6">
-                            <NavLink label="Strategy" target="home" mobile />
-                            <NavLink label="IFA Guide" target="ifa" mobile />
-                            <NavLink label="Cases" target="cases" mobile />
-                            <NavLink label="About" target="about" mobile />
-                            <NavLink label="Study Request" target="feasibility" mobile />
+                        <div className="fixed inset-0 z-40 bg-[#0a0a0a] pt-24 px-8 flex flex-col items-center space-y-6 animate-in slide-in-from-top-4">
+                            <button onClick={() => setCurrentPage('home')} className="text-2xl font-black uppercase tracking-widest">Strategy</button>
+                            <button onClick={() => setCurrentPage('ifa')} className="text-2xl font-black uppercase tracking-widest">IFA Guide</button>
+                            <button onClick={() => setCurrentPage('cases')} className="text-2xl font-black uppercase tracking-widest">Case Studies</button>
+                            <button onClick={() => setCurrentPage('about')} className="text-2xl font-black uppercase tracking-widest">About Alex</button>
+                            <button onClick={() => setCurrentPage('feasibility')} className="text-2xl font-black text-[#c5a059] uppercase tracking-widest">Study Request</button>
                         </div>
                     )}
 
                     <main className="flex-grow pt-20">
-                        {currentPage === 'home' && (
-                            <div className="animate-in fade-in duration-700">
-                                <section className="pt-32 pb-24 text-center px-6 relative">
-                                    <div className="absolute top-0 right-0 w-96 h-96 bg-[#c5a059]/5 blur-[120px] -z-10"></div>
-                                    <h1 className="text-5xl md:text-8xl font-black mb-8 italic text-gradient-gold tracking-tighter">{t.headline}</h1>
-                                    <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">{t.subheadline}</p>
-                                    <div className="flex flex-col sm:flex-row justify-center gap-4">
-                                        <button onClick={() => setCurrentPage('feasibility')} className="bg-copper-gradient px-12 py-5 rounded-full font-bold text-lg shadow-2xl active:scale-95 transition-transform">{t.studyCta}</button>
-                                        <button onClick={() => setCurrentPage('ifa')} className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors">Learn More</button>
-                                    </div>
-                                </section>
-
-                                <section className="py-24 bg-[#0c0c0c] border-y border-white/5 px-6">
-                                    <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-                                        <Card icon="layers" title={t.ifaTitle} onClick={() => setCurrentPage('ifa')} />
-                                        <Card icon="unlock" title={t.surplusTitle} onClick={() => setCurrentPage('surplus')} />
-                                        <Card icon="bar-chart-3" title={t.casesTitle} onClick={() => setCurrentPage('cases')} />
-                                    </div>
-                                </section>
-                            </div>
-                        )}
-
-                        {currentPage === 'ifa' && (
-                            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 duration-500">
-                                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                                <h2 className="text-6xl font-black italic mb-20 tracking-tighter">IFA <span className="text-[#c5a059]">Mechanics</span></h2>
-                                <div className="space-y-16 border-l border-white/10 pl-8 ml-4">
-                                    <Step num="01" title="Engine Selection" desc="Selecting high-CSV Participating Whole Life policies for optimized collateral speed." />
-                                    <Step num="02" title="Premium Funding" desc="Annual corporate funding transforms high-tax income into a tax-exempt corporate asset." />
-                                    <Step num="03" title="Lending Leverage" desc="Banks provide a line of credit up to 100% of CSV, allowing immediate capital access." />
-                                </div>
-                            </section>
-                        )}
-
-                        {currentPage === 'feasibility' && (
-                            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 duration-500 text-center md:text-left">
-                                <h2 className="text-6xl font-black italic mb-10 tracking-tighter">Study <span className="text-[#c5a059]">Request</span></h2>
-                                {!formSubmitted ? (
-                                    <form onSubmit={(e) => {e.preventDefault(); setFormSubmitted(true);}} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8">
-                                        <div className="grid md:grid-cols-2 gap-6">
-                                            <div className="space-y-2 text-left">
-                                                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Name</label>
-                                                <input type="text" placeholder="Alex Lee" className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors" required />
-                                            </div>
-                                            <div className="space-y-2 text-left">
-                                                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Corporation</label>
-                                                <input type="text" placeholder="Your Co. Inc" className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors" required />
-                                            </div>
-                                        </div>
-                                        <button type="submit" className="w-full bg-copper-gradient py-5 rounded-full font-bold text-lg shadow-xl active:scale-95 transition-transform">{t.submit}</button>
-                                    </form>
-                                ) : (
-                                    <div className="bg-[#121212] p-16 rounded-[3rem] text-center border border-[#c5a059]/30">
-                                        <Icon name="check-circle-2" className="text-[#c5a059] mx-auto mb-6" size={64} />
-                                        <h3 className="text-3xl font-bold mb-4">{t.received}</h3>
-                                        <p className="text-gray-400 font-light mb-8">{t.followup}</p>
-                                        <button onClick={() => {setFormSubmitted(false); setCurrentPage('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-xs underline">Return Home</button>
-                                    </div>
-                                )}
-                            </section>
-                        )}
+                        {currentPage === 'home' && <HomeView t={t} setCurrentPage={setCurrentPage} language={language} />}
+                        {currentPage === 'ifa' && <IFAView t={t} setCurrentPage={setCurrentPage} language={language} />}
+                        {currentPage === 'surplus' && <SurplusView t={t} setCurrentPage={setCurrentPage} language={language} />}
+                        {currentPage === 'compare' && <CompareView t={t} setCurrentPage={setCurrentPage} language={language} />}
+                        {currentPage === 'protection' && <ProtectionView t={t} setCurrentPage={setCurrentPage} language={language} />}
+                        {currentPage === 'cases' && <CaseView t={t} setCurrentPage={setCurrentPage} language={language} />}
+                        {currentPage === 'about' && <AboutView t={t} setCurrentPage={setCurrentPage} language={language} />}
+                        {currentPage === 'feasibility' && <FeasibilityView t={t} setCurrentPage={setCurrentPage} language={language} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />}
                     </main>
 
-                    <footer className="bg-black border-t border-white/5 pt-24 pb-12 px-6 safe-bottom">
+                    <footer className="bg-black border-t border-white/5 pt-20 pb-12 px-6 safe-bottom">
                         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
                             <div className="space-y-6">
                                 <div className="flex items-center justify-center md:justify-start gap-3">
-                                    <div className="w-8 h-8 bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded flex items-center justify-center font-bold text-white">V</div>
+                                    <div className="w-8 h-8 bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded flex items-center justify-center font-bold text-white text-xs">V</div>
                                     <span className="text-xl font-black tracking-widest">VEVACI</span>
                                 </div>
-                                <p className="text-gray-500 text-[11px] leading-relaxed italic border-l-0 md:border-l-2 border-[#b36b39] md:pl-6 uppercase max-w-lg mx-auto md:mx-0">{t.disclosure}</p>
+                                <p className="text-gray-500 text-[11px] leading-relaxed italic border-l-0 md:border-l-2 border-[#b36b39] md:pl-6 uppercase max-w-lg">{t.disclosure}</p>
                             </div>
                             <div className="space-y-2">
-                                <p className="text-xs text-gray-700">© 2026 VeVa Consultancy Inc. | Alex Kynn Lee</p>
+                                <p className="text-xs text-gray-700 font-bold">© 2026 VeVa Consultancy Inc. | Alex Kynn Lee</p>
                                 <p className="text-[10px] text-gray-800 tracking-widest uppercase">Markham & Richmond Hill, Ontario</p>
                             </div>
                         </div>
@@ -241,16 +159,153 @@
             );
         };
 
-        const Card = ({ icon, title, onClick }) => (
-            <div onClick={onClick} className="p-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/30 transition-all cursor-pointer group">
-                <Icon name={icon} className="text-[#c5a059] mb-6 group-hover:scale-110 transition-transform" size={32} />
-                <h3 className="text-xl font-bold mb-4">{title}</h3>
-                <div className="text-[10px] font-black uppercase tracking-widest text-[#c5a059] flex items-center gap-2">Read More <Icon name="chevron-right" size={12} /></div>
+        const HomeView = ({ t, setCurrentPage, language }) => (
+            <div className="px-6 animate-in fade-in duration-700">
+                <section className="pt-32 pb-24 text-center relative max-w-6xl mx-auto">
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-8 italic text-gradient-gold tracking-tighter leading-tight">{t.headline}</h1>
+                    <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">{t.subheadline}</p>
+                    <div className="flex flex-col sm:flex-row justify-center gap-5">
+                        <button onClick={() => setCurrentPage('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] px-12 py-5 rounded-full font-bold text-lg shadow-2xl active:scale-95 transition-transform">{t.studyCta}</button>
+                        <button onClick={() => setCurrentPage('ifa')} className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors">Explore IFA Guide</button>
+                    </div>
+                </section>
+                <section className="py-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <Card icon="layers" title={language === 'en' ? 'IFA Mechanics' : 'IFA 運作機制'} onClick={() => setCurrentPage('ifa')} />
+                    <Card icon="unlock" title={language === 'en' ? 'Surplus Trap' : '公司盈餘陷阱'} onClick={() => setCurrentPage('surplus')} />
+                    <Card icon="bar-chart-3" title={language === 'en' ? 'Case Studies' : '案例研究'} onClick={() => setCurrentPage('cases')} />
+                    <Card icon="scale" title={language === 'en' ? 'Par vs. UL' : '保單引擎比較'} onClick={() => setCurrentPage('compare')} />
+                    <Card icon="shield-check" title={language === 'en' ? 'Holistic Protection' : '全面保障策略'} onClick={() => setCurrentPage('protection')} />
+                    <Card icon="users" title={language === 'en' ? 'About Alex' : '關於 Alex'} onClick={() => setCurrentPage('about')} />
+                </section>
+            </div>
+        );
+
+        const IFAView = ({ t, setCurrentPage, language }) => (
+            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 duration-500">
+                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none">IFA <span className="text-[#c5a059]">Mechanics</span></h2>
+                <div className="space-y-16 border-l border-[#c5a059]/20 pl-8 ml-4">
+                    <Step num="01" title="Engine Selection" desc="Selecting Participating Whole Life for stable, guaranteed CSV growth." />
+                    <Step num="02" title="Premium Funding" desc="Corporation pays premiums, building a high-value tax-exempt asset." />
+                    <Step num="03" title="Lending Leverage" desc="Banks provide immediate lines of credit up to 100% of cash value." />
+                </div>
+            </section>
+        );
+
+        const SurplusView = ({ t, language, setCurrentPage }) => (
+            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4">
+                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none">{language === 'en' ? 'The Surplus ' : '公司盈餘'}<span className="text-[#c5a059]">{language === 'en' ? 'Trap' : '陷阱'}</span></h2>
+                <div className="grid md:grid-cols-2 gap-6 mb-12">
+                    <div className="p-10 rounded-[2.5rem] bg-[#121212] border border-red-500/20 text-gray-300 italic font-light">Ontario Passive Tax: ~50.17%</div>
+                    <div className="p-10 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/20 text-gray-300 italic font-light">SBD Threshold: $50,000 Passive Income limit.</div>
+                </div>
+            </section>
+        );
+
+        const CompareView = ({ t, language, setCurrentPage }) => (
+            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4">
+                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-12 tracking-tighter leading-none">Par vs. <span className="text-[#c5a059]">UL</span> Engines</h2>
+                <div className="grid md:grid-cols-2 gap-8">
+                    <div className="p-10 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/30">
+                        <h3 className="text-2xl font-bold mb-4 text-white italic">Participating Whole Life</h3>
+                        <p className="text-gray-400 font-light leading-relaxed">Preferred for IFA due to stable, guaranteed cash value accumulation.</p>
+                    </div>
+                    <div className="p-10 rounded-[2.5rem] bg-[#121212] border border-white/5">
+                        <h3 className="text-2xl font-bold mb-4 text-white italic">Universal Life</h3>
+                        <p className="text-gray-400 font-light leading-relaxed">Preferred for high-flexibility funding and client-directed investments.</p>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const ProtectionView = ({ t, language, setCurrentPage }) => (
+            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4">
+                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-12 tracking-tighter leading-none">{language === 'en' ? 'Holistic ' : '全面'}<span className="text-[#c5a059]">{language === 'en' ? 'Protection' : '保障'}</span></h2>
+                <div className="p-12 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20">
+                    <p className="text-2xl text-gray-400 font-light leading-relaxed italic">
+                        Corporate Critical Illness and Segregated Funds provide a legal and financial moat for the professional corporation.
+                    </p>
+                </div>
+            </section>
+        );
+
+        const CaseView = ({ t, language, setCurrentPage }) => (
+            <section className="max-w-5xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4">
+                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none">Case <span className="text-[#c5a059]">Studies</span></h2>
+                <div className="space-y-32">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h3 className="text-3xl font-bold mb-6 italic underline decoration-[#c5a059] decoration-4 underline-offset-8">The Specialist’s Lever</h3>
+                            <p className="text-gray-400 font-light leading-relaxed italic mb-4">MD Professional Corp, Ontario.</p>
+                            <p className="text-xl text-white font-light">"Unlocked $1.5M liquid for investment while securing $4M in estate value."</p>
+                        </div>
+                        <div className="p-10 rounded-[3rem] bg-[#121212] border border-white/5 text-center text-[#c5a059] font-black text-2xl">IFA OUTCOME</div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const AboutView = ({ t, language, setCurrentPage }) => (
+            <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4">
+                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <div className="grid md:grid-cols-2 gap-16">
+                    <div>
+                        <h2 className="text-5xl md:text-7xl font-black italic mb-8 tracking-tighter leading-none">Alex Kynn <span className="text-[#c5a059]">Lee</span></h2>
+                        <p className="text-xl text-gray-400 font-light leading-relaxed mb-8">
+                            25 years in financial sector, mentored by Amy Tong. Specialist in institutional wealth design.
+                        </p>
+                        <p className="text-gray-500 font-medium italic border-t border-white/5 pt-8">"VeVa is named after my daughters, Vera and Valarie. Legacy is our business."</p>
+                    </div>
+                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20">
+                        <h3 className="text-xl font-bold mb-6 uppercase tracking-widest">The Professional Creed</h3>
+                        <p className="text-2xl text-white italic leading-relaxed">"True professionalism is selling the right product to the right person, at the right time—with timely follow-up."</p>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const FeasibilityView = ({ t, setCurrentPage, formSubmitted, setFormSubmitted }) => (
+            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4">
+                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left">Study <span className="text-[#c5a059]">Request</span></h2>
+                {!formSubmitted ? (
+                    <form onSubmit={(e) => {e.preventDefault(); setFormSubmitted(true);}} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8">
+                        <div className="grid md:grid-cols-2 gap-6 text-left">
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Principal Name</label>
+                                <input type="text" placeholder="Alex Lee" className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors" required />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Corporation</label>
+                                <input type="text" placeholder="Your Co. Inc" className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors" required />
+                            </div>
+                        </div>
+                        <button type="submit" className="w-full bg-gradient-to-r from-[#b36b39] to-[#8c6239] py-5 rounded-full font-bold text-lg shadow-xl active:scale-95 transition-transform">{t.submit}</button>
+                    </form>
+                ) : (
+                    <div className="bg-[#121212] p-16 rounded-[3rem] text-center border border-[#c5a059]/30 space-y-8">
+                        <Icon name="check-circle-2" className="text-[#c5a059] mx-auto mb-6" size={64} />
+                        <h3 className="text-3xl font-bold">{t.received}</h3>
+                        <p className="text-gray-400 font-light">{t.followup}</p>
+                        <button onClick={() => {setFormSubmitted(false); setCurrentPage('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-xs underline">Return Home</button>
+                    </div>
+                )}
+            </section>
+        );
+
+        const Card = ({ icon, title, onClick, label = "Read More" }) => (
+            <div onClick={onClick} className="p-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full">
+                <Icon name={icon} className="text-[#c5a059] mb-8 group-hover:scale-110 transition-transform" size={32} />
+                <h3 className="text-xl font-bold mb-8 leading-tight">{title}</h3>
+                <div className="mt-auto text-[10px] font-black uppercase tracking-widest text-[#c5a059] flex items-center gap-2">{label} <Icon name="chevron-right" size={12} /></div>
             </div>
         );
 
         const Step = ({ num, title, desc }) => (
-            <div className="relative">
+            <div className="relative text-left">
                 <div className="absolute -left-[53px] top-0 w-10 h-10 bg-[#0a0a0a] border border-[#c5a059] rounded-full flex items-center justify-center text-[10px] font-black text-[#c5a059]">{num}</div>
                 <h3 className="text-2xl font-bold mb-4">{title}</h3>
                 <p className="text-gray-400 font-light leading-relaxed">{desc}</p>
