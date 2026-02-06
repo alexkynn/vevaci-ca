@@ -479,14 +479,14 @@
 
                     <div className="lg:col-span-9 space-y-12">
                         <div className="space-y-6 text-left">
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#c5a059] text-[10px] font-bold uppercase tracking-widest italic text-white">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#c5a059] text-[10px] font-bold uppercase tracking-widest italic">
                                 {language === 'en' ? 'Founder of VeVa Consultancy Inc.' : (language === 'cn' ? 'VeVa Consultancy Inc. 创始人' : 'VeVa Consultancy Inc. 創辦人')}
                             </div>
                             <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white text-gradient-gold">Alex Kynn Lee</h2>
                         </div>
                         
                         <div className="space-y-10">
-                            <section className="space-y-6 text-left">
+                            <section className="space-y-6 text-left text-justify">
                                 <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutBioTitle}</h3>
                                 <div className="space-y-6 text-base md:text-lg text-gray-300 font-light leading-relaxed">
                                     <p>
@@ -556,7 +556,6 @@
             </section>
         );
 
-        // Sub-components
         const Card = ({ icon, title, desc, onClick, label = "Read More" }) => (
             <div onClick={onClick} className="px-6 py-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full text-left text-white">
                 <div className="text-[#c5a059] mb-8 group-hover:scale-110 transition-transform"><Icon name={icon} size={32} /></div>
