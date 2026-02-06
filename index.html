@@ -24,8 +24,8 @@
         [data-lucide] { display: inline-block; }
         /* 照片高級遮罩效果 */
         .photo-mask {
-            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
         }
     </style>
 </head>
@@ -350,7 +350,7 @@
                         desc={language === 'en' ? "The corporation deposits premiums, creating a tax-exempt asset on the balance sheet." : (language === 'cn' ? "公司存入保费，在资产负债表上建立一项不断增长的免税资产。" : "公司存入保費，在資產負債表上建立一項不斷增長的免稅資產。")} 
                     />
                     <Step num="03" icon="layers" 
-                        title={language === 'en' ? "Lending Leverage" : (language === 'cn' ? "貸款槓桿" : "貸款槓桿")} 
+                        title={language === 'en' ? "Lending Leverage" : (language === 'cn' ? "贷款杠杆" : "貸款槓桿")} 
                         desc={language === 'en' ? "Tier-1 lenders provide credit facilities up to 100% of CSV as collateralized lending." : (language === 'cn' ? "一线贷款机构针对保单现金价值提供高达 100% 的信用额度作为抵押融资。" : "一線貸款機構針對保單現金價值提供高達 100% 的信用額度作為抵押資助。")} 
                     />
                     <Step num="04" icon="trending-up" 
@@ -440,18 +440,25 @@
                 <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">Case <span className="text-[#c5a059]">{language === 'en' ? 'Studies' : (language === 'cn' ? '案例' : '研究')}</span></h2>
                 <div className="space-y-24">
                     <CaseItem 
-                        title={language === 'en' ? "Specialist MD Strategy" : (language === 'cn' ? "专科医生策略" : "專科醫生策略")}
+                        title={language === 'en' ? "The Specialist’s Lever" : (language === 'cn' ? "专科医生的杠杆" : "專科醫生的槓桿")}
                         profile={language === 'en' ? "Physician (CCPC), 45, Ontario." : (language === 'cn' ? "安省医生 (CCPC)，45 岁。" : "安省醫生 (CCPC)，45 歲。")}
                         challenge={language === 'en' ? "Needs $5M protection while keeping $1.5M liquid for real estate investment." : (language === 'cn' ? "需要 500 万加元保障，同时希望保持 150 万加元流动资金用于地产投资。" : "需要 500 萬加元保障，同時希望保持 150 萬加元流動資金用於地產投資。")}
                         outcome={language === 'en' ? "Accessed 90% of CSV for investment via IFA. Zero net out-of-pocket cost." : (language === 'cn' ? "通过 IFA 获得 90% 现金价值用于投资。净现出支出为零。" : "透過 IFA 獲得 90% 現金價值用於投資。淨現出支出為零。")}
                         tag="Scenario 01" icon="user-check" t={t} lang={language}
                     />
                     <CaseItem 
-                        title={language === 'en' ? "The Legacy Bond" : (language === 'cn' ? "传承债券" : "傳承債券")}
+                        title={language === 'en' ? "The Tech Surplus Rescue" : (language === 'cn' ? "科技盈余救助" : "科技盈餘救助")}
                         profile={language === 'en' ? "Software Founder, $10M Retained Earnings." : (language === 'cn' ? "软件创办人，1000 万加元留存盈余。" : "軟件創辦人，1000 萬加元留存盈餘。")}
                         challenge={language === 'en' ? "Passive income triggering SBD grind and 50.17% tax rate." : (language === 'cn' ? "被动收入触发 SBD 扣减磨损及高达 50.17% 的税率。" : "被動收入觸發 SBD 扣減磨損及高達 50.17% 的稅率。")}
                         outcome={language === 'en' ? "Restored SBD limits and created a tax-free exit via CDA." : (language === 'cn' ? "恢复了 SBD 额度，并通过 CDA 建立了数百万加元的免税退出路径。" : "恢復了 SBD 額度，並通過 CDA 建立了數百萬加元的免稅退出路徑。")}
                         tag="Scenario 02" icon="zap" t={t} lang={language}
+                    />
+                    <CaseItem 
+                        title={language === 'en' ? "The Legacy Foundation" : (language === 'cn' ? "家族企业传承" : "家族企業傳承")}
+                        profile={language === 'en' ? "Manufacturing Owner, 65, Succession Phase." : (language === 'cn' ? "制造业主，65 岁，进入传承阶段。" : "製造業主，65 歲，進入傳承階段。")}
+                        challenge={language === 'en' ? "Estimated $5.4M tax liability at death threatening business continuity." : (language === 'cn' ? "预计去世时有 540 万加元税务负债，威胁企业持续经营。" : "預計去世時有 540 萬加元稅務負債，威脅企業持續經營。")}
+                        outcome={language === 'en' ? "Estate Bond strategy. Insurance proceeds retire the tax bill entire, allowing debt-free transfer." : (language === 'cn' ? "采用遗产债券策略。保险金全额清偿税单，实现无债务传承。" : "採用遺產債券策略。保險金全額清償稅單，實現無債務傳承。")}
+                        tag="Scenario 03" icon="briefcase" t={t} lang={language}
                     />
                 </div>
             </section>
@@ -463,9 +470,9 @@
                 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
                     <div className="lg:col-span-4 space-y-8">
-                        {/* 專業形象照整合 */}
+                        {/* 專業形象照整合 - 檔案名稱變更為 alex.png */}
                         <div className="relative group overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl gold-glow aspect-[4/5]">
-                            <img src="alex.jpg" alt="Alex Kynn Lee" className="w-full h-full grayscale hover:grayscale-0 transition-all duration-1000 object-cover photo-mask" />
+                            <img src="alex.png" alt="Alex Kynn Lee" className="w-full h-full grayscale hover:grayscale-0 transition-all duration-1000 object-cover photo-mask" onError={(e) => {e.target.src="https://via.placeholder.com/800x1000/121212/c5a059?text=Alex+Kynn+Lee";}} />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-40"></div>
                         </div>
 
@@ -473,7 +480,7 @@
                             <h4 className="text-white font-black text-sm tracking-widest uppercase">{t.aboutReachTitle}</h4>
                             <div className="flex gap-4 items-start text-gray-400 font-light text-sm">
                                 <Icon name="map-pin" className="text-emerald-500 shrink-0" size={18} />
-                                <p>
+                                <p className="text-white">
                                     {language === 'en' 
                                         ? "Based in Markham, we support individuals, families, and business owners in Richmond Hill, the GTA, and throughout Ontario." 
                                         : (language === 'cn' 
@@ -520,7 +527,7 @@
                                 </div>
                             </section>
 
-                            <section className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20 relative overflow-hidden group">
+                            <section className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20 relative overflow-hidden group text-left">
                                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#c5a059]/5 to-transparent opacity-50"></div>
                                 <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6 relative z-10">{t.aboutCreedTitle}</h3>
                                 <p className="text-lg sm:text-xl text-white italic leading-relaxed font-light relative z-10">
