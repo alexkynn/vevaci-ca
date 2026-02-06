@@ -22,6 +22,11 @@
         .emerald-glow { filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.3)); }
         .gold-glow { filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.3)); }
         [data-lucide] { display: inline-block; }
+        /* 照片高級遮罩效果 */
+        .photo-mask {
+            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+        }
     </style>
 </head>
 <body>
@@ -50,7 +55,7 @@
             const content = {
                 en: {
                     navHome: "Home", navIFA: "IFA", navCases: "Cases", navAbout: "About",
-                    headline: "Strategic Wealth. Unlocked Liquidity.",
+                    headline: "Strategic Wealth. Liquidity Unlocked.",
                     subheadline: "Maximize your corporate capital through the power of Immediate Financing Arrangements (IFA).",
                     studyCta: "Book a Consultation",
                     disclosure: "Sales of insurance products are conducted by Alex Kynn Lee, a Licensed Life Insurance Agent and founder of VeVa Consultancy Inc. Mr. Lee is professionally sponsored by iA Financial Group and operates through the Managing General Agency (MGA), A.T. Financial Group.",
@@ -61,11 +66,11 @@
                     engineTitle: "Par vs. UL Engines",
                     engineDesc: "A technical analysis of the policy chassis used for IFA strategies.",
                     protectionTitle: "Holistic Protection",
-                    protectionDesc: "Securing continuity through CI and Segregated Fund protection.",
+                    protectionDesc: "Securing continuity through Critical Illness (CI) Insurance and Segregated Fund protection.",
                     casesTitle: "Case Studies",
                     casesDesc: "Real-world strategies for Specialists and Business Owners.",
-                    aboutTitle: "About Alex Kynn Lee",
-                    aboutDesc: "25 years of precision, quantitative expertise, and Salesmanship.",
+                    aboutTitle: "About Alex",
+                    aboutDesc: "Integrated insurance and wealth planning for businesses and families, backed by 28+ years of experience.",
                     oneDollarTitle: "One Dollar, Two Jobs",
                     back: "Back to Home", submit: "Request Consultation", received: "Request Received",
                     followup: "I will personally review your profile. Expect a follow-up within 48 business hours.",
@@ -73,7 +78,26 @@
                     exploreIFA: "Explore IFA Mechanics", readDeepDive: "Read",
                     job1: "Job 1: Protection", job1Desc: "Fund Estate Tax & Buy-Sell",
                     job2: "Job 2: Liquidity", job2Desc: "Capital for Reinvestment",
-                    oneDollarSub: "Professional capital engineering eliminates the opportunity cost of insurance."
+                    oneDollarSub: "Integrated Insurance Planning for Businesses and Families\n\nWe help business owners and high-net-worth individuals design insurance strategies as part of a broader capital and wealth plan — not as standalone products.\n\nOur approach focuses on protecting risk, preserving liquidity, and reducing unnecessary opportunity cost, so insurance supports growth, succession, and long-term family wealth rather than restricting it.",
+                    disclaimerTitle: "DISCLAIMER",
+                    disclaimerBody: "The information provided on this website is for general educational and informational purposes only. It is not intended as, and should not be construed as, financial, tax, legal, or investment advice. Life insurance strategies, including Immediate Financing Arrangements (IFA), are complex and subject to individual eligibility, lender requirements, and current Canadian tax laws (including the Income Tax Act). Taxation rates and rules (such as SBD thresholds and passive income tax) are subject to change by federal and provincial governments. Always consult with a qualified professional accountant, lawyer, or financial advisor before implementing any strategy discussed herein. Past performance is not indicative of future results.",
+                    oneDollarDetailTitle: "The Dual-Efficiency Engine",
+                    oneDollarDetail1: "Traditional insurance creates a 'locked' premium expense. Our IFA engineering transforms that expense into a revolving asset. Every dollar funds a permanent death benefit to satisfy estate liabilities (Job 1) while simultaneously serving as prime collateral for a bank credit line (Job 2).",
+                    oneDollarDetail2: "This architecture allows you to maintain active capital management. You aren't choosing between protection and growth—you are utilizing the same capital to execute both. The result is a neutralized opportunity cost and a maximized corporate balance sheet.",
+                    engineCompTitle: "Strategic Chassis Comparison",
+                    engineCompSub: "The selection of the 'engine' dictates the long-term volatility and liquidity profile of your IFA.",
+                    parTitle: "Whole Life (Participating)",
+                    parSub: "The Smoothed Engine",
+                    parDetail: "In a Par policy, your premiums flow into the insurer's multi-billion dollar participating account. Returns are 'smoothed' through an annual dividend process, shielding you from direct market volatility.",
+                    ulTitle: "Universal Life (UL)",
+                    ulSub: "The Transparent Engine",
+                    ulDetail: "UL unbundles the insurance cost from the investment component. You decide where your side-fund capital is allocated (Equities, Fixed Income, or Indexes), providing maximum control but higher risk.",
+                    featureRisk: "Risk Profile", featureRiskPar: "Shared with Insurer (Pooled)", featureRiskUL: "Client-borne (Market-linked)",
+                    featureGrowth: "Growth Logic", featureGrowthPar: "Vested Annual Dividends", featureGrowthUL: "Market Performance",
+                    featureLeverage: "IFA Applicability", featureLeveragePar: "High (Stable Collateral)", featureLeverageUL: "High (Maximum Shelter Cap)",
+                    aboutBioTitle: "Professional Biography",
+                    aboutCreedTitle: "Professional Creed",
+                    aboutReachTitle: "Service Reach"
                 },
                 zh: {
                     navHome: "首頁", navIFA: "IFA", navCases: "案例研究", navAbout: "關於 Alex",
@@ -88,11 +112,11 @@
                     engineTitle: "Par vs. UL 保單引擎",
                     engineDesc: "針對 IFA 策略採用的兩種主要保險底盤的技術分析。",
                     protectionTitle: "全面保障策略",
-                    protectionDesc: "透過重大疾病保險與隔離基金確保企業持續經營。",
+                    protectionDesc: "透過危疾保險 (Critical Illness (CI) Insurance) 與保本基金 (Segregated Funds) 確保企業持續經營。",
                     casesTitle: "案例研究",
                     casesDesc: "針對專業人士與企業主的真實戰略應用。",
-                    aboutTitle: "關於 Alex Kynn Lee",
-                    aboutDesc: "25年的行業精準度、量化交易經驗與專業銷售精神。",
+                    aboutTitle: "關於 Alex",
+                    aboutDesc: "整合企業與家庭的保險與財富規劃，憑藉超過 28 年的專業經驗。",
                     oneDollarTitle: "一塊錢，兩份工",
                     back: "返回首頁", submit: "提交諮詢申請", received: "請求已接收",
                     followup: "我將親自審核您的公司概況。預計在 48 小時內會收到回覆。",
@@ -100,14 +124,33 @@
                     exploreIFA: "探索 IFA 運作機制", readDeepDive: "閱讀",
                     job1: "工作 1：保障", job1Desc: "資助遺產稅與買斷協議",
                     job2: "工作 2：流動性", job2Desc: "用於再投資的資本",
-                    oneDollarSub: "專業的資本工程消除了購買保險的機會成本。"
+                    oneDollarSub: "企業與家庭的整合保險規劃\n\n我們協助企業主與高淨值人士將保險策略設計為更廣泛的資本與財富計劃的一部分，而非孤立的產品。\n\n我們的方法專注於風險保障、保持流動性並減少不必要的機會成本，確保保險能支持業務增長、傳承及家族長期財富，而非限制其發展。",
+                    disclaimerTitle: "免責聲明",
+                    disclaimerBody: "本網站提供的資訊僅供一般教育及參考用途。其內容不應被視為財務、稅務、法律或投資建議。人壽保險策略（包括即時融資安排 IFA）具有複雜性，受限於個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）。稅率與規則（如 SBD 門檻和被動收入稅）可能因聯邦及省政府政策而變動。在執行任何本文討論的策略前，請務必諮詢符合資格的專業會計師、律師或財務顧問。過往表現並不代表未來結果。",
+                    oneDollarDetailTitle: "雙效能引擎",
+                    oneDollarDetail1: "傳統保險會產生「鎖定」的保費支出。我們的 IFA 工程將該支出轉化為循環資產。投入的每一塊錢都建立了永久的死亡賠償金以滿足遺產義務（工作 1），同時作為銀行信用額度的優質抵押品（工作 2）。",
+                    oneDollarDetail2: "這種架構使您能夠保持積極的資本管理。您不需要在「保障」與「增長」之間做選擇——您正在利用同一筆資本同時執行這兩項任務。其結果是消除了機會成本，並實現了公司資產負債表的最大化。",
+                    engineCompTitle: "戰略底盤對比",
+                    engineCompSub: "「引擎」的選擇決定了您 IFA 策略的長期波動性與流動性特徵。",
+                    parTitle: "分紅保險 (Participating Whole Life)",
+                    parSub: "穩定型引擎",
+                    parDetail: "在分紅保險政策中，您的保費進入保險公司的數十億元大型分紅賬戶。回報透過年度分紅進行「平滑處理」，保護您免受直接市場波動的影響。",
+                    ulTitle: "萬用保險 (Universal Life)",
+                    ulSub: "透明型引擎",
+                    ulDetail: "萬用保險將保險成本與投資部分分離。您決定側重基金的資本配置（股票、固定收益或指數），提供最大控制權，但風險也由客戶承擔。",
+                    featureRisk: "風險特徵", featureRiskPar: "與保險公司分擔 (資金池)", featureRiskUL: "客戶自行承擔 (掛鉤市場)",
+                    featureGrowth: "增長邏輯", featureGrowthPar: "歸屬年度分紅 (Vested)", featureGrowthUL: "市場表現",
+                    featureLeverage: "IFA 適用性", featureLeveragePar: "高 (穩定的抵押品價值)", featureLeverageUL: "高 (最大化稅務避風港額度)",
+                    aboutBioTitle: "專業傳記",
+                    aboutCreedTitle: "專業信條",
+                    aboutReachTitle: "服務區域"
                 },
                 cn: {
                     navHome: "首页", navIFA: "IFA", navCases: "案例研究", navAbout: "关于 Alex",
                     headline: "财富策略. 流动性解锁.",
                     subheadline: "通过即时融资安排 (IFA) 的力量最大化您的公司资本。",
                     studyCta: "预约咨询",
-                    disclosure: "保险产品销售由 VeVa Consultancy Inc. 创始人 Alex Kynn Lee 负责. Mr. Lee 为 iA Financial Group 赞助之持牌人寿保险经纪，并通过管理总代理 (MGA) A.T. Financial Group 提供服务。",
+                    disclosure: "保险产品销售由 VeVa Consultancy Inc. 创始人 Alex Kynn Lee 负责. Mr. Lee 为 iA Financial Group 赞助之持牌寿险经纪，并通过管理总代理 (MGA) A.T. Financial Group 提供服务。",
                     ifaTitle: "IFA 运作机制指南",
                     ifaDesc: "抵押保单现金价值以进行企业再投资的技术指南。",
                     surplusTitle: "公司盈余陷阱",
@@ -115,19 +158,38 @@
                     engineTitle: "Par vs. UL 保单引擎",
                     engineDesc: "针对 IFA 策略采用的两种主要保险底盘的技术分析。",
                     protectionTitle: "全面保障策略",
-                    protectionDesc: "通过重大疾病保险与隔离基金确保企业持续经营。",
+                    protectionDesc: "通过危疾保险 (Critical Illness (CI) Insurance) 与保本基金 (Segregated Funds) 确保企业持续经营。",
                     casesTitle: "案例研究",
                     casesDesc: "针对专业人士与企业主的真实战略应用。",
-                    aboutTitle: "关于 Alex Kynn Lee",
-                    aboutDesc: "25年的行业精准度、量化交易经验与专业销售精神。",
+                    aboutTitle: "关于 Alex",
+                    aboutDesc: "整合企业与家庭的保险与财富规划，凭借超过 28 年的专业经验。",
                     oneDollarTitle: "一块钱，两份工",
                     back: "返回首页", submit: "提交咨询申请", received: "请求已接收",
-                    followup: "我将亲自审核您的公司概况。预计在 48 小时内会收到回复。",
+                    followup: "我将亲自审核您的公司概况. 预计在 48 小时内会收到回复。",
                     profileLabel: "客户概况", challengeLabel: "面临挑战", outcomeLabel: "战略成果",
                     exploreIFA: "探索 IFA 运作机制", readDeepDive: "阅读",
                     job1: "工作 1：保障", job1Desc: "资助遗产税与买断协议",
                     job2: "工作 2：流动性", job2Desc: "用于再投资的资本",
-                    oneDollarSub: "专业的资本工程消除了购买保险的机会成本。"
+                    oneDollarSub: "企业与家庭的整合保险规划\n\n我们协助企业主与高净值人士将保险策略设计为更广泛的资本与财富计划的一部分，而非孤立的产品。\n\n我们的方法专注于风险保障、保持流动性并减少不必要的机会成本，确保保险能支持业务增长、传承及家族长期财富，而非限制其发展。",
+                    disclaimerTitle: "免责声明",
+                    disclaimerBody: "本网站提供的信息仅供一般教育及参考用途。其内容不应被视为财务、税务、法律或投资建议。人寿保险策略（包括即時融資安排 IFA）具有複雜性，受限於個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）。稅率與規則（如 SBD 門槛和被動收入稅）可能因聯邦及省政府政策而變動。在執行任何本文討論的策略前，請務必諮詢符合資格的專業會計師、律師或財務顧問。過往表現並不代表未來結果。",
+                    oneDollarDetailTitle: "双效能引擎",
+                    oneDollarDetail1: "传统保险会产生“锁定”的保费支出。我们的 IFA 工程将该支出转化为循环资产。投入的每一块钱都建立了永久的死亡赔偿金以满足遗产义务（工作 1），同时作为银行信用额度的优质抵押品（工作 2）。",
+                    oneDollarDetail2: "这种架构使您能够保持积极的资本 management。您不需要在“保障”与“增长”之间做选择——您正在利用同一笔资本同时执行这两项任务。其结果是消除了机会成本，并实现了公司资产负债表的最大化。",
+                    engineCompTitle: "战略底盘对比",
+                    engineCompSub: "“引擎”的选择决定了您 IFA 策略的长期波动性与流动性特征。",
+                    parTitle: "分红保险 (Participating Whole Life)",
+                    parSub: "稳定型引擎",
+                    parDetail: "在分红保险政策中，您的保费进入保险公司的数十亿美元大型分红账户。回报通过年度分红进行“平滑处理”，保护您免受直接市场波动的影响。",
+                    ulTitle: "万用保险 (Universal Life)",
+                    ulSub: "透明型引擎",
+                    ulDetail: "万用保险将保险成本与投资部分分离。您决定侧重基金的资本配置（股票、固定收益或指数），提供最大控制权，但风险也由客户承担。",
+                    featureRisk: "风险特征", featureRiskPar: "与保险公司分担 (资金池)", featureRiskUL: "客户自行承担 (挂钩市场)",
+                    featureGrowth: "增长逻辑", featureGrowthPar: "归属年度分红 (Vested)", featureGrowthUL: "市场表现",
+                    featureLeverage: "IFA 适用性", featureLeveragePar: "高 (稳定的抵押品价值)", featureLeverageUL: "高 (最大化税务避风港额度)",
+                    aboutBioTitle: "专业传记",
+                    aboutCreedTitle: "专业信条",
+                    aboutReachTitle: "服务区域"
                 }
             };
 
@@ -142,18 +204,18 @@
                                     <img src="logo.png" alt="Logo" className="absolute inset-0 w-full h-full object-contain z-10" onError={(e) => {e.target.style.display='none';}}/>
                                     <div className="w-full h-full bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded-lg flex items-center justify-center font-bold text-white text-lg">V</div>
                                 </div>
-                                <span className="text-xl font-black tracking-tighter text-white">VEVACI</span>
+                                <span className="text-xl font-black tracking-tighter text-white uppercase">VEVACI</span>
                             </div>
                             <div className="hidden lg:flex items-center gap-8">
-                                <button onClick={() => setCurrentPage('home')} className={`text-[10px] uppercase font-black tracking-widest ${currentPage === 'home' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navHome}</button>
-                                <button onClick={() => setCurrentPage('ifa')} className={`text-[10px] uppercase font-black tracking-widest ${currentPage === 'ifa' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navIFA}</button>
-                                <button onClick={() => setCurrentPage('cases')} className={`text-[10px] uppercase font-black tracking-widest ${currentPage === 'cases' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navCases}</button>
-                                <button onClick={() => setCurrentPage('about')} className={`text-[10px] uppercase font-black tracking-widest ${currentPage === 'about' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navAbout}</button>
+                                <button onClick={() => setCurrentPage('home')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'home' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navHome}</button>
+                                <button onClick={() => setCurrentPage('ifa')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'ifa' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navIFA}</button>
+                                <button onClick={() => setCurrentPage('cases')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'cases' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navCases}</button>
+                                <button onClick={() => setCurrentPage('about')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'about' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navAbout}</button>
                                 <div className="flex gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10 ml-2 items-center">
                                     <Icon name="globe" className="text-[#c5a059]" size={14} />
                                     <button onClick={() => setLanguage('en')} className={`text-[9px] ${language === 'en' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>EN</button>
                                     <button onClick={() => setLanguage('zh')} className={`text-[9px] ${language === 'zh' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>繁</button>
-                                    <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>简</button>
+                                    <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>簡</button>
                                 </div>
                                 <button onClick={() => setCurrentPage('feasibility')} className="bg-copper-gradient text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">{t.studyCta}</button>
                             </div>
@@ -162,7 +224,7 @@
                     </nav>
 
                     {isMenuOpen && (
-                        <div className="fixed inset-0 z-40 bg-[#0a0a0a] pt-24 px-8 flex flex-col items-center space-y-6 animate-in slide-in-from-top-4">
+                        <div className="fixed inset-0 z-40 bg-[#0a0a0a] pt-24 px-8 flex flex-col items-center space-y-6 animate-in slide-in-from-top-4 duration-300">
                             <button onClick={() => setCurrentPage('home')} className="text-2xl font-black uppercase tracking-widest">{t.navHome}</button>
                             <button onClick={() => setCurrentPage('ifa')} className="text-2xl font-black uppercase tracking-widest">{t.navIFA}</button>
                             <button onClick={() => setCurrentPage('cases')} className="text-2xl font-black uppercase tracking-widest">{t.navCases}</button>
@@ -182,6 +244,16 @@
                         {currentPage === 'feasibility' && <FeasibilityView t={t} setCurrentPage={setCurrentPage} language={language} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />}
                     </main>
 
+                    {/* Disclaimer Section before Footer */}
+                    <section className="max-w-7xl mx-auto px-6 py-12 border-t border-white/5">
+                        <div className="flex flex-col items-center text-center">
+                            <h5 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-4">{t.disclaimerTitle}</h5>
+                            <p className="text-[9px] text-gray-600 leading-relaxed max-w-5xl uppercase tracking-tighter text-justify">
+                                {t.disclaimerBody}
+                            </p>
+                        </div>
+                    </section>
+
                     <footer className="bg-black border-t border-white/5 pt-20 pb-12 px-6 safe-bottom">
                         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
                             <div className="space-y-6">
@@ -190,13 +262,13 @@
                                         <img src="logo.png" alt="Logo" className="absolute inset-0 w-full h-full object-contain z-10" onError={(e) => {e.target.style.display='none';}}/>
                                         <div className="w-full h-full bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded flex items-center justify-center font-bold text-white text-xs">V</div>
                                     </div>
-                                    <span className="text-xl font-black tracking-widest uppercase text-white">VEVACI</span>
+                                    <span className="text-lg font-black tracking-tighter text-white uppercase">VEVACI</span>
                                 </div>
                                 <p className="text-gray-500 text-[11px] leading-relaxed italic border-l-0 md:border-l-2 border-[#b36b39] md:pl-6 uppercase max-w-lg mx-auto md:mx-0">{t.disclosure}</p>
                             </div>
                             <div className="space-y-2">
                                 <p className="text-xs text-gray-700 font-bold">© 2026 VeVa Consultancy Inc. | Alex Kynn Lee</p>
-                                <p className="text-[10px] text-gray-800 tracking-widest uppercase">Markham & Richmond Hill, Ontario</p>
+                                <p className="text-[10px] text-gray-800 tracking-widest uppercase text-gray-400 font-bold">Markham & Richmond Hill, Ontario</p>
                             </div>
                         </div>
                     </footer>
@@ -210,7 +282,7 @@
                     <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-8 italic text-gradient-gold tracking-tighter leading-tight">{t.headline}</h1>
                     <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">{t.subheadline}</p>
                     <div className="flex flex-col sm:flex-row justify-center gap-5 mb-32">
-                        <button onClick={() => setCurrentPage('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] px-12 py-5 rounded-full font-bold text-lg shadow-2xl active:scale-95 transition-transform">{t.studyCta}</button>
+                        <button onClick={() => setCurrentPage('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-12 py-5 rounded-full font-bold text-lg shadow-2xl active:scale-95 transition-transform">{t.studyCta}</button>
                         <button onClick={() => setCurrentPage('ifa')} className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors">{t.exploreIFA}</button>
                     </div>
 
@@ -236,16 +308,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <p className="mt-12 text-gray-500 text-sm italic font-light">"{t.oneDollarSub}"</p>
+                            <p className="mt-12 text-gray-400 text-lg sm:text-xl md:text-2xl italic font-light whitespace-pre-line leading-relaxed text-justify">
+                                {t.oneDollarSub}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="max-w-4xl mx-auto mt-12 grid md:grid-cols-2 gap-8 text-left">
+                        <div className="space-y-4">
+                            <h4 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.oneDollarDetailTitle}</h4>
+                            <p className="text-gray-400 font-light leading-relaxed text-sm text-justify">{t.oneDollarDetail1}</p>
+                        </div>
+                        <div className="flex items-center">
+                            <p className="text-gray-400 font-light leading-relaxed text-sm border-l border-white/10 pl-8 text-justify">{t.oneDollarDetail2}</p>
                         </div>
                     </div>
                 </section>
 
-                <section className="py-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 sm:px-0">
+                <section className="py-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 sm:px-0 text-white">
                     <Card icon="layers" title={t.ifaTitle} desc={t.ifaDesc} onClick={() => setCurrentPage('ifa')} label={t.readDeepDive} />
                     <Card icon="unlock" title={t.surplusTitle} desc={t.surplusDesc} onClick={() => setCurrentPage('surplus')} label={t.readDeepDive} />
                     <Card icon="bar-chart-3" title={t.casesTitle} desc={t.casesDesc} onClick={() => setCurrentPage('cases')} label={t.readDeepDive} />
-                    <Card icon="scale" title={t.engineTitle} desc={t.engineDesc} onClick={() => setCurrentPage('compare')} label={t.readDeepDive} />
+                    <Card icon="scale" title={t.engineTitle} desc={language === 'en' ? 'A technical comparison of Participating Whole Life and Universal Life chassis.' : (language === 'cn' ? '分红保险与万用保险机制对比' : '分紅保險與萬用保險機制對比')} onClick={() => setCurrentPage('compare')} label={t.readDeepDive} />
                     <Card icon="shield-check" title={t.protectionTitle} desc={t.protectionDesc} onClick={() => setCurrentPage('protection')} label={t.readDeepDive} />
                     <Card icon="users" title={t.aboutTitle} desc={t.aboutDesc} onClick={() => setCurrentPage('about')} label={t.readDeepDive} />
                 </section>
@@ -253,13 +337,13 @@
         );
 
         const IFAView = ({ t, setCurrentPage, language }) => (
-            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 duration-500 text-left">
+            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 duration-500 text-left text-white">
                 <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
                 <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">IFA <span className="text-[#c5a059]">{language === 'en' ? 'Mechanics' : (language === 'cn' ? '运作机制' : '運作機制')}</span></h2>
                 <div className="space-y-16 border-l border-[#c5a059]/20 pl-8 ml-4">
                     <Step num="01" icon="settings" 
                         title={language === 'en' ? "Engine Selection" : (language === 'cn' ? "引擎选择" : "引擎選擇")} 
-                        desc={language === 'en' ? "Analyzing Par Whole Life or UL for optimal Cash Surrender Value (CSV) performance." : (language === 'cn' ? "分析分红险或万用险，以实现最佳现金价值 (CSV) 积累速度。" : "分析分紅險或萬用險，以實現最佳現金價值 (CSV) 積累速度。")} 
+                        desc={language === 'en' ? "Analyzing Par Whole Life or UL for optimal Cash Surrender Value (CSV) performance." : (language === 'cn' ? "分析分红保险或万用保险，以实现最佳现金价值 (CSV) 积累速度。" : "分析分紅保險與萬用保險，以實現最佳現金價值 (CSV) 積累速度。")} 
                     />
                     <Step num="02" icon="piggy-bank" 
                         title={language === 'en' ? "Corporate Funding" : (language === 'cn' ? "公司注资" : "公司注資")} 
@@ -284,22 +368,14 @@
         const SurplusView = ({ t, language, setCurrentPage }) => (
             <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
                 <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none">{language === 'en' ? 'The Surplus ' : (language === 'cn' ? '公司盈余' : '公司盈餘')}<span className="text-[#c5a059]">{language === 'en' ? 'Trap' : (language === 'cn' ? '陷阱' : '陷阱')}</span></h2>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-white">{language === 'en' ? 'The Surplus ' : (language === 'cn' ? '公司盈余' : '公司盈餘')}<span className="text-[#c5a059]">{language === 'en' ? 'Trap' : (language === 'cn' ? '陷阱' : '陷阱')}</span></h2>
                 
                 <div className="grid md:grid-cols-2 gap-6 mb-16 text-white">
-                    <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-red-500/20 emerald-glow relative">
-                        <h4 className="text-red-500 font-black text-xs uppercase tracking-widest mb-4">{language === 'en' ? 'Passive Tax' : (language === 'cn' ? '被动税率' : '被動稅率')}</h4>
-                        <div className="text-4xl font-black mb-2 italic">50.17%</div>
-                        <p className="text-gray-500 text-sm italic">{language === 'en' ? 'Ontario Corporate Passive Income Rate.' : (language === 'cn' ? '安省公司被动投资收入税率。' : '安省公司被動投資收入稅率。')}</p>
-                    </div>
-                    <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/20 relative">
-                        <h4 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-4">{language === 'en' ? 'SBD Threshold' : (language === 'cn' ? 'SBD 门槛' : 'SBD 門檻')}</h4>
-                        <div className="text-4xl font-black mb-2 italic">$50,000</div>
-                        <p className="text-gray-500 text-sm italic">{language === 'en' ? 'AAII limit before 5:1 grind begins.' : (language === 'cn' ? '触发 SBD 5:1 扣减前的被动收入上限。' : '觸發 SBD 5:1 扣減前的被動收入上限。')}</p>
-                    </div>
+                    <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-red-500/20 emerald-glow relative"><h4 className="text-red-500 font-black text-xs uppercase tracking-widest mb-4">{language === 'en' ? 'Passive Tax' : (language === 'cn' ? '被动税率' : '被動稅率')}</h4><div className="text-4xl font-black mb-2 italic">50.17%</div><p className="text-gray-500 text-sm italic">{language === 'en' ? 'Ontario Corporate Passive Income Rate.' : (language === 'cn' ? '安省公司被动投资收入税率。' : '安省公司被動投資收入稅率。')}</p></div>
+                    <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/20 relative"><h4 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-4">{language === 'en' ? 'SBD Threshold' : (language === 'cn' ? 'SBD 门槛' : 'SBD 門檻')}</h4><div className="text-4xl font-black mb-2 italic">$50,000</div><p className="text-gray-500 text-sm italic">{language === 'en' ? 'AAII limit before 5:1 grind begins.' : (language === 'cn' ? '触发 SBD 5:1 扣减前的被动收入上限。' : '觸發 SBD 5:1 扣減前的被動收入上限。')}</p></div>
                 </div>
 
-                <div className="space-y-8 text-xl text-gray-300 font-light leading-relaxed">
+                <div className="space-y-8 text-xl text-gray-300 font-light leading-relaxed text-justify">
                     <p>{language === 'en' ? 'Holding excess cash inside a CCPC triggers tax friction. Passive income over $50k erodes your active small business deduction eligibility.' : (language === 'cn' ? '在 CCPC 内部持有过剩现金会引发税务磨擦。一旦被动收入超过 5 万加元，就会侵蚀您的小生意税务扣减 (SBD) 资格。' : '在 CCPC 內部持有過剩現金會引發稅務磨擦。一旦被動收入超過 5 萬加元，就會侵蝕您的小生意稅務扣減 (SBD) 資格。')}</p>
                     <p>{language === 'en' ? 'Relocating surplus into tax-exempt insurance engines restores your SBD limits while creating a tax-free wealth extraction channel via the Capital Dividend Account (CDA).' : (language === 'cn' ? '将盈余重新分配至免税保险引擎可以恢复您的 SBD 额度，同时通过资本股息账户 (CDA) 建立免税财富提取渠道。' : '將盈餘重新分配至免稅保險引擎可以恢復您的 SBD 額度，同時通過資本股息賬戶 (CDA) 建立免稅財富提取渠道。')}</p>
                 </div>
@@ -307,17 +383,35 @@
         );
 
         const CompareView = ({ t, language, setCurrentPage }) => (
-            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+            <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
                 <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-12 tracking-tighter leading-none">Par vs. <span className="text-[#c5a059]">UL</span> Engines</h2>
-                <div className="grid md:grid-cols-2 gap-8 text-sm md:text-base">
-                    <div className="p-10 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/30">
-                        <h3 className="text-2xl font-bold mb-4 italic text-white">{language === 'en' ? 'Whole Life (Par)' : (language === 'cn' ? '分红险 (Par)' : '分紅險 (Par)')}</h3>
-                        <p className="text-gray-400 font-light leading-relaxed">{language === 'en' ? 'Guaranteed CSV growth and professional management. Ideal for conservative IFA leverage.' : (language === 'cn' ? '保证现金价值增长与专业分红管理。非常适合保守且稳定的 IFA 杠杆策略。' : '保證現金價值增長與專業分紅管理。非常適合保守且穩定的 IFA 槓桿策略。')}</p>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-4 tracking-tighter leading-none text-white">{t.engineCompTitle}</h2>
+                <p className="text-gray-400 text-xl font-light mb-16 max-w-3xl">{t.engineCompSub}</p>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-white">
+                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/30 relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-[#c5a059]/5 blur-3xl"></div>
+                        <div className="w-14 h-14 rounded-2xl bg-[#c5a059]/10 flex items-center justify-center text-[#c5a059] mb-8 gold-glow"><Icon name="shield-check" size={28} /></div>
+                        <h3 className="text-3xl font-black text-white italic mb-2 uppercase">{t.parTitle}</h3>
+                        <p className="text-[#c5a059] font-black text-xs tracking-widest uppercase mb-6">{t.parSub}</p>
+                        <p className="text-gray-400 font-light leading-relaxed mb-10 text-sm md:text-base text-justify">{t.parDetail}</p>
+                        <div className="space-y-4 border-t border-white/5 pt-8">
+                            <ComparisonRow label={t.featureRisk} par={t.featureRiskPar} ul={t.featureRiskUL} active="par" />
+                            <ComparisonRow label={t.featureGrowth} par={t.featureGrowthPar} ul={t.featureGrowthUL} active="par" />
+                            <ComparisonRow label={t.featureLeverage} par={t.featureLeveragePar} ul={t.featureLeverageUL} active="par" />
+                        </div>
                     </div>
-                    <div className="p-10 rounded-[2.5rem] bg-[#121212] border border-white/5">
-                        <h3 className="text-2xl font-bold mb-4 italic text-white">{language === 'en' ? 'Universal Life (UL)' : (language === 'cn' ? '万用险 (UL)' : '萬用險 (UL)')}</h3>
-                        <p className="text-gray-400 font-light leading-relaxed">{language === 'en' ? 'Transparent costs and client-directed investments. Best for maximum tax sheltering based on risk appetite.' : (language === 'cn' ? '透明的成本结构与客户导向的投资选择。最适合根据风险承受能力实现最大化税务避风港。' : '透明的成本結構與客戶導向的投資選擇。最適合根據風險承受能力實現最大化稅務避風港。')}</p>
+                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-white/5 relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/5 blur-3xl"></div>
+                        <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-8 emerald-glow"><Icon name="zap" size={28} /></div>
+                        <h3 className="text-3xl font-black text-white italic mb-2 uppercase">{t.ulTitle}</h3>
+                        <p className="text-emerald-500 font-black text-xs tracking-widest uppercase mb-6">{t.ulSub}</p>
+                        <p className="text-gray-400 font-light leading-relaxed mb-10 text-sm md:text-base text-justify">{t.ulDetail}</p>
+                        <div className="space-y-4 border-t border-white/5 pt-8">
+                            <ComparisonRow label={t.featureRisk} par={t.featureRiskPar} ul={t.featureRiskUL} active="ul" />
+                            <ComparisonRow label={t.featureGrowth} par={t.featureGrowthPar} ul={t.featureGrowthUL} active="ul" />
+                            <ComparisonRow label={t.featureLeverage} par={t.featureLeveragePar} ul={t.featureLeverageUL} active="ul" />
+                        </div>
                     </div>
                 </div>
             </section>
@@ -326,15 +420,15 @@
         const ProtectionView = ({ t, language, setCurrentPage }) => (
             <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
                 <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-12 tracking-tighter leading-none">{language === 'en' ? 'Holistic ' : (language === 'cn' ? '全面' : '全面')}<span className="text-[#c5a059]">{language === 'en' ? 'Protection' : (language === 'cn' ? '保障' : '保障')}</span></h2>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-12 tracking-tighter leading-none text-white">{language === 'en' ? 'Holistic ' : (language === 'cn' ? '全面' : '全面')}<span className="text-[#c5a059]">{language === 'en' ? 'Protection' : (language === 'cn' ? '保障' : '保障')}</span></h2>
                 <div className="grid md:grid-cols-2 gap-8 text-sm md:text-base">
                     <div className="p-10 rounded-[3rem] bg-[#121212] border border-emerald-500/20">
-                        <h3 className="text-xl font-bold mb-4 italic text-emerald-500">{language === 'en' ? 'Critical Illness (CI)' : (language === 'cn' ? '重大疾病保险' : '重大疾病保險')}</h3>
-                        <p className="text-gray-400 font-light leading-relaxed">{language === 'en' ? 'Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.' : (language === 'cn' ? '免税的一次性赔付可用于资助企业持续经营，以及在诊断后执行股东买断协议。' : '免稅的一次性賠付可用於資助企業持續經營，以及在診斷後執行股東買斷協議。')}</p>
+                        <h3 className="text-xl font-bold mb-4 italic text-emerald-500">{language === 'en' ? 'Critical Illness (CI) Insurance' : (language === 'cn' ? '危疾保险 (Critical Illness (CI) Insurance)' : '危疾保險 (Critical Illness (CI) Insurance)')}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-justify">{language === 'en' ? 'Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.' : (language === 'cn' ? '免税的一次性赔付可用于资助企业持续经营，以及在诊断后执行股东买断协议。' : '免稅的一次性賠付可用於資助企業持續經營，以及在診斷後執行股東買斷協議。')}</p>
                     </div>
                     <div className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20">
-                        <h3 className="text-xl font-bold mb-4 italic text-[#c5a059]">{language === 'en' ? 'Segregated Funds' : (language === 'cn' ? '隔离基金' : '隔離基金')}</h3>
-                        <p className="text-gray-400 font-light leading-relaxed">{language === 'en' ? 'Insurance Act shielding provides potential creditor protection and direct probate bypass in Ontario.' : (language === 'cn' ? '受保险法保护，提供潜在的债权人屏蔽以及在安大略省直接跳过遗产认证程序。' : '受保險法保護，提供潛在的債權人屏蔽以及在安大略省直接跳過遺產認證程序。')}</p>
+                        <h3 className="text-xl font-bold mb-4 italic text-[#c5a059]">{language === 'en' ? 'Segregated Funds' : (language === 'cn' ? '保本基金 (Segregated Funds)' : '保本基金 (Segregated Funds)')}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-justify">{language === 'en' ? 'Insurance Act shielding provides potential creditor protection and direct probate bypass in Ontario.' : (language === 'cn' ? '受保险法保护，提供潜在的债权人屏蔽以及在安大略省直接跳过遗产认证程序。' : '受保險法保護，提供潛在的債權人屏蔽以及在安大略省直接跳過遺產認證程序。')}</p>
                     </div>
                 </div>
             </section>
@@ -371,45 +465,74 @@
         );
 
         const AboutView = ({ t, language, setCurrentPage }) => (
-            <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+            <section className="max-w-7xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
                 <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                    <div className="space-y-8">
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#c5a059] text-[10px] font-bold uppercase tracking-widest italic text-white">
-                            {language === 'en' ? 'Founder of VeVa Consultancy Inc.' : (language === 'cn' ? 'VeVa Consultancy Inc. 创始人' : 'VeVa Consultancy Inc. 創辦人')}
+                
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+                    <div className="lg:col-span-4 space-y-8">
+                        <div className="relative group overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl gold-glow aspect-[4/5]">
+                            <img src="alex.jpg" alt="Alex Kynn Lee" className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-1000 object-cover photo-mask" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-40"></div>
                         </div>
-                        <h2 className="text-5xl md:text-7xl font-black italic mb-8 tracking-tighter leading-none text-white text-gradient-gold">Alex Kynn Lee</h2>
-                        <p className="text-xl text-gray-400 font-light leading-relaxed">
-                            {language === 'en' 
-                                ? "With over 25 years in the financial sector, my \"lightbulb moment\" was influenced by my mentor, Amy Tong (CEO of A.T. Financial Group)." 
-                                : (language === 'cn' ? "在金融行业拥有超过 25 年的经验，我职业生涯的“启发时刻”深受导师 Amy Tong（A.T. Financial Group 行政总裁）的影响。" : "在金融行業擁有超過 25 年的經驗，我職業生涯的「啟發時刻」深受導師 Amy Tong（A.T. Financial Group 行政總裁）的影響。")}
-                        </p>
-                        <p className="text-xl text-gray-400 font-light leading-relaxed">
-                            {language === 'en' 
-                                ? "I have mastered the technical complexities of financial derivatives and algorithmic trading, engineering corporate wealth with quantitative precision." 
-                                : (language === 'cn' ? "我投入了大量时间钻研金融衍生品交易与算法交易的技术细节，这使我能够以量化的精确度来设计企业财富架构。" : "我投入了大量時間鑽研金融衍生品交易與算法交易的技術細節，這使我能夠以量化的精確度來設計企業財富架構。")}
-                        </p>
-                        <p className="text-gray-500 font-medium italic border-l-4 border-[#c5a059] pl-6 pt-2">
-                            {language === 'en' 
-                                ? '"VeVa is a legacy name, formed by the names of my two daughters, Vera and Valarie."' 
-                                : (language === 'cn' ? "“VeVa 是一个传承之名，由我的两个女儿 Vera 和 Valarie 的名字组成。它每天提醒我为何要创造财富：为了下一代。”" : "「VeVa 是一個傳承之名，由我的兩個女兒 Vera 和 Valarie 的名字組成。它每天提醒我為何要創造財富：為了下一代。」")}
-                        </p>
-                    </div>
-                    <div className="space-y-12">
-                        <div className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20">
-                            <h3 className="text-xl font-bold mb-6 uppercase tracking-widest text-[#c5a059]">{language === 'en' ? 'Professional Creed' : (language === 'cn' ? '专业信条' : '專業信條')}</h3>
-                            <p className="text-2xl text-white italic leading-relaxed">
-                                {language === 'en' 
-                                    ? '"True professionalism is selling the right product to the right person, at the right time and place—with timely follow-up."' 
-                                    : (language === 'cn' ? "“真正的专业是将合适的产品，在合适的时间和地点卖给合适的人，并在合适的时间进行跟进。”" : "「真正的專業是將合適的產品，在合適的時間和地點賣給合適的人，並在合適的時間進行跟進。」")}
-                            </p>
-                        </div>
-                        <div className="p-10 rounded-[3rem] bg-gradient-to-br from-black to-[#121212] border border-white/5 space-y-6 text-sm">
-                            <h4 className="text-white font-black text-[10px] tracking-widest uppercase">{language === 'en' ? 'Service Reach' : (language === 'cn' ? '服务区域' : '服務區域')}</h4>
-                            <div className="flex gap-4 items-start text-gray-400 font-light">
+                        <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-white/5 space-y-6">
+                            <h4 className="text-white font-black text-[10px] tracking-widest uppercase">{t.aboutReachTitle}</h4>
+                            <div className="flex gap-4 items-start text-gray-400 font-light text-sm">
                                 <Icon name="map-pin" className="text-emerald-500 shrink-0" size={18} />
-                                <p>{language === 'en' ? 'Based in Markham, serving also Richmond Hill, with a mission to cover GTA and Ontario.' : (language === 'cn' ? '立足于万锦市 (Markham)，服务范围亦涵盖列治文山 (Richmond Hill)，目标覆盖整个大多伦多地区 (GTA) 及安大略省。' : '立足於萬錦市 (Markham)，服務範圍亦涵蓋列治文山 (Richmond Hill)，目標覆蓋整個大多倫多地區 (GTA) 及安大略省。')}</p>
+                                <p className="text-justify">
+                                    {language === 'en' 
+                                        ? "Based in Markham, we support individuals, families, and business owners in Richmond Hill, the GTA, and throughout Ontario." 
+                                        : (language === 'cn' 
+                                            ? "立足于万锦市 (Markham)，我们为列治文山 (Richmond Hill)、大多伦多地区 (GTA) 以及全安大略省的个人、家庭和企业主提供支持。" 
+                                            : "立足於萬錦市 (Markham)，我們為列治文山 (Richmond Hill)、大多倫多地區 (GTA) 以及全安大略省的個人、家庭和企業主提供支持。")}
+                                </p>
                             </div>
+                        </div>
+                    </div>
+                    <div className="lg:col-span-8 space-y-12">
+                        <div className="space-y-6">
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#c5a059] text-[10px] font-bold uppercase tracking-widest italic text-white">
+                                {language === 'en' ? 'Founder of VeVa Consultancy Inc.' : (language === 'cn' ? 'VeVa Consultancy Inc. 创始人' : 'VeVa Consultancy Inc. 創辦人')}
+                            </div>
+                            <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white text-gradient-gold">Alex Kynn Lee</h2>
+                        </div>
+                        <div className="space-y-10">
+                            <section className="space-y-6">
+                                <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutBioTitle}</h3>
+                                <div className="space-y-6 text-xl text-gray-300 font-light leading-relaxed text-justify">
+                                    <p>
+                                        {language === 'en' 
+                                            ? "With over 28 years of experience in the financial sector, my approach to wealth and insurance planning was shaped by a pivotal mentorship under Amy Tong, CEO of A.T. Financial Group. That experience helped define a client-first philosophy grounded in discipline, clarity, and long-term thinking." 
+                                            : (language === 'cn' 
+                                                ? "在金融领域拥有超过 28 年的经验，我的财富和保险规划方法深受 A.T. Financial Group 首席执行官 Amy Tong 的关键指导所启发。这段经历确立了我以客户为中心、立足于自律、透明和长期思维的哲学。" 
+                                                : "在金融領域擁有超過 28 年的經驗，我的財富和保險規劃方法深受 A.T. Financial Group 首席執行官 Amy Tong 的關鍵指導所啟發。這段經歷確立了我以客戶為中心、立足於自律、透明和長期思維的哲學。")}
+                                    </p>
+                                    <p>
+                                        {language === 'en' 
+                                            ? "My background includes deep exposure to financial derivatives and algorithmic trading, where precision, risk management, and structure are paramount. Today, those principles inform how I help business owners and families thoughtfully structure and protect wealth in an increasingly complex financial environment." 
+                                            : (language === 'cn' 
+                                                ? "我的背景涉及金融衍生品和算法交易的深度探索，在这些领域，精确度、风险管理和结构至关重要。今天，这些原则贯穿于我如何协助企业主和家庭在日益复杂的金融环境中周密地构建和保护财富。" 
+                                                : "我的背景涉及金融衍生品和算法交易的深度探索，在這些領域，精確度、風險管理和結構至關重要。今天，這些原則貫穿於我如何協助企業主和家庭在日益複雜的金融環境中周密地構建和保護財富。")}
+                                    </p>
+                                    <p className="border-l-4 border-[#c5a059] pl-8 italic text-gray-400">
+                                        {language === 'en' 
+                                            ? "VeVa is a legacy name, formed from the names of my two daughters, Vera and Valarie — reflecting a commitment not only to financial outcomes, but to continuity, responsibility, and long-term stewardship." 
+                                            : (language === 'cn' 
+                                                ? "VeVa 是一个传承之名，由我的两个女儿 Vera 和 Valarie 的名字组成——这不仅体现了对财务成果的承诺，更反映了对持续性、责任感和长期托付的使命感。" 
+                                                : "VeVa 是一個傳承之名，由我的兩個女兒 Vera 和 Valarie 的名字組成——這不僅體現了對財務成果的承諾，更反映了對持續性、責任感和長期托付的使命感。")}
+                                    </p>
+                                </div>
+                            </section>
+                            <section className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20 relative overflow-hidden group">
+                                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#c5a059]/5 to-transparent opacity-50"></div>
+                                <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6 relative z-10">{t.aboutCreedTitle}</h3>
+                                <p className="text-2xl sm:text-3xl text-white italic leading-relaxed font-light relative z-10 text-justify">
+                                    {language === 'en' 
+                                        ? "True professionalism means recommending the right solution to the right person, at the right time — and standing behind that advice with consistent and timely follow-up." 
+                                        : (language === 'cn' 
+                                            ? "真正的专业意味着在合适的时间，向合适的人推荐合适的解决方案——并以持续且及时的跟进作为建议的坚实后盾。" 
+                                            : "真正的專業意味著在合適的時間，向合適的人推薦合適的解決方案——並以持續且及時的跟進作為建議的堅實後盾。")}
+                                </p>
+                            </section>
                         </div>
                     </div>
                 </div>
@@ -423,11 +546,11 @@
                     <form onSubmit={(e) => {e.preventDefault(); setFormSubmitted(true);}} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8">
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="space-y-2 text-left">
-                                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{language === 'en' ? 'Name' : (language === 'cn' ? '姓名' : '姓名')}</label>
+                                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest text-white">{language === 'en' ? 'Name' : (language === 'cn' ? '姓名' : '姓名')}</label>
                                 <input type="text" placeholder="Alex Lee" className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors text-white text-sm" required />
                             </div>
                             <div className="space-y-2 text-left">
-                                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{language === 'en' ? 'Corporation' : (language === 'cn' ? '公司名称' : '公司名稱')}</label>
+                                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest text-white">{language === 'en' ? 'Corporation' : (language === 'cn' ? '公司名称' : '公司名稱')}</label>
                                 <input type="text" placeholder="Your Co. Inc" className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors text-white text-sm" required />
                             </div>
                         </div>
@@ -444,11 +567,12 @@
             </section>
         );
 
+        // Sub-components
         const Card = ({ icon, title, desc, onClick, label = "Read More" }) => (
-            <div onClick={onClick} className="p-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full text-left">
+            <div onClick={onClick} className="px-6 py-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full text-left text-white">
                 <Icon name={icon} className="text-[#c5a059] mb-8 group-hover:scale-110 transition-transform" size={32} />
-                <h3 className="text-xl font-bold mb-4 leading-tight text-white">{title}</h3>
-                <p className="text-xs text-gray-500 font-light mb-8 flex-grow">{desc}</p>
+                <h3 className="text-xl font-bold mb-4 leading-tight text-white tracking-tight">{title}</h3>
+                <p className="text-xs text-gray-500 font-light mb-8 flex-grow text-justify leading-relaxed">{desc}</p>
                 <div className="mt-auto text-[10px] font-black uppercase tracking-widest text-[#c5a059] flex items-center gap-2 font-black">{label} <Icon name="chevron-right" size={12} /></div>
             </div>
         );
@@ -462,7 +586,14 @@
                     <span className="text-[#c5a059] text-[10px] font-black">{num}</span>
                     <h3 className="text-2xl font-bold tracking-tight text-white">{title}</h3>
                 </div>
-                <p className="text-gray-400 font-light leading-relaxed">{desc}</p>
+                <p className="text-gray-400 font-light leading-relaxed text-sm text-justify">{desc}</p>
+            </div>
+        );
+
+        const ComparisonRow = ({ label, par, ul, active }) => (
+            <div className="flex flex-col gap-1 py-4 border-b border-white/5 last:border-0 text-left">
+                <span className="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-1">{label}</span>
+                <p className="text-sm font-light text-gray-300 italic">{active === 'par' ? par : ul}</p>
             </div>
         );
 
@@ -480,14 +611,14 @@
                         </div>
                         <div className="space-y-1 text-left">
                             <span className="text-[10px] font-black text-red-500 uppercase tracking-widest">{t.challengeLabel}</span>
-                            <p className="text-gray-400 font-light leading-relaxed text-sm">{challenge}</p>
+                            <p className="text-gray-400 font-light leading-relaxed text-sm text-justify">{challenge}</p>
                         </div>
                     </div>
                 </div>
                 <div className="p-10 rounded-[3rem] bg-[#121212] border border-white/5 relative group emerald-glow transition-all hover:border-[#c5a059]/30">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-3xl"></div>
                     <span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest block mb-4 italic">{t.outcomeLabel}</span>
-                    <p className="text-xl text-white font-light leading-relaxed italic">"{outcome}"</p>
+                    <p className="text-xl text-white font-light leading-relaxed italic text-justify text-white">"{outcome}"</p>
                 </div>
             </div>
         );
