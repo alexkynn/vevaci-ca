@@ -42,15 +42,29 @@
 
         const App = () => {
             const [language, setLanguage] = useState('en');
-            const [currentPage, setCurrentPage] = useState('home');
+            // Fix Browser Back Button: Sync state with URL hash
+            const [currentPage, setCurrentPage] = useState(() => {
+                return window.location.hash.replace('#', '') || 'home';
+            });
             const [isMenuOpen, setIsMenuOpen] = useState(false);
             const [formSubmitted, setFormSubmitted] = useState(false);
 
-            useEffect(() => { 
-                window.scrollTo(0, 0); 
-                setIsMenuOpen(false); 
-                if (window.lucide) window.lucide.createIcons(); 
-            }, [currentPage, language]);
+            useEffect(() => {
+                const handleHashChange = () => {
+                    const page = window.location.hash.replace('#', '') || 'home';
+                    setCurrentPage(page);
+                    window.scrollTo(0, 0);
+                    setIsMenuOpen(false);
+                };
+                window.addEventListener('hashchange', handleHashChange);
+                if (window.lucide) window.lucide.createIcons();
+                return () => window.removeEventListener('hashchange', handleHashChange);
+            }, []);
+
+            // Navigation helper
+            const navigateTo = (page) => {
+                window.location.hash = page;
+            };
 
             const content = {
                 en: {
@@ -154,7 +168,7 @@
                     ifaTitle: "IFA 运作机制指南",
                     ifaDesc: "抵押保单现金价值以进行企业再投资的技术指南。",
                     surplusTitle: "公司盈余陷阱",
-                    surplusDesc: "分析安省公司被动收入税与 SBD 扣减效应。",
+                    surplusDesc: "分析安省公司被动投资收入税与 SBD 扣减效应。",
                     engineTitle: "Par vs. UL 保单引擎",
                     engineDesc: "针对 IFA 策略采用的两种主要保险底盘的技术分析。",
                     protectionTitle: "全面保障策略",
@@ -186,7 +200,7 @@
                     ulDetail: "万用保险将保险成本与投資部分分离。您决定側重基金的资本配置（股票、固定收益或指數），提供最大控制權，但风险也由客户承擔。",
                     featureRisk: "风险特征", featureRiskPar: "与保险公司分担 (资金池)", featureRiskUL: "客户自行承擔 (掛鉤市场)",
                     featureGrowth: "增长逻辑", featureGrowthPar: "归属年度分紅 (Vested)", featureGrowthUL: "市场表现",
-                    featureLeverage: "IFA 适用性", featureLeveragePar: "高 (稳定的抵押品价值)", featureLeverageUL: "高 (最大化税务避风港额度)",
+                    featureLeverage: "IFA 適用性", featureLeveragePar: "高 (稳定的抵押品价值)", featureLeverageUL: "高 (最大化税务避风港额度)",
                     aboutBioTitle: "专业传记",
                     aboutCreedTitle: "专业信条",
                     aboutReachTitle: "服务区域"
@@ -199,7 +213,7 @@
                 <div className="min-h-screen text-gray-100 flex flex-col selection:bg-[#c5a059]/30">
                     <nav className="fixed w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 h-20 flex items-center safe-top">
                         <div className="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
-                            <div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentPage('home')}>
+                            <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigateTo('home')}>
                                 <div className="relative w-10 h-10 flex items-center justify-center">
                                     <img src="logo.png" alt="Logo" className="absolute inset-0 w-full h-full object-contain z-10" onError={(e) => {e.target.style.display='none';}}/>
                                     <div className="w-full h-full bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded-lg flex items-center justify-center font-bold text-white text-lg">V</div>
@@ -207,17 +221,17 @@
                                 <span className="text-xl font-black tracking-tighter text-white uppercase">VEVACI</span>
                             </div>
                             <div className="hidden lg:flex items-center gap-8">
-                                <button onClick={() => setCurrentPage('home')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'home' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navHome}</button>
-                                <button onClick={() => setCurrentPage('ifa')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'ifa' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navIFA}</button>
-                                <button onClick={() => setCurrentPage('cases')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'cases' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navCases}</button>
-                                <button onClick={() => setCurrentPage('about')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'about' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navAbout}</button>
+                                <button onClick={() => navigateTo('home')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'home' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navHome}</button>
+                                <button onClick={() => navigateTo('ifa')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'ifa' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navIFA}</button>
+                                <button onClick={() => navigateTo('cases')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'cases' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navCases}</button>
+                                <button onClick={() => navigateTo('about')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'about' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navAbout}</button>
                                 <div className="flex gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10 ml-2 items-center">
                                     <Icon name="globe" className="text-[#c5a059]" size={14} />
                                     <button onClick={() => setLanguage('en')} className={`text-[9px] ${language === 'en' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>EN</button>
                                     <button onClick={() => setLanguage('zh')} className={`text-[9px] ${language === 'zh' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>繁</button>
                                     <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>簡</button>
                                 </div>
-                                <button onClick={() => setCurrentPage('feasibility')} className="bg-copper-gradient text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">{t.studyCta}</button>
+                                <button onClick={() => navigateTo('feasibility')} className="bg-copper-gradient text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">{t.studyCta}</button>
                             </div>
                             <button className="lg:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}><Icon name={isMenuOpen ? "x" : "menu"} /></button>
                         </div>
@@ -225,26 +239,25 @@
 
                     {isMenuOpen && (
                         <div className="fixed inset-0 z-40 bg-[#0a0a0a] pt-24 px-8 flex flex-col items-center space-y-6 animate-in slide-in-from-top-4 duration-300">
-                            <button onClick={() => setCurrentPage('home')} className="text-2xl font-black uppercase tracking-widest">{t.navHome}</button>
-                            <button onClick={() => setCurrentPage('ifa')} className="text-2xl font-black uppercase tracking-widest">{t.navIFA}</button>
-                            <button onClick={() => setCurrentPage('cases')} className="text-2xl font-black uppercase tracking-widest">{t.navCases}</button>
-                            <button onClick={() => setCurrentPage('about')} className="text-2xl font-black uppercase tracking-widest">{t.navAbout}</button>
-                            <button onClick={() => setCurrentPage('feasibility')} className="text-2xl font-black text-[#c5a059] uppercase tracking-widest">{t.studyCta}</button>
+                            <button onClick={() => navigateTo('home')} className="text-2xl font-black uppercase tracking-widest">{t.navHome}</button>
+                            <button onClick={() => navigateTo('ifa')} className="text-2xl font-black uppercase tracking-widest">{t.navIFA}</button>
+                            <button onClick={() => navigateTo('cases')} className="text-2xl font-black uppercase tracking-widest">{t.navCases}</button>
+                            <button onClick={() => navigateTo('about')} className="text-2xl font-black uppercase tracking-widest">{t.navAbout}</button>
+                            <button onClick={() => navigateTo('feasibility')} className="text-2xl font-black text-[#c5a059] uppercase tracking-widest">{t.studyCta}</button>
                         </div>
                     )}
 
                     <main className="flex-grow pt-20">
-                        {currentPage === 'home' && <HomeView t={t} setCurrentPage={setCurrentPage} language={language} />}
-                        {currentPage === 'ifa' && <IFAView t={t} setCurrentPage={setCurrentPage} language={language} />}
-                        {currentPage === 'surplus' && <SurplusView t={t} setCurrentPage={setCurrentPage} language={language} />}
-                        {currentPage === 'compare' && <CompareView t={t} setCurrentPage={setCurrentPage} language={language} />}
-                        {currentPage === 'protection' && <ProtectionView t={t} setCurrentPage={setCurrentPage} language={language} />}
-                        {currentPage === 'cases' && <CaseView t={t} setCurrentPage={setCurrentPage} language={language} />}
-                        {currentPage === 'about' && <AboutView t={t} setCurrentPage={setCurrentPage} language={language} />}
-                        {currentPage === 'feasibility' && <FeasibilityView t={t} setCurrentPage={setCurrentPage} language={language} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />}
+                        {currentPage === 'home' && <HomeView t={t} navigateTo={navigateTo} language={language} />}
+                        {currentPage === 'ifa' && <IFAView t={t} navigateTo={navigateTo} language={language} />}
+                        {currentPage === 'surplus' && <SurplusView t={t} navigateTo={navigateTo} language={language} />}
+                        {currentPage === 'compare' && <CompareView t={t} navigateTo={navigateTo} language={language} />}
+                        {currentPage === 'protection' && <ProtectionView t={t} navigateTo={navigateTo} language={language} />}
+                        {currentPage === 'cases' && <CaseView t={t} navigateTo={navigateTo} language={language} />}
+                        {currentPage === 'about' && <AboutView t={t} navigateTo={navigateTo} language={language} />}
+                        {currentPage === 'feasibility' && <FeasibilityView t={t} navigateTo={navigateTo} language={language} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />}
                     </main>
 
-                    {/* Disclaimer Section before Footer */}
                     <section className="max-w-7xl mx-auto px-6 py-12 border-t border-white/5">
                         <div className="flex flex-col items-center text-center">
                             <h5 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-4">{t.disclaimerTitle}</h5>
@@ -276,14 +289,14 @@
             );
         };
 
-        const HomeView = ({ t, setCurrentPage, language }) => (
+        const HomeView = ({ t, navigateTo, language }) => (
             <div className="px-6 animate-in fade-in duration-700">
                 <section className="pt-32 pb-24 text-center relative max-w-6xl mx-auto">
                     <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-8 italic text-gradient-gold tracking-tighter leading-tight">{t.headline}</h1>
                     <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">{t.subheadline}</p>
                     <div className="flex flex-col sm:flex-row justify-center gap-5 mb-32">
-                        <button onClick={() => setCurrentPage('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-12 py-5 rounded-full font-bold text-lg shadow-2xl active:scale-95 transition-transform">{t.studyCta}</button>
-                        <button onClick={() => setCurrentPage('ifa')} className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors">{language === 'en' ? 'Learn the Mechanics' : '了解運作機制'}</button>
+                        <button onClick={() => navigateTo('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-12 py-5 rounded-full font-bold text-lg shadow-2xl active:scale-95 transition-transform">{t.studyCta}</button>
+                        <button onClick={() => navigateTo('ifa')} className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors">{language === 'en' ? 'Learn the Mechanics' : '了解運作機制'}</button>
                     </div>
 
                     <div className="max-w-4xl mx-auto mb-32">
@@ -326,88 +339,66 @@
                 </section>
 
                 <section className="py-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 sm:px-0 text-white">
-                    <Card icon="layers" title={t.ifaTitle} desc={t.ifaDesc} onClick={() => setCurrentPage('ifa')} label={t.readDeepDive} />
-                    <Card icon="unlock" title={t.surplusTitle} desc={t.surplusDesc} onClick={() => setCurrentPage('surplus')} label={t.readDeepDive} />
-                    <Card icon="bar-chart-3" title={t.casesTitle} desc={t.casesDesc} onClick={() => setCurrentPage('cases')} label={t.readDeepDive} />
-                    <Card icon="scale" title={t.engineTitle} desc={language === 'en' ? 'A technical comparison of Participating Whole Life and Universal Life chassis.' : '分紅保險與萬用保險機制對比'} onClick={() => setCurrentPage('compare')} label={t.readDeepDive} />
-                    <Card icon="shield-check" title={t.protectionTitle} desc={t.protectionDesc} onClick={() => setCurrentPage('protection')} label={t.readDeepDive} />
-                    <Card icon="users" title={t.aboutTitle} desc={t.aboutDesc} onClick={() => setCurrentPage('about')} label={t.readDeepDive} />
+                    <Card icon="layers" title={t.ifaTitle} desc={t.ifaDesc} onClick={() => navigateTo('ifa')} label={t.readDeepDive} />
+                    <Card icon="unlock" title={t.surplusTitle} desc={t.surplusDesc} onClick={() => navigateTo('surplus')} label={t.readDeepDive} />
+                    <Card icon="bar-chart-3" title={t.casesTitle} desc={t.casesDesc} onClick={() => navigateTo('cases')} label={t.readDeepDive} />
+                    <Card icon="scale" title={t.engineTitle} desc={language === 'en' ? 'A technical comparison of Participating Whole Life and Universal Life chassis.' : '分紅保險與萬用保險機制對比'} onClick={() => navigateTo('compare')} label={t.readDeepDive} />
+                    <Card icon="shield-check" title={t.protectionTitle} desc={t.protectionDesc} onClick={() => navigateTo('protection')} label={t.readDeepDive} />
+                    <Card icon="users" title={t.aboutTitle} desc={t.aboutDesc} onClick={() => navigateTo('about')} label={t.readDeepDive} />
                 </section>
             </div>
         );
 
-        const IFAView = ({ t, setCurrentPage, language }) => (
+        const IFAView = ({ t, navigateTo, language }) => (
             <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 duration-500 text-left text-white">
-                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">IFA <span className="text-[#c5a059]">{language === 'en' ? 'Mechanics' : (language === 'cn' ? '运作机制' : '運作機制')}</span></h2>
-                <div className="space-y-16 border-l border-[#c5a059]/20 pl-8 ml-4">
-                    <Step num="01" icon="settings" 
-                        title={language === 'en' ? "Engine Selection" : (language === 'cn' ? "引擎选择" : "引擎選擇")} 
-                        desc={language === 'en' ? "Analyzing Par Whole Life or UL for optimal Cash Surrender Value (CSV) performance." : (language === 'cn' ? "分析分红保险或万用保险，以实现最佳现金价值 (CSV) 积累速度。" : "分析分紅保險與萬用保險，以實現最佳現金價值 (CSV) 積累速度。")} 
-                    />
-                    <Step num="02" icon="piggy-bank" 
-                        title={language === 'en' ? "Corporate Funding" : (language === 'cn' ? "公司注资" : "公司注資")} 
-                        desc={language === 'en' ? "The corporation deposits premiums, creating a tax-exempt asset on the balance sheet." : (language === 'cn' ? "公司存入保费，在资产负债表上建立一项不断增长的免税资产。" : "公司存入保費，在資產負債表上建立一項不斷增長的免稅資產。")} 
-                    />
-                    <Step num="03" icon="layers" 
-                        title={language === 'en' ? "Lending Leverage" : (language === 'cn' ? "貸款槓桿" : "貸款槓桿")} 
-                        desc={language === 'en' ? "Tier-1 lenders provide credit facilities up to 100% of CSV as collateralized lending." : (language === 'cn' ? "一线贷款机构针对保单现金价值提供高达 100% 的信用额度作为抵押融资。" : "一線貸款機構針對保單現金價值提供高達 100% 的信用額度作為抵押資助。")} 
-                    />
-                    <Step num="04" icon="trending-up" 
-                        title={language === 'en' ? "Active Redeployment" : (language === 'cn' ? "资金重部署" : "資金重部署")} 
-                        desc={language === 'en' ? "Capital is injected into investments. Interest may be tax-deductible under ITA Sec 20(1)(c)." : (language === 'cn' ? "资金重新投入业务或投资组合。利息根据所得税法 ITA 20(1)(c) 可能享有扣税优惠。" : "資金重新投入業務或投資組合。利息根據所得稅法 ITA 20(1)(c) 可能享有扣稅優惠。")} 
-                    />
-                    <Step num="05" icon="unlock" 
-                        title={language === 'en' ? "Wealth Transfer" : (language === 'cn' ? "财富转移" : "財富轉移")} 
-                        desc={language === 'en' ? "Upon death, loan is retired; surplus flows tax-free to heirs via Capital Dividend Account credit." : (language === 'cn' ? "去世后，贷款由保险金清偿；余额通过资本股息账户 (CDA) 免税流向继承人。" : "去世後，貸款由保險金清償；餘額通過資本股息賬戶 (CDA) 免稅流向繼承人。")} 
-                    />
+                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">IFA <span className="text-[#c5a059]">{language === 'en' ? 'Mechanics' : '運作機制'}</span></h2>
+                <div className="space-y-16 border-l border-[#c5a059]/20 pl-8 ml-4 text-left">
+                    <Step num="01" icon="settings" title={language === 'en' ? "Engine Selection" : "引擎選擇"} desc={language === 'en' ? "Analyzing Par Whole Life or UL for optimal Cash Surrender Value (CSV) performance." : "分析分紅保險與萬用保險，以實現最佳現金價值 (CSV) 積累速度。"} />
+                    <Step num="02" icon="piggy-bank" title={language === 'en' ? "Corporate Funding" : "公司注資"} desc={language === 'en' ? "The corporation deposits premiums, creating a tax-exempt asset on the balance sheet." : "公司存入保費，在資產負債表上建立一項不斷增長的免稅資產。"} />
+                    <Step num="03" icon="layers" title={language === 'en' ? "Lending Leverage" : "貸款槓桿"} desc={language === 'en' ? "Tier-1 lenders provide credit facilities up to 100% of CSV as collateralized lending." : "一線貸款機構針對保單現金價值提供高達 100% 的信用額度作為抵押資助。"} />
+                    <Step num="04" icon="trending-up" title={language === 'en' ? "Active Redeployment" : "資金重部署"} desc={language === 'en' ? "Capital is injected into investments. Interest may be tax-deductible under ITA Sec 20(1)(c)." : "資金重新投入業務或投資組合。利息根據所得稅法 ITA 20(1)(c) 可能享有扣稅優惠。"} />
+                    <Step num="05" icon="unlock" title={language === 'en' ? "Wealth Transfer" : "財富轉移"} desc={language === 'en' ? "Upon death, loan is retired; surplus flows tax-free to heirs via Capital Dividend Account credit." : "去世後，貸款由保險金清償；餘額通過資本股息賬戶 (CDA) 免稅流向繼承人。"} />
                 </div>
             </section>
         );
 
-        const SurplusView = ({ t, language, setCurrentPage }) => (
-            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white text-justify">
-                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-white">{language === 'en' ? 'The Surplus ' : (language === 'cn' ? '公司盈余' : '公司盈餘')}<span className="text-[#c5a059]">{language === 'en' ? 'Trap' : (language === 'cn' ? '陷阱' : '陷阱')}</span></h2>
-                
+        const SurplusView = ({ t, language, navigateTo }) => (
+            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-white">{language === 'en' ? 'The Surplus ' : '公司盈餘'}<span className="text-[#c5a059]">{language === 'en' ? 'Trap' : '陷阱'}</span></h2>
                 <div className="grid md:grid-cols-2 gap-6 mb-16 text-white text-left">
-                    <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-red-500/20 emerald-glow relative"><h4 className="text-red-500 font-black text-xs uppercase tracking-widest mb-4">{language === 'en' ? 'Passive Tax' : (language === 'cn' ? '被动税率' : '被動稅率')}</h4><div className="text-4xl font-black mb-2 italic">50.17%</div><p className="text-gray-500 text-sm italic">{language === 'en' ? 'Ontario Corporate Passive Income Rate.' : (language === 'cn' ? '安省公司被动投资收入税率。' : '安省公司被動投資收入稅率。')}</p></div>
-                    <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/20 relative"><h4 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-4">{language === 'en' ? 'SBD Threshold' : (language === 'cn' ? 'SBD 门槛' : 'SBD 門檻')}</h4><div className="text-4xl font-black mb-2 italic">$50,000</div><p className="text-gray-500 text-sm italic">{language === 'en' ? 'AAII limit before 5:1 grind begins.' : (language === 'cn' ? '触发 SBD 5:1 扣减前的被动收入上限。' : '觸發 SBD 5:1 扣減前的被動收入上限。')}</p></div>
+                    <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-red-500/20 emerald-glow relative"><h4 className="text-red-500 font-black text-xs uppercase tracking-widest mb-4">Passive Tax</h4><div className="text-4xl font-black mb-2 italic">50.17%</div><p className="text-gray-500 text-sm italic">Ontario Corporate Passive Income Rate.</p></div>
+                    <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/20 relative"><h4 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-4">SBD Threshold</h4><div className="text-4xl font-black mb-2 italic">$50,000</div><p className="text-gray-500 text-sm italic">AAII limit before 5:1 grind begins.</p></div>
                 </div>
-
-                <div className="space-y-8 text-xl text-gray-300 font-light leading-relaxed">
-                    <p>{language === 'en' ? 'Holding excess cash inside a CCPC triggers tax friction. Passive income over $50k erodes your active small business deduction eligibility.' : (language === 'cn' ? '在 CCPC 内部持有过剩现金会引发税务磨擦。一旦被动收入超过 5 万加元，就会侵蚀您的小生意税务扣减 (SBD) 资格。' : '在 CCPC 內部持有過剩現金會引發稅務磨擦。一旦被動收入超過 5 萬加元，就會侵蝕您的小生意稅務扣減 (SBD) 資格。')}</p>
-                    <p>{language === 'en' ? 'Relocating surplus into tax-exempt insurance engines restores your SBD limits while creating a tax-free wealth extraction channel via the Capital Dividend Account (CDA).' : (language === 'cn' ? '将盈余重新分配至免税保险引擎可以恢复您的 SBD 额度，同时通过资本股息账户 (CDA) 建立免税财富提取渠道。' : '將盈餘重新分配至免稅保險引擎可以恢復您的 SBD 額度，同時通過資本股息賬戶 (CDA) 建立免稅財富提取渠道。')}</p>
+                <div className="space-y-8 text-xl text-gray-300 font-light leading-relaxed text-justify">
+                    <p>{language === 'en' ? 'Holding excess cash inside a CCPC triggers tax friction. Passive income over $50k erodes your active small business deduction eligibility.' : '在 CCPC 內部持有過剩現金會引發稅務磨擦。一旦被動收入超過 5 萬加元，就會侵蝕您的小生意稅務扣減 (SBD) 資格。'}</p>
+                    <p>{language === 'en' ? 'Relocating surplus into tax-exempt insurance engines restores your SBD limits while creating a tax-free wealth extraction channel via the Capital Dividend Account (CDA).' : '將盈餘重新分配至免稅保險引擎可以恢復您的 SBD 額度，同時通過資本股息賬戶 (CDA) 建立免稅財富提取渠道。'}</p>
                 </div>
             </section>
         );
 
-        const CompareView = ({ t, language, setCurrentPage }) => (
+        const CompareView = ({ t, language, navigateTo }) => (
             <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
                 <h2 className="text-5xl md:text-7xl font-black italic mb-4 tracking-tighter leading-none text-white">{t.engineCompTitle}</h2>
-                <p className="text-gray-400 text-xl font-light mb-16 max-w-3xl">{t.engineCompSub}</p>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-white">
-                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/30 relative overflow-hidden group text-left">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-white mt-12 text-left">
+                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/30 relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-48 h-48 bg-[#c5a059]/5 blur-3xl"></div>
-                        <div className="w-14 h-14 rounded-2xl bg-[#c5a059]/10 flex items-center justify-center text-[#c5a059] mb-8 gold-glow"><Icon name="shield-check" size={28} /></div>
                         <h3 className="text-3xl font-black text-white italic mb-2 uppercase">{t.parTitle}</h3>
-                        <p className="text-[#c5a059] font-black text-xs tracking-widest uppercase mb-6">{t.parSub}</p>
-                        <p className="text-gray-400 font-light leading-relaxed mb-10 text-sm md:text-base text-justify">{t.parDetail}</p>
-                        <div className="space-y-4 border-t border-white/5 pt-8">
+                        <p className="text-gray-400 font-light leading-relaxed text-justify mt-6">{t.parDetail}</p>
+                        <div className="mt-8 space-y-4 border-t border-white/5 pt-8">
                             <ComparisonRow label={t.featureRisk} par={t.featureRiskPar} ul={t.featureRiskUL} active="par" />
                             <ComparisonRow label={t.featureGrowth} par={t.featureRiskPar} ul={t.featureGrowthUL} active="par" />
                             <ComparisonRow label={t.featureLeverage} par={t.featureLeveragePar} ul={t.featureLeverageUL} active="par" />
                         </div>
                     </div>
-                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-white/5 relative overflow-hidden group text-left">
+                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-white/5 relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/5 blur-3xl"></div>
-                        <div className="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-8 emerald-glow"><Icon name="zap" size={28} /></div>
                         <h3 className="text-3xl font-black text-white italic mb-2 uppercase">{t.ulTitle}</h3>
-                        <p className="text-emerald-500 font-black text-xs tracking-widest uppercase mb-6">{t.ulSub}</p>
-                        <p className="text-gray-400 font-light leading-relaxed mb-10 text-sm md:text-base text-justify">{t.ulDetail}</p>
-                        <div className="space-y-4 border-t border-white/5 pt-8">
+                        <p className="text-emerald-500 font-black text-xs tracking-widest uppercase mb-6">UNIVERSAL LIFE</p>
+                        <p className="text-gray-400 font-light leading-relaxed text-justify mt-6">{t.ulDetail}</p>
+                        <div className="mt-8 space-y-4 border-t border-white/5 pt-8">
                             <ComparisonRow label={t.featureRisk} par={t.featureRiskPar} ul={t.featureRiskUL} active="ul" />
                             <ComparisonRow label={t.featureGrowth} par={t.featureGrowthPar} ul={t.featureGrowthUL} active="ul" />
                             <ComparisonRow label={t.featureLeverage} par={t.featureLeveragePar} ul={t.featureLeverageUL} active="ul" />
@@ -417,114 +408,68 @@
             </section>
         );
 
-        const ProtectionView = ({ t, language, setCurrentPage }) => (
+        const ProtectionView = ({ t, language, navigateTo }) => (
             <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-12 tracking-tighter leading-none text-white">{language === 'en' ? 'Holistic ' : (language === 'cn' ? '全面' : '全面')}<span className="text-[#c5a059]">{language === 'en' ? 'Protection' : (language === 'cn' ? '保障' : '保障')}</span></h2>
+                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-12 tracking-tighter leading-none text-white">{language === 'en' ? 'Holistic ' : '全面'}<span className="text-[#c5a059]">{language === 'en' ? 'Protection' : '保障'}</span></h2>
                 <div className="grid md:grid-cols-2 gap-8 text-sm md:text-base text-left">
                     <div className="p-10 rounded-[3rem] bg-[#121212] border border-emerald-500/20">
-                        <h3 className="text-xl font-bold mb-4 italic text-emerald-500">{language === 'en' ? 'Critical Illness (CI) Insurance' : (language === 'cn' ? '危疾保险 (Critical Illness (CI) Insurance)' : '危疾保險 (Critical Illness (CI) Insurance)')}</h3>
-                        <p className="text-gray-400 font-light leading-relaxed text-justify">{language === 'en' ? 'Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.' : (language === 'cn' ? '免税的一次性赔付可用于资助企业持续经营，以及在诊断后执行股东买断协议。' : '免稅的一次性賠付可用於資助企業持續經營，以及在診斷後執行股東買斷協議。')}</p>
+                        <h3 className="text-xl font-bold mb-4 italic text-emerald-500">{language === 'en' ? 'Critical Illness (CI) Insurance' : '危疾保險 (Critical Illness (CI) Insurance)'}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-justify">{language === 'en' ? 'Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.' : '免稅的一次性賠付可用於資助企業持續經營，以及在診斷後執行股東買斷協議。'}</p>
                     </div>
                     <div className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20">
-                        <h3 className="text-xl font-bold mb-4 italic text-[#c5a059]">{language === 'en' ? 'Segregated Funds' : (language === 'cn' ? '保本基金 (Segregated Funds)' : '保本基金 (Segregated Funds)')}</h3>
-                        <p className="text-gray-400 font-light leading-relaxed text-justify">{language === 'en' ? 'Insurance Act shielding provides potential creditor protection and direct probate bypass in Ontario.' : (language === 'cn' ? '受保险法保护，提供潜在的债权人屏蔽以及在安大略省直接跳过遗产认证程序。' : '受保險法保護，提供潛在的債權人屏蔽以及在安大略省直接跳過遺產認證程序。')}</p>
+                        <h3 className="text-xl font-bold mb-4 italic text-[#c5a059]">{language === 'en' ? 'Segregated Funds' : '保本基金 (Segregated Funds)'}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-justify">{language === 'en' ? 'Insurance Act shielding provides potential creditor protection and direct probate bypass in Ontario.' : '受保險法保護，提供潛在的債權人屏蔽以及在安大略省直接跳過遺產認證程序。'}</p>
                     </div>
                 </div>
             </section>
         );
 
-        const CaseView = ({ t, language, setCurrentPage }) => (
+        const CaseView = ({ t, language, navigateTo }) => (
             <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">Case <span className="text-[#c5a059]">{language === 'en' ? 'Studies' : (language === 'cn' ? '案例' : '研究')}</span></h2>
+                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">Case <span className="text-[#c5a059]">{language === 'en' ? 'Studies' : '研究'}</span></h2>
                 <div className="space-y-24">
-                    <CaseItem 
-                        title={language === 'en' ? "The Specialist’s Lever" : (language === 'cn' ? "专科医生的杠杆" : "專科醫生的槓桿")}
-                        profile={language === 'en' ? "Physician (CCPC), 45, Ontario." : (language === 'cn' ? "安省医生 (CCPC)，45 岁。" : "安省醫生 (CCPC)，45 歲。")}
-                        challenge={language === 'en' ? "Needs $5M protection while keeping $1.5M liquid for real estate investment." : (language === 'cn' ? "需要 500 万加元保障，同时希望保持 150 万加元流动资金用于地产投资。" : "需要 500 萬加元保障，同時希望保持 150 萬加元流動資金用於地產投資。")}
-                        outcome={language === 'en' ? "Accessed 90% of CSV for investment via IFA. Zero net out-of-pocket cost." : (language === 'cn' ? "通过 IFA 获得 90% 现金价值用于投资。净现出支出为零。" : "透過 IFA 獲得 90% 現金價值用於投資。淨現出支出為零。")}
-                        tag="Scenario 01" icon="user-check" t={t} lang={language}
-                    />
-                    <CaseItem 
-                        title={language === 'en' ? "The Tech Surplus Rescue" : (language === 'cn' ? "科技盈余救助" : "科技盈餘救助")}
-                        profile={language === 'en' ? "Software Founder, $10M Retained Earnings." : (language === 'cn' ? "软件创办人，1000 万加元留存盈余。" : "軟件創辦人，1000 萬加元留存盈餘。")}
-                        challenge={language === 'en' ? "Passive income triggering SBD grind and 50.17% tax rate." : (language === 'cn' ? "被动收入触发 SBD 扣减磨损及高达 50.17% 的税率。" : "被動收入觸發 SBD 扣減磨損及高達 50.17% 的稅率。")}
-                        outcome={language === 'en' ? "Restored SBD limits and created a tax-free exit via CDA." : (language === 'cn' ? "恢复了 SBD 额度，并通过 CDA 建立了数百万加元的免税退出路径。" : "恢復了 SBD 額度，並通過 CDA 建立了數百萬加元的免稅退出路徑。")}
-                        tag="Scenario 02" icon="zap" t={t} lang={language}
-                    />
-                    <CaseItem 
-                        title={language === 'en' ? "The Legacy Foundation" : (language === 'cn' ? "家族企业传承" : "家族企業傳承")}
-                        profile={language === 'en' ? "Manufacturing Owner, 65, Succession Phase." : (language === 'cn' ? "制造业主，65 岁，进入传承阶段。" : "製造業主，65 歲，進入傳承階段。")}
-                        challenge={language === 'en' ? "Estimated $5.4M tax liability at death threatening business continuity." : (language === 'cn' ? "预计去世时有 540 万加元税务负债，威胁企业持续经营。" : "預計去世時有 540 萬加元稅務負債，威脅企業持續經營。")}
-                        outcome={language === 'en' ? "Estate Bond strategy. Insurance proceeds retire the tax bill entire, allowing debt-free transfer." : (language === 'cn' ? "采用遗产债券策略. 保险金全额清偿税单，实现无债务传承。" : "採用遺產債券策略。保險金全額清償稅單，實現無債務傳承。")}
-                        tag="Scenario 03" icon="briefcase" t={t} lang={language}
-                    />
+                    <CaseItem title={language === 'en' ? "The Specialist’s Lever" : "專科醫生的槓桿"} profile={language === 'en' ? "Physician (CCPC), 45, Ontario." : "安省醫生 (CCPC)，45 歲。"} challenge={language === 'en' ? "Needs $5M protection while keeping $1.5M liquid for real estate investment." : "需要 500 萬加元保障，同時希望保持 150 萬加元流動資金用於地產投資。"} outcome={language === 'en' ? "Accessed 90% of CSV for investment via IFA. Zero net out-of-pocket cost." : "透過 IFA 獲得 90% 現金價值用於投資。淨現出支出為零。"} tag="Scenario 01" icon="user-check" t={t} lang={language} />
+                    <CaseItem title={language === 'en' ? "The Tech Surplus Rescue" : "科技盈餘救助"} profile={language === 'en' ? "Software Founder, $10M Retained Earnings." : "軟件創辦人，1000 萬加元留存盈餘。"} challenge={language === 'en' ? "Passive income triggering SBD grind and 50.17% tax rate." : "被動收入觸發 SBD 扣減磨損及高達 50.17% 的稅率。"} outcome={language === 'en' ? "Restored SBD limits and created a tax-free exit via CDA." : "恢復了 SBD 額度，並通過 CDA 建立了數百萬加元的免稅退出路徑。"} tag="Scenario 02" icon="zap" t={t} lang={language} />
+                    <CaseItem title={language === 'en' ? "The Legacy Foundation" : "家族企業傳承"} profile={language === 'en' ? "Manufacturing Owner, 65, Succession Phase." : "製造業主，65 歲，進入傳承階段。"} challenge={language === 'en' ? "Estimated $5.4M tax liability at death threatening business continuity." : "預計去世時有 540 萬加元稅務負債，威脅企業持續經營。"} outcome={language === 'en' ? "Estate Bond strategy. Insurance proceeds retire the tax bill entire, allowing debt-free transfer." : "採用遺產債券策略。保險金全額清償稅單，實現無債務傳承。"} tag="Scenario 03" icon="briefcase" t={t} lang={language} />
                 </div>
             </section>
         );
 
-        const AboutView = ({ t, language, setCurrentPage }) => (
+        const AboutView = ({ t, language, navigateTo }) => (
             <section className="max-w-7xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white text-justify">
-                <button onClick={() => setCurrentPage('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                
+                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
                     <div className="lg:col-span-3 space-y-8">
-                        {/* 彩色照片呈現 - 檔案名稱 alex.PNG */}
                         <div className="relative group overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl gold-glow aspect-[4/5]">
                             <img src="alex.PNG" alt="Alex Kynn Lee" className="w-full h-full transition-all duration-1000 object-cover photo-mask" onError={(e) => {e.target.src="https://via.placeholder.com/800x1000/121212/c5a059?text=Alex+Kynn+Lee";}} />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-40"></div>
                         </div>
                     </div>
-
                     <div className="lg:col-span-9 space-y-12">
                         <div className="space-y-6 text-left">
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#c5a059] text-[10px] font-bold uppercase tracking-widest italic">
-                                {language === 'en' ? 'Founder of VeVa Consultancy Inc.' : (language === 'cn' ? 'VeVa Consultancy Inc. 创始人' : 'VeVa Consultancy Inc. 創辦人')}
-                            </div>
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#c5a059] text-[10px] font-bold uppercase tracking-widest italic text-white">Founder of VeVa Consultancy Inc.</div>
                             <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white text-gradient-gold">Alex Kynn Lee</h2>
                         </div>
-                        
                         <div className="space-y-10">
-                            <section className="space-y-6 text-left text-justify">
+                            <section className="space-y-6 text-left">
                                 <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutBioTitle}</h3>
                                 <div className="space-y-6 text-base md:text-lg text-gray-300 font-light leading-relaxed">
-                                    <p>
-                                        {language === 'en' 
-                                            ? "With over 28 years of experience in the financial sector, my approach to wealth and insurance planning was shaped by a pivotal mentorship under Amy Tong, CEO of A.T. Financial Group. That experience helped define a client-first philosophy grounded in discipline, clarity, and long-term thinking." 
-                                            : (language === 'cn' ? "在金融领域拥有超过 28 年的经验，我的财富和保险规划方法深受 A.T. Financial Group 首席执行官 Amy Tong 的关键指导所启发。这段经历确立了我以客户为中心、立足于自律、透明和长期思维的哲学。" : "在金融領域擁有超過 28 年的經驗，我的財富和保險規劃方法深受 A.T. Financial Group 首席執行官 Amy Tong 的關鍵指導所啟發。這段經歷確立了我以客戶為中心、立足於自律、透明和長期思維的哲學。")}
-                                    </p>
-                                    <p>
-                                        {language === 'en' 
-                                            ? "My background includes deep exposure to financial derivatives and algorithmic trading, where precision, risk management, and structure are paramount. Today, those principles inform how I help business owners and families thoughtfully structure and protect wealth in an increasingly complex financial environment." 
-                                            : (language === 'cn' ? "我的背景涉及金融衍生品和算法交易的深度探索，在这些领域，精确度、风险管理和结构至关重要。今天，这些原则贯穿于我如何协助企业主和家庭在日益复杂的金融环境中周密地构建和保护财富。" : "我的背景涉及金融衍生品和算法交易的深度探索，在這些領域，精確度、風險管理和結構至關重要。今天，這些原則貫穿於我如何協助企業主和家庭在日益複雜的金融環境中周密地構建和保護財富。")}
-                                    </p>
-                                    <p className="border-l-4 border-[#c5a059] pl-8 italic text-gray-400">
-                                        {language === 'en' 
-                                            ? "VeVa is a legacy name, formed from the names of my two daughters, Vera and Valarie — reflecting a commitment not only to financial outcomes, but to continuity, responsibility, and long-term stewardship." 
-                                            : (language === 'cn' ? "VeVa 是一个传承之名，由我的两个女儿 Vera 和 Valarie 的名字组成——这不仅体现了对财务成果的承诺，更反映了对持续性、责任感和长期托付的使命感。" : "VeVa 是一個傳承之名，由我的兩個女兒 Vera 和 Valarie 的名字組成——這不僅體現了對財務成果的承諾，更反映了對持續性、責任感和長期托付的使命感。")}
-                                    </p>
+                                    <p>{language === 'en' ? "With over 28 years of experience in the financial sector, my approach to wealth and insurance planning was shaped by a pivotal mentorship under Amy Tong, CEO of A.T. Financial Group. That experience helped define a client-first philosophy grounded in discipline, clarity, and long-term thinking." : "在金融領域擁有超過 28 年的經驗，我的財富和保險規劃方法深受 A.T. Financial Group 首席執行官 Amy Tong 的關鍵指導所啟發。"}</p>
+                                    <p>{language === 'en' ? "My background includes deep exposure to financial derivatives and algorithmic trading, where precision, risk management, and structure are paramount. Today, those principles inform how I help business owners and families thoughtfully structure and protect wealth in an increasingly complex financial environment." : "我的背景涉及金融衍生品和算法交易的深度探索。今天，這些原則貫穿於我如何協助企業主和家庭週密地構建和保護財富。"}</p>
+                                    <p className="border-l-4 border-[#c5a059] pl-8 italic text-gray-400">{language === 'en' ? "VeVa is a legacy name, formed from the names of my two daughters, Vera and Valarie — reflecting a commitment not only to financial outcomes, but to continuity, responsibility, and long-term stewardship." : "VeVa 是一個傳承之名，由我的兩個女兒 Vera 和 Valarie 的名字組成。"}</p>
                                 </div>
                             </section>
-
                             <section className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20 relative overflow-hidden group text-left">
                                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#c5a059]/5 to-transparent opacity-50"></div>
                                 <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6 relative z-10">{t.aboutCreedTitle}</h3>
-                                <p className="text-xl sm:text-2xl md:text-3xl text-white italic leading-relaxed font-light relative z-10 mb-12">
-                                    {language === 'en' 
-                                        ? "True professionalism means recommending the right solution to the right person, at the right time — and standing behind that advice with consistent and timely follow-up." 
-                                        : (language === 'cn' ? "真正的专业意味着在合适的时间，向合适的人推荐合适的解决方案——并以持续且及时的跟进作为建议的坚实后盾。" : "真正的專業意味著在合適的時間，向合適的人推薦合適的解決方案——並以持續且及時的跟進作為建議的堅實後盾。")}
-                                </p>
-                                
+                                <p className="text-xl sm:text-2xl md:text-3xl text-white italic leading-relaxed font-light relative z-10 mb-12">{language === 'en' ? "True professionalism means recommending the right solution to the right person, at the right time — and standing behind that advice with consistent and timely follow-up." : "真正的專業意味著在合適的時間，向合適的人推薦合適的解決方案。"}</p>
                                 <div className="relative z-10 pt-8 border-t border-white/5 text-left text-justify">
                                     <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6">{t.aboutReachTitle}</h3>
                                     <div className="flex gap-5 items-start">
                                         <Icon name="map-pin" className="text-emerald-500 shrink-0 mt-1" size={24} />
-                                        <p className="text-sm sm:text-base text-white font-light leading-relaxed">
-                                            {language === 'en' 
-                                                ? "Based in Markham, we support individuals, families, and business owners in Richmond Hill, the GTA, and throughout Ontario." 
-                                                : (language === 'cn' ? "立足于万锦市 (Markham)，我们为列治文山 (Richmond Hill)、大多伦多地区 (GTA) 以及全安大略省的个人、家庭和企业主提供支持。" : "立足於萬錦市 (Markham)，我們為列治文山 (Richmond Hill)、大多倫多地區 (GTA) 以及全安大略省的個人、家庭和企業主提供支持。")}
-                                        </p>
+                                        <p className="text-sm sm:text-base text-white font-light leading-relaxed">{language === 'en' ? "Based in Markham, we support individuals, families, and business owners in Richmond Hill, the GTA, and throughout Ontario." : "立足於萬錦市 (Markham)，我們為全安大略省提供支持。"}</p>
                                     </div>
                                 </div>
                             </section>
@@ -534,23 +479,23 @@
             </section>
         );
 
-        const FeasibilityView = ({ t, setCurrentPage, formSubmitted, setFormSubmitted, language }) => (
-            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white text-left">
-                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left text-white">{language === 'en' ? 'Consultation' : (language === 'cn' ? '咨询' : '諮詢')}<span className="text-[#c5a059]">{language === 'en' ? 'Request' : (language === 'cn' ? '申请' : '申請')}</span></h2>
+        const FeasibilityView = ({ t, navigateTo, formSubmitted, setFormSubmitted, language }) => (
+            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left text-white">{language === 'en' ? 'Consultation' : '諮詢'}<span className="text-[#c5a059]">{language === 'en' ? 'Request' : '申請'}</span></h2>
                 {!formSubmitted ? (
-                    <form onSubmit={(e) => {e.preventDefault(); setFormSubmitted(true);}} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8">
-                        <div className="grid md:grid-cols-2 gap-6 text-left">
+                    <form onSubmit={(e) => {e.preventDefault(); setFormSubmitted(true);}} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8 text-left">
+                        <div className="grid md:grid-cols-2 gap-6">
                             <FormGroup label="Name" placeholder="Alex Lee" />
                             <FormGroup label="Corporation" placeholder="Your Co. Inc" />
                         </div>
                         <button type="submit" className="w-full bg-copper-gradient py-5 rounded-full font-bold text-lg shadow-xl active:scale-95 transition-transform uppercase tracking-widest text-white">{t.submit}</button>
                     </form>
                 ) : (
-                    <div className="bg-[#121212] p-16 rounded-[3rem] text-center border border-[#c5a059]/30 space-y-8">
+                    <div className="bg-[#121212] p-16 rounded-[3rem] text-center border border-[#c5a059]/30 space-y-8 text-white">
                         <Icon name="check-circle-2" className="text-[#c5a059] mx-auto mb-6" size={64} />
-                        <h3 className="text-3xl font-bold italic tracking-tight text-white">{t.received}</h3>
+                        <h3 className="text-3xl font-bold italic tracking-tight">{t.received}</h3>
                         <p className="text-gray-400 font-light">{t.followup}</p>
-                        <button onClick={() => {setFormSubmitted(false); setCurrentPage('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-[10px] underline">Return Home</button>
+                        <button onClick={() => {setFormSubmitted(false); navigateTo('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-[10px] underline">Return Home</button>
                     </div>
                 )}
             </section>
@@ -559,7 +504,7 @@
         const Card = ({ icon, title, desc, onClick, label = "Read More" }) => (
             <div onClick={onClick} className="px-6 py-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full text-left text-white">
                 <div className="text-[#c5a059] mb-8 group-hover:scale-110 transition-transform"><Icon name={icon} size={32} /></div>
-                <h3 className="text-xl font-bold mb-4 leading-tight text-white tracking-tight whitespace-nowrap">{title}</h3>
+                <h3 className="text-xl font-bold mb-4 leading-tight tracking-tight whitespace-nowrap">{title}</h3>
                 <p className="text-xs text-gray-500 font-light mb-8 flex-grow text-justify leading-relaxed">{desc}</p>
                 <div className="mt-auto text-[10px] font-black uppercase tracking-widest text-[#c5a059] flex items-center gap-2 font-black">{label} <Icon name="chevron-right" size={12} /></div>
             </div>
@@ -567,13 +512,8 @@
 
         const Step = ({ num, title, desc, icon }) => (
             <div className="relative text-left text-white">
-                <div className="absolute -left-[53px] top-0 w-10 h-10 bg-[#0a0a0a] border border-[#c5a059] rounded-full flex items-center justify-center text-[#c5a059] shadow-lg">
-                    <Icon name={icon} size={16} />
-                </div>
-                <div className="mb-2 flex items-center gap-4">
-                    <span className="text-[#c5a059] text-[10px] font-black">{num}</span>
-                    <h3 className="text-2xl font-bold tracking-tight text-white">{title}</h3>
-                </div>
+                <div className="absolute -left-[53px] top-0 w-10 h-10 bg-[#0a0a0a] border border-[#c5a059] rounded-full flex items-center justify-center text-[#c5a059] shadow-lg"><Icon name={icon} size={16} /></div>
+                <div className="mb-2 flex items-center gap-4"><span className="text-[#c5a059] text-[10px] font-black">{num}</span><h3 className="text-2xl font-bold tracking-tight text-white">{title}</h3></div>
                 <p className="text-gray-400 font-light leading-relaxed text-sm text-justify">{desc}</p>
             </div>
         );
@@ -588,32 +528,24 @@
         const CaseItem = ({ title, profile, challenge, outcome, tag, icon, t, lang }) => (
             <div className="grid md:grid-cols-2 gap-12 items-center text-white text-left">
                 <div className="space-y-6">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[9px] font-black uppercase tracking-widest mb-2 italic">
-                        <Icon name={icon} size={12} /> {tag}
-                    </div>
-                    <h3 className="text-3xl font-black italic underline decoration-[#c5a059] decoration-4 underline-offset-8 leading-tight text-white">{title}</h3>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[9px] font-black uppercase tracking-widest mb-2 italic"><Icon name={icon} size={12} /> {tag}</div>
+                    <h3 className="text-3xl font-black italic underline decoration-[#c5a059] decoration-4 underline-offset-8 leading-tight">{title}</h3>
                     <div className="space-y-4 pt-4">
-                        <div className="space-y-1 text-left">
-                            <span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest">Profile</span>
-                            <p className="text-gray-300 font-medium italic text-sm">{profile}</p>
-                        </div>
-                        <div className="space-y-1 text-left">
-                            <span className="text-[10px] font-black text-red-500 uppercase tracking-widest">Challenge</span>
-                            <p className="text-gray-400 font-light leading-relaxed text-sm text-justify">{challenge}</p>
-                        </div>
+                        <div className="space-y-1 text-left"><span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest">Profile</span><p className="text-gray-300 font-medium italic text-sm">{profile}</p></div>
+                        <div className="space-y-1 text-left"><span className="text-[10px] font-black text-red-500 uppercase tracking-widest">Challenge</span><p className="text-gray-400 font-light leading-relaxed text-sm text-justify">{challenge}</p></div>
                     </div>
                 </div>
                 <div className="p-10 rounded-[3rem] bg-[#121212] border border-white/5 relative group emerald-glow transition-all hover:border-[#c5a059]/30">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-3xl"></div>
                     <span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest block mb-4 italic">Outcome</span>
-                    <p className="text-xl text-white font-light leading-relaxed italic text-justify text-white">"{outcome}"</p>
+                    <p className="text-xl text-white font-light leading-relaxed italic text-justify">"{outcome}"</p>
                 </div>
             </div>
         );
 
         const FormGroup = ({ label, placeholder }) => (
-            <div className="space-y-2 text-left">
-                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest text-white">{label}</label>
+            <div className="space-y-2 text-left text-white">
+                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{label}</label>
                 <input type="text" placeholder={placeholder} className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors text-white text-sm" required />
             </div>
         );
