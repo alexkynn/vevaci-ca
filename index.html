@@ -127,271 +127,266 @@
                 window.location.hash = page;
             };
 
-            // --- CONTENT DATA ---
+            // --- CONTENT DATA DEFINITIONS ---
 
-            // English Content for Compare Page
-            const englishComparePage = {
-                mainTitle: "Participating Whole Life vs Universal Life",
-                subTitle: "(Under an IFA-Structured Approach)",
-                par: {
-                    title: "Participating Whole Life Insurance (IFA-Structured)",
-                    bestSuited: "Long-term wealth preservation, estate planning, and conservative capital accumulation.",
-                    features: [
-                        "Emphasizes guarantees, stability, and predictability",
-                        "Cash values grow through guarantees plus participating dividends",
-                        "Less sensitive to market performance or interest rate changes",
-                        "Simpler to manage over time once properly designed",
-                        "Often preferred for corporate planning, CDA maximization, and legacy goals"
-                    ],
-                    valueAdd: "Optimized funding, paid-up additions strategy, dividend utilization, and integration with corporate and estate planning to maximize long-term efficiency."
+            // English Data
+            const englishContent = {
+                comparePage: {
+                    mainTitle: "Participating Whole Life vs Universal Life",
+                    subTitle: "(Under an IFA-Structured Approach)",
+                    par: {
+                        title: "Participating Whole Life Insurance (IFA-Structured)",
+                        bestSuited: "Long-term wealth preservation, estate planning, and conservative capital accumulation.",
+                        features: [
+                            "Emphasizes guarantees, stability, and predictability",
+                            "Cash values grow through guarantees plus participating dividends",
+                            "Less sensitive to market performance or interest rate changes",
+                            "Simpler to manage over time once properly designed",
+                            "Often preferred for corporate planning, CDA maximization, and legacy goals"
+                        ],
+                        valueAdd: "Optimized funding, paid-up additions strategy, dividend utilization, and integration with corporate and estate planning to maximize long-term efficiency."
+                    },
+                    ul: {
+                        title: "Universal Life Insurance (IFA-Structured)",
+                        bestSuited: "Flexible planning, tax-sheltered investment growth, and clients comfortable with active management.",
+                        features: [
+                            "Separates insurance costs and investment accounts",
+                            "Greater flexibility in premiums, death benefit, and investment choices",
+                            "Performance depends on investment returns and cost assumptions",
+                            "Requires ongoing monitoring and adjustments",
+                            "Appeals to clients seeking customization and higher upside potential"
+                        ],
+                        valueAdd: "Stress-tested assumptions, disciplined funding strategies, investment allocation oversight, and long-term sustainability planning to avoid policy erosion."
+                    },
+                    table: {
+                        title: "Key Differences Under IFA Structuring",
+                        headers: ["Aspect", "Participating Whole Life", "Universal Life"],
+                        rows: [
+                            { aspect: "Growth Profile", par: "Stable, long-term, dividend-based", ul: "Variable, market- and assumption-driven" },
+                            { aspect: "Risk Exposure", par: "Lower", ul: "Higher (investment & cost risk)" },
+                            { aspect: "Flexibility", par: "Moderate", ul: "High" },
+                            { aspect: "Ongoing Management", par: "Low", ul: "Moderate to High" },
+                            { aspect: "Ideal Use Case", par: "Estate & legacy planning", ul: "Flexible wealth accumulation" }
+                        ]
+                    },
+                    bottomLine: {
+                        title: "Bottom Line",
+                        text: "The product matters — but the structure matters more.\n\nUnder an IFA approach, Participating Whole Life prioritizes certainty and legacy, while Universal Life offers flexibility and potential upside. The right choice depends on objectives, risk tolerance, and how the policy is engineered from day one."
+                    }
                 },
-                ul: {
-                    title: "Universal Life Insurance (IFA-Structured)",
-                    bestSuited: "Flexible planning, tax-sheltered investment growth, and clients comfortable with active management.",
-                    features: [
-                        "Separates insurance costs and investment accounts",
-                        "Greater flexibility in premiums, death benefit, and investment choices",
-                        "Performance depends on investment returns and cost assumptions",
-                        "Requires ongoing monitoring and adjustments",
-                        "Appeals to clients seeking customization and higher upside potential"
-                    ],
-                    valueAdd: "Stress-tested assumptions, disciplined funding strategies, investment allocation oversight, and long-term sustainability planning to avoid policy erosion."
-                },
-                table: {
-                    title: "Key Differences Under IFA Structuring",
-                    headers: ["Aspect", "Participating Whole Life", "Universal Life"],
-                    rows: [
-                        { aspect: "Growth Profile", par: "Stable, long-term, dividend-based", ul: "Variable, market- and assumption-driven" },
-                        { aspect: "Risk Exposure", par: "Lower", ul: "Higher (investment & cost risk)" },
-                        { aspect: "Flexibility", par: "Moderate", ul: "High" },
-                        { aspect: "Ongoing Management", par: "Low", ul: "Moderate to High" },
-                        { aspect: "Ideal Use Case", par: "Estate & legacy planning", ul: "Flexible wealth accumulation" }
+                protectionPage: {
+                    title: "Holistic Protection",
+                    items: [
+                        { title: "Critical Illness (CI) Insurance", desc: "Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.", color: "emerald" },
+                        { title: "Segregated Funds", desc: "Insurance Act shielding provides potential creditor protection and direct probate bypass in Ontario.", color: "gold" },
+                        { title: "Disability Insurance (DI)", desc: "Protects earning power — often a bigger risk than death for professionals and business owners.", color: "emerald" },
+                        { title: "Business Overhead Expense Insurance", desc: "Keeps fixed business costs covered if the owner is disabled.", color: "gold" },
+                        { title: "Key Person Disability / Income Replacement", desc: "Rarely discussed, highly valued when understood.", color: "emerald" },
+                        { title: "Long-Term Care Insurance (LTC)", desc: "Especially relevant for aging parents and HNW families.", color: "gold" },
+                        { title: "Permanent Life Insurance (WL / UL)", desc: "For estate liquidity, tax deferral, and CDA planning.", color: "emerald" },
+                        { title: "Shareholder / Buy-Sell Insurance", desc: "Funding shareholder buy-outs to ensure business continuity and fair market value exchange.", color: "gold" },
+                        { title: "Key Person Life & CI", desc: "Injecting capital to offset revenue loss and recruitment costs upon the loss of a key executive.", color: "emerald" },
+                        { title: "Corporate-Owned Permanent Insurance", desc: "Utilizing corporate surplus to build a tax-advantaged asset class on the balance sheet.", color: "gold" }
                     ]
                 },
-                bottomLine: {
-                    title: "Bottom Line",
-                    text: "The product matters — but the structure matters more.\n\nUnder an IFA approach, Participating Whole Life prioritizes certainty and legacy, while Universal Life offers flexibility and potential upside. The right choice depends on objectives, risk tolerance, and how the policy is engineered from day one."
+                surplusPage: {
+                    titlePrefix: "The Corporate Surplus ",
+                    titleSuffix: "Trap",
+                    back: "Back to Home",
+                    stats: [
+                        { title: "Passive Tax", value: "50.17%", desc: "Ontario Corporate Passive Income Rate.", color: "red" },
+                        { title: "SBD Threshold", value: "$50,000", desc: "AAII limit before 5:1 grind begins.", color: "gold" }
+                    ],
+                    definitions: [
+                        { 
+                            term: "CCPC (Canadian-Controlled Private Corporation)", 
+                            desc: "A private corporation resident in Canada that is not controlled by non-residents or public corporations. Most professionals and small business owners incorporate as a CCPC to access the lower Small Business Tax Rate on active income." 
+                        },
+                        { 
+                            term: "SBD (Small Business Deduction)", 
+                            desc: "A preferential tax deduction that lowers the federal tax rate on the first $500,000 of active business income. However, for every $1 of passive income earned above $50,000, the SBD limit is reduced by $5, essentially clawing back this tax advantage." 
+                        }
+                    ],
+                    body: [
+                        "Holding excess cash inside a CCPC triggers tax friction. Passive income over $50k erodes your active small business deduction eligibility.",
+                        "Relocating surplus into tax-exempt insurance engines restores your SBD limits while creating a tax-free wealth extraction channel via the Capital Dividend Account (CDA)."
+                    ]
                 }
             };
 
-            // Traditional Chinese Content for Compare Page
-            const zhComparePage = {
-                mainTitle: "分紅終身壽險 vs 萬能壽險",
-                subTitle: "（在 IFA 架構策略下）",
-                par: {
-                    title: "分紅終身壽險 (Participating Whole Life)",
-                    bestSuited: "長期財富保值、遺產規劃及保守資本積累。",
-                    features: [
-                        "強調保證、穩定性與可預測性",
-                        "現金價值透過保證加上分紅增長",
-                        "對市場表現或利率變動較不敏感",
-                        "設計得當後，長期管理較為簡單",
-                        "常用於公司規劃、CDA 最大化及傳承目標"
-                    ],
-                    valueAdd: "優化注資、繳清增額 (PUA) 策略、分紅運用，並整合公司與遺產規劃以最大化長期效率。"
+            // Traditional Chinese Data
+            const zhContent = {
+                comparePage: {
+                    mainTitle: "分紅終身壽險 vs 萬能壽險",
+                    subTitle: "（在 IFA 架構策略下）",
+                    par: {
+                        title: "分紅終身壽險 (Participating Whole Life)",
+                        bestSuited: "長期財富保值、遺產規劃及保守資本積累。",
+                        features: [
+                            "強調保證、穩定性與可預測性",
+                            "現金價值透過保證加上分紅增長",
+                            "對市場表現或利率變動較不敏感",
+                            "設計得當後，長期管理較為簡單",
+                            "常用於公司規劃、CDA 最大化及傳承目標"
+                        ],
+                        valueAdd: "優化注資、繳清增額 (PUA) 策略、分紅運用，並整合公司與遺產規劃以最大化長期效率。"
+                    },
+                    ul: {
+                        title: "萬能壽險 (Universal Life)",
+                        bestSuited: "靈活規劃、稅務庇護下的投資增長，以及習慣主動管理的客戶。",
+                        features: [
+                            "將保險成本與投資帳戶分離",
+                            "保費、身故賠償及投資選擇具有更高靈活性",
+                            "績效取決於投資回報與成本假設",
+                            "需要持續監控與調整",
+                            "吸引尋求客製化與更高潛在回報的客戶"
+                        ],
+                        valueAdd: "壓力測試假設、紀律性注資策略、投資配置監督及長期可持續性規劃，以避免保單侵蝕。"
+                    },
+                    table: {
+                        title: "IFA 架構下的關鍵差異",
+                        headers: ["構面", "分紅終身壽險", "萬能壽險"],
+                        rows: [
+                            { aspect: "增長特徵", par: "穩定、長期、基於分紅", ul: "變動、驅動於市場與假設" },
+                            { aspect: "風險敞口", par: "較低", ul: "較高 (投資與成本風險)" },
+                            { aspect: "靈活性", par: "中等", ul: "高" },
+                            { aspect: "持續管理", par: "低", ul: "中至高" },
+                            { aspect: "理想用途", par: "遺產與傳承規劃", ul: "靈活財富積累" }
+                        ]
+                    },
+                    bottomLine: {
+                        title: "總結",
+                        text: "產品固然重要，但架構更為關鍵。\n\n在 IFA 架構下，分紅人壽優先考慮確定性與傳承，而萬用壽險提供靈活性與潛在增長。正確的選擇取決於目標、風險承受能力以及保單從第一天起的設計方式。"
+                    }
                 },
-                ul: {
-                    title: "萬能壽險 (Universal Life)",
-                    bestSuited: "靈活規劃、稅務庇護下的投資增長，以及習慣主動管理的客戶。",
-                    features: [
-                        "將保險成本與投資帳戶分離",
-                        "保費、身故賠償及投資選擇具有更高靈活性",
-                        "績效取決於投資回報與成本假設",
-                        "需要持續監控與調整",
-                        "吸引尋求客製化與更高潛在回報的客戶"
-                    ],
-                    valueAdd: "壓力測試假設、紀律性注資策略、投資配置監督及長期可持續性規劃，以避免保單侵蝕。"
-                },
-                table: {
-                    title: "IFA 架構下的關鍵差異",
-                    headers: ["構面", "分紅終身壽險", "萬能壽險"],
-                    rows: [
-                        { aspect: "增長特徵", par: "穩定、長期、基於分紅", ul: "變動、驅動於市場與假設" },
-                        { aspect: "風險敞口", par: "較低", ul: "較高 (投資與成本風險)" },
-                        { aspect: "靈活性", par: "中等", ul: "高" },
-                        { aspect: "持續管理", par: "低", ul: "中至高" },
-                        { aspect: "理想用途", par: "遺產與傳承規劃", ul: "靈活財富積累" }
+                protectionPage: {
+                    title: "全面保障策略",
+                    items: [
+                        { title: "危疾保險 (CI)", desc: "免稅的一次性賠付可用於資助企業持續經營，以及在診斷後執行股東買斷協議。", color: "emerald" },
+                        { title: "保本基金 (Segregated Funds)", desc: "受保險法保護，提供潛在的債權人屏蔽以及在安大略省直接跳過遺產認證程序。", color: "gold" },
+                        { title: "傷殘保險 (DI)", desc: "保護賺錢能力——對專業人士和企業主而言，這往往是比死亡更大的風險。", color: "emerald" },
+                        { title: "企業營運開支保險", desc: "若企業主喪失工作能力，可支付固定的商業成本。", color: "gold" },
+                        { title: "關鍵人物傷殘/收入替代", desc: "鮮少被討論，但一旦了解其價值便備受重視。", color: "emerald" },
+                        { title: "長期護理保險 (LTC)", desc: "對於年邁父母及高淨值家庭尤為重要。", color: "gold" },
+                        { title: "永久人壽保險 (WL / UL)", desc: "用於遺產流動性、稅務遞延及 CDA 規劃。", color: "emerald" },
+                        { title: "股東/買賣協議保險", desc: "資助買斷協議，確保股權順利轉移與公平市場價值交換。", color: "gold" },
+                        { title: "關鍵人物人壽與危疾保險", desc: "提供資金以抵銷因關鍵高管流失而產生的收入損失與招聘成本。", color: "emerald" },
+                        { title: "公司持有永久保險", desc: "利用公司盈餘在資產負債表上建立具稅務優勢的資產類別。", color: "gold" }
                     ]
                 },
-                bottomLine: {
-                    title: "總結",
-                    text: "產品固然重要，但架構更為關鍵。\n\n在 IFA 架構下，分紅人壽優先考慮確定性與傳承，而萬用壽險提供靈活性與潛在增長。正確的選擇取決於目標、風險承受能力以及保單從第一天起的設計方式。"
+                surplusPage: {
+                    titlePrefix: "公司盈餘",
+                    titleSuffix: "陷阱",
+                    back: "返回首頁",
+                    stats: [
+                        { title: "被動收入稅率", value: "50.17%", desc: "安大略省公司被動投資收入稅率。", color: "red" },
+                        { title: "SBD 門檻", value: "$50,000", desc: "AAII 限制，超過此數額即開始 5:1 扣減。", color: "gold" }
+                    ],
+                    definitions: [
+                        { 
+                            term: "CCPC (加拿大控股私人有限公司)", 
+                            desc: "指在加拿大註冊的私人公司，且不受非居民或上市公司控制。大多數專業人士和中小企業主透過 CCPC 註冊，以享用較低的主動收入稅率。" 
+                        },
+                        { 
+                            term: "SBD (小型企業稅務扣減)", 
+                            desc: "一項優惠稅務扣減，可降低首 50 萬加元主動業務收入的聯邦稅率。然而，當被動收入超過 5 萬加元時，每增加 1 加元，SBD 額度便減少 5 加元，變相收回此稅務優勢。" 
+                        }
+                    ],
+                    body: [
+                        "在 CCPC 內部持有過剩現金會引發稅務磨擦。一旦被動收入超過 5 萬加元，就會侵蝕您的小生意稅務扣減 (SBD) 資格。",
+                        "將盈餘重新分配至免稅保險引擎可以恢復您的 SBD 額度，同時通過資本股息賬戶 (CDA) 建立免稅財富提取渠道。"
+                    ]
                 }
             };
 
-            // Simplified Chinese Content for Compare Page
-            const cnComparePage = {
-                mainTitle: "分红终身寿险 vs 万能寿险",
-                subTitle: "（在 IFA 架构策略下）",
-                par: {
-                    title: "分红终身寿险 (Participating Whole Life)",
-                    bestSuited: "长期财富保值、遗产规划及保守资本积累。",
-                    features: [
-                        "强调保证、稳定性与可预测性",
-                        "现金价值通过保证加上分红增长",
-                        "对市场表现或利率变动较不敏感",
-                        "设计得当后，长期管理较为简单",
-                        "常用于公司规划、CDA 最大化及传承目标"
-                    ],
-                    valueAdd: "优化注资、缴清增额 (PUA) 策略、分红运用，并整合公司与遗产规划以最大化长期效率。"
+            // Simplified Chinese Data
+            const cnContent = {
+                comparePage: {
+                    mainTitle: "分红终身寿险 vs 万能寿险",
+                    subTitle: "（在 IFA 架构策略下）",
+                    par: {
+                        title: "分红终身寿险 (Participating Whole Life)",
+                        bestSuited: "长期财富保值、遗产规划及保守资本积累。",
+                        features: [
+                            "强调保证、稳定性与可预测性",
+                            "现金价值通过保证加上分红增长",
+                            "对市场表现或利率变动较不敏感",
+                            "设计得当后，长期管理较为简单",
+                            "常用于公司规划、CDA 最大化及传承目标"
+                        ],
+                        valueAdd: "优化注资、缴清增额 (PUA) 策略、分红运用，并整合公司与遗产规划以最大化长期效率。"
+                    },
+                    ul: {
+                        title: "万能寿险 (Universal Life)",
+                        bestSuited: "灵活规划、税务庇护下的投资增长，以及习惯主动管理的客户。",
+                        features: [
+                            "将保险成本与投资账户分离",
+                            "保费、身故赔偿及投资选择具有更高灵活性",
+                            "绩效取决于投资回报与成本假设",
+                            "需要持续监控与调整",
+                            "吸引寻求定制化与更高潜在回报的客户"
+                        ],
+                        valueAdd: "压力测试假设、纪律性注资策略、投资配置监督及长期可持续性规划，以避免保单侵蚀。"
+                    },
+                    table: {
+                        title: "IFA 架构下的关键差异",
+                        headers: ["构面", "分红终身寿险", "万能寿险"],
+                        rows: [
+                            { aspect: "增长特征", par: "稳定、长期、基于分红", ul: "变动、驱动于市场与假设" },
+                            { aspect: "风险敞口", par: "较低", ul: "较高 (投资与成本风险)" },
+                            { aspect: "灵活性", par: "中等", ul: "高" },
+                            { aspect: "持续管理", par: "低", ul: "中至高" },
+                            { aspect: "理想用途", par: "遗产与传承规划", ul: "灵活财富积累" }
+                        ]
+                    },
+                    bottomLine: {
+                        title: "总结",
+                        text: "产品固然重要，但架构更为关键。\n\n在 IFA 架构下，分红人寿优先考虑确定性与传承，而万用寿险提供灵活性与潜在增长。正确的选择取决于目标、风险承受能力以及保单从第一天起的设计方式。"
+                    }
                 },
-                ul: {
-                    title: "万能寿险 (Universal Life)",
-                    bestSuited: "灵活规划、税务庇护下的投资增长，以及习惯主动管理的客户。",
-                    features: [
-                        "将保险成本与投资账户分离",
-                        "保费、身故赔偿及投资选择具有更高灵活性",
-                        "绩效取决于投资回报与成本假设",
-                        "需要持续监控与调整",
-                        "吸引寻求定制化与更高潜在回报的客户"
-                    ],
-                    valueAdd: "压力测试假设、纪律性注资策略、投资配置监督及长期可持续性规划，以避免保单侵蚀。"
-                },
-                table: {
-                    title: "IFA 架构下的关键差异",
-                    headers: ["构面", "分红终身寿险", "万能寿险"],
-                    rows: [
-                        { aspect: "增长特征", par: "稳定、长期、基于分红", ul: "变动、驱动于市场与假设" },
-                        { aspect: "风险敞口", par: "较低", ul: "较高 (投资与成本风险)" },
-                        { aspect: "灵活性", par: "中等", ul: "高" },
-                        { aspect: "持续管理", par: "低", ul: "中至高" },
-                        { aspect: "理想用途", par: "遗产与传承规划", ul: "灵活财富积累" }
+                protectionPage: {
+                    title: "全面保障策略",
+                    items: [
+                        { title: "危疾保险 (CI)", desc: "免税的一次性赔付可用于资助企业持续经营，以及在诊断后执行股东买断协议。", color: "emerald" },
+                        { title: "保本基金 (Segregated Funds)", desc: "受保险法保护，提供潜在的债权人屏蔽以及在安大略省直接跳过遗产认证程序。", color: "gold" },
+                        { title: "伤残保险 (DI)", desc: "保护赚钱能力——对专业人士和企业主而言，这往往是比死亡更大的风险。", color: "emerald" },
+                        { title: "企业营运开支保险", desc: "若企业主丧失工作能力，可支付固定的商业成本。", color: "gold" },
+                        { title: "关键人物伤残/收入替代", desc: "鲜少被讨论，但一旦了解其价值便备受重视。", color: "emerald" },
+                        { title: "长期护理保险 (LTC)", desc: "对于年迈父母及高净值家庭尤为重要。", color: "gold" },
+                        { title: "永久人寿保险 (WL / UL)", desc: "用于遗产流动性、税务递延及 CDA 规划。", color: "emerald" },
+                        { title: "股东/买卖协议保险", desc: "资助买断协议，确保股权顺利转移与公平市场价值交换。", color: "gold" },
+                        { title: "关键人物人寿与危疾保险", desc: "提供资金以抵销因关键高管流失而产生的收入损失与招聘成本。", color: "emerald" },
+                        { title: "公司持有永久保险", desc: "利用公司盈余在资产负债表上建立具税务优势的资产类别。", color: "gold" }
                     ]
                 },
-                bottomLine: {
-                    title: "总结",
-                    text: "产品固然重要，但架构更为关键。\n\n在 IFA 架构下，分红人寿优先考虑确定性与传承，而万用寿险提供灵活性与潜在增长。正确的选择取决于目标、风险承受能力以及保单从第一天起的设计方式。"
+                surplusPage: {
+                    titlePrefix: "公司盈余",
+                    titleSuffix: "陷阱",
+                    back: "返回首页",
+                    stats: [
+                        { title: "被动收入税率", value: "50.17%", desc: "安大略省公司被动投资收入税率。", color: "red" },
+                        { title: "SBD 门槛", value: "$50,000", desc: "AAII 限制，超过此数额即开始 5:1 扣减。", color: "gold" }
+                    ],
+                    definitions: [
+                        { 
+                            term: "CCPC (加拿大控股私人有限公司)", 
+                            desc: "指在加拿大注册的私人公司，且不受非居民或上市公司控制。大多数专业人士和中小企业主通过 CCPC 注册，以享用较低的主动收入税率。" 
+                        },
+                        { 
+                            term: "SBD (小型企业税务扣减)", 
+                            desc: "一项优惠税务扣减，可降低首 50 万加元主动业务收入的联邦税率。然而，当被动收入超过 5 万加元时，每增加 1 加元，SBD 额度便减少 5 加元，变相收回此税务优势。" 
+                        }
+                    ],
+                    body: [
+                        "在 CCPC 内部持有过剩现金会引发税务磨擦。一旦被动收入超过 5 万加元，就会侵蚀您的小生意税务扣减 (SBD) 资格。",
+                        "将盈余重新分配至免税保险引擎可以恢复您的 SBD 额度，同时通过资本股息账户 (CDA) 建立免税财富提取渠道。"
+                    ]
                 }
-            };
-
-            // English Content for Protection Page
-            const englishProtectionPage = {
-                title: "Holistic Protection",
-                items: [
-                    { title: "Critical Illness (CI) Insurance", desc: "Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.", color: "emerald" },
-                    { title: "Segregated Funds", desc: "Insurance Act shielding provides potential creditor protection and direct probate bypass in Ontario.", color: "gold" },
-                    { title: "Disability Insurance (DI)", desc: "Protects earning power — often a bigger risk than death for professionals and business owners.", color: "emerald" },
-                    { title: "Business Overhead Expense Insurance", desc: "Keeps fixed business costs covered if the owner is disabled.", color: "gold" },
-                    { title: "Key Person Disability / Income Replacement", desc: "Rarely discussed, highly valued when understood.", color: "emerald" },
-                    { title: "Long-Term Care Insurance (LTC)", desc: "Especially relevant for aging parents and HNW families.", color: "gold" },
-                    { title: "Permanent Life Insurance (WL / UL)", desc: "For estate liquidity, tax deferral, and CDA planning.", color: "emerald" },
-                    { title: "Shareholder / Buy-Sell Insurance", desc: "Funding shareholder buy-outs to ensure business continuity and fair market value exchange.", color: "gold" },
-                    { title: "Key Person Life & CI", desc: "Injecting capital to offset revenue loss and recruitment costs upon the loss of a key executive.", color: "emerald" },
-                    { title: "Corporate-Owned Permanent Insurance", desc: "Utilizing corporate surplus to build a tax-advantaged asset class on the balance sheet.", color: "gold" }
-                ]
-            };
-
-            // Traditional Chinese Content for Protection Page
-            const zhProtectionPage = {
-                title: "全面保障策略",
-                items: [
-                    { title: "危疾保險 (CI)", desc: "免稅的一次性賠付可用於資助企業持續經營，以及在診斷後執行股東買斷協議。", color: "emerald" },
-                    { title: "保本基金 (Segregated Funds)", desc: "受保險法保護，提供潛在的債權人屏蔽以及在安大略省直接跳過遺產認證程序。", color: "gold" },
-                    { title: "傷殘保險 (DI)", desc: "保護賺錢能力——對專業人士和企業主而言，這往往是比死亡更大的風險。", color: "emerald" },
-                    { title: "企業營運開支保險", desc: "若企業主喪失工作能力，可支付固定的商業成本。", color: "gold" },
-                    { title: "關鍵人物傷殘/收入替代", desc: "鮮少被討論，但一旦了解其價值便備受重視。", color: "emerald" },
-                    { title: "長期護理保險 (LTC)", desc: "對於年邁父母及高淨值家庭尤為重要。", color: "gold" },
-                    { title: "永久人壽保險 (WL / UL)", desc: "用於遺產流動性、稅務遞延及 CDA 規劃。", color: "emerald" },
-                    { title: "股東/買賣協議保險", desc: "資助買斷協議，確保股權順利轉移與公平市場價值交換。", color: "gold" },
-                    { title: "關鍵人物人壽與危疾保險", desc: "提供資金以抵銷因關鍵高管流失而產生的收入損失與招聘成本。", color: "emerald" },
-                    { title: "公司持有永久保險", desc: "利用公司盈餘在資產負債表上建立具稅務優勢的資產類別。", color: "gold" }
-                ]
-            };
-
-            // Simplified Chinese Content for Protection Page
-            const cnProtectionPage = {
-                title: "全面保障策略",
-                items: [
-                    { title: "危疾保险 (CI)", desc: "免税的一次性赔付可用于资助企业持续经营，以及在诊断后执行股东买断协议。", color: "emerald" },
-                    { title: "保本基金 (Segregated Funds)", desc: "受保险法保护，提供潜在的债权人屏蔽以及在安大略省直接跳过遗产认证程序。", color: "gold" },
-                    { title: "伤残保险 (DI)", desc: "保护赚钱能力——对专业人士和企业主而言，这往往是比死亡更大的风险。", color: "emerald" },
-                    { title: "企业营运开支保险", desc: "若企业主丧失工作能力，可支付固定的商业成本。", color: "gold" },
-                    { title: "关键人物伤残/收入替代", desc: "鲜少被讨论，但一旦了解其价值便备受重视。", color: "emerald" },
-                    { title: "长期护理保险 (LTC)", desc: "对于年迈父母及高净值家庭尤为重要。", color: "gold" },
-                    { title: "永久人寿保险 (WL / UL)", desc: "用于遗产流动性、税务递延及 CDA 规划。", color: "emerald" },
-                    { title: "股东/买卖协议保险", desc: "资助买断协议，确保股权顺利转移与公平市场价值交换。", color: "gold" },
-                    { title: "关键人物人寿与危疾保险", desc: "提供资金以抵销因关键高管流失而产生的收入损失与招聘成本。", color: "emerald" },
-                    { title: "公司持有永久保险", desc: "利用公司盈余在资产负债表上建立具税务优势的资产类别。", color: "gold" }
-                ]
-            };
-
-            // English Content for Surplus Page
-            const englishSurplusPage = {
-                titlePrefix: "The Corporate Surplus ",
-                titleSuffix: "Trap",
-                back: "Back to Home",
-                stats: [
-                    { title: "Passive Tax", value: "50.17%", desc: "Ontario Corporate Passive Income Rate.", color: "red" },
-                    { title: "SBD Threshold", value: "$50,000", desc: "AAII limit before 5:1 grind begins.", color: "gold" }
-                ],
-                definitions: [
-                    { 
-                        term: "CCPC (Canadian-Controlled Private Corporation)", 
-                        desc: "A private corporation resident in Canada that is not controlled by non-residents or public corporations. Most professionals and small business owners incorporate as a CCPC to access the lower Small Business Tax Rate on active income." 
-                    },
-                    { 
-                        term: "SBD (Small Business Deduction)", 
-                        desc: "A preferential tax deduction that lowers the federal tax rate on the first $500,000 of active business income. However, for every $1 of passive income earned above $50,000, the SBD limit is reduced by $5, essentially clawing back this tax advantage." 
-                    }
-                ],
-                body: [
-                    "Holding excess cash inside a CCPC triggers tax friction. Passive income over $50k erodes your active small business deduction eligibility.",
-                    "Relocating surplus into tax-exempt insurance engines restores your SBD limits while creating a tax-free wealth extraction channel via the Capital Dividend Account (CDA)."
-                ]
-            };
-
-            // Traditional Chinese Content for Surplus Page
-            const zhSurplusPage = {
-                titlePrefix: "公司盈餘",
-                titleSuffix: "陷阱",
-                back: "返回首頁",
-                stats: [
-                    { title: "被動收入稅率", value: "50.17%", desc: "安大略省公司被動投資收入稅率。", color: "red" },
-                    { title: "SBD 門檻", value: "$50,000", desc: "AAII 限制，超過此數額即開始 5:1 扣減。", color: "gold" }
-                ],
-                definitions: [
-                    { 
-                        term: "CCPC (加拿大控股私人有限公司)", 
-                        desc: "指在加拿大註冊的私人公司，且不受非居民或上市公司控制。大多數專業人士和中小企業主透過 CCPC 註冊，以享用較低的主動收入稅率。" 
-                    },
-                    { 
-                        term: "SBD (小型企業稅務扣減)", 
-                        desc: "一項優惠稅務扣減，可降低首 50 萬加元主動業務收入的聯邦稅率。然而，當被動收入超過 5 萬加元時，每增加 1 加元，SBD 額度便減少 5 加元，變相收回此稅務優勢。" 
-                    }
-                ],
-                body: [
-                    "在 CCPC 內部持有過剩現金會引發稅務磨擦。一旦被動收入超過 5 萬加元，就會侵蝕您的小生意稅務扣減 (SBD) 資格。",
-                    "將盈餘重新分配至免稅保險引擎可以恢復您的 SBD 額度，同時通過資本股息賬戶 (CDA) 建立免稅財富提取渠道。"
-                ]
-            };
-
-            // Simplified Chinese Content for Surplus Page
-            const cnSurplusPage = {
-                titlePrefix: "公司盈余",
-                titleSuffix: "陷阱",
-                back: "返回首页",
-                stats: [
-                    { title: "被动收入税率", value: "50.17%", desc: "安大略省公司被动投资收入税率。", color: "red" },
-                    { title: "SBD 门槛", value: "$50,000", desc: "AAII 限制，超过此数额即开始 5:1 扣减。", color: "gold" }
-                ],
-                definitions: [
-                    { 
-                        term: "CCPC (加拿大控股私人有限公司)", 
-                        desc: "指在加拿大注册的私人公司，且不受非居民或上市公司控制。大多数专业人士和中小企业主通过 CCPC 注册，以享用较低的主动收入税率。" 
-                    },
-                    { 
-                        term: "SBD (小型企业税务扣减)", 
-                        desc: "一项优惠税务扣减，可降低首 50 万加元主动业务收入的联邦税率。然而，当被动收入超过 5 万加元时，每增加 1 加元，SBD 额度便减少 5 加元，变相收回此税务优势。" 
-                    }
-                ],
-                body: [
-                    "在 CCPC 内部持有过剩现金会引发税务磨擦。一旦被动收入超过 5 万加元，就会侵蚀您的小生意税务扣减 (SBD) 资格。",
-                    "将盈余重新分配至免税保险引擎可以恢复您的 SBD 额度，同时通过资本股息账户 (CDA) 建立免税财富提取渠道。"
-                ]
             };
 
             const content = {
                 en: {
+                    ...englishContent,
                     navHome: "Home", navIFA: "IFA", navCases: "Cases", navAbout: "About",
                     headline: "Strategic Wealth. Liquidity Unlocked.",
                     subheadline: "Maximize your corporate capital through the power of Immediate Financing Arrangements (IFA).",
@@ -427,19 +422,13 @@
                     aboutBioTitle: "Professional Biography",
                     aboutCreedTitle: "Professional Creed",
                     aboutReachTitle: "Service Reach",
-                    // Form Labels
                     formName: "Name",
                     formEmail: "Email",
                     formPhone: "Phone Number (Optional)",
-                    formCorp: "Corporation (Optional)",
-                    // New Compare Page Content
-                    comparePage: englishComparePage,
-                    // New Protection Page Content
-                    protectionPage: englishProtectionPage,
-                    // New Surplus Page Content
-                    surplusPage: englishSurplusPage
+                    formCorp: "Corporation (Optional)"
                 },
                 zh: {
+                    ...zhContent,
                     navHome: "首頁", navIFA: "IFA", navCases: "案例研究", navAbout: "關於 Alex",
                     headline: "財富策略. 流動性解鎖.",
                     subheadline: "通過即時融資安排 (IFA) 的力量最大化您的公司資本。",
@@ -472,31 +461,16 @@
                     oneDollarDetail1: "傳統保險會產生「鎖定」的保費支出。我們的 IFA 工程將該支出轉化為循環資產。投入的每一塊錢都建立了永久的死亡賠償金以滿足遺產義務（工作 1），同時作為銀行信用額度的優質抵押品（工作 2）。",
                     oneDollarDetail2: "這種架構使您能夠保持積極的資本管理。您不需要在「保障」與「增長」之間做選擇——您正在利用同一筆資本同時執行這兩項任務。其結果是消除了機會成本，並實現了公司資產負債表的最大化。",
                     engineCompTitle: "戰略底盤對比",
-                    parTitle: "分紅終身壽險 (Participating Whole Life)",
-                    parSub: "穩定型引擎",
-                    parDetail: "在分紅保險政策中，您的保費進入保險公司的數十億元大型分紅賬戶。回報透過年度分紅進行「平滑處理」，保護您免受直接市場波動的影響。",
-                    ulTitle: "萬能壽險 (Universal Life)",
-                    ulSub: "透明型引擎",
-                    ulDetail: "萬能壽險將保險成本與投資部分分離。您決定側重基金的資本配置（股票、固定收益或指數），提供最大控制權，但風險也由客戶承擔。",
-                    featureRisk: "風險特徵", featureRiskPar: "與保險公司分擔 (資金池)", featureRiskUL: "客戶自行承擔 (掛鉤市場)",
-                    featureGrowth: "增長邏輯", featureGrowthPar: "歸屬年度分紅 (Vested)", featureGrowthUL: "市場表現",
-                    featureLeverage: "IFA 適用性", featureLeveragePar: "高 (穩定的抵押品價值)", featureLeverageUL: "高 (最大化稅務避風港額度)",
                     aboutBioTitle: "專業傳記",
                     aboutCreedTitle: "專業信條",
                     aboutReachTitle: "服務區域",
-                    // Form Labels
                     formName: "姓名",
                     formEmail: "電子郵件",
                     formPhone: "電話號碼 (選填)",
-                    formCorp: "公司名稱 (選填)",
-                    // Use translated content
-                    comparePage: zhComparePage,
-                    // Use translated content
-                    protectionPage: zhProtectionPage,
-                    // Use translated content
-                    surplusPage: zhSurplusPage
+                    formCorp: "公司名稱 (選填)"
                 },
                 cn: {
+                    ...cnContent,
                     navHome: "首页", navIFA: "IFA", navCases: "案例研究", navAbout: "关于 Alex",
                     headline: "财富策略. 流动性解锁.",
                     subheadline: "通过即时融资安排 (IFA) 的力量最大化您的公司资本。",
@@ -529,29 +503,13 @@
                     oneDollarDetail1: "传统保险会产生“锁定”的保费支出。我们的 IFA 工程将该支出转化为循环资产. 投入的每一块钱都建立了永久的死亡赔偿金以满足遗产义务（工作 1），同时作为银行信用额度的优质抵押品（工作 2）。",
                     oneDollarDetail2: "这种架构使您能够保持积极的资本 management。您不需要在“保障”与“增长”之间做选择——您正在利用同一笔资本同时执行这两项任务。其结果是消除了机会成本，并实现了公司资产负债表的最大化。",
                     engineCompTitle: "战略底盤对比",
-                    parTitle: "分红终身寿险 (Participating Whole Life)",
-                    parSub: "稳定型引擎",
-                    parDetail: "在分红保险政策中，您的保费进入保险公司的数十亿美元大型分红账户。回报通过年度分紅进行“平滑处理”，保护您免受直接市场波动的影响。",
-                    ulTitle: "万能寿险 (Universal Life)",
-                    ulSub: "透明型引擎",
-                    ulDetail: "万能寿险将保险成本与投資部分分离。您决定側重基金的资本配置（股票、固定收益或指數），提供最大控制權，但风险也由客户承擔。",
-                    featureRisk: "风险特征", featureRiskPar: "与保险公司分担 (资金池)", featureRiskUL: "客户自行承擔 (掛鉤市场)",
-                    featureGrowth: "增长逻辑", featureGrowthPar: "归属年度分紅 (Vested)", featureGrowthUL: "市场表现",
-                    featureLeverage: "IFA 適用性", featureLeveragePar: "高 (稳定的抵押品价值)", featureLeverageUL: "高 (最大化税务避风港额度)",
                     aboutBioTitle: "专业传记",
                     aboutCreedTitle: "专业信条",
                     aboutReachTitle: "服务区域",
-                    // Form Labels
                     formName: "姓名",
                     formEmail: "电子邮件",
                     formPhone: "电话号码 (选填)",
-                    formCorp: "公司名称 (选填)",
-                    // Use translated content
-                    comparePage: cnComparePage,
-                    // Use translated content
-                    protectionPage: cnProtectionPage,
-                    // Use translated content
-                    surplusPage: cnSurplusPage
+                    formCorp: "公司名称 (选填)"
                 }
             };
 
