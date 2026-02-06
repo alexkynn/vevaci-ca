@@ -4,28 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>VEVACI | 財富策略. 流動性解鎖.</title>
-    <!-- 標籤頁圖標 (Favicon) -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo.png">
     
+    <!-- React & Babel -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap');
-        body { font-family: 'Inter', -apple-system, sans-serif; background-color: #0a0a0a; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            background-color: #0a0a0a; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+        
         .safe-top { padding-top: env(safe-area-inset-top); }
         .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
-        .text-gradient-gold { background: linear-gradient(to bottom, #ffffff, #ffffff, #c5a059); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .bg-copper-gradient { background: linear-gradient(to right, #b36b39, #8c6239); }
+        
+        .text-gradient-gold { 
+            background: linear-gradient(to bottom, #ffffff, #ffffff, #c5a059); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        
+        .bg-copper-gradient { 
+            background: linear-gradient(to right, #b36b39, #8c6239); 
+        }
+        
         .emerald-glow { filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.3)); }
         .gold-glow { filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.3)); }
+        
         [data-lucide] { display: inline-block; }
-        /* 照片高級遮罩效果 */
+        
+        /* Advanced Photo Mask */
         .photo-mask {
             mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
+        }
+
+        /* Custom Table Styles */
+        .glass-table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+        }
+        .glass-table th {
+            background: rgba(255,255,255,0.05);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: #c5a059;
+            padding: 1.5rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .glass-table td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #d1d5db;
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+        .glass-table tr:last-child td {
+            border-bottom: none;
+        }
+        .glass-table tr:hover td {
+            background: rgba(255,255,255,0.02);
         }
     </style>
 </head>
@@ -35,13 +88,17 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
+        // Icon Component wrapper for Lucide
         const Icon = ({ name, className = "", size = 24 }) => {
-            useEffect(() => { if (window.lucide) window.lucide.createIcons(); }, [name, size]);
+            useEffect(() => { 
+                if (window.lucide) window.lucide.createIcons(); 
+            }, [name, size]);
             return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
         };
 
         const App = () => {
             const [language, setLanguage] = useState('en');
+            
             // Fix Browser Back Button: Sync state with URL hash
             const [currentPage, setCurrentPage] = useState(() => {
                 return window.location.hash.replace('#', '') || 'home';
@@ -56,14 +113,281 @@
                     window.scrollTo(0, 0);
                     setIsMenuOpen(false);
                 };
+                
                 window.addEventListener('hashchange', handleHashChange);
+                
+                // Initial icon load
                 if (window.lucide) window.lucide.createIcons();
+                
                 return () => window.removeEventListener('hashchange', handleHashChange);
             }, []);
 
             // Navigation helper
             const navigateTo = (page) => {
                 window.location.hash = page;
+            };
+
+            // --- CONTENT DATA ---
+
+            // English Content for Compare Page
+            const englishComparePage = {
+                mainTitle: "Participating Whole Life vs Universal Life",
+                subTitle: "(Under an IFA-Structured Approach)",
+                par: {
+                    title: "Participating Whole Life Insurance (IFA-Structured)",
+                    bestSuited: "Long-term wealth preservation, estate planning, and conservative capital accumulation.",
+                    features: [
+                        "Emphasizes guarantees, stability, and predictability",
+                        "Cash values grow through guarantees plus participating dividends",
+                        "Less sensitive to market performance or interest rate changes",
+                        "Simpler to manage over time once properly designed",
+                        "Often preferred for corporate planning, CDA maximization, and legacy goals"
+                    ],
+                    valueAdd: "Optimized funding, paid-up additions strategy, dividend utilization, and integration with corporate and estate planning to maximize long-term efficiency."
+                },
+                ul: {
+                    title: "Universal Life Insurance (IFA-Structured)",
+                    bestSuited: "Flexible planning, tax-sheltered investment growth, and clients comfortable with active management.",
+                    features: [
+                        "Separates insurance costs and investment accounts",
+                        "Greater flexibility in premiums, death benefit, and investment choices",
+                        "Performance depends on investment returns and cost assumptions",
+                        "Requires ongoing monitoring and adjustments",
+                        "Appeals to clients seeking customization and higher upside potential"
+                    ],
+                    valueAdd: "Stress-tested assumptions, disciplined funding strategies, investment allocation oversight, and long-term sustainability planning to avoid policy erosion."
+                },
+                table: {
+                    title: "Key Differences Under IFA Structuring",
+                    headers: ["Aspect", "Participating Whole Life", "Universal Life"],
+                    rows: [
+                        { aspect: "Growth Profile", par: "Stable, long-term, dividend-based", ul: "Variable, market- and assumption-driven" },
+                        { aspect: "Risk Exposure", par: "Lower", ul: "Higher (investment & cost risk)" },
+                        { aspect: "Flexibility", par: "Moderate", ul: "High" },
+                        { aspect: "Ongoing Management", par: "Low", ul: "Moderate to High" },
+                        { aspect: "Ideal Use Case", par: "Estate & legacy planning", ul: "Flexible wealth accumulation" }
+                    ]
+                },
+                bottomLine: {
+                    title: "Bottom Line",
+                    text: "The product matters — but the structure matters more.\n\nUnder an IFA approach, Participating Whole Life prioritizes certainty and legacy, while Universal Life offers flexibility and potential upside. The right choice depends on objectives, risk tolerance, and how the policy is engineered from day one."
+                }
+            };
+
+            // Traditional Chinese Content for Compare Page
+            const zhComparePage = {
+                mainTitle: "分紅終身壽險 vs 萬能壽險",
+                subTitle: "（在 IFA 架構策略下）",
+                par: {
+                    title: "分紅終身壽險 (Participating Whole Life)",
+                    bestSuited: "長期財富保值、遺產規劃及保守資本積累。",
+                    features: [
+                        "強調保證、穩定性與可預測性",
+                        "現金價值透過保證加上分紅增長",
+                        "對市場表現或利率變動較不敏感",
+                        "設計得當後，長期管理較為簡單",
+                        "常用於公司規劃、CDA 最大化及傳承目標"
+                    ],
+                    valueAdd: "優化注資、繳清增額 (PUA) 策略、分紅運用，並整合公司與遺產規劃以最大化長期效率。"
+                },
+                ul: {
+                    title: "萬能壽險 (Universal Life)",
+                    bestSuited: "靈活規劃、稅務庇護下的投資增長，以及習慣主動管理的客戶。",
+                    features: [
+                        "將保險成本與投資帳戶分離",
+                        "保費、身故賠償及投資選擇具有更高靈活性",
+                        "績效取決於投資回報與成本假設",
+                        "需要持續監控與調整",
+                        "吸引尋求客製化與更高潛在回報的客戶"
+                    ],
+                    valueAdd: "壓力測試假設、紀律性注資策略、投資配置監督及長期可持續性規劃，以避免保單侵蝕。"
+                },
+                table: {
+                    title: "IFA 架構下的關鍵差異",
+                    headers: ["構面", "分紅終身壽險", "萬能壽險"],
+                    rows: [
+                        { aspect: "增長特徵", par: "穩定、長期、基於分紅", ul: "變動、驅動於市場與假設" },
+                        { aspect: "風險敞口", par: "較低", ul: "較高 (投資與成本風險)" },
+                        { aspect: "靈活性", par: "中等", ul: "高" },
+                        { aspect: "持續管理", par: "低", ul: "中至高" },
+                        { aspect: "理想用途", par: "遺產與傳承規劃", ul: "靈活財富積累" }
+                    ]
+                },
+                bottomLine: {
+                    title: "總結",
+                    text: "產品固然重要，但架構更為關鍵。\n\n在 IFA 架構下，分紅人壽優先考慮確定性與傳承，而萬用壽險提供靈活性與潛在增長。正確的選擇取決於目標、風險承受能力以及保單從第一天起的設計方式。"
+                }
+            };
+
+            // Simplified Chinese Content for Compare Page
+            const cnComparePage = {
+                mainTitle: "分红终身寿险 vs 万能寿险",
+                subTitle: "（在 IFA 架构策略下）",
+                par: {
+                    title: "分红终身寿险 (Participating Whole Life)",
+                    bestSuited: "长期财富保值、遗产规划及保守资本积累。",
+                    features: [
+                        "强调保证、稳定性与可预测性",
+                        "现金价值通过保证加上分红增长",
+                        "对市场表现或利率变动较不敏感",
+                        "设计得当后，长期管理较为简单",
+                        "常用于公司规划、CDA 最大化及传承目标"
+                    ],
+                    valueAdd: "优化注资、缴清增额 (PUA) 策略、分红运用，并整合公司与遗产规划以最大化长期效率。"
+                },
+                ul: {
+                    title: "万能寿险 (Universal Life)",
+                    bestSuited: "灵活规划、税务庇护下的投资增长，以及习惯主动管理的客户。",
+                    features: [
+                        "将保险成本与投资账户分离",
+                        "保费、身故赔偿及投资选择具有更高灵活性",
+                        "绩效取决于投资回报与成本假设",
+                        "需要持续监控与调整",
+                        "吸引寻求定制化与更高潜在回报的客户"
+                    ],
+                    valueAdd: "压力测试假设、纪律性注资策略、投资配置监督及长期可持续性规划，以避免保单侵蚀。"
+                },
+                table: {
+                    title: "IFA 架构下的关键差异",
+                    headers: ["构面", "分红终身寿险", "万能寿险"],
+                    rows: [
+                        { aspect: "增长特征", par: "稳定、长期、基于分红", ul: "变动、驱动于市场与假设" },
+                        { aspect: "风险敞口", par: "较低", ul: "较高 (投资与成本风险)" },
+                        { aspect: "灵活性", par: "中等", ul: "高" },
+                        { aspect: "持续管理", par: "低", ul: "中至高" },
+                        { aspect: "理想用途", par: "遗产与传承规划", ul: "灵活财富积累" }
+                    ]
+                },
+                bottomLine: {
+                    title: "总结",
+                    text: "产品固然重要，但架构更为关键。\n\n在 IFA 架构下，分红人寿优先考虑确定性与传承，而万用寿险提供灵活性与潜在增长。正确的选择取决于目标、风险承受能力以及保单从第一天起的设计方式。"
+                }
+            };
+
+            // English Content for Protection Page
+            const englishProtectionPage = {
+                title: "Holistic Protection",
+                items: [
+                    { title: "Critical Illness (CI) Insurance", desc: "Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.", color: "emerald" },
+                    { title: "Segregated Funds", desc: "Insurance Act shielding provides potential creditor protection and direct probate bypass in Ontario.", color: "gold" },
+                    { title: "Disability Insurance (DI)", desc: "Protects earning power — often a bigger risk than death for professionals and business owners.", color: "emerald" },
+                    { title: "Business Overhead Expense Insurance", desc: "Keeps fixed business costs covered if the owner is disabled.", color: "gold" },
+                    { title: "Key Person Disability / Income Replacement", desc: "Rarely discussed, highly valued when understood.", color: "emerald" },
+                    { title: "Long-Term Care Insurance (LTC)", desc: "Especially relevant for aging parents and HNW families.", color: "gold" },
+                    { title: "Permanent Life Insurance (WL / UL)", desc: "For estate liquidity, tax deferral, and CDA planning.", color: "emerald" },
+                    { title: "Shareholder / Buy-Sell Insurance", desc: "Funding shareholder buy-outs to ensure business continuity and fair market value exchange.", color: "gold" },
+                    { title: "Key Person Life & CI", desc: "Injecting capital to offset revenue loss and recruitment costs upon the loss of a key executive.", color: "emerald" },
+                    { title: "Corporate-Owned Permanent Insurance", desc: "Utilizing corporate surplus to build a tax-advantaged asset class on the balance sheet.", color: "gold" }
+                ]
+            };
+
+            // Traditional Chinese Content for Protection Page
+            const zhProtectionPage = {
+                title: "全面保障策略",
+                items: [
+                    { title: "危疾保險 (CI)", desc: "免稅的一次性賠付可用於資助企業持續經營，以及在診斷後執行股東買斷協議。", color: "emerald" },
+                    { title: "保本基金 (Segregated Funds)", desc: "受保險法保護，提供潛在的債權人屏蔽以及在安大略省直接跳過遺產認證程序。", color: "gold" },
+                    { title: "傷殘保險 (DI)", desc: "保護賺錢能力——對專業人士和企業主而言，這往往是比死亡更大的風險。", color: "emerald" },
+                    { title: "企業營運開支保險", desc: "若企業主喪失工作能力，可支付固定的商業成本。", color: "gold" },
+                    { title: "關鍵人物傷殘/收入替代", desc: "鮮少被討論，但一旦了解其價值便備受重視。", color: "emerald" },
+                    { title: "長期護理保險 (LTC)", desc: "對於年邁父母及高淨值家庭尤為重要。", color: "gold" },
+                    { title: "永久人壽保險 (WL / UL)", desc: "用於遺產流動性、稅務遞延及 CDA 規劃。", color: "emerald" },
+                    { title: "股東/買賣協議保險", desc: "資助買斷協議，確保股權順利轉移與公平市場價值交換。", color: "gold" },
+                    { title: "關鍵人物人壽與危疾保險", desc: "提供資金以抵銷因關鍵高管流失而產生的收入損失與招聘成本。", color: "emerald" },
+                    { title: "公司持有永久保險", desc: "利用公司盈餘在資產負債表上建立具稅務優勢的資產類別。", color: "gold" }
+                ]
+            };
+
+            // Simplified Chinese Content for Protection Page
+            const cnProtectionPage = {
+                title: "全面保障策略",
+                items: [
+                    { title: "危疾保险 (CI)", desc: "免税的一次性赔付可用于资助企业持续经营，以及在诊断后执行股东买断协议。", color: "emerald" },
+                    { title: "保本基金 (Segregated Funds)", desc: "受保险法保护，提供潜在的债权人屏蔽以及在安大略省直接跳过遗产认证程序。", color: "gold" },
+                    { title: "伤残保险 (DI)", desc: "保护赚钱能力——对专业人士和企业主而言，这往往是比死亡更大的风险。", color: "emerald" },
+                    { title: "企业营运开支保险", desc: "若企业主丧失工作能力，可支付固定的商业成本。", color: "gold" },
+                    { title: "关键人物伤残/收入替代", desc: "鲜少被讨论，但一旦了解其价值便备受重视。", color: "emerald" },
+                    { title: "长期护理保险 (LTC)", desc: "对于年迈父母及高净值家庭尤为重要。", color: "gold" },
+                    { title: "永久人寿保险 (WL / UL)", desc: "用于遗产流动性、税务递延及 CDA 规划。", color: "emerald" },
+                    { title: "股东/买卖协议保险", desc: "资助买断协议，确保股权顺利转移与公平市场价值交换。", color: "gold" },
+                    { title: "关键人物人寿与危疾保险", desc: "提供资金以抵销因关键高管流失而产生的收入损失与招聘成本。", color: "emerald" },
+                    { title: "公司持有永久保险", desc: "利用公司盈余在资产负债表上建立具税务优势的资产类别。", color: "gold" }
+                ]
+            };
+
+            // English Content for Surplus Page
+            const englishSurplusPage = {
+                titlePrefix: "The Corporate Surplus ",
+                titleSuffix: "Trap",
+                back: "Back to Home",
+                stats: [
+                    { title: "Passive Tax", value: "50.17%", desc: "Ontario Corporate Passive Income Rate.", color: "red" },
+                    { title: "SBD Threshold", value: "$50,000", desc: "AAII limit before 5:1 grind begins.", color: "gold" }
+                ],
+                definitions: [
+                    { 
+                        term: "CCPC (Canadian-Controlled Private Corporation)", 
+                        desc: "A private corporation resident in Canada that is not controlled by non-residents or public corporations. Most professionals and small business owners incorporate as a CCPC to access the lower Small Business Tax Rate on active income." 
+                    },
+                    { 
+                        term: "SBD (Small Business Deduction)", 
+                        desc: "A preferential tax deduction that lowers the federal tax rate on the first $500,000 of active business income. However, for every $1 of passive income earned above $50,000, the SBD limit is reduced by $5, essentially clawing back this tax advantage." 
+                    }
+                ],
+                body: [
+                    "Holding excess cash inside a CCPC triggers tax friction. Passive income over $50k erodes your active small business deduction eligibility.",
+                    "Relocating surplus into tax-exempt insurance engines restores your SBD limits while creating a tax-free wealth extraction channel via the Capital Dividend Account (CDA)."
+                ]
+            };
+
+            // Traditional Chinese Content for Surplus Page
+            const zhSurplusPage = {
+                titlePrefix: "公司盈餘",
+                titleSuffix: "陷阱",
+                back: "返回首頁",
+                stats: [
+                    { title: "被動收入稅率", value: "50.17%", desc: "安大略省公司被動投資收入稅率。", color: "red" },
+                    { title: "SBD 門檻", value: "$50,000", desc: "AAII 限制，超過此數額即開始 5:1 扣減。", color: "gold" }
+                ],
+                definitions: [
+                    { 
+                        term: "CCPC (加拿大控股私人有限公司)", 
+                        desc: "指在加拿大註冊的私人公司，且不受非居民或上市公司控制。大多數專業人士和中小企業主透過 CCPC 註冊，以享用較低的主動收入稅率。" 
+                    },
+                    { 
+                        term: "SBD (小型企業稅務扣減)", 
+                        desc: "一項優惠稅務扣減，可降低首 50 萬加元主動業務收入的聯邦稅率。然而，當被動收入超過 5 萬加元時，每增加 1 加元，SBD 額度便減少 5 加元，變相收回此稅務優勢。" 
+                    }
+                ],
+                body: [
+                    "在 CCPC 內部持有過剩現金會引發稅務磨擦。一旦被動收入超過 5 萬加元，就會侵蝕您的小生意稅務扣減 (SBD) 資格。",
+                    "將盈餘重新分配至免稅保險引擎可以恢復您的 SBD 額度，同時通過資本股息賬戶 (CDA) 建立免稅財富提取渠道。"
+                ]
+            };
+
+            // Simplified Chinese Content for Surplus Page
+            const cnSurplusPage = {
+                titlePrefix: "公司盈余",
+                titleSuffix: "陷阱",
+                back: "返回首页",
+                stats: [
+                    { title: "被动收入税率", value: "50.17%", desc: "安大略省公司被动投资收入税率。", color: "red" },
+                    { title: "SBD 门槛", value: "$50,000", desc: "AAII 限制，超过此数额即开始 5:1 扣减。", color: "gold" }
+                ],
+                definitions: [
+                    { 
+                        term: "CCPC (加拿大控股私人有限公司)", 
+                        desc: "指在加拿大注册的私人公司，且不受非居民或上市公司控制。大多数专业人士和中小企业主通过 CCPC 注册，以享用较低的主动收入税率。" 
+                    },
+                    { 
+                        term: "SBD (小型企业税务扣减)", 
+                        desc: "一项优惠税务扣减，可降低首 50 万加元主动业务收入的联邦税率。然而，当被动收入超过 5 万加元时，每增加 1 加元，SBD 额度便减少 5 加元，变相收回此税务优势。" 
+                    }
+                ],
+                body: [
+                    "在 CCPC 内部持有过剩现金会引发税务磨擦。一旦被动收入超过 5 万加元，就会侵蚀您的小生意税务扣减 (SBD) 资格。",
+                    "将盈余重新分配至免税保险引擎可以恢复您的 SBD 额度，同时通过资本股息账户 (CDA) 建立免税财富提取渠道。"
+                ]
             };
 
             const content = {
@@ -87,7 +411,8 @@
                     aboutDesc: "Integrated insurance and wealth planning for businesses and families, backed by 28+ years of experience.",
                     oneDollarTitle: "One Dollar, Two Jobs",
                     back: "Back to Home", submit: "Request Consultation", received: "Request Received",
-                    followup: "I will personally review your profile. Expect a follow-up within 48 business hours.",
+                    followup: "Request has been received and we will try to reach out within 48 hours.",
+                    limitReached: "Daily limit of 5 requests reached for this email. Please try again in 24 hours.",
                     profileLabel: "Profile", challengeLabel: "The Challenge", outcomeLabel: "Strategic Outcome",
                     exploreIFA: "Explore IFA Mechanics", readDeepDive: "Read",
                     job1: "Job 1: Protection", job1Desc: "Fund Estate Tax & Buy-Sell",
@@ -99,19 +424,20 @@
                     oneDollarDetail1: "Traditional insurance creates a 'locked' premium expense. Our IFA engineering transforms that expense into a revolving asset. Every dollar funds a permanent death benefit to satisfy estate liabilities (Job 1) while simultaneously serving as prime collateral for a bank credit line (Job 2).",
                     oneDollarDetail2: "This architecture allows you to maintain active capital management. You aren't choosing between protection and growth—you are utilizing the same capital to execute both. The result is a neutralized opportunity cost and a maximized corporate balance sheet.",
                     engineCompTitle: "Strategic Chassis Comparison",
-                    engineCompSub: "The selection of the 'engine' dictates the long-term volatility and liquidity profile of your IFA.",
-                    parTitle: "Whole Life (Participating)",
-                    parSub: "The Smoothed Engine",
-                    parDetail: "In a Par policy, your premiums flow into the insurer's multi-billion dollar participating account. Returns are 'smoothed' through an annual dividend process, shielding you from direct market volatility.",
-                    ulTitle: "Universal Life (UL)",
-                    ulSub: "The Transparent Engine",
-                    ulDetail: "UL unbundles the insurance cost from the investment component. You decide where your side-fund capital is allocated (Equities, Fixed Income, or Indexes), providing maximum control but higher risk.",
-                    featureRisk: "Risk Profile", featureRiskPar: "Shared with Insurer (Pooled)", featureRiskUL: "Client-borne (Market-linked)",
-                    featureGrowth: "Growth Logic", featureGrowthPar: "Vested Annual Dividends", featureGrowthUL: "Market Performance",
-                    featureLeverage: "IFA Applicability", featureLeveragePar: "High (Stable Collateral)", featureLeverageUL: "High (Maximum Shelter Cap)",
                     aboutBioTitle: "Professional Biography",
                     aboutCreedTitle: "Professional Creed",
-                    aboutReachTitle: "Service Reach"
+                    aboutReachTitle: "Service Reach",
+                    // Form Labels
+                    formName: "Name",
+                    formEmail: "Email",
+                    formPhone: "Phone Number (Optional)",
+                    formCorp: "Corporation (Optional)",
+                    // New Compare Page Content
+                    comparePage: englishComparePage,
+                    // New Protection Page Content
+                    protectionPage: englishProtectionPage,
+                    // New Surplus Page Content
+                    surplusPage: englishSurplusPage
                 },
                 zh: {
                     navHome: "首頁", navIFA: "IFA", navCases: "案例研究", navAbout: "關於 Alex",
@@ -133,7 +459,8 @@
                     aboutDesc: "整合企業與家庭的保險與財富規劃，憑藉超過 28 年的專業經驗。",
                     oneDollarTitle: "一塊錢，兩份工",
                     back: "返回首頁", submit: "提交諮詢申請", received: "請求已接收",
-                    followup: "我將親自審核您的公司概況。預計在 48 小時內會收到回覆。",
+                    followup: "已收到您的請求。我們將嘗試在 48 小時內與您聯繫。",
+                    limitReached: "此電子郵件已達到每日 5 次申請上限。請在 24 小時後重試。",
                     profileLabel: "客戶概況", challengeLabel: "面臨挑戰", outcomeLabel: "戰略成果",
                     exploreIFA: "探索 IFA 運作機制", readDeepDive: "閱讀",
                     job1: "工作 1：保障", job1Desc: "資助遺產稅與買斷協議",
@@ -145,19 +472,29 @@
                     oneDollarDetail1: "傳統保險會產生「鎖定」的保費支出。我們的 IFA 工程將該支出轉化為循環資產。投入的每一塊錢都建立了永久的死亡賠償金以滿足遺產義務（工作 1），同時作為銀行信用額度的優質抵押品（工作 2）。",
                     oneDollarDetail2: "這種架構使您能夠保持積極的資本管理。您不需要在「保障」與「增長」之間做選擇——您正在利用同一筆資本同時執行這兩項任務。其結果是消除了機會成本，並實現了公司資產負債表的最大化。",
                     engineCompTitle: "戰略底盤對比",
-                    engineCompSub: "「引擎」的選擇決定了您 IFA 策略的長期波動性與流動性特徵。",
-                    parTitle: "分紅保險 (Participating Whole Life)",
+                    parTitle: "分紅終身壽險 (Participating Whole Life)",
                     parSub: "穩定型引擎",
                     parDetail: "在分紅保險政策中，您的保費進入保險公司的數十億元大型分紅賬戶。回報透過年度分紅進行「平滑處理」，保護您免受直接市場波動的影響。",
-                    ulTitle: "萬用保險 (Universal Life)",
+                    ulTitle: "萬能壽險 (Universal Life)",
                     ulSub: "透明型引擎",
-                    ulDetail: "萬用保險將保險成本與投資部分分離。您決定側重基金的資本配置（股票、固定收益或指數），提供最大控制權，但風險也由客戶承擔。",
+                    ulDetail: "萬能壽險將保險成本與投資部分分離。您決定側重基金的資本配置（股票、固定收益或指數），提供最大控制權，但風險也由客戶承擔。",
                     featureRisk: "風險特徵", featureRiskPar: "與保險公司分擔 (資金池)", featureRiskUL: "客戶自行承擔 (掛鉤市場)",
                     featureGrowth: "增長邏輯", featureGrowthPar: "歸屬年度分紅 (Vested)", featureGrowthUL: "市場表現",
                     featureLeverage: "IFA 適用性", featureLeveragePar: "高 (穩定的抵押品價值)", featureLeverageUL: "高 (最大化稅務避風港額度)",
                     aboutBioTitle: "專業傳記",
                     aboutCreedTitle: "專業信條",
-                    aboutReachTitle: "服務區域"
+                    aboutReachTitle: "服務區域",
+                    // Form Labels
+                    formName: "姓名",
+                    formEmail: "電子郵件",
+                    formPhone: "電話號碼 (選填)",
+                    formCorp: "公司名稱 (選填)",
+                    // Use translated content
+                    comparePage: zhComparePage,
+                    // Use translated content
+                    protectionPage: zhProtectionPage,
+                    // Use translated content
+                    surplusPage: zhSurplusPage
                 },
                 cn: {
                     navHome: "首页", navIFA: "IFA", navCases: "案例研究", navAbout: "关于 Alex",
@@ -179,31 +516,42 @@
                     aboutDesc: "整合企业与家庭的保险与财富规划，凭借超过 28 年的专业经验。",
                     oneDollarTitle: "一块钱，两份工",
                     back: "返回首页", submit: "提交咨询申请", received: "请求已接收",
-                    followup: "我将亲自审核您的公司概况. 预计在 48 小时内会收到回复。",
+                    followup: "已收到您的请求。我们将尝试在 48 小时内与您联系。",
+                    limitReached: "此电子邮件已达到每日 5 次申请上限。请在 24 小时后重试。",
                     profileLabel: "客户概况", challengeLabel: "面临挑战", outcomeLabel: "战略成果",
                     exploreIFA: "探索 IFA 运作机制", readDeepDive: "阅读",
                     job1: "工作 1：保障", job1Desc: "资助遗产税与买断协议",
                     job2: "工作 2：流动性", job2Desc: "用于再投资的资本",
                     oneDollarSub: "企业与家庭的整合保险规划\n\n我们协助企业主与高净值人士将保险策略设计为更广泛的资本与财富计划的一部分，而非孤立的产品。\n\n我们的方法专注于风险保障、保持流动性并减少不必要的机会成本，确保保险能支持业务增长、传承及家族长期财富，而非限制其发展。",
                     disclaimerTitle: "免责声明",
-                    disclaimerBody: "本网站提供的信息仅供一般教育及参考用途。其内容应被视为财务、税务、法律或投资建议。人寿保险策略（包括即時融資安排 IFA）具有複雜性，受限於個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）。稅率與規則（如 SBD 門槛和被動收入稅）可能因聯邦及省政府政策而變動。在執行任何本文討論的策略前，請務必諮詢符合資格的專業會計師、律师或财务顾问。过往表现并不代表未来结果。",
+                    disclaimerBody: "本网站提供的信息仅供一般教育及参考用途。其内容应被视为财务、税务、法律或投资建议。人寿保险策略（包括即時融資安排 IFA）具有复杂性，受限于个人资格、贷款机构要求及现行加拿大税务法律（包括所得税法）。税率与规则（如 SBD 门槛和被动收入税）可能因联邦及省政府政策而变动。在执行任何本文讨论的策略前，请务必咨询符合资格的专业会计师、律师或财务顾问。过往表现并不代表未来结果。",
                     oneDollarDetailTitle: "双效能引擎",
                     oneDollarDetail1: "传统保险会产生“锁定”的保费支出。我们的 IFA 工程将该支出转化为循环资产. 投入的每一块钱都建立了永久的死亡赔偿金以满足遗产义务（工作 1），同时作为银行信用额度的优质抵押品（工作 2）。",
                     oneDollarDetail2: "这种架构使您能够保持积极的资本 management。您不需要在“保障”与“增长”之间做选择——您正在利用同一笔资本同时执行这两项任务。其结果是消除了机会成本，并实现了公司资产负债表的最大化。",
                     engineCompTitle: "战略底盤对比",
-                    engineCompSub: "“引擎”的选择決定了您 IFA 策略的长期波动性與流动性特征。",
-                    parTitle: "分红保险 (Participating Whole Life)",
+                    parTitle: "分红终身寿险 (Participating Whole Life)",
                     parSub: "稳定型引擎",
                     parDetail: "在分红保险政策中，您的保费进入保险公司的数十亿美元大型分红账户。回报通过年度分紅进行“平滑处理”，保护您免受直接市场波动的影响。",
-                    ulTitle: "万用保险 (Universal Life)",
+                    ulTitle: "万能寿险 (Universal Life)",
                     ulSub: "透明型引擎",
-                    ulDetail: "万用保险将保险成本与投資部分分离。您决定側重基金的资本配置（股票、固定收益或指數），提供最大控制權，但风险也由客户承擔。",
+                    ulDetail: "万能寿险将保险成本与投資部分分离。您决定側重基金的资本配置（股票、固定收益或指數），提供最大控制權，但风险也由客户承擔。",
                     featureRisk: "风险特征", featureRiskPar: "与保险公司分担 (资金池)", featureRiskUL: "客户自行承擔 (掛鉤市场)",
                     featureGrowth: "增长逻辑", featureGrowthPar: "归属年度分紅 (Vested)", featureGrowthUL: "市场表现",
                     featureLeverage: "IFA 適用性", featureLeveragePar: "高 (稳定的抵押品价值)", featureLeverageUL: "高 (最大化税务避风港额度)",
                     aboutBioTitle: "专业传记",
                     aboutCreedTitle: "专业信条",
-                    aboutReachTitle: "服务区域"
+                    aboutReachTitle: "服务区域",
+                    // Form Labels
+                    formName: "姓名",
+                    formEmail: "电子邮件",
+                    formPhone: "电话号码 (选填)",
+                    formCorp: "公司名称 (选填)",
+                    // Use translated content
+                    comparePage: cnComparePage,
+                    // Use translated content
+                    protectionPage: cnProtectionPage,
+                    // Use translated content
+                    surplusPage: cnSurplusPage
                 }
             };
 
@@ -363,67 +711,164 @@
             </section>
         );
 
-        const SurplusView = ({ t, language, navigateTo }) => (
-            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-white">{language === 'en' ? 'The Surplus ' : '公司盈餘'}<span className="text-[#c5a059]">{language === 'en' ? 'Trap' : '陷阱'}</span></h2>
-                <div className="grid md:grid-cols-2 gap-6 mb-16 text-white text-left">
-                    <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-red-500/20 emerald-glow relative"><h4 className="text-red-500 font-black text-xs uppercase tracking-widest mb-4">Passive Tax</h4><div className="text-4xl font-black mb-2 italic">50.17%</div><p className="text-gray-500 text-sm italic">Ontario Corporate Passive Income Rate.</p></div>
-                    <div className="p-8 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/20 relative"><h4 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-4">SBD Threshold</h4><div className="text-4xl font-black mb-2 italic">$50,000</div><p className="text-gray-500 text-sm italic">AAII limit before 5:1 grind begins.</p></div>
-                </div>
-                <div className="space-y-8 text-xl text-gray-300 font-light leading-relaxed text-justify">
-                    <p>{language === 'en' ? 'Holding excess cash inside a CCPC triggers tax friction. Passive income over $50k erodes your active small business deduction eligibility.' : '在 CCPC 內部持有過剩現金會引發稅務磨擦。一旦被動收入超過 5 萬加元，就會侵蝕您的小生意稅務扣減 (SBD) 資格。'}</p>
-                    <p>{language === 'en' ? 'Relocating surplus into tax-exempt insurance engines restores your SBD limits while creating a tax-free wealth extraction channel via the Capital Dividend Account (CDA).' : '將盈餘重新分配至免稅保險引擎可以恢復您的 SBD 額度，同時通過資本股息賬戶 (CDA) 建立免稅財富提取渠道。'}</p>
-                </div>
-            </section>
-        );
+        const SurplusView = ({ t, language, navigateTo }) => {
+            const { titlePrefix, titleSuffix, stats, definitions, body } = t.surplusPage;
+            
+            return (
+                <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                    <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-white">{titlePrefix}<span className="text-[#c5a059]">{titleSuffix}</span></h2>
+                    
+                    <div className="grid md:grid-cols-2 gap-6 mb-16 text-white text-left">
+                        {stats.map((stat, idx) => (
+                            <div key={idx} className={`p-8 rounded-[2.5rem] bg-[#121212] border ${stat.color === 'red' ? 'border-red-500/20 emerald-glow' : 'border-[#c5a059]/20'} relative`}>
+                                <h4 className={`${stat.color === 'red' ? 'text-red-500' : 'text-[#c5a059]'} font-black text-xs uppercase tracking-widest mb-4`}>{stat.title}</h4>
+                                <div className="text-4xl font-black mb-2 italic">{stat.value}</div>
+                                <p className="text-gray-500 text-sm italic">{stat.desc}</p>
+                            </div>
+                        ))}
+                    </div>
 
-        const CompareView = ({ t, language, navigateTo }) => (
-            <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-4 tracking-tighter leading-none text-white">{t.engineCompTitle}</h2>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-white mt-12 text-left">
-                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/30 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-48 h-48 bg-[#c5a059]/5 blur-3xl"></div>
-                        <h3 className="text-3xl font-black text-white italic mb-2 uppercase">{t.parTitle}</h3>
-                        <p className="text-gray-400 font-light leading-relaxed text-justify mt-6">{t.parDetail}</p>
-                        <div className="mt-8 space-y-4 border-t border-white/5 pt-8">
-                            <ComparisonRow label={t.featureRisk} par={t.featureRiskPar} ul={t.featureRiskUL} active="par" />
-                            <ComparisonRow label={t.featureGrowth} par={t.featureRiskPar} ul={t.featureGrowthUL} active="par" />
-                            <ComparisonRow label={t.featureLeverage} par={t.featureLeveragePar} ul={t.featureLeverageUL} active="par" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                        {definitions.map((def, idx) => (
+                            <div key={idx} className="bg-white/5 border border-white/10 p-6 rounded-3xl">
+                                <h4 className="text-white font-bold text-sm mb-2">{def.term}</h4>
+                                <p className="text-gray-400 text-xs font-light leading-relaxed text-justify">{def.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="space-y-8 text-xl text-gray-300 font-light leading-relaxed text-justify">
+                        {body.map((paragraph, idx) => (
+                            <p key={idx}>{paragraph}</p>
+                        ))}
+                    </div>
+                </section>
+            );
+        };
+
+        const CompareView = ({ t, language, navigateTo }) => {
+            const { mainTitle, subTitle, par, ul, table, bottomLine } = t.comparePage;
+            
+            return (
+                <section className="max-w-7xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                    
+                    <div className="text-center md:text-left mb-16">
+                        <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white mb-2">{mainTitle}</h2>
+                        <p className="text-[#c5a059] text-xl font-light italic">{subTitle}</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+                        {/* PAR Card */}
+                        <div className="bg-[#121212] border border-[#c5a059]/30 rounded-[3rem] p-8 md:p-12 relative overflow-hidden flex flex-col h-full group">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-[#c5a059]/5 blur-[80px]"></div>
+                            <h3 className="text-2xl font-black text-white italic mb-6 uppercase border-b border-white/10 pb-6">{par.title}</h3>
+                            
+                            <div className="mb-8">
+                                <span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest block mb-2">Best Suited For:</span>
+                                <p className="text-gray-300 font-light italic leading-relaxed">{par.bestSuited}</p>
+                            </div>
+
+                            <ul className="space-y-4 mb-8 flex-grow">
+                                {par.features.map((feature, idx) => (
+                                    <li key={idx} className="flex gap-3 text-sm text-gray-400 font-light leading-relaxed">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-[#c5a059] mt-2 shrink-0"></div>
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="bg-[#c5a059]/10 border border-[#c5a059]/20 p-6 rounded-2xl mt-auto">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <Icon name="zap" size={16} className="text-[#c5a059]" />
+                                    <span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest">IFA Value-Add</span>
+                                </div>
+                                <p className="text-xs text-white font-light leading-relaxed text-justify">{par.valueAdd}</p>
+                            </div>
+                        </div>
+
+                        {/* UL Card */}
+                        <div className="bg-[#121212] border border-white/10 rounded-[3rem] p-8 md:p-12 relative overflow-hidden flex flex-col h-full group">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 blur-[80px]"></div>
+                            <h3 className="text-2xl font-black text-white italic mb-6 uppercase border-b border-white/10 pb-6">{ul.title}</h3>
+                            
+                            <div className="mb-8">
+                                <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest block mb-2">Best Suited For:</span>
+                                <p className="text-gray-300 font-light italic leading-relaxed">{ul.bestSuited}</p>
+                            </div>
+
+                            <ul className="space-y-4 mb-8 flex-grow">
+                                {ul.features.map((feature, idx) => (
+                                    <li key={idx} className="flex gap-3 text-sm text-gray-400 font-light leading-relaxed">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="bg-emerald-500/10 border border-emerald-500/20 p-6 rounded-2xl mt-auto">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <Icon name="sliders" size={16} className="text-emerald-500" />
+                                    <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">IFA Value-Add</span>
+                                </div>
+                                <p className="text-xs text-white font-light leading-relaxed text-justify">{ul.valueAdd}</p>
+                            </div>
                         </div>
                     </div>
-                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-white/5 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/5 blur-3xl"></div>
-                        <h3 className="text-3xl font-black text-white italic mb-2 uppercase">{t.ulTitle}</h3>
-                        <p className="text-emerald-500 font-black text-xs tracking-widest uppercase mb-6">UNIVERSAL LIFE</p>
-                        <p className="text-gray-400 font-light leading-relaxed text-justify mt-6">{t.ulDetail}</p>
-                        <div className="mt-8 space-y-4 border-t border-white/5 pt-8">
-                            <ComparisonRow label={t.featureRisk} par={t.featureRiskPar} ul={t.featureRiskUL} active="ul" />
-                            <ComparisonRow label={t.featureGrowth} par={t.featureGrowthPar} ul={t.featureGrowthUL} active="ul" />
-                            <ComparisonRow label={t.featureLeverage} par={t.featureLeveragePar} ul={t.featureLeverageUL} active="ul" />
+
+                    {/* Comparison Table */}
+                    <div className="mb-20">
+                        <h3 className="text-3xl font-black italic text-white mb-8">{table.title}</h3>
+                        <div className="overflow-x-auto bg-[#121212] border border-white/10 rounded-3xl p-6">
+                            <table className="glass-table">
+                                <thead>
+                                    <tr>
+                                        {table.headers.map((h, i) => <th key={i}>{h}</th>)}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {table.rows.map((row, i) => (
+                                        <tr key={i}>
+                                            <td className="font-bold text-white">{row.aspect}</td>
+                                            <td className="text-[#c5a059]">{row.par}</td>
+                                            <td className="text-emerald-500">{row.ul}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div>
-            </section>
-        );
 
-        const ProtectionView = ({ t, language, navigateTo }) => (
-            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-12 tracking-tighter leading-none text-white">{language === 'en' ? 'Holistic ' : '全面'}<span className="text-[#c5a059]">{language === 'en' ? 'Protection' : '保障'}</span></h2>
-                <div className="grid md:grid-cols-2 gap-8 text-sm md:text-base text-left">
-                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-emerald-500/20">
-                        <h3 className="text-xl font-bold mb-4 italic text-emerald-500">{language === 'en' ? 'Critical Illness (CI) Insurance' : '危疾保險 (Critical Illness (CI) Insurance)'}</h3>
-                        <p className="text-gray-400 font-light leading-relaxed text-justify">{language === 'en' ? 'Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.' : '免稅的一次性賠付可用於資助企業持續經營，以及在診斷後執行股東買斷協議。'}</p>
+                    {/* Bottom Line */}
+                    <div className="max-w-3xl mx-auto text-center border-t border-white/10 pt-16">
+                         <h4 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6">{bottomLine.title}</h4>
+                         <p className="text-xl md:text-2xl text-white font-light italic leading-relaxed whitespace-pre-line">
+                            {bottomLine.text}
+                         </p>
                     </div>
-                    <div className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20">
-                        <h3 className="text-xl font-bold mb-4 italic text-[#c5a059]">{language === 'en' ? 'Segregated Funds' : '保本基金 (Segregated Funds)'}</h3>
-                        <p className="text-gray-400 font-light leading-relaxed text-justify">{language === 'en' ? 'Insurance Act shielding provides potential creditor protection and direct probate bypass in Ontario.' : '受保險法保護，提供潛在的債權人屏蔽以及在安大略省直接跳過遺產認證程序。'}</p>
+                </section>
+            );
+        };
+
+        const ProtectionView = ({ t, language, navigateTo }) => {
+            const { title, items } = t.protectionPage;
+            
+            return (
+                <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                    <h2 className="text-5xl md:text-7xl font-black italic mb-12 tracking-tighter leading-none text-white">{title}</h2>
+                    <div className="grid md:grid-cols-2 gap-8 text-sm md:text-base text-left">
+                        {items.map((item, idx) => (
+                            <div key={idx} className={`p-10 rounded-[3rem] bg-[#121212] border ${item.color === 'emerald' ? 'border-emerald-500/20' : 'border-[#c5a059]/20'}`}>
+                                <h3 className={`text-xl font-bold mb-4 italic ${item.color === 'emerald' ? 'text-emerald-500' : 'text-[#c5a059]'}`}>{item.title}</h3>
+                                <p className="text-gray-400 font-light leading-relaxed text-justify">{item.desc}</p>
+                            </div>
+                        ))}
                     </div>
-                </div>
-            </section>
-        );
+                </section>
+            );
+        };
 
         const CaseView = ({ t, language, navigateTo }) => (
             <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
@@ -479,27 +924,84 @@
             </section>
         );
 
-        const FeasibilityView = ({ t, navigateTo, formSubmitted, setFormSubmitted, language }) => (
-            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left text-white">{language === 'en' ? 'Consultation' : '諮詢'}<span className="text-[#c5a059]">{language === 'en' ? 'Request' : '申請'}</span></h2>
-                {!formSubmitted ? (
-                    <form onSubmit={(e) => {e.preventDefault(); setFormSubmitted(true);}} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8 text-left">
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <FormGroup label="Name" placeholder="Alex Lee" />
-                            <FormGroup label="Corporation" placeholder="Your Co. Inc" />
+        const FeasibilityView = ({ t, navigateTo, formSubmitted, setFormSubmitted, language }) => {
+            const [submitError, setSubmitError] = useState('');
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                setSubmitError(''); // Clear previous errors
+                
+                const form = e.target;
+                const name = form.name.value;
+                const email = form.email.value;
+                const phone = form.phone.value;
+                const corp = form.corp.value;
+
+                // Rate Limiting Logic
+                const STORAGE_KEY = 'vevaci_consultation_requests';
+                const now = Date.now();
+                const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+                
+                // Get existing data from localStorage
+                let allRequests = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+                let userRequests = allRequests[email] || [];
+                
+                // Filter out requests older than 24 hours
+                userRequests = userRequests.filter(timestamp => (now - timestamp) < ONE_DAY_MS);
+                
+                // Check if limit reached (5 requests in last 24h)
+                if (userRequests.length >= 5) {
+                    setSubmitError(t.limitReached);
+                    return;
+                }
+
+                // Add new request timestamp
+                userRequests.push(now);
+                allRequests[email] = userRequests;
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(allRequests));
+
+                // Create mailto link
+                const subject = encodeURIComponent(`Consultation Request: ${name}`);
+                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nCorporation: ${corp}`);
+                
+                // Open default mail client
+                window.location.href = `mailto:info@vevaci.ca?subject=${subject}&body=${body}`;
+                
+                // Show success state
+                setFormSubmitted(true);
+            };
+
+            return (
+                <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                    <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left text-white">{language === 'en' ? 'Consultation' : '諮詢'}<span className="text-[#c5a059]">{language === 'en' ? 'Request' : '申請'}</span></h2>
+                    {!formSubmitted ? (
+                        <form onSubmit={handleSubmit} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8 text-left">
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <FormGroup label={t.formName} name="name" placeholder="Alex Lee" required={true} />
+                                <FormGroup label={t.formEmail} name="email" type="email" placeholder="alex@example.com" required={true} />
+                                <FormGroup label={t.formPhone} name="phone" type="tel" placeholder="+1 (555) 000-0000" />
+                                <FormGroup label={t.formCorp} name="corp" placeholder="Your Co. Inc" />
+                            </div>
+                            
+                            {submitError && (
+                                <div className="text-red-500 text-sm font-bold text-center animate-in fade-in slide-in-from-top-2">
+                                    {submitError}
+                                </div>
+                            )}
+
+                            <button type="submit" className="w-full bg-copper-gradient py-5 rounded-full font-bold text-lg shadow-xl active:scale-95 transition-transform uppercase tracking-widest text-white">{t.submit}</button>
+                        </form>
+                    ) : (
+                        <div className="bg-[#121212] p-16 rounded-[3rem] text-center border border-[#c5a059]/30 space-y-8 text-white">
+                            <Icon name="check-circle-2" className="text-[#c5a059] mx-auto mb-6" size={64} />
+                            <h3 className="text-3xl font-bold italic tracking-tight">{t.received}</h3>
+                            <p className="text-gray-400 font-light">{t.followup}</p>
+                            <button onClick={() => {setFormSubmitted(false); navigateTo('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-[10px] underline">Return Home</button>
                         </div>
-                        <button type="submit" className="w-full bg-copper-gradient py-5 rounded-full font-bold text-lg shadow-xl active:scale-95 transition-transform uppercase tracking-widest text-white">{t.submit}</button>
-                    </form>
-                ) : (
-                    <div className="bg-[#121212] p-16 rounded-[3rem] text-center border border-[#c5a059]/30 space-y-8 text-white">
-                        <Icon name="check-circle-2" className="text-[#c5a059] mx-auto mb-6" size={64} />
-                        <h3 className="text-3xl font-bold italic tracking-tight">{t.received}</h3>
-                        <p className="text-gray-400 font-light">{t.followup}</p>
-                        <button onClick={() => {setFormSubmitted(false); navigateTo('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-[10px] underline">Return Home</button>
-                    </div>
-                )}
-            </section>
-        );
+                    )}
+                </section>
+            );
+        };
 
         const Card = ({ icon, title, desc, onClick, label = "Read More" }) => (
             <div onClick={onClick} className="px-6 py-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full text-left text-white">
@@ -515,13 +1017,6 @@
                 <div className="absolute -left-[53px] top-0 w-10 h-10 bg-[#0a0a0a] border border-[#c5a059] rounded-full flex items-center justify-center text-[#c5a059] shadow-lg"><Icon name={icon} size={16} /></div>
                 <div className="mb-2 flex items-center gap-4"><span className="text-[#c5a059] text-[10px] font-black">{num}</span><h3 className="text-2xl font-bold tracking-tight text-white">{title}</h3></div>
                 <p className="text-gray-400 font-light leading-relaxed text-sm text-justify">{desc}</p>
-            </div>
-        );
-
-        const ComparisonRow = ({ label, par, ul, active }) => (
-            <div className="flex flex-col gap-1 py-4 border-b border-white/5 last:border-0 text-left">
-                <span className="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-1">{label}</span>
-                <p className="text-sm font-light text-gray-300 italic">{active === 'par' ? par : ul}</p>
             </div>
         );
 
@@ -543,10 +1038,10 @@
             </div>
         );
 
-        const FormGroup = ({ label, placeholder }) => (
+        const FormGroup = ({ label, placeholder, type = "text", required = false, name }) => (
             <div className="space-y-2 text-left text-white">
                 <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{label}</label>
-                <input type="text" placeholder={placeholder} className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors text-white text-sm" required />
+                <input type={type} name={name} placeholder={placeholder} className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors text-white text-sm" required={required} />
             </div>
         );
 
