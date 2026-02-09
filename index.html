@@ -701,7 +701,7 @@
                                 
                                 <div className="flex flex-col gap-10 relative group">
                                     {/* Fancy Tooltip - Visible on Hover */}
-                                    <div className="absolute left-1/2 -translate-x-1/2 bottom-[115%] mb-2 w-[90vw] max-w-[360px] bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#c5a059]/50 rounded-3xl p-5 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 text-left pointer-events-none group-hover:pointer-events-auto">
+                                    <div className="absolute left-1/2 -translate-x-1/2 bottom-[115%] mb-2 w-[90vw] max-w-[360px] lg:left-auto lg:right-full lg:top-1/2 lg:-translate-y-1/2 lg:bottom-auto lg:translate-x-0 lg:mr-8 lg:w-[400px] bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#c5a059]/50 rounded-3xl p-5 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 text-left pointer-events-none group-hover:pointer-events-auto">
                                         <h4 className="text-[#c5a059] font-black text-sm uppercase tracking-widest mb-3 border-b border-white/10 pb-2">{t.jobTooltip.title}</h4>
                                         
                                         <div className="space-y-4">
@@ -734,8 +734,10 @@
                                             </div>
                                         </div>
                                         
-                                        {/* Decorative arrow pointing down */}
-                                        <div className="absolute -bottom-2 left-1/2 w-4 h-4 bg-[#0a0a0a] border-b border-r border-[#c5a059]/50 transform rotate-45 -translate-x-1/2"></div>
+                                        {/* Decorative arrow pointing down on mobile */}
+                                        <div className="block lg:hidden absolute -bottom-2 left-1/2 w-4 h-4 bg-[#0a0a0a] border-b border-r border-[#c5a059]/50 transform rotate-45 -translate-x-1/2"></div>
+                                        {/* Decorative arrow pointing right on desktop */}
+                                        <div className="hidden lg:block absolute top-1/2 -right-2 w-4 h-4 bg-[#0a0a0a] border-t border-r border-[#c5a059]/50 transform rotate-45 -translate-y-1/2"></div>
                                     </div>
 
                                     <div className="flex items-center gap-6 p-6 bg-white/5 border border-white/10 rounded-2xl emerald-glow transition-all hover:border-emerald-500/30 cursor-pointer">
