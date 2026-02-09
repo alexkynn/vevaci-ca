@@ -519,7 +519,7 @@
                         corpList: [
                             "保留營運現金流",
                             "利用公司資本擔保貸款",
-                            "資金產生收入時，利息可抵税",
+                            "資金產生收入時，利息可抵稅",
                             "增加資本股息賬戶 (CDA) 額度",
                             "支持傳承、退休或買賣協議融資"
                         ]
@@ -684,13 +684,14 @@
                     </div>
 
                     <div className="max-w-4xl mx-auto mb-32 relative">
-                        <div className="absolute inset-0 bg-[#121212] border border-white/5 rounded-[3rem] overflow-hidden">
+                        {/* Background Container - Separated to prevent clipping */}
+                        <div className="absolute inset-0 bg-[#121212] border border-white/5 rounded-[3rem] overflow-hidden -z-10">
                              <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-500/5 blur-[100px]"></div>
                         </div>
 
-                        <div className="relative p-12 sm:p-16">
+                        <div className="relative p-12 sm:p-16 z-20">
                             <h2 className="text-3xl font-black italic mb-16 text-white tracking-widest uppercase">{t.oneDollarTitle}</h2>
-                            <div className="flex flex-col md:flex-row items-center justify-center gap-16 relative z-10">
+                            <div className="flex flex-col md:flex-row items-center justify-center gap-16 relative">
                                 <div className="flex flex-col items-center">
                                     <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#c5a059] to-[#8c6239] flex items-center justify-center shadow-2xl gold-glow mb-4">
                                         <Icon name="dollar-sign" className="text-white" size={40} />
@@ -700,18 +701,18 @@
                                 
                                 <div className="flex flex-col gap-10 relative group">
                                     {/* Fancy Tooltip - Visible on Hover */}
-                                    <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-6 w-[90vw] sm:w-[350px] md:w-[400px] bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#c5a059]/50 rounded-3xl p-6 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 z-50 text-left pointer-events-none group-hover:pointer-events-auto">
-                                        <h4 className="text-[#c5a059] font-black text-base uppercase tracking-widest mb-4 border-b border-white/10 pb-2">{t.jobTooltip.title}</h4>
+                                    <div className="absolute left-1/2 -translate-x-1/2 bottom-[115%] mb-2 w-[90vw] max-w-[360px] bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#c5a059]/50 rounded-3xl p-5 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 text-left pointer-events-none group-hover:pointer-events-auto">
+                                        <h4 className="text-[#c5a059] font-black text-sm uppercase tracking-widest mb-3 border-b border-white/10 pb-2">{t.jobTooltip.title}</h4>
                                         
-                                        <div className="space-y-5">
+                                        <div className="space-y-4">
                                             <div>
-                                                <h5 className="text-white font-bold text-xs mb-3 flex items-center gap-2">
-                                                    <div className="bg-[#c5a059]/20 p-1.5 rounded-lg"><Icon name="user" size={14} className="text-[#c5a059]" /></div>
+                                                <h5 className="text-white font-bold text-xs mb-2 flex items-center gap-2">
+                                                    <div className="bg-[#c5a059]/20 p-1 rounded-md"><Icon name="user" size={12} className="text-[#c5a059]" /></div>
                                                     {t.jobTooltip.hnwTitle}
                                                 </h5>
-                                                <ul className="space-y-1.5">
+                                                <ul className="space-y-1">
                                                     {t.jobTooltip.hnwList.map((item, i) => (
-                                                        <li key={i} className="text-[10px] text-gray-300 flex gap-3 font-light leading-snug">
+                                                        <li key={i} className="text-[10px] text-gray-300 flex gap-2 font-light leading-snug">
                                                             <span className="text-[#c5a059] mt-0.5">•</span> {item}
                                                         </li>
                                                     ))}
@@ -719,13 +720,13 @@
                                             </div>
                                             
                                             <div>
-                                                <h5 className="text-white font-bold text-xs mb-3 flex items-center gap-2">
-                                                    <div className="bg-emerald-500/20 p-1.5 rounded-lg"><Icon name="building-2" size={14} className="text-emerald-500" /></div>
+                                                <h5 className="text-white font-bold text-xs mb-2 flex items-center gap-2">
+                                                    <div className="bg-emerald-500/20 p-1 rounded-md"><Icon name="building-2" size={12} className="text-emerald-500" /></div>
                                                     {t.jobTooltip.corpTitle}
                                                 </h5>
-                                                <ul className="space-y-1.5">
+                                                <ul className="space-y-1">
                                                     {t.jobTooltip.corpList.map((item, i) => (
-                                                        <li key={i} className="text-[10px] text-gray-300 flex gap-3 font-light leading-snug">
+                                                        <li key={i} className="text-[10px] text-gray-300 flex gap-2 font-light leading-snug">
                                                             <span className="text-emerald-500 mt-0.5">•</span> {item}
                                                         </li>
                                                     ))}
