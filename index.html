@@ -219,6 +219,7 @@
                 protectionPage: {
                     title: "Holistic Insurance Services for Ontario Families & Businesses",
                     subTitle: "Premier risk management and estate planning solutions serving Toronto, Markham, and the entire GTA. We provide the best-in-class strategies to protect your wealth.",
+                    faqTitle: "Frequently Asked Questions",
                     items: [
                         { title: "Critical Illness (CI) Insurance Ontario", desc: "Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.", color: "emerald" },
                         { title: "Segregated Funds & Probate Strategies", desc: "Bypass Ontario's Estate Administration Tax (probate) and secure creditor protection under the Insurance Act. Ideal for GTA investors.", color: "gold" },
@@ -263,7 +264,44 @@
                 ifaIntro: {
                     title: "What Is an Immediate Financing Arrangement (IFA)?",
                     desc: "An Immediate Financing Arrangement (IFA) is a leverage strategy enabling business owners to purchase permanent life insurance while preserving capital. By assigning the policy’s Cash Surrender Value (CSV) as collateral, the corporation secures a line of credit—often up to 100% of the CSV—to reinvest in income-generating business or investment activities. This structure allows for the potential tax deductibility of interest, reducing the net cost of insurance while maintaining liquidity and establishing a tax-free Capital Dividend Account (CDA) credit."
-                }
+                },
+                ifaSteps: [
+                    { num: "01", icon: "settings", title: "Engine Selection", desc: "Analyzing Par Whole Life or UL for optimal Cash Surrender Value (CSV) performance." },
+                    { num: "02", icon: "piggy-bank", title: "Corporate Funding", desc: "The corporation deposits premiums, creating a tax-exempt asset on the balance sheet." },
+                    { num: "03", icon: "layers", title: "Lending Leverage", desc: "Tier-1 lenders provide credit facilities up to 100% of CSV as collateralized lending." },
+                    { num: "04", icon: "trending-up", title: "Active Redeployment", desc: "Capital is injected into investments. Interest may be tax-deductible under ITA Sec 20(1)(c)." },
+                    { num: "05", icon: "unlock", title: "Wealth Transfer", desc: "Upon death, loan is retired; surplus flows tax-free to heirs via Capital Dividend Account credit." }
+                ],
+                caseStudies: [
+                    { 
+                        title: "The Specialist’s Lever", 
+                        profile: "Physician (CCPC), 45, Markham, Ontario.", 
+                        challenge: "Needs $5M protection while keeping $1.5M liquid for real estate investment.", 
+                        outcome: "Accessed 90% of CSV for investment via IFA. Zero net out-of-pocket cost.", 
+                        tag: "Scenario 01", 
+                        icon: "user-check" 
+                    },
+                    { 
+                        title: "The Tech Surplus Rescue", 
+                        profile: "Software Founder, Toronto-based, $10M Retained Earnings.", 
+                        challenge: "Passive income triggering SBD grind and 50.17% tax rate.", 
+                        outcome: "Restored SBD limits and created a tax-free exit via CDA.", 
+                        tag: "Scenario 02", 
+                        icon: "zap" 
+                    },
+                    { 
+                        title: "The Legacy Foundation", 
+                        profile: "Manufacturing Owner, 65, Succession Phase.", 
+                        challenge: "Estimated $5.4M tax liability at death threatening business continuity.", 
+                        outcome: "Estate Bond strategy. Insurance proceeds retire the tax bill entire, allowing debt-free transfer.", 
+                        tag: "Scenario 03", 
+                        icon: "briefcase" 
+                    }
+                ],
+                aboutBioP1: "Serving clients across Markham, Richmond Hill, and the Greater Toronto Area (GTA), Alex brings over 28 years of experience in the financial sector. His approach to wealth and insurance planning was shaped by a pivotal mentorship under Amy Tong, CEO of A.T. Financial Group. That experience helped define a client-first philosophy grounded in discipline, clarity, and long-term thinking.",
+                aboutBioP2: "My background includes deep exposure to financial derivatives and algorithmic trading, where precision, risk management, and structure are paramount. Today, those principles inform how I help business owners and families thoughtfully structure and protect wealth in an increasingly complex financial environment.",
+                aboutBioP3: "VeVa is a legacy name, formed from the names of my two daughters, Vera and Valarie — reflecting a commitment not only to financial outcomes, but to continuity, responsibility, and long-term stewardship.",
+                aboutCreedBody: "True professionalism means recommending the right solution to the right person, at the right time — and standing behind that advice with consistent and timely follow-up."
             };
 
             // Traditional Chinese Data
@@ -308,23 +346,24 @@
                     },
                     bottomLine: {
                         title: "總結",
-                        text: "產品固然重要，但架構更為關鍵。\n\n在 IFA 架構下，分紅終身壽險優先考慮確定性與傳承，而萬能壽險提供靈活性與潛在增長。正確的選擇取決於目標、風險承受能力以及保單從第一天起的設計方式。"
+                        text: "產品固然重要，但架構更為關鍵。\n\n在 IFA 架構下，分紅人壽優先考慮確定性與傳承，而萬用壽險提供靈活性與潛在增長。正確的選擇取決於目標、風險承受能力以及保單從第一天起的設計方式。"
                     }
                 },
                 protectionPage: {
                     title: "安大略省家庭與企業的全面保險服務",
                     subTitle: "服務於多倫多、萬錦及整個大多倫多地區 (GTA) 的頂級風險管理與遺產規劃解決方案。我們提供一流的策略以保護您的財富。",
+                    faqTitle: "常見問題",
                     items: [
                         { title: "安大略省危疾保險 (CI)", desc: "免稅一次性賠付以資助企業持續經營及股東買斷。面對嚴重診斷的安大略省醫生與企業主的必要保障。", color: "emerald" },
-                        { title: "保本基金與遺產認證策略", desc: "規避安大略省遺產管理稅 (遺產認證費) 並根據保險法獲得債權人保護。大多倫多地區投資者的理想選擇。", color: "gold" },
+                        { title: "保本基金 (隔離基金) 與遺產認證策略", desc: "規避安大略省遺產管理稅 (遺產認證費) 並根據保險法獲得債權人保護。大多倫多地區投資者的理想選擇。", color: "gold" },
                         { title: "多倫多傷殘保險 (DI)", desc: "保護多倫多專業人士的賺錢能力。這往往是比死亡更大的風險，專為安大略省高收入者量身定制。", color: "emerald" },
                         { title: "企業營運開支保險", desc: "讓您的安大略省企業持續運轉。若企業主喪失工作能力，可支付固定成本（租金、薪資），確保業務連續性。", color: "gold" },
-                        { title: "關鍵人物傷殘/收入替代", desc: "為安大略省公司提供的專門保障，用於替代收入損失並支付關鍵員工的招聘成本。", color: "emerald" },
+                        { title: "關鍵人物收入替代", desc: "為安大略省公司提供的專門保障，用於替代收入損失並支付關鍵員工的招聘成本。", color: "emerald" },
                         { title: "安大略省家庭長期護理 (LTC)", desc: "保護您的遺產免受不斷上漲的護理費用影響。大多倫多地區年邁父母及高淨值家庭的關鍵規劃。", color: "gold" },
                         { title: "永久人壽保險 (WL / UL)", desc: "加拿大遺產規劃的基石。為稅務提供流動性，並為安大略省私人公司最大化 CDA 額度。", color: "emerald" },
                         { title: "股東買賣協議資助", desc: "確保公平市場價值交換，且不耗盡公司資本。安大略省 CCPC 合夥人的必備方案。", color: "gold" },
                         { title: "關鍵人物人壽與危疾", desc: "在關鍵高管流失時注入資本以抵消收入損失。多倫多競爭激烈市場中的重要風險管理。", color: "emerald" },
-                        { title: "公司持有永久保險", desc: "將被動盈餘轉化為具稅務優勢的資產類別。面臨 SBD 削減的安大略省 CCPC 的明智選擇。", color: "gold" }
+                        { title: "公司持有永久保險", desc: "將被動盈餘轉化為具稅務優勢的資產類別。面臨 SBD 扣減的安大略省 CCPC 的明智選擇。", color: "gold" }
                     ],
                     faqs: [
                         { q: "為什麼安大略省企業主需要專門的保險規劃？", a: "安大略省有特定的稅率和遺產認證費（遺產管理稅）。我們的策略專為在安大略省法律環境中最大化財富保值而設計。" },
@@ -338,7 +377,7 @@
                     back: "返回首頁",
                     stats: [
                         { title: "被動收入稅率", value: "50.17%", desc: "安大略省公司被動投資收入稅率。", color: "red" },
-                        { title: "SBD 門檻", value: "$50,000", desc: "AAII 限制，超過此數額即開始 5:1 削減。", color: "gold" }
+                        { title: "SBD 門檻", value: "$50,000", desc: "AAII 限制，超過此數額即開始 5:1 扣減。", color: "gold" }
                     ],
                     definitions: [
                         { 
@@ -358,7 +397,44 @@
                 ifaIntro: {
                     title: "什麼是即時融資安排 (IFA)？",
                     desc: "即時融資安排 (IFA) 是一種槓桿策略，允許企業主在購買永久人壽保險的同時保留資本。通過將保單的現金解約價值 (CSV) 作為抵押品，公司可向銀行獲得信用額度——通常高達已付保費的 100% 或保單現金價值——而不會實質減少現金流。這些資金可用於產生收入的商業或投資活動，且利息可能抵稅。未償還貸款通常在受保人身故時由保險身故賠償金償還。"
-                }
+                },
+                ifaSteps: [
+                    { num: "01", icon: "settings", title: "引擎選擇", desc: "分析分紅終身壽險或萬能壽險，以實現最佳現金解約價值 (CSV) 表現。" },
+                    { num: "02", icon: "piggy-bank", title: "公司注資", desc: "公司存入保費，在資產負債表上建立免稅資產。" },
+                    { num: "03", icon: "layers", title: "貸款槓桿", desc: "一線貸款機構提供高達 100% CSV 的信貸額度作為抵押貸款。" },
+                    { num: "04", icon: "trending-up", title: "資金重部署", desc: "資金注入投資。根據 ITA 第 20(1)(c) 條，利息可能抵稅。" },
+                    { num: "05", icon: "unlock", title: "財富轉移", desc: "身故時，貸款註銷；剩餘部分通過資本紅利賬戶 (CDA) 免稅流向繼承人。" }
+                ],
+                caseStudies: [
+                    { 
+                        title: "專科醫生的槓桿效應", 
+                        profile: "安大略省萬錦市，45歲，執業醫師 (CCPC)。", 
+                        challenge: "需要 500 萬加元保障，同時保留 150 萬加元流動資金用於房地產投資。", 
+                        outcome: "通過 IFA 獲取 90% 的 CSV 用於投資。零淨自付成本。", 
+                        tag: "場景 01", 
+                        icon: "user-check" 
+                    },
+                    { 
+                        title: "科技盈餘救助方案", 
+                        profile: "多倫多軟件創始人，保留盈餘 1000 萬加元。", 
+                        challenge: "被動收入觸發 SBD 削減及 50.17% 的稅率。", 
+                        outcome: "恢復了 SBD 額度，並通過 CDA 建立了免稅退出機制。", 
+                        tag: "場景 02", 
+                        icon: "zap" 
+                    },
+                    { 
+                        title: "家族傳承基石", 
+                        profile: "製造業主，65 歲，處於傳承階段。", 
+                        challenge: "預計身故時有 540 萬加元的稅務負債，威脅企業的持續經營。", 
+                        outcome: "遺產債券策略。保險收益全額償還稅單，實現無債務轉移。", 
+                        tag: "場景 03", 
+                        icon: "briefcase" 
+                    }
+                ],
+                aboutBioP1: "Alex 服務於萬錦 (Markham)、列治文山 (Richmond Hill) 及大多倫多地區 (GTA) 的客戶，擁有超過 28 年的金融領域經驗。他的財富與保險規劃理念深受 A.T. Financial Group 行政總裁 Amy Tong 的關鍵指導所啟發。這段經歷幫助他確立了以客戶為先的哲學，強調紀律、清晰與長遠思維。",
+                aboutBioP2: "我的背景包含對金融衍生品和算法交易的深度涉獵，在這些領域，精準度、風險管理和結構至關重要。今天，這些原則貫穿於我如何協助企業主和家庭在日益複雜的金融環境中，審慎地構建和保護財富。",
+                aboutBioP3: "VeVa 是一個傳承之名，由我兩位女兒 Vera 和 Valarie 的名字組成 —— 這不僅反映了對財務成果的承諾，更體現了對延續性、責任感和長期管理的重視。",
+                aboutCreedBody: "真正的專業意味著在合適的時間，向合適的人推薦合適的解決方案 —— 並以始終如一且及時的後續服務來支持該建議。"
             };
 
             // Simplified Chinese Data
@@ -403,14 +479,14 @@
                     },
                     bottomLine: {
                         title: "总结",
-                        text: "产品固然重要，但架构更为关键。\n\n在 IFA 架构下，分红终身寿险优先考虑确定性与传承，而万能寿险提供灵活性与潜在增长。正确的选择取决于目标、风险承受能力以及保单从第一天起的设计方式。"
+                        text: "产品固然重要，但架构更为关键。\n\n在 IFA 架构下，分红人壽优先考虑确定性与传承，而万能寿险提供灵活性与潜在增长。正确的选择取决于目标、风险承受能力以及保单从第一天起的设计方式。"
                     }
                 },
                 protectionPage: {
                     title: "全面保障策略",
                     items: [
                         { title: "危疾保险 (CI)", desc: "免税的一次性赔付可用于资助企业持续经营，以及在诊断后执行股东买断协议。", color: "emerald" },
-                        { title: "保本基金 (Segregated Funds)", desc: "受保险法保护，提供潜在的债权人屏蔽以及在安大略省直接跳过遗产认证程序。", color: "gold" },
+                        { title: "保本基金 (隔离基金) 与遗产认证策略", desc: "规避安大略省遗产管理税 (遗产认证费) 并根据保险法获得债权人保护。大多伦多地区投资者的理想选择。", color: "gold" },
                         { title: "伤残保险 (DI)", desc: "保护赚钱能力——对专业人士和企业主而言，这往往是比死亡更大的风险。", color: "emerald" },
                         { title: "企业营运开支保险", desc: "若企业主丧失工作能力，可支付固定的商业成本。", color: "gold" },
                         { title: "关键人物伤残/收入替代", desc: "鲜少被讨论，但一旦了解其价值便备受重视。", color: "emerald" },
@@ -419,6 +495,12 @@
                         { title: "股东/买卖协议保险", desc: "资助买断协议，确保股权顺利转移与公平市场价值交换。", color: "gold" },
                         { title: "关键人物人寿与危疾保险", desc: "提供资金以抵销因关键高管流失而产生的收入损失与招聘成本。", color: "emerald" },
                         { title: "公司持有永久保险", desc: "利用公司盈余在资产负债表上建立具税务优势的资产类别。", color: "gold" }
+                    ],
+                    faqTitle: "常见问题",
+                    faqs: [
+                        { q: "为什么安大略省企业主需要专门的保险规划？", a: "安大略省有特定的稅率和遗产认证费（遗产管理税）。我们的策略专为在安大略省法律环境中最大化财富保值而设计。" },
+                        { q: "你们服务万锦市以外的客户吗？", a: "是的。虽然我们位于万锦，但 VEVACI 服务整个大多伦多地区 (GTA)，包括多伦多、列治文山、旺市、密西沙加以及全安大略省。" },
+                        { q: "为什么 VEVACI 是多伦多高净值保险的最佳选择？", a: "我们不只是销售产品；我们设计策略。我们整合税务规划、公司架构与保险产品，提供卓越的流动性与长期价值。" }
                     ]
                 },
                 surplusPage: {
@@ -446,16 +528,53 @@
                 },
                 ifaIntro: {
                     title: "什么是即时融资安排 (IFA)？",
-                    desc: "即时融资安排 (IFA) 是一种杠杆策略，允许企业主在购买永久人寿保险的同时保留资本。通过将保单的现金解约价值 (CSV) 作为抵押品，公司可向银行获得信用额度——通常高达已付保费的 100% 或保单现金价值——而不会实质减少现金流。这些资金可用于产生收入的商业或投资活动，且利息可能抵税。未偿还贷款通常在受保人身故时由保险身故赔偿金偿还。"
-                }
+                    desc: "即时融资安排 (IFA) 是一种杠杆策略，允许企业主在购买永久人寿保险的同时保留资本。通过将保单的现金解约价值 (CSV) 作为抵押品，公司可向银行获得信用额度——通常高达已付保费的 100% 或保单现金价值——而不会实质减少现金流。这些资金可用于产生收入的商业或投资活动，且利息可能抵稅。未偿还贷款通常在受保人身故时由保险身故赔偿金偿还。"
+                },
+                ifaSteps: [
+                    { num: "01", icon: "settings", title: "引擎选择", desc: "分析分红终身寿险或万能寿险，以实现最佳现金解约价值 (CSV) 表现。" },
+                    { num: "02", icon: "piggy-bank", title: "公司注资", desc: "公司存入保费，在资产负债表上建立免税资产。" },
+                    { num: "03", icon: "layers", title: "贷款杠杆", desc: "一线贷款机构提供高达 100% CSV 的信贷额度作为抵押贷款。" },
+                    { num: "04", icon: "trending-up", title: "资金重部署", desc: "资金注入投资。根据 ITA 第 20(1)(c) 条，利息可能抵税。" },
+                    { num: "05", icon: "unlock", title: "财富转移", desc: "身故时，贷款注销；剩余部分通过资本红利账户 (CDA) 免税流向继承人。" }
+                ],
+                caseStudies: [
+                    { 
+                        title: "专科医生的杠杆效应", 
+                        profile: "安大略省万锦市，45岁，执业医师 (CCPC)。", 
+                        challenge: "需要 500 万加元保障，同时保留 150 万加元流动资金用于房地产投资。", 
+                        outcome: "通过 IFA 获取 90% 的 CSV 用于投资。零净自付成本。", 
+                        tag: "场景 01", 
+                        icon: "user-check" 
+                    },
+                    { 
+                        title: "科技盈余救助方案", 
+                        profile: "多伦多软件创始人，保留盈余 1000 万加元。", 
+                        challenge: "被动收入触发 SBD 削减及 50.17% 的税率。", 
+                        outcome: "恢复了 SBD 额度，并通过 CDA 建立了免税退出机制。", 
+                        tag: "场景 02", 
+                        icon: "zap" 
+                    },
+                    { 
+                        title: "家族传承基石", 
+                        profile: "制造业主，65 岁，处于传承阶段。", 
+                        challenge: "预计身故时有 540 万加元的税务负债，威胁企业的持续经营。", 
+                        outcome: "遗产债券策略。保险收益全额偿还税单，实现无债务转移。", 
+                        tag: "场景 03", 
+                        icon: "briefcase" 
+                    }
+                ],
+                aboutBioP1: "Alex 服务于万锦 (Markham)、列治文山 (Richmond Hill) 及大多伦多地区 (GTA) 的客户，拥有超过 28 年的金融领域经验。他的财富与保险规划理念深受 A.T. Financial Group 行政总裁 Amy Tong 的关键指导所启发。这段经历帮助他确立了以客户为先的哲学，强调纪律、清晰与长远思维。",
+                aboutBioP2: "我的背景包含对金融衍生品和算法交易的深度涉猎，在这些领域，精准度、风险管理和结构至关重要。今天，这些原则贯穿于我如何协助企业主和家庭在日益复杂的金融环境中，审慎地构建和保护财富。",
+                aboutBioP3: "VeVa 是一個傳承之名，由我兩位女兒 Vera 和 Valarie 的名字組成 —— 這不僅反映了對財務成果的承諾，更體現了對延續性、責任感和長期管理的重視。",
+                aboutCreedBody: "真正的專業意味著在合適的時間，向合適的人推薦合適的解決方案 —— 並以始終如一且及時的後續服務來支持該建議。"
             };
 
             const content = {
                 en: {
                     ...englishContent,
                     navHome: "Home", navIFA: "IFA", navCases: "Cases", navAbout: "About",
-                    headline: "Strategic Wealth & IFA Solutions.",
-                    subheadline: "Maximize your corporate capital through the power of Immediate Financing Arrangements (IFA).",
+                    headline: "Wealth & IFA Strategies for Ontario Business Owners.",
+                    subheadline: "Unlock liquidity and optimize corporate surplus with advanced strategies tailored for Toronto, Markham, and Richmond Hill professionals.",
                     studyCta: "Request a Strategic Consultation",
                     disclosure: "Sales of insurance products are conducted by Alex Kynn Lee, a Licensed Life Insurance Agent and founder of VeVa Consultancy Inc. Mr. Lee is professionally sponsored by iA Financial Group and operates through the Managing General Agency (MGA), A.T. Financial Group.",
                     ifaTitle: "The IFA Mechanics Guide",
@@ -573,8 +692,8 @@
                         corpList: [
                             "保留營運現金流",
                             "利用公司資本擔保貸款",
-                            "資金產生收入時，利息可抵稅",
-                            "增加資本股息賬戶 (CDA) 額度",
+                            "資金用於產生收入時，利息可抵稅",
+                            "受保人身故時增加資本紅利賬戶 (CDA) 額度",
                             "支持傳承、退休或買賣協議融資"
                         ]
                     },
@@ -601,10 +720,7 @@
                     aboutDesc: "整合企业与家庭的保险与财富规划，凭借超过 28 年的专业经验。",
                     oneDollarTitle: "一块钱，两份工",
                     back: "返回首页", submit: "提交咨询申请", received: "请求已接收",
-                    followup: "已收到您的请求。我们将尝试在 48 小时内与您联系。",
-                    limitReached: "此电子邮件已达到每日 5 次申请上限。请在 24 小时后重试。",
-                    processing: "发送中...",
-                    networkError: "网络错误，请稍后再试。",
+                    followup: "我将亲自审核您的公司概况. 预计在 48 小时内会收到回复。",
                     profileLabel: "客户概况", challengeLabel: "面临挑战", outcomeLabel: "战略成果",
                     exploreIFA: "探索 IFA 运作机制", readDeepDive: "阅读",
                     job1: "工作 1：保障", job1Desc: "资助遗产税与买断协议",
@@ -629,18 +745,18 @@
                         title: "为何 IFA 具有吸引力",
                         hnwTitle: "针对个人",
                         hnwList: [
-                            "人壽保險保障與財富規劃",
-                            "具稅務優勢的現金流獲取",
-                            "無需動用個人流動資產即可借貸",
-                            "保單現金價值在延稅基礎上增長",
-                            "潛在的遺產規劃與遺產稅解決方案"
+                            "人寿保险保障与财富规划",
+                            "具税务优势的现金流获取",
+                            "无需动用个人流动资产即可借贷",
+                            "保单现金价值在延税基础上增长",
+                            "潜在的遗产规划与遗产税解决方案"
                         ],
                         corpTitle: "针对公司企业",
                         corpList: [
                             "保留营运现金流",
                             "利用公司资本担保贷款",
-                            "资金产生收入时，利息可抵税",
-                            "增加资本股息账户 (CDA) 额度",
+                            "资金用于产生收入时，利息可抵税",
+                            "受保人身故时增加资本红利账户 (CDA) 额度",
                             "支持传承、退休或买卖协议融资"
                         ]
                     },
@@ -853,11 +969,9 @@
 
                 <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">IFA <span className="text-[#c5a059]">{language === 'en' ? 'Mechanics' : '運作機制'}</span></h2>
                 <div className="space-y-16 border-l border-[#c5a059]/20 pl-8 ml-4 text-left">
-                    <Step num="01" icon="settings" title={language === 'en' ? "Engine Selection" : "引擎選擇"} desc={language === 'en' ? "Analyzing Par Whole Life or UL for optimal Cash Surrender Value (CSV) performance." : "分析分紅保險與萬用保險，以實現最佳現金價值 (CSV) 積累速度。"} />
-                    <Step num="02" icon="piggy-bank" title={language === 'en' ? "Corporate Funding" : "公司注資"} desc={language === 'en' ? "The corporation deposits premiums, creating a tax-exempt asset on the balance sheet." : "公司存入保費，在資產負債表上建立一項不斷增長的免稅資產。"} />
-                    <Step num="03" icon="layers" title={language === 'en' ? "Lending Leverage" : "貸款槓桿"} desc={language === 'en' ? "Tier-1 lenders provide credit facilities up to 100% of CSV as collateralized lending." : "一線貸款機構針對保單現金價值提供高達 100% 的信用額度作為抵押資助。"} />
-                    <Step num="04" icon="trending-up" title={language === 'en' ? "Active Redeployment" : "資金重部署"} desc={language === 'en' ? "Capital is injected into investments. Interest may be tax-deductible under ITA Sec 20(1)(c)." : "資金重新投入業務或投資組合。利息根據所得稅法 ITA 20(1)(c) 可能享有扣稅優惠。"} />
-                    <Step num="05" icon="unlock" title={language === 'en' ? "Wealth Transfer" : "財富轉移"} desc={language === 'en' ? "Upon death, loan is retired; surplus flows tax-free to heirs via Capital Dividend Account credit." : "去世後，貸款由保險金清償；餘額通過資本股息賬戶 (CDA) 免稅流向繼承人。"} />
+                    {t.ifaSteps.map((step, idx) => (
+                        <Step key={idx} num={step.num} icon={step.icon} title={step.title} desc={step.desc} />
+                    ))}
                 </div>
             </section>
         );
@@ -1006,12 +1120,13 @@
         };
 
         const ProtectionView = ({ t, language, navigateTo }) => {
-            const { title, items } = t.protectionPage;
+            const { title, subTitle, items, faqTitle, faqs } = t.protectionPage;
             
             return (
                 <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
                     <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                    <h2 className="text-5xl md:text-7xl font-black italic mb-12 tracking-tighter leading-none text-white">{title}</h2>
+                    <h2 className="text-5xl md:text-7xl font-black italic mb-6 tracking-tighter leading-none text-white">{title}</h2>
+                    <p className="text-xl text-gray-400 max-w-4xl mx-auto mb-16 font-light leading-relaxed text-center">{subTitle}</p>
                     <div className="grid md:grid-cols-2 gap-8 text-sm md:text-base text-left">
                         {items.map((item, idx) => (
                             <div key={idx} className={`p-10 rounded-[3rem] bg-[#121212] border ${item.color === 'emerald' ? 'border-emerald-500/20' : 'border-[#c5a059]/20'}`}>
@@ -1019,6 +1134,18 @@
                                 <p className="text-gray-400 font-light leading-relaxed text-justify">{item.desc}</p>
                             </div>
                         ))}
+                    </div>
+                    
+                    <div className="mt-20 max-w-4xl mx-auto">
+                        <h3 className="text-3xl font-black text-white italic mb-10 text-center tracking-tight">{faqTitle}</h3>
+                        <div className="space-y-6">
+                            {faqs.map((faq, idx) => (
+                                <div key={idx} className="bg-[#121212] border border-white/10 rounded-2xl p-6 hover:border-[#c5a059]/30 transition-colors">
+                                    <h4 className="text-[#c5a059] font-bold text-lg mb-2">{faq.q}</h4>
+                                    <p className="text-gray-400 font-light leading-relaxed text-sm">{faq.a}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </section>
             );
@@ -1029,9 +1156,17 @@
                 <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
                 <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">Case <span className="text-[#c5a059]">{language === 'en' ? 'Studies' : '研究'}</span></h2>
                 <div className="space-y-24">
-                    <CaseItem title={language === 'en' ? "The Specialist’s Lever" : "專科醫生的槓桿"} profile={language === 'en' ? "Physician (CCPC), 45, Ontario." : "安省醫生 (CCPC)，45 歲。"} challenge={language === 'en' ? "Needs $5M protection while keeping $1.5M liquid for real estate investment." : "需要 500 萬加元保障，同時希望保持 150 萬加元流動資金用於地產投資。"} outcome={language === 'en' ? "Accessed 90% of CSV for investment via IFA. Zero net out-of-pocket cost." : "透過 IFA 獲得 90% 現金價值用於投資。淨現出支出為零。"} tag="Scenario 01" icon="user-check" t={t} lang={language} />
-                    <CaseItem title={language === 'en' ? "The Tech Surplus Rescue" : "科技盈餘救助"} profile={language === 'en' ? "Software Founder, $10M Retained Earnings." : "軟件創辦人，1000 萬加元留存盈餘。"} challenge={language === 'en' ? "Passive income triggering SBD grind and 50.17% tax rate." : "被動收入觸發 SBD 扣減磨損及高達 50.17% 的稅率。"} outcome={language === 'en' ? "Restored SBD limits and created a tax-free exit via CDA." : "恢復了 SBD 額度，並通過 CDA 建立了數百萬加元的免稅退出路徑。"} tag="Scenario 02" icon="zap" t={t} lang={language} />
-                    <CaseItem title={language === 'en' ? "The Legacy Foundation" : "家族企業傳承"} profile={language === 'en' ? "Manufacturing Owner, 65, Succession Phase." : "製造業主，65 歲，進入傳承階段。"} challenge={language === 'en' ? "Estimated $5.4M tax liability at death threatening business continuity." : "預計去世時有 540 萬加元稅務負債，威脅企業持續經營。"} outcome={language === 'en' ? "Estate Bond strategy. Insurance proceeds retire the tax bill entire, allowing debt-free transfer." : "採用遺產債券策略。保險金全額清償稅單，實現無債務傳承。"} tag="Scenario 03" icon="briefcase" t={t} lang={language} />
+                    {t.caseStudies.map((caseStudy, idx) => (
+                        <CaseItem 
+                            key={idx}
+                            title={caseStudy.title} 
+                            profile={caseStudy.profile} 
+                            challenge={caseStudy.challenge} 
+                            outcome={caseStudy.outcome} 
+                            tag={caseStudy.tag} 
+                            icon={caseStudy.icon} 
+                        />
+                    ))}
                 </div>
             </section>
         );
@@ -1041,7 +1176,7 @@
                 <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
                     <div className="lg:col-span-3 space-y-8">
-                        <div className="relative group overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl gold-glow aspect-[4/5]">
+                        <div className="relative group overflow-hidden rounded-[3rem] border border-white/10 shadow-2xl gold-glow aspect-[4/5] w-2/3 mx-auto md:w-1/2 lg:w-full lg:mx-0">
                             <img src="alex.PNG" alt="Alex Kynn Lee" className="w-full h-full transition-all duration-1000 object-cover photo-mask" onError={(e) => {e.target.src="https://via.placeholder.com/800x1000/121212/c5a059?text=Alex+Kynn+Lee";}} />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-40"></div>
                         </div>
@@ -1055,20 +1190,29 @@
                             <section className="space-y-6 text-left">
                                 <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutBioTitle}</h3>
                                 <div className="space-y-6 text-base md:text-lg text-gray-300 font-light leading-relaxed">
-                                    <p>{language === 'en' ? "With over 28 years of experience in the financial sector, my approach to wealth and insurance planning was shaped by a pivotal mentorship under Amy Tong, CEO of A.T. Financial Group. That experience helped define a client-first philosophy grounded in discipline, clarity, and long-term thinking." : "在金融領域擁有超過 28 年的經驗，我的財富和保險規劃方法深受 A.T. Financial Group 首席執行官 Amy Tong 的關鍵指導所啟發。"}</p>
-                                    <p>{language === 'en' ? "My background includes deep exposure to financial derivatives and algorithmic trading, where precision, risk management, and structure are paramount. Today, those principles inform how I help business owners and families thoughtfully structure and protect wealth in an increasingly complex financial environment." : "我的背景涉及金融衍生品和算法交易的深度探索。今天，這些原則貫穿於我如何協助企業主和家庭週密地構建和保護財富。"}</p>
-                                    <p className="border-l-4 border-[#c5a059] pl-8 italic text-gray-400">{language === 'en' ? "VeVa is a legacy name, formed from the names of my two daughters, Vera and Valarie — reflecting a commitment not only to financial outcomes, but to continuity, responsibility, and long-term stewardship." : "VeVa 是一個傳承之名，由我的兩個女兒 Vera 和 Valarie 的名字組成。"}</p>
+                                    <p>{t.aboutBioP1}</p>
+                                    <p>{t.aboutBioP2}</p>
+                                    <p className="border-l-4 border-[#c5a059] pl-8 italic text-gray-400">{t.aboutBioP3}</p>
                                 </div>
                             </section>
                             <section className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20 relative overflow-hidden group text-left">
                                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#c5a059]/5 to-transparent opacity-50"></div>
                                 <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6 relative z-10">{t.aboutCreedTitle}</h3>
-                                <p className="text-xl sm:text-2xl md:text-3xl text-white italic leading-relaxed font-light relative z-10 mb-12">{language === 'en' ? "True professionalism means recommending the right solution to the right person, at the right time — and standing behind that advice with consistent and timely follow-up." : "真正的專業意味著在合適的時間，向合適的人推薦合適的解決方案。"}</p>
+                                <p className="text-xl sm:text-2xl md:text-3xl text-white italic leading-relaxed font-light relative z-10 mb-12">{t.aboutCreedBody}</p>
                                 <div className="relative z-10 pt-8 border-t border-white/5 text-left text-justify">
                                     <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6">{t.aboutReachTitle}</h3>
-                                    <div className="flex gap-5 items-start">
+                                    <div className="flex gap-5 items-start flex-wrap">
                                         <Icon name="map-pin" className="text-emerald-500 shrink-0 mt-1" size={24} />
-                                        <p className="text-sm sm:text-base text-white font-light leading-relaxed">{language === 'en' ? "Based in Markham, we support individuals, families, and business owners in Richmond Hill, the GTA, and throughout Ontario." : "立足於萬錦市 (Markham)，我們為全安大略省提供支持。"}</p>
+                                        <p className="text-sm sm:text-base text-white font-light leading-relaxed mb-4 w-full">{t.aboutReachBody}</p>
+                                        
+                                        {/* Visual Tag Cloud for Local SEO */}
+                                        <div className="w-full flex flex-wrap gap-2 mt-2">
+                                            {t.serviceAreas.map((area, idx) => (
+                                                <span key={idx} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-gray-400 uppercase tracking-wider hover:border-[#c5a059]/50 hover:text-white transition-colors cursor-default">
+                                                    {area}
+                                                </span>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </section>
