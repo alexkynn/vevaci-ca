@@ -918,6 +918,14 @@
                             <button onClick={() => navigateTo('ifa')} className="text-2xl font-black uppercase tracking-widest">{t.navIFA}</button>
                             <button onClick={() => navigateTo('cases')} className="text-2xl font-black uppercase tracking-widest">{t.navCases}</button>
                             <button onClick={() => navigateTo('about')} className="text-2xl font-black uppercase tracking-widest">{t.navAbout}</button>
+                            
+                            <div className="flex gap-4 bg-white/5 px-6 py-2 rounded-full border border-white/10 items-center">
+                                <Icon name="globe" className="text-[#c5a059]" size={18} />
+                                <button onClick={() => setLanguage('en')} className={`text-sm ${language === 'en' ? 'text-[#e5c185] font-black' : 'text-gray-500'}`}>EN</button>
+                                <button onClick={() => setLanguage('zh')} className={`text-sm ${language === 'zh' ? 'text-[#e5c185] font-black' : 'text-gray-500'}`}>繁</button>
+                                <button onClick={() => setLanguage('cn')} className={`text-sm ${language === 'cn' ? 'text-[#e5c185] font-black' : 'text-gray-500'}`}>簡</button>
+                            </div>
+
                             <button onClick={() => navigateTo('feasibility')} className="text-2xl font-black text-[#c5a059] uppercase tracking-widest">{t.studyCta}</button>
                         </div>
                     )}
