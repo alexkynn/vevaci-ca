@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
-    <!-- SEO Optimization: Title & Meta -->
     <title>VEVACI | Immediate Financing Arrangements (IFA) & Estate Planning | Markham & Toronto</title>
     <meta name="description" content="Maximize corporate surplus and liquidity with Immediate Financing Arrangements (IFA) and leveraged insurance strategies. Expert wealth planning for business owners in Markham, Richmond Hill, and Ontario.">
     <meta name="keywords" content="Immediate Financing Arrangement Ontario, IFA Canada, Corporate Surplus Extraction, Participating Whole Life vs Universal Life, Estate Planning Markham, Alex Kynn Lee, VEVACI, Insurance Toronto">
     <meta name="author" content="Alex Kynn Lee, VeVa Consultancy Inc.">
     
-    <!-- Local SEO Geo-Tags -->
     <meta name="geo.region" content="CA-ON" />
     <meta name="geo.placename" content="Markham" />
     <meta name="geo.position" content="43.8561;-79.3370" />
     <meta name="ICBM" content="43.8561, -79.3370" />
 
-    <!-- FAQ Schema Markup for Rich Snippets -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -46,18 +43,14 @@
     }
     </script>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="logo.png">
     
-    <!-- React & Babel -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
@@ -122,20 +115,50 @@
         .glass-table tr:hover td {
             background: rgba(255,255,255,0.02);
         }
+        
+        /* Fact Check Section Styles */
+        .verification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .badge-verified {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .badge-context {
+            background-color: rgba(197, 160, 89, 0.1);
+            color: #c5a059;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
     </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState, useEffect, useRef } = React;
 
-        // Icon Component wrapper for Lucide
+        // FIXED: Optimized Icon Component
         const Icon = ({ name, className = "", size = 24 }) => {
+            const ref = useRef(null);
+            
             useEffect(() => { 
-                if (window.lucide) window.lucide.createIcons(); 
-            }, [name, size]);
-            return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
+                if (window.lucide && ref.current) window.lucide.createIcons({ root: ref.current }); 
+            }, [name]);
+            
+            return (
+                <span ref={ref} key={name} className={className} style={{ display: 'inline-flex' }}>
+                    <i data-lucide={name} style={{ width: size, height: size }}></i>
+                </span>
+            );
         };
 
         const App = () => {
@@ -154,11 +177,13 @@
                     setCurrentPage(page);
                     window.scrollTo(0, 0);
                     setIsMenuOpen(false);
+                    // FIXED: Reset form state on navigation
+                    setFormSubmitted(false);
                 };
                 
                 window.addEventListener('hashchange', handleHashChange);
                 
-                // Initial icon load
+                // Initial icon load for global icons if any
                 if (window.lucide) window.lucide.createIcons();
                 
                 return () => window.removeEventListener('hashchange', handleHashChange);
@@ -301,7 +326,37 @@
                 aboutBioP1: "Serving clients across Markham, Richmond Hill, and the Greater Toronto Area (GTA), Alex brings over 28 years of experience in the financial sector. His approach to wealth and insurance planning was shaped by a pivotal mentorship under Amy Tong, CEO of A.T. Financial Group. That experience helped define a client-first philosophy grounded in discipline, clarity, and long-term thinking.",
                 aboutBioP2: "My background includes deep exposure to financial derivatives and algorithmic trading, where precision, risk management, and structure are paramount. Today, those principles inform how I help business owners and families thoughtfully structure and protect wealth in an increasingly complex financial environment.",
                 aboutBioP3: "VeVa is a legacy name, formed from the names of my two daughters, Vera and Valarie — reflecting a commitment not only to financial outcomes, but to continuity, responsibility, and long-term stewardship.",
-                aboutCreedBody: "True professionalism means recommending the right solution to the right person, at the right time — and standing behind that advice with consistent and timely follow-up."
+                aboutCreedBody: "True professionalism means recommending the right solution to the right person, at the right time — and standing behind that advice with consistent and timely follow-up.",
+                factCheck: {
+                    title: "Regulatory & Technical Verification",
+                    intro: "This section cross-references the strategies presented on VEVACI with standard Canadian financial and insurance industry manuals (LLQP 2024 Editions).",
+                    items: [
+                        {
+                            claim: "Ontario Passive Income Tax Rate (50.17%)",
+                            status: "Verified",
+                            context: "Reflects the integrated tax rate for Ontario (Federal Part I + Part IV RDTOH) to prevent tax deferral advantages in corporations.",
+                            source: "Taxation-E211"
+                        },
+                        {
+                            claim: "Small Business Deduction (SBD) Grind Threshold",
+                            status: "Verified",
+                            context: "The $500,000 active business limit is reduced by $5 for every $1 of Adjusted Aggregate Investment Income (AAII) over $50,000.",
+                            source: "Taxation-E211"
+                        },
+                        {
+                            claim: "Interest Deductibility (IFA)",
+                            status: "Verified",
+                            context: "Interest is deductible under ITA 20(1)(c) when borrowed money is used for the purpose of earning income from a business or property. Deductibility is linked to the use of funds, not the collateral.",
+                            source: "Taxation-E211"
+                        },
+                        {
+                            claim: "Probate Bypass via Segregated Funds",
+                            status: "Verified",
+                            context: "Insurance products with a named beneficiary (other than the estate) are paid directly to the beneficiary, bypassing the estate and associated probate fees (Estate Administration Tax in Ontario).",
+                            source: "Segfunds-E313 / LifeInsur-E311"
+                        }
+                    ]
+                }
             };
 
             // Traditional Chinese Data
@@ -434,7 +489,37 @@
                 aboutBioP1: "Alex 服務於萬錦 (Markham)、列治文山 (Richmond Hill) 及大多倫多地區 (GTA) 的客戶，擁有超過 28 年的金融領域經驗。他的財富與保險規劃理念深受 A.T. Financial Group 行政總裁 Amy Tong 的關鍵指導所啟發。這段經歷幫助他確立了以客戶為先的哲學，強調紀律、清晰與長遠思維。",
                 aboutBioP2: "我的背景包含對金融衍生品和算法交易的深度涉獵，在這些領域，精準度、風險管理和結構至關重要。今天，這些原則貫穿於我如何協助企業主和家庭在日益複雜的金融環境中，審慎地構建和保護財富。",
                 aboutBioP3: "VeVa 是一個傳承之名，由我兩位女兒 Vera 和 Valarie 的名字組成 —— 這不僅反映了對財務成果的承諾，更體現了對延續性、責任感和長期管理的重視。",
-                aboutCreedBody: "真正的專業意味著在合適的時間，向合適的人推薦合適的解決方案 —— 並以始終如一且及時的後續服務來支持該建議。"
+                aboutCreedBody: "真正的專業意味著在合適的時間，向合適的人推薦合適的解決方案 —— 並以始終如一且及時的後續服務來支持該建議。",
+                factCheck: {
+                    title: "監管與技術核實",
+                    intro: "本節將 VEVACI 上的策略與加拿大金融及保險行業標準手冊 (LLQP 2024 版本) 進行對照核實。",
+                    items: [
+                        {
+                            claim: "安大略省被動收入稅率 (50.17%)",
+                            status: "已核實",
+                            context: "反映了安大略省的綜合稅率 (聯邦 Part I + Part IV RDTOH)，旨在防止公司內的稅務遞延優勢。",
+                            source: "Taxation-E211"
+                        },
+                        {
+                            claim: "小型企業稅務抵扣 (SBD) 削減門檻",
+                            status: "已核實",
+                            context: "當調整後的綜合投資收入 (AAII) 超過 $50,000 時，每增加 $1，各人的 $500,000 主動業務限額將減少 $5。",
+                            source: "Taxation-E211"
+                        },
+                        {
+                            claim: "利息抵稅 (IFA)",
+                            status: "已核實",
+                            context: "根據 ITA 20(1)(c)，當借入資金用於賺取商業或財產收入時，利息可抵稅。可抵稅性取決於資金用途，而非抵押品。",
+                            source: "Taxation-E211"
+                        },
+                        {
+                            claim: "透過保本基金規避遺產認證",
+                            status: "已核實",
+                            context: "指定受益人 (非遺產) 的保險產品將直接支付給受益人，從而規避遺產及相關的遺產認證費 (安省遺產管理稅)。",
+                            source: "Segfunds-E313 / LifeInsur-E311"
+                        }
+                    ]
+                }
             };
 
             // Simplified Chinese Data
@@ -533,7 +618,7 @@
                 ifaSteps: [
                     { num: "01", icon: "settings", title: "引擎选择", desc: "分析分红终身寿险或万能寿险，以实现最佳现金解约价值 (CSV) 表现。" },
                     { num: "02", icon: "piggy-bank", title: "公司注资", desc: "公司存入保费，在资产负债表上建立免税资产。" },
-                    { num: "03", icon: "layers", title: "贷款杠杆", desc: "一线贷款机构提供高达 100% CSV 的信贷额度作为抵押贷款。" },
+                    { num: "03", icon: "layers", title: "贷款槓杆", desc: "一线贷款机构提供高达 100% CSV 的信贷额度作为抵押贷款。" },
                     { num: "04", icon: "trending-up", title: "资金重部署", desc: "资金注入投资。根据 ITA 第 20(1)(c) 条，利息可能抵税。" },
                     { num: "05", icon: "unlock", title: "财富转移", desc: "身故时，贷款注销；剩余部分通过资本红利账户 (CDA) 免税流向继承人。" }
                 ],
@@ -563,10 +648,40 @@
                         icon: "briefcase" 
                     }
                 ],
-                aboutBioP1: "Alex 服务于万锦 (Markham)、列治文山 (Richmond Hill) 及大多伦多地区 (GTA) 的客户，拥有超过 28 年的金融领域经验。他的财富与保险规划理念深受 A.T. Financial Group 行政总裁 Amy Tong 的关键指导所启发。这段经历帮助他确立了以客户为先的哲学，强调纪律、清晰与长远思维。",
+                aboutBioP1: "Alex 服务于万锦 (Markham)、列治文山 (Richmond Hill) 及大多倫多地區 (GTA) 的客戶，拥有超过 28 年的金融领域经验。他的财富与保险规划理念深受 A.T. Financial Group 行政总裁 Amy Tong 的关键指导所启发。这段经历帮助他确立了以客户为先的哲学，强调纪律、清晰与长远思维。",
                 aboutBioP2: "我的背景包含对金融衍生品和算法交易的深度涉猎，在这些领域，精准度、风险管理和结构至关重要。今天，这些原则贯穿于我如何协助企业主和家庭在日益复杂的金融环境中，审慎地构建和保护财富。",
                 aboutBioP3: "VeVa 是一个传承之名，由我两位女儿 Vera 和 Valarie 的名字组成 —— 这不仅反映了对财务成果的承诺，更体现了对延续性、责任感和长期管理的重视。",
-                aboutCreedBody: "真正的专业意味着在合适的时间，向合适的人推荐合适的解决方案 —— 并以始终如一且及时的后续服务来支持该建议。"
+                aboutCreedBody: "真正的专业意味着在合适的时间，向合适的人推荐合适的解决方案 —— 并以始终如一且及时的后续服务来支持该建议。",
+                factCheck: {
+                    title: "监管与技术核实",
+                    intro: "本节将 VEVACI 上的策略与加拿大金融及保险行业标准手册 (LLQP 2024 版本) 进行对照核实。",
+                    items: [
+                        {
+                            claim: "安大略省被动收入税率 (50.17%)",
+                            status: "已核实",
+                            context: "反映了安大略省的综合税率 (联邦 Part I + Part IV RDTOH)，旨在防止公司内的税务递延优势。",
+                            source: "Taxation-E211"
+                        },
+                        {
+                            claim: "小型企业税务抵扣 (SBD) 削减门槛",
+                            status: "已核实",
+                            context: "当调整后的综合投资收入 (AAII) 超过 $50,000 时，每增加 $1，各人的 $500,000 主动业务限额将减少 $5。",
+                            source: "Taxation-E211"
+                        },
+                        {
+                            claim: "利息抵税 (IFA)",
+                            status: "已核实",
+                            context: "根据 ITA 20(1)(c)，当借入资金用于赚取商业或财产收入时，利息可抵税。可抵税性取决于资金用途，而非抵押品。",
+                            source: "Taxation-E211"
+                        },
+                        {
+                            claim: "透过保本基金规避遗产认证",
+                            status: "已核实",
+                            context: "指定受益人 (非遗产) 的保险产品将直接支付给受益人，从而规避遗产及相关的遗产认证费 (安省遗产管理税)。",
+                            source: "Segfunds-E313 / LifeInsur-E311"
+                        }
+                    ]
+                }
             };
 
             const content = {
@@ -634,7 +749,8 @@
                             "Supporting succession, retirements, or buy-sell funding without disrupting day-to-day finances"
                         ]
                     },
-                    serviceAreas: ["Markham", "Richmond Hill", "Toronto", "Vaughan", "Mississauga", "Scarborough", "North York", "Oakville", "Burlington", "Aurora", "Newmarket", "GTA", "Ontario"]
+                    serviceAreas: ["Markham", "Richmond Hill", "Toronto", "Vaughan", "Mississauga", "Scarborough", "North York", "Oakville", "Burlington", "Aurora", "Newmarket", "GTA", "Ontario"],
+                    navFactCheck: "Verification"
                 },
                 zh: {
                     ...zhContent,
@@ -648,7 +764,7 @@
                     surplusTitle: "公司盈餘陷阱",
                     surplusDesc: "分析安省公司被動收入稅與 SBD 扣減效應。",
                     engineTitle: "Par vs. UL 保單引擎",
-                    engineDesc: "針對 IFA 策略採用的兩種主要保險底盤的技術分析。",
+                    engineDesc: "針對 IFA 策略採用的兩種主要保單底盤的技術分析。",
                     protectionTitle: "全面保障策略",
                     protectionDesc: "透過危疾保險 (Critical Illness (CI) Insurance) 與保本基金 (Segregated Funds) 確保企業持續經營。",
                     casesTitle: "案例研究",
@@ -697,7 +813,8 @@
                             "支持傳承、退休或買賣協議融資"
                         ]
                     },
-                    serviceAreas: ["萬錦市", "列治文山", "多倫多", "旺市", "密西沙加", "士嘉堡", "北約克", "奧克維爾", "伯靈頓", "奧羅拉", "新市", "大多倫多地區", "安大略省"]
+                    serviceAreas: ["萬錦市", "列治文山", "多倫多", "旺市", "密西沙加", "士嘉堡", "北約克", "奧克維爾", "伯靈頓", "奧羅拉", "新市", "大多倫多地區", "安大略省"],
+                    navFactCheck: "專業核實"
                 },
                 cn: {
                     ...cnContent,
@@ -748,7 +865,7 @@
                             "人寿保险保障与财富规划",
                             "具税务优势的现金流获取",
                             "无需动用个人流动资产即可借贷",
-                            "保单现金价值在延税基础上增长",
+                            "保单现金价值在延稅基础上增长",
                             "潜在的遗产规划与遗产税解决方案"
                         ],
                         corpTitle: "针对公司企业",
@@ -760,7 +877,8 @@
                             "支持传承、退休或买卖协议融资"
                         ]
                     },
-                    serviceAreas: ["万锦市", "列治文山", "多伦多", "旺市", "密西沙加", "士嘉堡", "北约克", "奥克维尔", "伯灵顿", "奥罗拉", "新市", "大多伦多地区", "安大略省"]
+                    serviceAreas: ["万锦市", "列治文山", "多伦多", "旺市", "密西沙加", "士嘉堡", "北约克", "奥克维尔", "伯灵顿", "奥罗拉", "新市", "大多伦多地区", "安大略省"],
+                    navFactCheck: "专业核实"
                 }
             };
 
@@ -813,6 +931,7 @@
                         {currentPage === 'cases' && <CaseView t={t} navigateTo={navigateTo} language={language} />}
                         {currentPage === 'about' && <AboutView t={t} navigateTo={navigateTo} language={language} />}
                         {currentPage === 'feasibility' && <FeasibilityView t={t} navigateTo={navigateTo} language={language} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />}
+                        {currentPage === 'factcheck' && <FactCheckView t={t} navigateTo={navigateTo} language={language} />}
                     </main>
 
                     <section className="max-w-7xl mx-auto px-6 py-12 border-t border-white/5">
@@ -839,6 +958,7 @@
                             <div className="space-y-2">
                                 <p className="text-xs text-gray-700 font-bold">© 2026 VeVa Consultancy Inc. | Alex Kynn Lee</p>
                                 <p className="text-[10px] text-gray-800 tracking-widest uppercase text-gray-400 font-bold">Markham & Richmond Hill, Ontario</p>
+                                <button onClick={() => navigateTo('factcheck')} className="text-[10px] text-gray-600 hover:text-[#c5a059] uppercase tracking-widest block text-center md:text-left mt-4">{t.navFactCheck}</button>
                             </div>
                         </div>
                     </footer>
@@ -950,7 +1070,8 @@
                     <Card icon="layers" title={t.ifaTitle} desc={t.ifaDesc} onClick={() => navigateTo('ifa')} label={t.readDeepDive} />
                     <Card icon="unlock" title={t.surplusTitle} desc={t.surplusDesc} onClick={() => navigateTo('surplus')} label={t.readDeepDive} />
                     <Card icon="bar-chart-3" title={t.casesTitle} desc={t.casesDesc} onClick={() => navigateTo('cases')} label={t.readDeepDive} />
-                    <Card icon="scale" title={t.engineTitle} desc={language === 'en' ? 'A technical comparison of Participating Whole Life and Universal Life chassis.' : '分紅保險與萬用保險機制對比'} onClick={() => navigateTo('compare')} label={t.readDeepDive} />
+                    {/* FIXED: Correct localization for Engine description */}
+                    <Card icon="scale" title={t.engineTitle} desc={t.engineDesc} onClick={() => navigateTo('compare')} label={t.readDeepDive} />
                     <Card icon="shield-check" title={t.protectionTitle} desc={t.protectionDesc} onClick={() => navigateTo('protection')} label={t.readDeepDive} />
                     <Card icon="users" title={t.aboutTitle} desc={t.aboutDesc} onClick={() => navigateTo('about')} label={t.readDeepDive} />
                 </section>
@@ -1328,6 +1449,31 @@
                 </section>
             );
         };
+
+        const FactCheckView = ({ t, navigateTo, language }) => (
+            <section className="max-w-5xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <div className="mb-12">
+                    <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white mb-6">{t.factCheck.title}</h2>
+                    <p className="text-gray-400 text-lg font-light leading-relaxed max-w-3xl">{t.factCheck.intro}</p>
+                </div>
+                
+                <div className="grid gap-6">
+                    {t.factCheck.items.map((item, idx) => (
+                        <div key={idx} className="bg-[#121212] border border-white/10 rounded-2xl p-8 hover:border-[#c5a059]/30 transition-colors">
+                            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4">
+                                <h3 className="text-xl font-bold text-white italic">{item.claim}</h3>
+                                <div className="flex gap-2">
+                                    <span className="verification-badge badge-verified"><Icon name="check" size={12} /> {item.status}</span>
+                                    <span className="verification-badge badge-context">{item.source}</span>
+                                </div>
+                            </div>
+                            <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base border-l-2 border-[#c5a059]/50 pl-4">{item.context}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        );
 
         const Card = ({ icon, title, desc, onClick, label = "Read More" }) => (
             <div onClick={onClick} className="px-6 py-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full text-left text-white">
