@@ -613,6 +613,7 @@
                 },
                 ifaIntro: {
                     title: "IFA 运作机制指南",
+                    desc: "抵押保单现金价值以进行企业再投资的技术指南。",
                     desc: "即时融资安排 (IFA) 是一种杠杆策略，允许企业主在购买永久人寿保险的同时保留资本。通过将保单的现金解约价值 (CSV) 作为抵押品，公司可向银行获得信用额度——通常高达已付保费的 100% 或保单现金价值——而不会实质减少现金流。这些资金可用于产生收入的商业或投资活动，且利息可能抵稅。未偿还贷款通常在受保人身故时由保险身故赔偿金偿还。"
                 },
                 ifaSteps: [
@@ -750,7 +751,9 @@
                         ]
                     },
                     serviceAreas: ["Markham", "Richmond Hill", "Toronto", "Vaughan", "Mississauga", "Scarborough", "North York", "Oakville", "Burlington", "Aurora", "Newmarket", "GTA", "Ontario"],
-                    navFactCheck: "Verification"
+                    navFactCheck: "Verification",
+                    footerCopyright: "© Copyright 2026 VeVa Consultancy Inc. All rights reserved.",
+                    footerLocation: "Markham & Richmond Hill, Ontario"
                 },
                 zh: {
                     ...zhContent,
@@ -814,7 +817,9 @@
                         ]
                     },
                     serviceAreas: ["萬錦市", "列治文山", "多倫多", "旺市", "密西沙加", "士嘉堡", "北約克", "奧克維爾", "伯靈頓", "奧羅拉", "新市", "大多倫多地區", "安大略省"],
-                    navFactCheck: "專業核實"
+                    navFactCheck: "專業核實",
+                    footerCopyright: "© Copyright 2026 VeVa Consultancy Inc. 版權所有。",
+                    footerLocation: "安大略省 萬錦市 & 列治文山"
                 },
                 cn: {
                     ...cnContent,
@@ -878,7 +883,9 @@
                         ]
                     },
                     serviceAreas: ["万锦市", "列治文山", "多伦多", "旺市", "密西沙加", "士嘉堡", "北约克", "奥克维尔", "伯灵顿", "奥罗拉", "新市", "大多伦多地区", "安大略省"],
-                    navFactCheck: "专业核实"
+                    navFactCheck: "专业核实",
+                    footerCopyright: "© Copyright 2026 VeVa Consultancy Inc. 版权所有。",
+                    footerLocation: "安大略省 万锦市 & 列治文山"
                 }
             };
 
@@ -964,8 +971,8 @@
                                 <p className="text-gray-500 text-[11px] leading-relaxed italic border-l-0 md:border-l-2 border-[#b36b39] md:pl-6 uppercase max-w-lg mx-auto md:mx-0">{t.disclosure}</p>
                             </div>
                             <div className="space-y-2">
-                                <p className="text-xs text-gray-700 font-bold">© 2026 VeVa Consultancy Inc. | Alex Kynn Lee</p>
-                                <p className="text-[10px] text-gray-800 tracking-widest uppercase text-gray-400 font-bold">Markham & Richmond Hill, Ontario</p>
+                                <p className="text-xs text-gray-700 font-bold">{t.footerCopyright}</p>
+                                <p className="text-[10px] text-gray-800 tracking-widest uppercase text-gray-400 font-bold">{t.footerLocation}</p>
                                 <button onClick={() => navigateTo('factcheck')} className="text-[10px] text-gray-600 hover:text-[#c5a059] uppercase tracking-widest block text-center md:text-left mt-4">{t.navFactCheck}</button>
                             </div>
                         </div>
