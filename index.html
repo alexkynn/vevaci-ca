@@ -161,10 +161,624 @@
             );
         };
 
+        // --- CONTENT DATA DEFINITIONS ---
+
+        // English Data
+        const englishContent = {
+            comparePage: {
+                mainTitle: "Participating Whole Life vs Universal Life (Canada)",
+                subTitle: "(Under an IFA-Structured Approach)",
+                par: {
+                    title: "Participating Whole Life Insurance (IFA-Structured)",
+                    bestSuited: "Long-term wealth preservation, estate planning, and conservative capital accumulation.",
+                    features: [
+                        "Emphasizes guarantees, stability, and predictability",
+                        "Cash values grow through guarantees plus participating dividends",
+                        "Less sensitive to market performance or interest rate changes",
+                        "Simpler to manage over time once properly designed",
+                        "Often preferred for corporate planning, CDA maximization, and legacy goals"
+                    ],
+                    valueAdd: "Optimized funding, paid-up additions strategy, dividend utilization, and integration with corporate and estate planning to maximize long-term efficiency."
+                },
+                ul: {
+                    title: "Universal Life Insurance (IFA-Structured)",
+                    bestSuited: "Flexible planning, tax-sheltered investment growth, and clients comfortable with active management.",
+                    features: [
+                        "Separates insurance costs and investment accounts",
+                        "Greater flexibility in premiums, death benefit, and investment choices",
+                        "Performance depends on investment returns and cost assumptions",
+                        "Requires ongoing monitoring and adjustments",
+                        "Appeals to clients seeking customization and higher upside potential"
+                    ],
+                    valueAdd: "Stress-tested assumptions, disciplined funding strategies, investment allocation oversight, and long-term sustainability planning to avoid policy erosion."
+                },
+                table: {
+                    title: "Key Differences Under IFA Structuring",
+                    headers: ["Aspect", "Participating Whole Life", "Universal Life"],
+                    rows: [
+                        { aspect: "Growth Profile", par: "Stable, long-term, dividend-based", ul: "Variable, market- and assumption-driven" },
+                        { aspect: "Risk Exposure", par: "Lower", ul: "Higher (investment & cost risk)" },
+                        { aspect: "Flexibility", par: "Moderate", ul: "High" },
+                        { aspect: "Ongoing Management", par: "Low", ul: "Moderate to High" },
+                        { aspect: "Ideal Use Case", par: "Estate & legacy planning", ul: "Flexible wealth accumulation" }
+                    ]
+                },
+                bottomLine: {
+                    title: "Bottom Line",
+                    text: "The product matters — but the structure matters more.\n\nUnder an IFA approach, Participating Whole Life prioritizes certainty and legacy, while Universal Life offers flexibility and potential upside. The right choice depends on objectives, risk tolerance, and how the policy is engineered from day one."
+                }
+            },
+            protectionPage: {
+                title: "Holistic Insurance Services for Ontario Families & Businesses",
+                subTitle: "Premier risk management and estate planning solutions serving Toronto, Markham, and the entire GTA. We provide the best-in-class strategies to protect your wealth.",
+                faqTitle: "Frequently Asked Questions",
+                items: [
+                    { title: "Critical Illness (CI) Insurance Ontario", desc: "Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.", color: "emerald" },
+                    { title: "Segregated Funds & Probate Strategies", desc: "Bypass Ontario's Estate Administration Tax (probate) and secure creditor protection under the Insurance Act. Ideal for GTA investors.", color: "gold" },
+                    { title: "Disability Insurance (DI) Toronto", desc: "Protects earning power — often a bigger risk than death for professionals and business owners.", color: "emerald" },
+                    { title: "Business Overhead Expense Insurance", desc: "Keeps fixed business costs covered if the owner is disabled.", color: "gold" },
+                    { title: "Key Person Disability / Income Replacement", desc: "Rarely discussed, highly valued when understood.", color: "emerald" },
+                    { title: "Long-Term Care Insurance (LTC)", desc: "Especially relevant for aging parents and HNW families.", color: "gold" },
+                    { title: "Permanent Life Insurance (WL / UL)", desc: "For estate liquidity, tax deferral, and CDA planning.", color: "emerald" },
+                    { title: "Shareholder / Buy-Sell Insurance", desc: "Funding shareholder buy-outs to ensure business continuity and fair market value exchange.", color: "gold" },
+                    { title: "Key Person Life & CI", desc: "Injecting capital to offset revenue loss and recruitment costs upon the loss of a key executive.", color: "emerald" },
+                    { title: "Corporate-Owned Permanent Insurance", desc: "Utilizing corporate surplus to build a tax-advantaged asset class on the balance sheet.", color: "gold" }
+                ],
+                faqs: [
+                    { q: "Why do Ontario business owners need specialized insurance planning?", a: "Ontario has specific tax rates and probate fees (Estate Administration Tax). Our strategies are tailored to navigate the Ontario legal landscape to maximize wealth preservation." },
+                    { q: "Do you serve clients outside of Markham?", a: "Yes. While based in Markham, VEVACI serves clients across the entire Greater Toronto Area (GTA), including Toronto, Richmond Hill, Vaughan, Mississauga, and throughout Ontario." },
+                    { q: "What makes VEVACI the best choice for high-net-worth insurance in Toronto?", a: "We don't just sell products; we engineer strategies. Our integration of tax planning, corporate structure, and insurance products delivers superior liquidity and long-term value." }
+                ]
+            },
+            surplusPage: {
+                titlePrefix: "The Corporate Surplus Trap ",
+                titleSuffix: "for Ontario CCPCs",
+                back: "Back to Home",
+                stats: [
+                    { title: "Passive Tax", value: "50.17%", desc: "Ontario Corporate Passive Income Rate.", color: "red" },
+                    { title: "SBD Threshold", value: "$50,000", desc: "AAII limit before 5:1 grind begins.", color: "gold" }
+                ],
+                definitions: [
+                    { 
+                        term: "CCPC (Canadian-Controlled Private Corporation)", 
+                        desc: "A private corporation resident in Canada that is not controlled by non-residents or public corporations. Most professionals and small business owners incorporate as a CCPC to access the lower Small Business Tax Rate on active income." 
+                    },
+                    { 
+                        term: "SBD (Small Business Deduction)", 
+                        desc: "A preferential tax deduction that lowers the federal tax rate on the first $500,000 of active business income. However, for every $1 of passive income earned above $50,000, the SBD limit is reduced by $5, essentially clawing back this tax advantage." 
+                    }
+                ],
+                body: [
+                    "Holding excess cash inside a CCPC triggers tax friction. Passive income over $50k erodes your active small business deduction eligibility.",
+                    "Relocating surplus into tax-exempt insurance engines restores your SBD limits while creating a tax-free wealth extraction channel via the Capital Dividend Account (CDA)."
+                ]
+            },
+            ifaIntro: {
+                title: "What Is an Immediate Financing Arrangement (IFA)?",
+                desc: "An Immediate Financing Arrangement (IFA) is a leverage strategy enabling business owners to purchase permanent life insurance while preserving capital. By assigning the policy’s Cash Surrender Value (CSV) as collateral, the corporation secures a line of credit—often up to 100% of the CSV—to reinvest in income-generating business or investment activities. This structure allows for the potential tax deductibility of interest, reducing the net cost of insurance while maintaining liquidity and establishing a tax-free Capital Dividend Account (CDA) credit."
+            },
+            ifaSteps: [
+                { num: "01", icon: "settings", title: "Engine Selection", desc: "Analyzing Par Whole Life or UL for optimal Cash Surrender Value (CSV) performance." },
+                { num: "02", icon: "piggy-bank", title: "Corporate Funding", desc: "The corporation deposits premiums, creating a tax-exempt asset on the balance sheet." },
+                { num: "03", icon: "layers", title: "Lending Leverage", desc: "Tier-1 lenders provide credit facilities up to 100% of CSV as collateralized lending." },
+                { num: "04", icon: "trending-up", title: "Active Redeployment", desc: "Capital is injected into investments. Interest may be tax-deductible under ITA Sec 20(1)(c)." },
+                { num: "05", icon: "unlock", title: "Wealth Transfer", desc: "Upon death, loan is retired; surplus flows tax-free to heirs via Capital Dividend Account credit." }
+            ],
+            caseStudies: [
+                { 
+                    title: "The Specialist’s Lever", 
+                    profile: "Physician (CCPC), 45, Markham, Ontario.", 
+                    challenge: "Needs $5M protection while keeping $1.5M liquid for real estate investment.", 
+                    outcome: "Accessed 90% of CSV for investment via IFA. Zero net out-of-pocket cost.", 
+                    tag: "Scenario 01", 
+                    icon: "user-check" 
+                },
+                { 
+                    title: "The Tech Surplus Rescue", 
+                    profile: "Software Founder, Toronto-based, $10M Retained Earnings.", 
+                    challenge: "Passive income triggering SBD grind and 50.17% tax rate.", 
+                    outcome: "Restored SBD limits and created a tax-free exit via CDA.", 
+                    tag: "Scenario 02", 
+                    icon: "zap" 
+                },
+                { 
+                    title: "The Legacy Foundation", 
+                    profile: "Manufacturing Owner, 65, Succession Phase.", 
+                    challenge: "Estimated $5.4M tax liability at death threatening business continuity.", 
+                    outcome: "Estate Bond strategy. Insurance proceeds retire the tax bill entire, allowing debt-free transfer.", 
+                    tag: "Scenario 03", 
+                    icon: "briefcase" 
+                }
+            ],
+            // Updated About Content Data
+            aboutRole: "Insurance Strategist & Licensed Agent | Founder of VEVACI",
+            aboutBioTitle: "Professional Biography", 
+            
+            // Section 1: Philosophy
+            aboutSection1Title: "The VEVACI Philosophy: Precision meets Legacy",
+            aboutSection1Body: "\"VEVACI\" is more than a brand—it is a legacy name formed from the names of my two daughters, Vera and Valarie. It reflects my deepest personal and professional commitment: ensuring continuity, responsibility, and long-term stewardship for the families and businesses I serve.",
+            
+            // Section 2: Background
+            aboutSection2Title: "From Algorithmic Trading to Wealth Protection",
+            aboutSection2Body: "With over 28 years of experience in the financial sector, my background is rooted in financial derivatives and algorithmic trading. In that world, precision, risk management, and structural integrity are paramount. Today, I apply those exact same rigorous principles to help business owners and families across Markham, Richmond Hill, and the Greater Toronto Area (GTA) thoughtfully structure and protect their wealth in an increasingly complex financial environment.",
+            
+            // Section 3: Mentorship
+            aboutSection3Title: "Backed by Industry Excellence",
+            aboutSection3Body: <span>My approach to insurance and wealth strategy was profoundly shaped by a pivotal mentorship under Amy Tong, CEO of <a href="https://atfinancialgroup.com/" target="_blank" rel="noopener noreferrer" className="text-[#c5a059] hover:underline decoration-[#c5a059] underline-offset-2 transition-all">A.T. Financial Group</a>. Operating alongside A.T. Financial Group, my practice is driven by a client-first philosophy grounded in discipline, clarity, and long-term thinking.</span>,
+            
+            // Section 4: Creed
+            aboutSection4Title: "My Professional Creed",
+            aboutSection4Body: "True professionalism means recommending the right solution to the right person, at the right time—and standing behind that advice with consistent, dedicated follow-up.",
+
+            aboutReachTitle: "Service Reach",
+            aboutReachBody: "Based in Markham, we provide specialized insurance strategies for individuals and corporations in Toronto, Richmond Hill, Vaughan, Mississauga, Scarborough, and North York. Our services are available across the GTA and to all Ontario residents.",
+            
+            navHome: "Home", navIFA: "IFA", navCases: "Cases", navAbout: "About",
+            headline: "Wealth & IFA Strategies for Ontario Business Owners.",
+            subheadline: "Unlock liquidity and optimize corporate surplus with advanced strategies tailored for Toronto, Markham, and Richmond Hill professionals.",
+            studyCta: "Request a Strategic Consultation",
+            disclosure: '"VEVACI" is a trade name used for marketing purposes only. Sales of insurance products are conducted by Alex Kynn Lee, a Licensed Life Insurance Agent in Ontario. Mr. Lee is professionally sponsored by Industrial Alliance (iA Financial Group) and operates under the supervision of the Managing General Agency, A.T. Financial Group.',
+            ifaTitle: "The IFA Mechanics Guide",
+            ifaDesc: "Technical guide to collateralizing cash value for business reinvestment.",
+            surplusTitle: "The Corporate Surplus Trap",
+            surplusDesc: "Analyze the 50.17% passive income tax and SBD grind in Ontario CCPCs.",
+            engineTitle: "Par vs. UL Engines",
+            engineDesc: "A technical comparison of Participating Whole Life and Universal Life chassis.",
+            protectionTitle: "Holistic Protection",
+            protectionDesc: "Securing continuity through Critical Illness (CI) Insurance and Segregated Fund protection.",
+            casesTitle: "Case Studies",
+            casesDesc: "Real-world strategies for Specialists and Business Owners.",
+            aboutTitle: "About Alex",
+            aboutDesc: "Integrated insurance and wealth planning for businesses and families, backed by 28+ years of experience.",
+            oneDollarTitle: "One Dollar, Two Jobs",
+            back: "Back to Home", submit: "Request Strategic Consultation", received: "Request Received",
+            followup: "Request has been received and we will try to reach out within 48 hours.",
+            limitReached: "Daily limit of 5 requests reached for this email. Please try again in 24 hours.",
+            processing: "Sending...",
+            networkError: "Network error. Please try later.",
+            profileLabel: "Profile", challengeLabel: "The Challenge", outcomeLabel: "Strategic Outcome",
+            exploreIFA: "Explore IFA Mechanics", readDeepDive: "Read",
+            job1: "Job 1: Protection", job1Desc: "Fund Estate Tax & Buy-Sell",
+            job2: "Job 2: Liquidity", job2Desc: "Capital for Reinvestment",
+            oneDollarSubTitle: "Integrated Insurance Planning for Businesses and Families",
+            oneDollarSubBody: "We help business owners and high-net-worth individuals in Ontario design insurance strategies as part of a broader capital and wealth plan — not as standalone products.\n\nOur approach focuses on protecting risk, preserving liquidity, and reducing unnecessary opportunity cost, so insurance supports growth, succession, and long-term family wealth rather than restricting it.",
+            disclaimerTitle: "DISCLAIMER",
+            disclaimerBody: "The information provided on this website is for general educational and informational purposes only. It is not intended as, and should not be construed as, financial, tax, legal, or investment advice. Life insurance strategies, including Immediate Financing Arrangements (IFA), are complex and subject to individual eligibility, lender requirements, and current Canadian tax laws (including the Income Tax Act). Taxation rates and rules (such as SBD thresholds and passive income tax) are subject to change. Always consult with a qualified professional accountant, lawyer, or financial advisor before implementing any strategy discussed herein. Past performance is not indicative of future results.",
+            oneDollarDetailTitle: "The Dual-Efficiency Engine",
+            oneDollarDetail1: "Traditional insurance creates a 'locked' premium expense. Our IFA engineering transforms that expense into a revolving asset. Every dollar funds a permanent death benefit to satisfy estate liabilities (Job 1) while simultaneously serving as prime collateral for a bank credit line (Job 2).",
+            oneDollarDetail2: "This architecture allows you to maintain active capital management. You aren't choosing between protection and growth—you are utilizing the same capital to execute both. The result is a neutralized opportunity cost and a maximized corporate balance sheet.",
+            engineCompTitle: "Strategic Chassis Comparison",
+            aboutBioTitle: "Professional Biography",
+            aboutCreedTitle: "Professional Creed",
+            aboutReachTitle: "Service Reach",
+            formName: "Name",
+            formEmail: "Email",
+            formPhone: "Phone Number (Optional)",
+            formCorp: "Corporation (Optional)",
+            jobTooltip: {
+                title: "Why IFA Can Be Attractive",
+                hnwTitle: "For Individuals",
+                hnwList: [
+                    "Life insurance protection with wealth planning",
+                    "Tax-advantaged cash flow access",
+                    "The ability to borrow without tapping personal liquid assets",
+                    "Growth of policy’s cash value on a tax-deferred basis",
+                    "Potential for legacy planning and estate tax solutions"
+                ],
+                corpTitle: "For Corporations",
+                corpList: [
+                    "Preserving operating cash flow",
+                    "Using corporate capital to secure loans",
+                    "Accessing tax deductions for interest when funds are used to generate business or investment income",
+                    "Enhancing the Capital Dividend Account (CDA) upon insured’s death",
+                    "Supporting succession, retirements, or buy-sell funding without disrupting day-to-day finances"
+                ]
+            },
+            serviceAreas: ["Markham", "Richmond Hill", "Toronto", "Vaughan", "Mississauga", "Scarborough", "North York", "Oakville", "Burlington", "Aurora", "Newmarket", "GTA", "Ontario"],
+            navFactCheck: "Verification",
+            footerCopyright: "© 2026 VEVACI. All rights reserved.",
+            footerLocation: "Markham & Richmond Hill, Ontario"
+        };
+
+        // Traditional Chinese Data
+        const zhContent = {
+            comparePage: {
+                mainTitle: "分紅終身壽險 vs 萬能壽險",
+                subTitle: "（在 IFA 架構策略下）",
+                par: {
+                    title: "分紅終身壽險 (Participating Whole Life)",
+                    bestSuited: "長期財富保值、遺產規劃及保守資本積累。",
+                    features: [
+                        "強調保證、穩定性與可預測性",
+                        "現金價值透過保證加上分紅增長",
+                        "對市場表現或利率變動較不敏感",
+                        "設計得當後，長期管理較為簡單",
+                        "常用於公司規劃、CDA 最大化及傳承目標"
+                    ],
+                    valueAdd: "優化注資、繳清增額 (PUA) 策略、分紅運用，並整合公司與遺產規劃以最大化長期效率。"
+                },
+                ul: {
+                    title: "萬能壽險 (Universal Life)",
+                    bestSuited: "靈活規劃、稅務庇護下的投資增長，以及習慣主動管理的客戶。",
+                    features: [
+                        "將保險成本與投資帳戶分離",
+                        "保費、身故賠償及投資選擇具有更高靈活性",
+                        "績效取決於投資回報與成本假設",
+                        "需要持續監控與調整",
+                        "吸引尋求客製化與更高潛在回報的客戶"
+                    ],
+                    valueAdd: "壓力測試假設、紀律性注資策略、投資配置監督及長期可持續性規劃，以避免保單侵蝕。"
+                },
+                table: {
+                    title: "IFA 架構下的關鍵差異",
+                    headers: ["構面", "分紅終身壽險", "萬能壽險"],
+                    rows: [
+                        { aspect: "增長特徵", par: "穩定、長期、基於分紅", ul: "變動、驅動於市場與假設" },
+                        { aspect: "風險敞口", par: "較低", ul: "較高 (投資與成本風險)" },
+                        { aspect: "靈活性", par: "中等", ul: "高" },
+                        { aspect: "持續管理", par: "低", ul: "中至高" },
+                        { aspect: "理想用途", par: "遺產與傳承規劃", ul: "靈活財富積累" }
+                    ]
+                },
+                bottomLine: {
+                    title: "總結",
+                    text: "產品固然重要，但架構更為關鍵。\n\n在 IFA 架構下，分紅人壽優先考慮確定性與傳承，而萬用壽險提供靈活性與潛在增長。正確的選擇取決於目標、風險承受能力以及保單從第一天起的設計方式。"
+                }
+            },
+            protectionPage: {
+                title: "安大略省家庭與企業的全面保險服務",
+                subTitle: "服務於多倫多、萬錦及整個大多倫多地區 (GTA) 的頂級風險管理與遺產規劃解決方案。我們提供一流的策略以保護您的財富。",
+                faqTitle: "常見問題",
+                items: [
+                    { title: "安大略省危疾保險 (CI)", desc: "免稅一次性賠付以資助企業持續經營及股東買斷。面對嚴重診斷的安大略省醫生與企業主的必要保障。", color: "emerald" },
+                    { title: "保本基金 (隔離基金) 與遺產認證策略", desc: "規避安大略省遺產管理稅 (遺產認證費) 並根據保險法獲得債權人保護。大多倫多地區投資者的理想選擇。", color: "gold" },
+                    { title: "多倫多傷殘保險 (DI)", desc: "保護多倫多專業人士的賺錢能力。這往往是比死亡更大的風險，專為安大略省高收入者量身定制。", color: "emerald" },
+                    { title: "企業營運開支保險", desc: "讓您的安大略省企業持續運轉。若企業主喪失工作能力，可支付固定成本（租金、薪資），確保業務連續性。", color: "gold" },
+                    { title: "關鍵人物收入替代", desc: "為安大略省公司提供的專門保障，用於替代收入損失並支付關鍵員工的招聘成本。", color: "emerald" },
+                    { title: "安大略省家庭長期護理 (LTC)", desc: "保護您的遺產免受不斷上漲的護理費用影響。大多倫多地區年邁父母及高淨值家庭的關鍵規劃。", color: "gold" },
+                    { title: "永久人壽保險 (WL / UL)", desc: "加拿大遺產規劃的基石。為稅務提供流動性，並為安大略省私人公司最大化 CDA 額度。", color: "emerald" },
+                    { title: "股東買賣協議資助", desc: "確保公平市場價值交換，且不耗盡公司資本。安大略省 CCPC 合夥人的必備方案。", color: "gold" },
+                    { title: "關鍵人物人壽與危疾", desc: "在關鍵高管流失時注入資本以抵消收入損失。多倫多競爭激烈市場中的重要風險管理。", color: "emerald" },
+                    { title: "公司持有永久保險", desc: "將被動盈餘轉化為具稅務優勢的資產類別。面臨 SBD 扣減的安大略省 CCPC 的明智選擇。", color: "gold" }
+                ],
+                faqs: [
+                    { q: "為什麼安大略省企業主需要專門的保險規劃？", a: "安大略省有特定的稅率和遺產認證費（遺產管理稅）。我們的策略專為在安大略省法律環境中最大化財富保值而設計。" },
+                    { q: "你們服務萬錦市以外的客戶嗎？", a: "是的。雖然我們位於萬錦，但 VEVACI 服務整個大多倫多地區 (GTA)，包括多倫多、列治文山、旺市、密西沙加以及全安大略省。" },
+                    { q: "為什麼 VEVACI 是多倫多高淨值保險的最佳選擇？", a: "我們不只是銷售產品；我們設計策略。我們整合税务规划、公司架構與保險產品，提供卓越的流動性與長期價值。" }
+                ]
+            },
+            surplusPage: {
+                titlePrefix: "公司盈餘",
+                titleSuffix: "陷阱",
+                back: "返回首頁",
+                stats: [
+                    { title: "被動收入稅率", value: "50.17%", desc: "安大略省公司被動投資收入稅率。", color: "red" },
+                    { title: "SBD 門檻", value: "$50,000", desc: "AAII 限制，超過此數額即開始 5:1 扣減。", color: "gold" }
+                ],
+                definitions: [
+                    { 
+                        term: "CCPC (加拿大私人控股公司)", 
+                        desc: "指在加拿大註冊的私人公司，且不受非居民或上市公司控制。大多數專業人士和中小企業主透過 CCPC 註冊，以享用較低的主動收入稅率。" 
+                    },
+                    { 
+                        term: "SBD (小型企業稅務抵扣)", 
+                        desc: "一項優惠稅務抵扣，可降低首 50 萬加元主動業務收入的聯邦稅率。然而，當被動收入超過 5 萬加元時，每增加 1 加元，SBD 額度便減少 5 加元，變相收回此稅務優勢。" 
+                    }
+                ],
+                body: [
+                    "在 CCPC 內部持有過剩現金會引發稅務磨擦。一旦被動收入超過 5 萬加元，就會侵蝕您的小型企業稅務抵扣 (SBD) 資格。",
+                    "將盈餘重新分配至免稅保險引擎可以恢復您的 SBD 額度，同時通過資本紅利賬戶 (CDA) 建立免稅財富提取渠道。"
+                ]
+            },
+            ifaIntro: {
+                title: "什麼是即時融資安排 (IFA)？",
+                desc: "即時融資安排 (IFA) 是一種杠杆策略，允許企業主在購買永久人壽保險的同時保留資本。通過將保單的現金解約價值 (CSV) 作為抵押品，公司可向銀行獲得信用額度——通常高達已付保費的 100% 或保單現金價值——而不會實質減少現金流。這些資金可用於產生收入的商業或投資活動，且利息可能抵稅。未償還貸款通常在受保人身故時由保險身故賠償金償還。"
+            },
+            ifaSteps: [
+                { num: "01", icon: "settings", title: "引擎選擇", desc: "分析分紅終身壽險或萬能壽險，以實現最佳現金解約價值 (CSV) 表現。" },
+                { num: "02", icon: "piggy-bank", title: "公司注資", desc: "公司存入保費，在資產負債表上建立免稅資產。" },
+                { num: "03", icon: "layers", title: "貸款槓桿", desc: "一線貸款機構提供高達 100% CSV 的信貸額度作為抵押貸款。" },
+                { num: "04", icon: "trending-up", title: "資金重部署", desc: "資金注入投資。根據 ITA 第 20(1)(c) 條，利息可能抵稅。" },
+                { num: "05", icon: "unlock", title: "財富轉移", desc: "身故時，貸款注销；剩余部分通过资本红利账户 (CDA) 免税流向继承人。" }
+            ],
+            caseStudies: [
+                { 
+                    title: "專科醫生的槓桿效應", 
+                    profile: "安大略省萬錦市，45歲，執業醫師 (CCPC)。", 
+                    challenge: "需要 500 萬加元保障，同時保留 150 萬加元流動資金用於房地產投資。", 
+                    outcome: "通過 IFA 獲取 90% 的 CSV 用於投資。零淨自付成本。", 
+                    tag: "場景 01", 
+                    icon: "user-check" 
+                },
+                { 
+                    title: "科技盈餘救助方案", 
+                    profile: "多倫多軟件創始人，保留盈餘 1000 萬加元。", 
+                    challenge: "被動收入觸發 SBD 削減及 50.17% 的稅率。", 
+                    outcome: "恢復了 SBD 額度，並通過 CDA 建立了免稅退出機制。", 
+                    tag: "場景 02", 
+                    icon: "zap" 
+                },
+                { 
+                    title: "家族傳承基石", 
+                    profile: "製造業主，65 歲，處於傳承階段。", 
+                    challenge: "預計身故時有 540 萬加元的稅務負債，威脅企業的持續經營。", 
+                    outcome: "遺產債券策略。保險收益全額償還稅單，實現無債務轉移。", 
+                    tag: "場景 03", 
+                    icon: "briefcase" 
+                }
+            ],
+            // Mapped New Structure for Traditional Chinese
+            aboutRole: "保險策略師 & 持牌經紀 | VEVACI 創辦人", // Updated
+            aboutBioTitle: "專業傳記",
+            
+            // Section 1: Philosophy (Mapped from old BioP3)
+            aboutSection1Title: "VeVa 的哲學", 
+            aboutSection1Body: "VeVa 是一個傳承之名，由我兩位女兒 Vera 和 Valarie 的名字組成 —— 這不僅反映了對財務成果的承諾，更體現了對延續性、責任感和長期管理的重視。",
+            
+            // Section 2: Background (Mapped from old BioP2)
+            aboutSection2Title: "專業背景",
+            aboutSection2Body: "我的背景包含對金融衍生品和算法交易的深度涉獵，在這些領域，精準度、風險管理和結構至關重要。今天，這些原則貫穿於我如何協助企業主和家庭在日益複雜的金融環境中，審慎地構建和保護財富。",
+            
+            // Section 3: Mentorship (Mapped from old BioP1)
+            aboutSection3Title: "行業卓越",
+            aboutSection3Body: <span>Alex 服務於萬錦 (Markham)、列治文山 (Richmond Hill) 及大多倫多地區 (GTA) 的客戶，擁有超過 28 年的金融領域經驗。他的財富與保險規劃理念深受 <a href="https://atfinancialgroup.com/" target="_blank" rel="noopener noreferrer" className="text-[#c5a059] hover:underline decoration-[#c5a059] underline-offset-2 transition-all">A.T. Financial Group</a> 行政總裁 Amy Tong 的關鍵指導所啟發。這段經歷幫助他確立了以客戶為先的哲學，強調紀律、清晰與長遠思維。</span>,
+            
+            // Section 4: Creed (Mapped from old Creed)
+            aboutSection4Title: "專業信條",
+            aboutSection4Body: "真正的專業意味著在合適的時間，向合適的人推薦合適的解決方案 —— 並以始終如一且及時的後續服務來支持該建議。",
+
+            aboutReachTitle: "服務區域",
+            aboutReachBody: "立足於萬錦市，我們服務列治文山、旺市、密西沙加、士嘉堡、北約克及多倫多的客戶。我們的專業策略適用於大多倫多地區 (GTA) 及所有尋求財富保值的安大略省居民。",
+            navHome: "首頁", navIFA: "IFA", navCases: "案例研究", navAbout: "關於 Alex",
+            headline: "財富策略. 流動性解鎖.",
+            subheadline: "通過即時融資安排 (IFA) 的力量最大化您的公司資本。",
+            studyCta: "預約財富策略諮詢",
+            disclosure: "保險產品銷售由 VeVa Consultancy Inc. 創辦人 Alex Kynn Lee 負責。Mr. Lee 為 iA Financial Group 贊助之持牌人壽保險經紀，並透過管理總代理 (MGA) A.T. Financial Group 提供服務。",
+            ifaTitle: "IFA 運作機制指南",
+            ifaDesc: "抵押保單現金價值以進行企業再投資的技術指南。",
+            surplusTitle: "公司盈餘陷阱",
+            surplusDesc: "分析安省公司被動收入稅與 SBD 扣減效應。",
+            engineTitle: "Par vs. UL 保單引擎",
+            engineDesc: "針對 IFA 策略採用的兩種主要保單底盤的技術分析。",
+            protectionTitle: "全面保障策略",
+            protectionDesc: "透過危疾保險 (Critical Illness (CI) Insurance) 與保本基金 (Segregated Funds) 確保企業持續經營。",
+            casesTitle: "案例研究",
+            casesDesc: "針對專業人士與企業主的真實戰略應用。",
+            aboutTitle: "關於 Alex",
+            aboutDesc: "整合企業與家庭的保險與財富規劃，憑藉超過 28 年的專業經驗。",
+            oneDollarTitle: "一塊錢，兩份工",
+            back: "返回首頁", submit: "提交諮詢申請", received: "請求已接收",
+            followup: "我將親自審核您的公司概況。預計在 48 小時內會收到回覆。",
+            profileLabel: "客戶概況", challengeLabel: "面臨挑戰", outcomeLabel: "戰略成果",
+            exploreIFA: "探索 IFA 運作機制", readDeepDive: "閱讀",
+            job1: "工作 1：保障", job1Desc: "資助遺產稅與買斷協議",
+            job2: "工作 2：流動性", job2Desc: "用於再投資的資本",
+            oneDollarSubTitle: "企業與家庭的整合保險規劃",
+            oneDollarSubBody: "我們協助安大略省的企業主與高淨值人士將保險策略設計為更廣泛的資本與財富計劃的一部分，而非孤立的產品。\n\n我們的方法專注於風險保障、保持流動性並減少不必要的機會成本，確保保險能支持業務增長、傳承及家族長期財富，而非限制其發展。",
+            disclaimerTitle: "免責聲明",
+            disclaimerBody: "本網站提供的資訊僅供一般教育及參考用途。其內容不應被視為財務、稅務、法律或投資建議。人壽保險策略（包括即時融資安排 IFA）具有複雜性，受限於個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）。稅率與規則（如 SBD 門檻和被動收入稅）可能因聯邦及省政府政策而變動。在執行任何本文討論的策略前，請務必諮詢符合資格的專業會計師、律師或財務顧問。過往表現並不代表未來結果。",
+            oneDollarDetailTitle: "雙效能引擎",
+            oneDollarDetail1: "傳統保險會產生「鎖定」的保費支出。我們的 IFA 工程將該支出轉化為循環資產。投入的每一塊錢都建立了永久的死亡賠償金以滿足遺產義務（工作 1），同時作為銀行信用額度的優質抵押品（工作 2）。",
+            oneDollarDetail2: "這種架構使您能夠保持積極的資本管理。您不需要在「保障」與「增長」之間做選擇——您正在利用同一筆資本同時執行這兩項任務。其結果是消除了機會成本，並實現了公司資產負債表的最大化。",
+            engineCompTitle: "戰略底盤對比",
+            aboutBioTitle: "專業傳記",
+            aboutCreedTitle: "專業信條",
+            aboutReachTitle: "服務區域",
+            formName: "姓名",
+            formEmail: "電子郵件",
+            formPhone: "電話號碼 (選填)",
+            formCorp: "公司名稱 (選填)",
+            jobTooltip: {
+                title: "為何 IFA 具有吸引力",
+                hnwTitle: "針對個人",
+                hnwList: [
+                    "人壽保險保障與財富規劃",
+                    "具稅務優勢的現金流獲取",
+                    "無需動用個人流動資產即可借貸",
+                    "保單現金價值在延稅基礎上增長",
+                    "潛在的遺產規劃與遺產稅解決方案"
+                ],
+                corpTitle: "針對公司企業",
+                corpList: [
+                    "保留營運現金流",
+                    "利用公司資本擔保貸款",
+                    "資金用於產生收入時，利息可抵稅",
+                    "受保人身故時增加資本紅利賬戶 (CDA) 額度",
+                    "支持傳承、退休或買賣協議融資"
+                ]
+            },
+            serviceAreas: ["萬錦市", "列治文山", "多倫多", "旺市", "密西沙加", "士嘉堡", "北約克", "奧克維爾", "伯靈頓", "奧羅拉", "新市", "大多倫多地區", "安大略省"],
+            navFactCheck: "專業核實",
+            footerCopyright: "© 2026 VEVACI. 版權所有。",
+            footerLocation: "安大略省 萬錦市 & 列治文山"
+        };
+
+        // Simplified Chinese Data
+        const cnContent = {
+            comparePage: {
+                mainTitle: "分红终身寿险 vs 万能寿险",
+                subTitle: "（在 IFA 架构策略下）",
+                par: {
+                    title: "分红终身寿险 (Participating Whole Life)",
+                    bestSuited: "长期财富保值、遗产规划及保守资本积累。",
+                    features: [
+                        "强调保证、稳定性与可预测性",
+                        "现金价值通过保证加上分红增长",
+                        "对市场表现或利率变动较不敏感",
+                        "设计得当后，长期管理较为简单",
+                        "常用于公司规划、CDA 最大化及传承目标"
+                    ],
+                    valueAdd: "优化注资、缴清增额 (PUA) 策略、分红运用，并整合公司与遗产规划以最大化长期效率。"
+                },
+                ul: {
+                    title: "万能寿险 (Universal Life)",
+                    bestSuited: "灵活规划、税务庇护下的投资增长，以及习惯主动管理的客户。",
+                    features: [
+                        "将保险成本与投资账户分离",
+                        "保费、身故赔偿及投资选择具有更高灵活性",
+                        "绩效取决于投资回报与成本假设",
+                        "需要持续监控与调整",
+                        "吸引寻求定制化与更高潜在回报的客户"
+                    ],
+                    valueAdd: "压力测试假设、纪律性注资策略、投资配置监督及长期可持续性规划，以避免保单侵蚀。"
+                },
+                table: {
+                    title: "IFA 架构下的关键差异",
+                    headers: ["构面", "分红终身寿险", "万能寿险"],
+                    rows: [
+                        { aspect: "增长特征", par: "稳定、长期、基于分红", ul: "变动、驱动于市场与假设" },
+                        { aspect: "风险敞口", par: "较低", ul: "较高 (投资与成本风险)" },
+                        { aspect: "灵活性", par: "中等", ul: "高" },
+                        { aspect: "持续管理", par: "低", ul: "中至高" },
+                        { aspect: "理想用途", par: "遗产与传承规划", ul: "灵活财富积累" }
+                    ]
+                },
+                bottomLine: {
+                    title: "总结",
+                    text: "产品固然重要，但架构更为关键。\n\n在 IFA 架构下，分红人寿优先考虑确定性与传承，而万能寿险提供灵活性与潜在增长。正确的选择取决于目标、风险承受能力以及保单从第一天起的设计方式。"
+                }
+            },
+            protectionPage: {
+                title: "全面保障策略",
+                items: [
+                    { title: "危疾保险 (CI)", desc: "免税的一次性赔付可用于资助企业持续经营，以及在诊断后执行股东买断协议。", color: "emerald" },
+                    { title: "保本基金 (隔离基金) 与遗产认证策略", desc: "规避安大略省遗产管理税 (遗产认证费) 并根据保险法获得债权人保护。大多伦多地区投资者的理想选择。", color: "gold" },
+                    { title: "伤残保险 (DI)", desc: "保护赚钱能力——对专业人士和企业主而言，这往往是比死亡更大的风险。", color: "emerald" },
+                    { title: "企业营运开支保险", desc: "若企业主丧失工作能力，可支付固定的商业成本。", color: "gold" },
+                    { title: "关键人物伤残/收入替代", desc: "鲜少被讨论，但一旦了解其价值便备受重视。", color: "emerald" },
+                    { title: "长期护理保险 (LTC)", desc: "对于年迈父母及高净值家庭尤为重要。", color: "gold" },
+                    { title: "永久人寿保险 (WL / UL)", desc: "用于遗产流动性、税务递延及 CDA 规划。", color: "emerald" },
+                    { title: "股东/买卖协议保险", desc: "资助买断协议，确保股权顺利转移与公平市场价值交换。", color: "gold" },
+                    { title: "关键人物人寿与危疾保险", desc: "提供资金以抵销因关键高管流失而产生的收入损失与招聘成本。", color: "emerald" },
+                    { title: "公司持有永久保险", desc: "利用公司盈余在资产负债表上建立具税务优势的资产类别。", color: "gold" }
+                ],
+                faqs: [
+                    { q: "为什么安大略省企业主需要专门的保险规划？", a: "安大略省有特定的税率和遗产认证费（遗产管理税）。我们的策略专为在安大略省法律环境中最大化财富保值而设计。" },
+                    { q: "你们服务万锦市以外的客户吗？", a: "是的。虽然我们位于万锦，但 VEVACI 服务整个大多伦多地区 (GTA)，包括多伦多、列治文山、旺市、密西沙加以及全安大略省。" },
+                    { q: "为什么 VEVACI 是多伦多高净值保险的最佳选择？", a: "我们不只是销售产品；我们设计策略。我们整合税务规划、公司架构与保险产品，提供卓越的流动性与长期价值。" }
+                ]
+            },
+            surplusPage: {
+                titlePrefix: "公司盈余",
+                titleSuffix: "陷阱",
+                back: "返回首页",
+                stats: [
+                    { title: "被动收入税率", value: "50.17%", desc: "安大略省公司被动投资收入税率。", color: "red" },
+                    { title: "SBD 门槛", value: "$50,000", desc: "AAII 限制，超过此数额即开始 5:1 削减。", color: "gold" }
+                ],
+                definitions: [
+                    { 
+                        term: "CCPC (加拿大私人控股公司)", 
+                        desc: "指在加拿大注册的私人公司，且不受非居民或上市公司控制。大多数专业人士和中小企业主通过 CCPC 注册，以享用较低的主动收入税率。" 
+                    },
+                    { 
+                        term: "SBD (小型企业税务抵扣)", 
+                        desc: "一项优惠税务抵扣，可降低首 50 万加元主动业务收入的联邦税率。然而，当被动收入超过 5 万加元时，每增加 1 加元，SBD 额度便减少 5 加元，变相收回此税务优势。" 
+                    }
+                ],
+                body: [
+                    "在 CCPC 内部持有过剩现金会引发税务磨擦。一旦被动收入超过 5 万加元，就会侵蚀您的小型企业税务抵扣 (SBD) 资格。",
+                    "将盈余重新分配至免税保险引擎可以恢复您的 SBD 额度，同时通过资本红利账户 (CDA) 建立免税财富提取渠道。"
+                ]
+            },
+            ifaIntro: {
+                title: "IFA 运作机制指南",
+                desc: "抵押保单现金价值以进行企业再投资的技术指南。",
+                desc: "即时融资安排 (IFA) 是一种杠杆策略，允许企业主在购买永久人寿保险的同时保留资本。通过将保单的现金解约价值 (CSV) 作为抵押品，公司可向银行获得信用额度——通常高达已付保费的 100% 或保单现金价值——而不会实质减少现金流。这些资金可用于产生收入的商业或投资活动，且利息可能抵稅。未偿还贷款通常在受保人身故时由保险身故赔偿金偿还。"
+            },
+            ifaSteps: [
+                { num: "01", icon: "settings", title: "引擎选择", desc: "分析分红终身寿险或万能寿险，以实现最佳现金解约价值 (CSV) 表现。" },
+                { num: "02", icon: "piggy-bank", title: "公司注资", desc: "公司存入保费，在资产负债表上建立免税资产。" },
+                { num: "03", icon: "layers", title: "贷款杠杆", desc: "一线贷款机构提供高达 100% CSV 的信贷额度作为抵押贷款。" },
+                { num: "04", icon: "trending-up", title: "资金重部署", desc: "资金注入投资。根据 ITA 第 20(1)(c) 条，利息可能抵税。" },
+                { num: "05", icon: "unlock", title: "财富转移", desc: "身故时，贷款注销；剩余部分通过资本红利账户 (CDA) 免税流向继承人。" }
+            ],
+            caseStudies: [
+                { 
+                    title: "专科医生的杠杆效应", 
+                    profile: "安大略省万锦市，45岁，执业醫師 (CCPC)。", 
+                    challenge: "需要 500 万加元保障，同时保留 150 万加元流动资金用于房地产投资。", 
+                    outcome: "通过 IFA 获取 90% 的 CSV 用于投资。零净自付成本。", 
+                    tag: "场景 01", 
+                    icon: "user-check" 
+                },
+                { 
+                    title: "科技盈余救助方案", 
+                    profile: "多伦多软件创始人，保留盈余 1000 万加元。", 
+                    challenge: "被动收入触发 SBD 削减及 50.17% 的税率。", 
+                    outcome: "恢复了 SBD 额度，并通过 CDA 建立了免税退出机制。", 
+                    tag: "场景 02", 
+                    icon: "zap" 
+                },
+                { 
+                    title: "家族传承基石", 
+                    profile: "制造业主，65 岁，处于传承阶段。", 
+                    challenge: "预计身故时有 540 万加元的税务负债，威胁企业的持续经营。", 
+                    outcome: "遗产债券策略。保险收益全额偿还税单，实现无债务转移。", 
+                    tag: "场景 03", 
+                    icon: "briefcase" 
+                }
+            ],
+            // Mapped New Structure for Simplified Chinese
+            aboutRole: "保险策略师 & 持牌经纪 | VEVACI 创始人", // Updated
+            aboutBioTitle: "专业传记",
+            
+            // Section 1: Philosophy
+            aboutSection1Title: "VeVa 的哲学", 
+            aboutSection1Body: "VeVa 是一个传承之名，由我两位女儿 Vera 和 Valarie 的名字组成 —— 这不仅反映了对财务成果的承诺，更体现了对延续性、责任感和长期管理的重视。",
+            
+            // Section 2: Background
+            aboutSection2Title: "专业背景",
+            aboutSection2Body: "我的背景包含对金融衍生品和算法交易的深度涉猎，在这些领域，精准度、风险管理和结构至关重要。今天，这些原则贯穿于我如何协助企业主和家庭在日益复杂的金融环境中，审慎地构建和保护财富。",
+            
+            // Section 3: Mentorship
+            aboutSection3Title: "行业卓越",
+            aboutSection3Body: <span>Alex 服务于万锦 (Markham)、列治文山 (Richmond Hill) 及大多倫多地區 (GTA) 的客戶，拥有超过 28 年的金融领域经验。他的财富与保险规划理念深受 <a href="https://atfinancialgroup.com/" target="_blank" rel="noopener noreferrer" className="text-[#c5a059] hover:underline decoration-[#c5a059] underline-offset-2 transition-all">A.T. Financial Group</a> 行政总裁 Amy Tong 的关键指导所启发。这段经历帮助他确立了以客户为先的哲学，强调纪律、清晰与长远思维。</span>,
+            
+            // Section 4: Creed
+            aboutSection4Title: "专业信条",
+            aboutSection4Body: "真正的专业意味着在合适的时间，向合适的人推荐合适的解决方案 —— 并以始终如一且及时的后续服务来支持该建议。",
+
+            aboutReachTitle: "服务区域",
+            aboutReachBody: "立足于万锦市，我们服务列治文山、旺市、密西沙加、士嘉堡、北约克及多伦多的客户。我们的专业策略适用于大多伦多地区 (GTA) 及所有寻求财富保值的安大略省居民。",
+            formName: "姓名",
+            formEmail: "电子邮件",
+            formPhone: "电话号码 (选填)",
+            formCorp: "公司名称 (选填)",
+            jobTooltip: {
+                title: "为何 IFA 具有吸引力",
+                hnwTitle: "针对个人",
+                hnwList: [
+                    "人壽保險保障與財富規劃",
+                    "具稅務優勢的現金流獲取",
+                    "無需動用個人流動資產即可借貸",
+                    "保單現金價值在延稅基礎上增長",
+                    "潛在的遺產規劃與遺產稅解決方案"
+                ],
+                corpTitle: "針對公司企業",
+                corpList: [
+                    "保留營運現金流",
+                    "利用公司資本擔保貸款",
+                    "資金用於產生收入時，利息可抵稅",
+                    "受保人身故時增加資本紅利賬戶 (CDA) 額度",
+                    "支持傳承、退休或買賣協議融資"
+                ]
+            },
+            serviceAreas: ["万锦市", "列治文山", "多伦多", "旺市", "密西沙加", "士嘉堡", "北约克", "奥克维尔", "伯灵顿", "奥罗拉", "新市", "大多伦多地区", "安大略省"],
+            navFactCheck: "专业核实",
+            footerCopyright: "© 2026 VEVACI. 版权所有。",
+            footerLocation: "安大略省 万锦市 & 列治文山"
+        };
+
+        const content = {
+            en: englishContent,
+            zh: zhContent,
+            cn: cnContent
+        };
+
         const App = () => {
             const [language, setLanguage] = useState('en');
             
-            // Fix Browser Back Button: Sync state with URL hash
             const [currentPage, setCurrentPage] = useState(() => {
                 return window.location.hash.replace('#', '') || 'home';
             });
@@ -177,716 +791,18 @@
                     setCurrentPage(page);
                     window.scrollTo(0, 0);
                     setIsMenuOpen(false);
-                    // FIXED: Reset form state on navigation
                     setFormSubmitted(false);
                 };
                 
                 window.addEventListener('hashchange', handleHashChange);
                 
-                // Initial icon load for global icons if any
                 if (window.lucide) window.lucide.createIcons();
                 
                 return () => window.removeEventListener('hashchange', handleHashChange);
             }, []);
 
-            // Navigation helper
             const navigateTo = (page) => {
                 window.location.hash = page;
-            };
-
-            // --- CONTENT DATA DEFINITIONS ---
-
-            // English Data
-            const englishContent = {
-                comparePage: {
-                    mainTitle: "Participating Whole Life vs Universal Life (Canada)",
-                    subTitle: "(Under an IFA-Structured Approach)",
-                    par: {
-                        title: "Participating Whole Life Insurance (IFA-Structured)",
-                        bestSuited: "Long-term wealth preservation, estate planning, and conservative capital accumulation.",
-                        features: [
-                            "Emphasizes guarantees, stability, and predictability",
-                            "Cash values grow through guarantees plus participating dividends",
-                            "Less sensitive to market performance or interest rate changes",
-                            "Simpler to manage over time once properly designed",
-                            "Often preferred for corporate planning, CDA maximization, and legacy goals"
-                        ],
-                        valueAdd: "Optimized funding, paid-up additions strategy, dividend utilization, and integration with corporate and estate planning to maximize long-term efficiency."
-                    },
-                    ul: {
-                        title: "Universal Life Insurance (IFA-Structured)",
-                        bestSuited: "Flexible planning, tax-sheltered investment growth, and clients comfortable with active management.",
-                        features: [
-                            "Separates insurance costs and investment accounts",
-                            "Greater flexibility in premiums, death benefit, and investment choices",
-                            "Performance depends on investment returns and cost assumptions",
-                            "Requires ongoing monitoring and adjustments",
-                            "Appeals to clients seeking customization and higher upside potential"
-                        ],
-                        valueAdd: "Stress-tested assumptions, disciplined funding strategies, investment allocation oversight, and long-term sustainability planning to avoid policy erosion."
-                    },
-                    table: {
-                        title: "Key Differences Under IFA Structuring",
-                        headers: ["Aspect", "Participating Whole Life", "Universal Life"],
-                        rows: [
-                            { aspect: "Growth Profile", par: "Stable, long-term, dividend-based", ul: "Variable, market- and assumption-driven" },
-                            { aspect: "Risk Exposure", par: "Lower", ul: "Higher (investment & cost risk)" },
-                            { aspect: "Flexibility", par: "Moderate", ul: "High" },
-                            { aspect: "Ongoing Management", par: "Low", ul: "Moderate to High" },
-                            { aspect: "Ideal Use Case", par: "Estate & legacy planning", ul: "Flexible wealth accumulation" }
-                        ]
-                    },
-                    bottomLine: {
-                        title: "Bottom Line",
-                        text: "The product matters — but the structure matters more.\n\nUnder an IFA approach, Participating Whole Life prioritizes certainty and legacy, while Universal Life offers flexibility and potential upside. The right choice depends on objectives, risk tolerance, and how the policy is engineered from day one."
-                    }
-                },
-                protectionPage: {
-                    title: "Holistic Insurance Services for Ontario Families & Businesses",
-                    subTitle: "Premier risk management and estate planning solutions serving Toronto, Markham, and the entire GTA. We provide the best-in-class strategies to protect your wealth.",
-                    faqTitle: "Frequently Asked Questions",
-                    items: [
-                        { title: "Critical Illness (CI) Insurance Ontario", desc: "Tax-free lump sums fund continuity and shareholder buy-outs upon serious diagnosis.", color: "emerald" },
-                        { title: "Segregated Funds & Probate Strategies", desc: "Bypass Ontario's Estate Administration Tax (probate) and secure creditor protection under the Insurance Act. Ideal for GTA investors.", color: "gold" },
-                        { title: "Disability Insurance (DI) Toronto", desc: "Protects earning power — often a bigger risk than death for professionals and business owners.", color: "emerald" },
-                        { title: "Business Overhead Expense Insurance", desc: "Keeps fixed business costs covered if the owner is disabled.", color: "gold" },
-                        { title: "Key Person Disability / Income Replacement", desc: "Rarely discussed, highly valued when understood.", color: "emerald" },
-                        { title: "Long-Term Care Insurance (LTC)", desc: "Especially relevant for aging parents and HNW families.", color: "gold" },
-                        { title: "Permanent Life Insurance (WL / UL)", desc: "For estate liquidity, tax deferral, and CDA planning.", color: "emerald" },
-                        { title: "Shareholder / Buy-Sell Insurance", desc: "Funding shareholder buy-outs to ensure business continuity and fair market value exchange.", color: "gold" },
-                        { title: "Key Person Life & CI", desc: "Injecting capital to offset revenue loss and recruitment costs upon the loss of a key executive.", color: "emerald" },
-                        { title: "Corporate-Owned Permanent Insurance", desc: "Utilizing corporate surplus to build a tax-advantaged asset class on the balance sheet.", color: "gold" }
-                    ],
-                    faqs: [
-                        { q: "Why do Ontario business owners need specialized insurance planning?", a: "Ontario has specific tax rates and probate fees (Estate Administration Tax). Our strategies are tailored to navigate the Ontario legal landscape to maximize wealth preservation." },
-                        { q: "Do you serve clients outside of Markham?", a: "Yes. While based in Markham, VEVACI serves clients across the entire Greater Toronto Area (GTA), including Toronto, Richmond Hill, Vaughan, Mississauga, and throughout Ontario." },
-                        { q: "What makes VEVACI the best choice for high-net-worth insurance in Toronto?", a: "We don't just sell products; we engineer strategies. Our integration of tax planning, corporate structure, and insurance products delivers superior liquidity and long-term value." }
-                    ]
-                },
-                surplusPage: {
-                    titlePrefix: "The Corporate Surplus Trap ",
-                    titleSuffix: "for Ontario CCPCs",
-                    back: "Back to Home",
-                    stats: [
-                        { title: "Passive Tax", value: "50.17%", desc: "Ontario Corporate Passive Income Rate.", color: "red" },
-                        { title: "SBD Threshold", value: "$50,000", desc: "AAII limit before 5:1 grind begins.", color: "gold" }
-                    ],
-                    definitions: [
-                        { 
-                            term: "CCPC (Canadian-Controlled Private Corporation)", 
-                            desc: "A private corporation resident in Canada that is not controlled by non-residents or public corporations. Most professionals and small business owners incorporate as a CCPC to access the lower Small Business Tax Rate on active income." 
-                        },
-                        { 
-                            term: "SBD (Small Business Deduction)", 
-                            desc: "A preferential tax deduction that lowers the federal tax rate on the first $500,000 of active business income. However, for every $1 of passive income earned above $50,000, the SBD limit is reduced by $5, essentially clawing back this tax advantage." 
-                        }
-                    ],
-                    body: [
-                        "Holding excess cash inside a CCPC triggers tax friction. Passive income over $50k erodes your active small business deduction eligibility.",
-                        "Relocating surplus into tax-exempt insurance engines restores your SBD limits while creating a tax-free wealth extraction channel via the Capital Dividend Account (CDA)."
-                    ]
-                },
-                ifaIntro: {
-                    title: "What Is an Immediate Financing Arrangement (IFA)?",
-                    desc: "An Immediate Financing Arrangement (IFA) is a leverage strategy enabling business owners to purchase permanent life insurance while preserving capital. By assigning the policy’s Cash Surrender Value (CSV) as collateral, the corporation secures a line of credit—often up to 100% of the CSV—to reinvest in income-generating business or investment activities. This structure allows for the potential tax deductibility of interest, reducing the net cost of insurance while maintaining liquidity and establishing a tax-free Capital Dividend Account (CDA) credit."
-                },
-                ifaSteps: [
-                    { num: "01", icon: "settings", title: "Engine Selection", desc: "Analyzing Par Whole Life or UL for optimal Cash Surrender Value (CSV) performance." },
-                    { num: "02", icon: "piggy-bank", title: "Corporate Funding", desc: "The corporation deposits premiums, creating a tax-exempt asset on the balance sheet." },
-                    { num: "03", icon: "layers", title: "Lending Leverage", desc: "Tier-1 lenders provide credit facilities up to 100% of CSV as collateralized lending." },
-                    { num: "04", icon: "trending-up", title: "Active Redeployment", desc: "Capital is injected into investments. Interest may be tax-deductible under ITA Sec 20(1)(c)." },
-                    { num: "05", icon: "unlock", title: "Wealth Transfer", desc: "Upon death, loan is retired; surplus flows tax-free to heirs via Capital Dividend Account credit." }
-                ],
-                caseStudies: [
-                    { 
-                        title: "The Specialist’s Lever", 
-                        profile: "Physician (CCPC), 45, Markham, Ontario.", 
-                        challenge: "Needs $5M protection while keeping $1.5M liquid for real estate investment.", 
-                        outcome: "Accessed 90% of CSV for investment via IFA. Zero net out-of-pocket cost.", 
-                        tag: "Scenario 01", 
-                        icon: "user-check" 
-                    },
-                    { 
-                        title: "The Tech Surplus Rescue", 
-                        profile: "Software Founder, Toronto-based, $10M Retained Earnings.", 
-                        challenge: "Passive income triggering SBD grind and 50.17% tax rate.", 
-                        outcome: "Restored SBD limits and created a tax-free exit via CDA.", 
-                        tag: "Scenario 02", 
-                        icon: "zap" 
-                    },
-                    { 
-                        title: "The Legacy Foundation", 
-                        profile: "Manufacturing Owner, 65, Succession Phase.", 
-                        challenge: "Estimated $5.4M tax liability at death threatening business continuity.", 
-                        outcome: "Estate Bond strategy. Insurance proceeds retire the tax bill entire, allowing debt-free transfer.", 
-                        tag: "Scenario 03", 
-                        icon: "briefcase" 
-                    }
-                ],
-                aboutBioP1: <span>Serving clients across Markham, Richmond Hill, and the Greater Toronto Area (GTA), Alex brings over 28 years of experience in the financial sector. His approach to wealth and insurance planning was shaped by a pivotal mentorship under Amy Tong, CEO of <a href="https://atfinancialgroup.com/" target="_blank" rel="noopener noreferrer" className="text-[#c5a059] hover:underline decoration-[#c5a059] underline-offset-2 transition-all">A.T. Financial Group</a>. That experience helped define a client-first philosophy grounded in discipline, clarity, and long-term thinking.</span>,
-                aboutBioP2: "My background includes deep exposure to financial derivatives and algorithmic trading, where precision, risk management, and structure are paramount. Today, those principles inform how I help business owners and families thoughtfully structure and protect wealth in an increasingly complex financial environment.",
-                aboutBioP3: "VeVa is a legacy name, formed from the names of my two daughters, Vera and Valarie — reflecting a commitment not only to financial outcomes, but to continuity, responsibility, and long-term stewardship.",
-                aboutCreedBody: "True professionalism means recommending the right solution to the right person, at the right time — and standing behind that advice with consistent and timely follow-up.",
-                factCheck: {
-                    title: "Regulatory & Technical Verification",
-                    intro: "This section cross-references the strategies presented on VEVACI with standard Canadian financial and insurance industry manuals (LLQP 2024 Editions).",
-                    items: [
-                        {
-                            claim: "Ontario Passive Income Tax Rate (50.17%)",
-                            status: "Verified",
-                            context: "Reflects the integrated tax rate for Ontario (Federal Part I + Part IV RDTOH) to prevent tax deferral advantages in corporations.",
-                            source: "Taxation-E211"
-                        },
-                        {
-                            claim: "Small Business Deduction (SBD) Grind Threshold",
-                            status: "Verified",
-                            context: "The $500,000 active business limit is reduced by $5 for every $1 of Adjusted Aggregate Investment Income (AAII) over $50,000.",
-                            source: "Taxation-E211"
-                        },
-                        {
-                            claim: "Interest Deductibility (IFA)",
-                            status: "Verified",
-                            context: "Interest is deductible under ITA 20(1)(c) when borrowed money is used for the purpose of earning income from a business or property. Deductibility is linked to the use of funds, not the collateral.",
-                            source: "Taxation-E211"
-                        },
-                        {
-                            claim: "Probate Bypass via Segregated Funds",
-                            status: "Verified",
-                            context: "Insurance products with a named beneficiary (other than the estate) are paid directly to the beneficiary, bypassing the estate and associated probate fees (Estate Administration Tax in Ontario).",
-                            source: "Segfunds-E313 / LifeInsur-E311"
-                        }
-                    ]
-                }
-            };
-
-            // Traditional Chinese Data
-            const zhContent = {
-                comparePage: {
-                    mainTitle: "分紅終身壽險 vs 萬能壽險",
-                    subTitle: "（在 IFA 架構策略下）",
-                    par: {
-                        title: "分紅終身壽險 (Participating Whole Life)",
-                        bestSuited: "長期財富保值、遺產規劃及保守資本積累。",
-                        features: [
-                            "強調保證、穩定性與可預測性",
-                            "現金價值透過保證加上分紅增長",
-                            "對市場表現或利率變動較不敏感",
-                            "設計得當後，長期管理較為簡單",
-                            "常用於公司規劃、CDA 最大化及傳承目標"
-                        ],
-                        valueAdd: "優化注資、繳清增額 (PUA) 策略、分紅運用，並整合公司與遺產規劃以最大化長期效率。"
-                    },
-                    ul: {
-                        title: "萬能壽險 (Universal Life)",
-                        bestSuited: "靈活規劃、稅務庇護下的投資增長，以及習慣主動管理的客戶。",
-                        features: [
-                            "將保險成本與投資帳戶分離",
-                            "保費、身故賠償及投資選擇具有更高靈活性",
-                            "績效取決於投資回報與成本假設",
-                            "需要持續監控與調整",
-                            "吸引尋求客製化與更高潛在回報的客戶"
-                        ],
-                        valueAdd: "壓力測試假設、紀律性注資策略、投資配置監督及長期可持續性規劃，以避免保單侵蝕。"
-                    },
-                    table: {
-                        title: "IFA 架構下的關鍵差異",
-                        headers: ["構面", "分紅終身壽險", "萬能壽險"],
-                        rows: [
-                            { aspect: "增長特徵", par: "穩定、長期、基於分紅", ul: "變動、驅動於市場與假設" },
-                            { aspect: "風險敞口", par: "較低", ul: "較高 (投資與成本風險)" },
-                            { aspect: "靈活性", par: "中等", ul: "高" },
-                            { aspect: "持續管理", par: "低", ul: "中至高" },
-                            { aspect: "理想用途", par: "遺產與傳承規劃", ul: "靈活財富積累" }
-                        ]
-                    },
-                    bottomLine: {
-                        title: "總結",
-                        text: "產品固然重要，但架構更為關鍵。\n\n在 IFA 架構下，分紅人壽優先考慮確定性與傳承，而萬用壽險提供靈活性與潛在增長。正確的選擇取決於目標、風險承受能力以及保單從第一天起的設計方式。"
-                    }
-                },
-                protectionPage: {
-                    title: "安大略省家庭與企業的全面保險服務",
-                    subTitle: "服務於多倫多、萬錦及整個大多倫多地區 (GTA) 的頂級風險管理與遺產規劃解決方案。我們提供一流的策略以保護您的財富。",
-                    faqTitle: "常見問題",
-                    items: [
-                        { title: "安大略省危疾保險 (CI)", desc: "免稅一次性賠付以資助企業持續經營及股東買斷。面對嚴重診斷的安大略省醫生與企業主的必要保障。", color: "emerald" },
-                        { title: "保本基金 (隔離基金) 與遺產認證策略", desc: "規避安大略省遺產管理稅 (遺產認證費) 並根據保險法獲得債權人保護。大多倫多地區投資者的理想選擇。", color: "gold" },
-                        { title: "多倫多傷殘保險 (DI)", desc: "保護多倫多專業人士的賺錢能力。這往往是比死亡更大的風險，專為安大略省高收入者量身定制。", color: "emerald" },
-                        { title: "企業營運開支保險", desc: "讓您的安大略省企業持續運轉。若企業主喪失工作能力，可支付固定成本（租金、薪資），確保業務連續性。", color: "gold" },
-                        { title: "關鍵人物收入替代", desc: "為安大略省公司提供的專門保障，用於替代收入損失並支付關鍵員工的招聘成本。", color: "emerald" },
-                        { title: "安大略省家庭長期護理 (LTC)", desc: "保護您的遺產免受不斷上漲的護理費用影響。大多倫多地區年邁父母及高淨值家庭的關鍵規劃。", color: "gold" },
-                        { title: "永久人壽保險 (WL / UL)", desc: "加拿大遺產規劃的基石。為稅務提供流動性，並為安大略省私人公司最大化 CDA 額度。", color: "emerald" },
-                        { title: "股東買賣協議資助", desc: "確保公平市場價值交換，且不耗盡公司資本。安大略省 CCPC 合夥人的必備方案。", color: "gold" },
-                        { title: "關鍵人物人壽與危疾", desc: "在關鍵高管流失時注入資本以抵消收入損失。多倫多競爭激烈市場中的重要風險管理。", color: "emerald" },
-                        { title: "公司持有永久保險", desc: "將被動盈餘轉化為具稅務優勢的資產類別。面臨 SBD 扣減的安大略省 CCPC 的明智選擇。", color: "gold" }
-                    ],
-                    faqs: [
-                        { q: "為什麼安大略省企業主需要專門的保險規劃？", a: "安大略省有特定的稅率和遺產認證費（遺產管理稅）。我們的策略專為在安大略省法律環境中最大化財富保值而設計。" },
-                        { q: "你們服務萬錦市以外的客戶嗎？", a: "是的。雖然我們位於萬錦，但 VEVACI 服務整個大多倫多地區 (GTA)，包括多倫多、列治文山、旺市、密西沙加以及全安大略省。" },
-                        { q: "為什麼 VEVACI 是多倫多高淨值保險的最佳選擇？", a: "我們不只是銷售產品；我們設計策略。我們整合税务规划、公司架構與保險產品，提供卓越的流動性與長期價值。" }
-                    ]
-                },
-                surplusPage: {
-                    titlePrefix: "公司盈餘",
-                    titleSuffix: "陷阱",
-                    back: "返回首頁",
-                    stats: [
-                        { title: "被動收入稅率", value: "50.17%", desc: "安大略省公司被動投資收入稅率。", color: "red" },
-                        { title: "SBD 門檻", value: "$50,000", desc: "AAII 限制，超過此數額即開始 5:1 扣減。", color: "gold" }
-                    ],
-                    definitions: [
-                        { 
-                            term: "CCPC (加拿大私人控股公司)", 
-                            desc: "指在加拿大註冊的私人公司，且不受非居民或上市公司控制。大多數專業人士和中小企業主透過 CCPC 註冊，以享用較低的主動收入稅率。" 
-                        },
-                        { 
-                            term: "SBD (小型企業稅務抵扣)", 
-                            desc: "一項優惠稅務抵扣，可降低首 50 萬加元主動業務收入的聯邦稅率。然而，當被動收入超過 5 萬加元時，每增加 1 加元，SBD 額度便減少 5 加元，變相收回此稅務優勢。" 
-                        }
-                    ],
-                    body: [
-                        "在 CCPC 內部持有過剩現金會引發稅務磨擦。一旦被動收入超過 5 萬加元，就會侵蝕您的小型企業稅務抵扣 (SBD) 資格。",
-                        "將盈餘重新分配至免稅保險引擎可以恢復您的 SBD 額度，同時通過資本紅利賬戶 (CDA) 建立免稅財富提取渠道。"
-                    ]
-                },
-                ifaIntro: {
-                    title: "什麼是即時融資安排 (IFA)？",
-                    desc: "即時融資安排 (IFA) 是一種杠杆策略，允許企業主在購買永久人壽保險的同時保留資本。通過將保單的現金解約價值 (CSV) 作為抵押品，公司可向銀行獲得信用額度——通常高達已付保費的 100% 或保單現金價值——而不會實質減少現金流。這些資金可用於產生收入的商業或投資活動，且利息可能抵稅。未償還貸款通常在受保人身故時由保險身故賠償金償還。"
-                },
-                ifaSteps: [
-                    { num: "01", icon: "settings", title: "引擎選擇", desc: "分析分紅終身壽險或萬能壽險，以實現最佳現金解約價值 (CSV) 表現。" },
-                    { num: "02", icon: "piggy-bank", title: "公司注資", desc: "公司存入保費，在資產負債表上建立免稅資產。" },
-                    { num: "03", icon: "layers", title: "貸款槓桿", desc: "一線貸款機構提供高達 100% CSV 的信貸額度作為抵押貸款。" },
-                    { num: "04", icon: "trending-up", title: "資金重部署", desc: "資金注入投資。根據 ITA 第 20(1)(c) 條，利息可能抵稅。" },
-                    { num: "05", icon: "unlock", title: "財富轉移", desc: "身故時，貸款註銷；剩餘部分通過資本紅利賬戶 (CDA) 免稅流向繼承人。" }
-                ],
-                caseStudies: [
-                    { 
-                        title: "專科醫生的槓桿效應", 
-                        profile: "安大略省萬錦市，45歲，執業醫師 (CCPC)。", 
-                        challenge: "需要 500 萬加元保障，同時保留 150 萬加元流動資金用於房地產投資。", 
-                        outcome: "通過 IFA 獲取 90% 的 CSV 用於投資。零淨自付成本。", 
-                        tag: "場景 01", 
-                        icon: "user-check" 
-                    },
-                    { 
-                        title: "科技盈餘救助方案", 
-                        profile: "多倫多軟件創始人，保留盈餘 1000 萬加元。", 
-                        challenge: "被動收入觸發 SBD 削減及 50.17% 的稅率。", 
-                        outcome: "恢復了 SBD 額度，並通過 CDA 建立了免稅退出機制。", 
-                        tag: "場景 02", 
-                        icon: "zap" 
-                    },
-                    { 
-                        title: "家族傳承基石", 
-                        profile: "製造業主，65 歲，處於傳承階段。", 
-                        challenge: "預計身故時有 540 萬加元的稅務負債，威脅企業的持續經營。", 
-                        outcome: "遺產債券策略。保險收益全額償還稅單，實現無債務轉移。", 
-                        tag: "場景 03", 
-                        icon: "briefcase" 
-                    }
-                ],
-                aboutBioP1: <span>Alex 服務於萬錦 (Markham)、列治文山 (Richmond Hill) 及大多倫多地區 (GTA) 的客戶，擁有超過 28 年的金融領域經驗。他的財富與保險規劃理念深受 <a href="https://atfinancialgroup.com/" target="_blank" rel="noopener noreferrer" className="text-[#c5a059] hover:underline decoration-[#c5a059] underline-offset-2 transition-all">A.T. Financial Group</a> 行政總裁 Amy Tong 的關鍵指導所啟發。這段經歷幫助他確立了以客戶為先的哲學，強調紀律、清晰與長遠思維。</span>,
-                aboutBioP2: "我的背景包含對金融衍生品和算法交易的深度涉獵，在這些領域，精準度、風險管理和結構至關重要。今天，這些原則貫穿於我如何協助企業主和家庭在日益複雜的金融環境中，審慎地構建和保護財富。",
-                aboutBioP3: "VeVa 是一個傳承之名，由我兩位女兒 Vera 和 Valarie 的名字組成 —— 這不僅反映了對財務成果的承諾，更體現了對延續性、責任感和長期管理的重視。",
-                aboutCreedBody: "真正的專業意味著在合適的時間，向合適的人推薦合適的解決方案 —— 並以始終如一且及時的後續服務來支持該建議。",
-                factCheck: {
-                    title: "監管與技術核實",
-                    intro: "本節將 VEVACI 上的策略與加拿大金融及保險行業標準手冊 (LLQP 2024 版本) 進行對照核實。",
-                    items: [
-                        {
-                            claim: "安大略省被動收入稅率 (50.17%)",
-                            status: "已核實",
-                            context: "反映了安大略省的綜合稅率 (聯邦 Part I + Part IV RDTOH)，旨在防止公司內的稅務遞延優勢。",
-                            source: "Taxation-E211"
-                        },
-                        {
-                            claim: "小型企業稅務抵扣 (SBD) 削減門檻",
-                            status: "已核實",
-                            context: "當調整後的綜合投資收入 (AAII) 超過 $50,000 時，每增加 $1，各人的 $500,000 主動業務限額將減少 $5。",
-                            source: "Taxation-E211"
-                        },
-                        {
-                            claim: "利息抵稅 (IFA)",
-                            status: "已核實",
-                            context: "根據 ITA 20(1)(c)，當借入資金用於賺取商業或財產收入時，利息可抵稅。可抵稅性取決於資金用途，而非抵押品。",
-                            source: "Taxation-E211"
-                        },
-                        {
-                            claim: "透過保本基金規避遺產認證",
-                            status: "已核實",
-                            context: "指定受益人 (非遺產) 的保險產品將直接支付給受益人，從而規避遺產及相關的遺產認證費 (安省遺產管理稅)。",
-                            source: "Segfunds-E313 / LifeInsur-E311"
-                        }
-                    ]
-                }
-            };
-
-            // Simplified Chinese Data
-            const cnContent = {
-                comparePage: {
-                    mainTitle: "分红终身寿险 vs 万能寿险",
-                    subTitle: "（在 IFA 架构策略下）",
-                    par: {
-                        title: "分红终身寿险 (Participating Whole Life)",
-                        bestSuited: "长期财富保值、遗产规划及保守资本积累。",
-                        features: [
-                            "强调保证、稳定性与可预测性",
-                            "现金价值通过保证加上分红增长",
-                            "对市场表现或利率变动较不敏感",
-                            "设计得当后，长期管理较为简单",
-                            "常用于公司规划、CDA 最大化及传承目标"
-                        ],
-                        valueAdd: "优化注资、缴清增额 (PUA) 策略、分红运用，并整合公司与遗产规划以最大化长期效率。"
-                    },
-                    ul: {
-                        title: "万能寿险 (Universal Life)",
-                        bestSuited: "灵活规划、税务庇护下的投资增长，以及习惯主动管理的客户。",
-                        features: [
-                            "将保险成本与投资账户分离",
-                            "保费、身故赔偿及投资选择具有更高灵活性",
-                            "绩效取决于投资回报与成本假设",
-                            "需要持续监控与调整",
-                            "吸引寻求定制化与更高潜在回报的客户"
-                        ],
-                        valueAdd: "压力测试假设、纪律性注资策略、投资配置监督及长期可持续性规划，以避免保单侵蚀。"
-                    },
-                    table: {
-                        title: "IFA 架构下的关键差异",
-                        headers: ["构面", "分红终身寿险", "万能寿险"],
-                        rows: [
-                            { aspect: "增长特征", par: "稳定、长期、基于分红", ul: "变动、驱动于市场与假设" },
-                            { aspect: "风险敞口", par: "较低", ul: "较高 (投资与成本风险)" },
-                            { aspect: "灵活性", par: "中等", ul: "高" },
-                            { aspect: "持续管理", par: "低", ul: "中至高" },
-                            { aspect: "理想用途", par: "遗产与传承规划", ul: "灵活财富积累" }
-                        ]
-                    },
-                    bottomLine: {
-                        title: "总结",
-                        text: "产品固然重要，但架构更为关键。\n\n在 IFA 架构下，分红人寿优先考虑确定性与传承，而万能寿险提供灵活性与潜在增长。正确的选择取决于目标、风险承受能力以及保单从第一天起的设计方式。"
-                    }
-                },
-                protectionPage: {
-                    title: "全面保障策略",
-                    items: [
-                        { title: "危疾保险 (CI)", desc: "免税的一次性赔付可用于资助企业持续经营，以及在诊断后执行股东买断协议。", color: "emerald" },
-                        { title: "保本基金 (隔离基金) 与遗产认证策略", desc: "规避安大略省遗产管理税 (遗产认证费) 并根据保险法获得债权人保护。大多伦多地区投资者的理想选择。", color: "gold" },
-                        { title: "伤残保险 (DI)", desc: "保护赚钱能力——对专业人士和企业主而言，这往往是比死亡更大的风险。", color: "emerald" },
-                        { title: "企业营运开支保险", desc: "若企业主丧失工作能力，可支付固定的商业成本。", color: "gold" },
-                        { title: "关键人物伤残/收入替代", desc: "鲜少被讨论，但一旦了解其价值便备受重视。", color: "emerald" },
-                        { title: "长期护理保险 (LTC)", desc: "对于年迈父母及高净值家庭尤为重要。", color: "gold" },
-                        { title: "永久人寿保险 (WL / UL)", desc: "用于遗产流动性、税务递延及 CDA 规划。", color: "emerald" },
-                        { title: "股东/买卖协议保险", desc: "资助买断协议，确保股权顺利转移与公平市场价值交换。", color: "gold" },
-                        { title: "关键人物人寿与危疾保险", desc: "提供资金以抵销因关键高管流失而产生的收入损失与招聘成本。", color: "emerald" },
-                        { title: "公司持有永久保险", desc: "利用公司盈余在资产负债表上建立具税务优势的资产类别。", color: "gold" }
-                    ],
-                    faqTitle: "常见问题",
-                    faqs: [
-                        { q: "为什么安大略省企业主需要专门的保险规划？", a: "安大略省有特定的税率和遗产认证费（遗产管理税）。我们的策略专为在安大略省法律环境中最大化财富保值而设计。" },
-                        { q: "你们服务万锦市以外的客户吗？", a: "是的。虽然我们位于万锦，但 VEVACI 服务整个大多伦多地区 (GTA)，包括多伦多、列治文山、旺市、密西沙加以及全安大略省。" },
-                        { q: "为什么 VEVACI 是多伦多高净值保险的最佳选择？", a: "我们不只是销售产品；我们设计策略。我们整合税务规划、公司架构与保险产品，提供卓越的流动性与长期价值。" }
-                    ]
-                },
-                surplusPage: {
-                    titlePrefix: "公司盈余",
-                    titleSuffix: "陷阱",
-                    back: "返回首页",
-                    stats: [
-                        { title: "被动收入税率", value: "50.17%", desc: "安大略省公司被动投资收入税率。", color: "red" },
-                        { title: "SBD 门槛", value: "$50,000", desc: "AAII 限制，超过此数额即开始 5:1 削减。", color: "gold" }
-                    ],
-                    definitions: [
-                        { 
-                            term: "CCPC (加拿大私人控股公司)", 
-                            desc: "指在加拿大注册的私人公司，且不受非居民或上市公司控制。大多数专业人士和中小企业主通过 CCPC 注册，以享用较低的主动收入税率。" 
-                        },
-                        { 
-                            term: "SBD (小型企业税务抵扣)", 
-                            desc: "一项优惠税务抵扣，可降低首 50 万加元主动业务收入的联邦税率。然而，当被动收入超过 5 万加元时，每增加 1 加元，SBD 额度便减少 5 加元，变相收回此税务优势。" 
-                        }
-                    ],
-                    body: [
-                        "在 CCPC 内部持有过剩现金会引发税务磨擦。一旦被动收入超过 5 万加元，就会侵蚀您的小型企业税务抵扣 (SBD) 资格。",
-                        "将盈余重新分配至免税保险引擎可以恢复您的 SBD 额度，同时通过资本红利账户 (CDA) 建立免税财富提取渠道。"
-                    ]
-                },
-                ifaIntro: {
-                    title: "IFA 运作机制指南",
-                    desc: "抵押保单现金价值以进行企业再投资的技术指南。",
-                    desc: "即时融资安排 (IFA) 是一种杠杆策略，允许企业主在购买永久人寿保险的同时保留资本。通过将保单的现金解约价值 (CSV) 作为抵押品，公司可向银行获得信用额度——通常高达已付保费的 100% 或保单现金价值——而不会实质减少现金流。这些资金可用于产生收入的商业或投资活动，且利息可能抵稅。未偿还贷款通常在受保人身故时由保险身故赔偿金偿还。"
-                },
-                ifaSteps: [
-                    { num: "01", icon: "settings", title: "引擎选择", desc: "分析分红终身寿险或万能寿险，以实现最佳现金解约价值 (CSV) 表现。" },
-                    { num: "02", icon: "piggy-bank", title: "公司注资", desc: "公司存入保费，在资产负债表上建立免税资产。" },
-                    { num: "03", icon: "layers", title: "贷款杠杆", desc: "一线贷款机构提供高达 100% CSV 的信贷额度作为抵押贷款。" },
-                    { num: "04", icon: "trending-up", title: "资金重部署", desc: "资金注入投资。根据 ITA 第 20(1)(c) 条，利息可能抵税。" },
-                    { num: "05", icon: "unlock", title: "财富转移", desc: "身故时，贷款注销；剩余部分通过资本红利账户 (CDA) 免税流向继承人。" }
-                ],
-                caseStudies: [
-                    { 
-                        title: "专科医生的杠杆效应", 
-                        profile: "安大略省万锦市，45岁，执业醫師 (CCPC)。", 
-                        challenge: "需要 500 万加元保障，同时保留 150 万加元流动资金用于房地产投资。", 
-                        outcome: "通过 IFA 获取 90% 的 CSV 用于投资。零净自付成本。", 
-                        tag: "场景 01", 
-                        icon: "user-check" 
-                    },
-                    { 
-                        title: "科技盈余救助方案", 
-                        profile: "多伦多软件创始人，保留盈余 1000 万加元。", 
-                        challenge: "被动收入触发 SBD 削减及 50.17% 的税率。", 
-                        outcome: "恢复了 SBD 额度，并通过 CDA 建立了免税退出机制。", 
-                        tag: "场景 02", 
-                        icon: "zap" 
-                    },
-                    { 
-                        title: "家族传承基石", 
-                        profile: "制造业主，65 岁，处于传承阶段。", 
-                        challenge: "预计身故时有 540 万加元的税务负债，威胁企业的持续经营。", 
-                        outcome: "遗产债券策略。保险收益全额偿还税单，实现无债务转移。", 
-                        tag: "场景 03", 
-                        icon: "briefcase" 
-                    }
-                ],
-                aboutBioP1: <span>Alex 服务于万锦 (Markham)、列治文山 (Richmond Hill) 及大多倫多地區 (GTA) 的客戶，拥有超过 28 年的金融领域经验。他的财富与保险规划理念深受 <a href="https://atfinancialgroup.com/" target="_blank" rel="noopener noreferrer" className="text-[#c5a059] hover:underline decoration-[#c5a059] underline-offset-2 transition-all">A.T. Financial Group</a> 行政总裁 Amy Tong 的关键指导所启发。这段经历帮助他确立了以客户为先的哲学，强调纪律、清晰与长远思维。</span>,
-                aboutBioP2: "我的背景包含对金融衍生品和算法交易的深度涉猎，在这些领域，精准度、风险管理和结构至关重要。今天，这些原则贯穿于我如何协助企业主和家庭在日益复杂的金融环境中，审慎地构建和保护财富。",
-                aboutBioP3: "VeVa 是一个传承之名，由我两位女儿 Vera 和 Valarie 的名字组成 —— 这不仅反映了对财务成果的承诺，更体现了对延续性、责任感和长期管理的重视。",
-                aboutCreedBody: "真正的专业意味着在合适的时间，向合适的人推荐合适的解决方案 —— 并以始终如一且及时的后续服务来支持该建议。",
-                factCheck: {
-                    title: "监管与技术核实",
-                    intro: "本节将 VEVACI 上的策略与加拿大金融及保险行业标准手册 (LLQP 2024 版本) 进行对照核实。",
-                    items: [
-                        {
-                            claim: "安大略省被动收入税率 (50.17%)",
-                            status: "已核实",
-                            context: "反映了安大略省的综合税率 (联邦 Part I + Part IV RDTOH)，旨在防止公司内的税务递延优势。",
-                            source: "Taxation-E211"
-                        },
-                        {
-                            claim: "小型企业税务抵扣 (SBD) 削减门槛",
-                            status: "已核实",
-                            context: "当调整后的综合投资收入 (AAII) 超过 $50,000 时，每增加 $1，各人的 $500,000 主动业务限额将减少 $5。",
-                            source: "Taxation-E211"
-                        },
-                        {
-                            claim: "利息抵税 (IFA)",
-                            status: "已核实",
-                            context: "根据 ITA 20(1)(c)，当借入资金用于赚取商业或财产收入时，利息可抵税。可抵税性取决于资金用途，而非抵押品。",
-                            source: "Taxation-E211"
-                        },
-                        {
-                            claim: "透过保本基金规避遗产认证",
-                            status: "已核实",
-                            context: "指定受益人 (非遗产) 的保险产品将直接支付给受益人，从而规避遗产及相关的遗产认证费 (安省遗产管理税)。",
-                            source: "Segfunds-E313 / LifeInsur-E311"
-                        }
-                    ]
-                }
-            };
-
-            const content = {
-                en: {
-                    ...englishContent,
-                    navHome: "Home", navIFA: "IFA", navCases: "Cases", navAbout: "About",
-                    headline: "Wealth & IFA Strategies for Ontario Business Owners.",
-                    subheadline: "Unlock liquidity and optimize corporate surplus with advanced strategies tailored for Toronto, Markham, and Richmond Hill professionals.",
-                    studyCta: "Request a Strategic Consultation",
-                    disclosure: '"VEVACI" is a trade name used for marketing purposes only. Sales of insurance products are conducted by Alex Kynn Lee, a Licensed Life Insurance Agent in Ontario. Mr. Lee is professionally sponsored by Industrial Alliance (iA Financial Group) and operates under the supervision of the Managing General Agency, A.T. Financial Group.',
-                    ifaTitle: "The IFA Mechanics Guide",
-                    ifaDesc: "Technical guide to collateralizing cash value for business reinvestment.",
-                    surplusTitle: "The Corporate Surplus Trap",
-                    surplusDesc: "Analyze the 50.17% passive income tax and SBD grind in Ontario CCPCs.",
-                    engineTitle: "Par vs. UL Engines",
-                    engineDesc: "A technical comparison of Participating Whole Life and Universal Life chassis.",
-                    protectionTitle: "Holistic Protection",
-                    protectionDesc: "Securing continuity through Critical Illness (CI) Insurance and Segregated Fund protection.",
-                    casesTitle: "Case Studies",
-                    casesDesc: "Real-world strategies for Specialists and Business Owners.",
-                    aboutTitle: "About Alex",
-                    aboutDesc: "Integrated insurance and wealth planning for businesses and families, backed by 28+ years of experience.",
-                    oneDollarTitle: "One Dollar, Two Jobs",
-                    back: "Back to Home", submit: "Request Strategic Consultation", received: "Request Received",
-                    followup: "Request has been received and we will try to reach out within 48 hours.",
-                    limitReached: "Daily limit of 5 requests reached for this email. Please try again in 24 hours.",
-                    processing: "Sending...",
-                    networkError: "Network error. Please try later.",
-                    profileLabel: "Profile", challengeLabel: "The Challenge", outcomeLabel: "Strategic Outcome",
-                    exploreIFA: "Explore IFA Mechanics", readDeepDive: "Read",
-                    job1: "Job 1: Protection", job1Desc: "Fund Estate Tax & Buy-Sell",
-                    job2: "Job 2: Liquidity", job2Desc: "Capital for Reinvestment",
-                    oneDollarSubTitle: "Integrated Insurance Planning for Businesses and Families",
-                    oneDollarSubBody: "We help business owners and high-net-worth individuals in Ontario design insurance strategies as part of a broader capital and wealth plan — not as standalone products.\n\nOur approach focuses on protecting risk, preserving liquidity, and reducing unnecessary opportunity cost, so insurance supports growth, succession, and long-term family wealth rather than restricting it.",
-                    disclaimerTitle: "DISCLAIMER",
-                    disclaimerBody: "The information provided on this website is for general educational and informational purposes only. It is not intended as, and should not be construed as, financial, tax, legal, or investment advice. Life insurance strategies, including Immediate Financing Arrangements (IFA), are complex and subject to individual eligibility, lender requirements, and current Canadian tax laws (including the Income Tax Act). Taxation rates and rules (such as SBD thresholds and passive income tax) are subject to change. Always consult with a qualified professional accountant, lawyer, or financial advisor before implementing any strategy discussed herein. Past performance is not indicative of future results.",
-                    oneDollarDetailTitle: "The Dual-Efficiency Engine",
-                    oneDollarDetail1: "Traditional insurance creates a 'locked' premium expense. Our IFA engineering transforms that expense into a revolving asset. Every dollar funds a permanent death benefit to satisfy estate liabilities (Job 1) while simultaneously serving as prime collateral for a bank credit line (Job 2).",
-                    oneDollarDetail2: "This architecture allows you to maintain active capital management. You aren't choosing between protection and growth—you are utilizing the same capital to execute both. The result is a neutralized opportunity cost and a maximized corporate balance sheet.",
-                    engineCompTitle: "Strategic Chassis Comparison",
-                    aboutBioTitle: "Professional Biography",
-                    aboutCreedTitle: "Professional Creed",
-                    aboutReachTitle: "Service Reach",
-                    aboutReachBody: "Based in Markham, we provide specialized insurance strategies for individuals and corporations in Toronto, Richmond Hill, Vaughan, Mississauga, Scarborough, and North York. Our services are available across the GTA and to all Ontario residents.",
-                    formName: "Name",
-                    formEmail: "Email",
-                    formPhone: "Phone Number (Optional)",
-                    formCorp: "Corporation (Optional)",
-                    jobTooltip: {
-                        title: "Why IFA Can Be Attractive",
-                        hnwTitle: "For Individuals",
-                        hnwList: [
-                            "Life insurance protection with wealth planning",
-                            "Tax-advantaged cash flow access",
-                            "The ability to borrow without tapping personal liquid assets",
-                            "Growth of policy’s cash value on a tax-deferred basis",
-                            "Potential for legacy planning and estate tax solutions"
-                        ],
-                        corpTitle: "For Corporations",
-                        corpList: [
-                            "Preserving operating cash flow",
-                            "Using corporate capital to secure loans",
-                            "Accessing tax deductions for interest when funds are used to generate business or investment income",
-                            "Enhancing the Capital Dividend Account (CDA) upon insured’s death",
-                            "Supporting succession, retirements, or buy-sell funding without disrupting day-to-day finances"
-                        ]
-                    },
-                    serviceAreas: ["Markham", "Richmond Hill", "Toronto", "Vaughan", "Mississauga", "Scarborough", "North York", "Oakville", "Burlington", "Aurora", "Newmarket", "GTA", "Ontario"],
-                    navFactCheck: "Verification",
-                    footerCopyright: "© 2026 VEVACI. All rights reserved.",
-                    footerLocation: "Markham & Richmond Hill, Ontario"
-                },
-                zh: {
-                    ...zhContent,
-                    navHome: "首頁", navIFA: "IFA", navCases: "案例研究", navAbout: "關於 Alex",
-                    headline: "財富策略. 流動性解鎖.",
-                    subheadline: "通過即時融資安排 (IFA) 的力量最大化您的公司資本。",
-                    studyCta: "預約財富策略諮詢",
-                    disclosure: "保險產品銷售由 VeVa Consultancy Inc. 創辦人 Alex Kynn Lee 負責。Mr. Lee 為 iA Financial Group 贊助之持牌人壽保險經紀，並透過管理總代理 (MGA) A.T. Financial Group 提供服務。",
-                    ifaTitle: "IFA 運作機制指南",
-                    ifaDesc: "抵押保單現金價值以進行企業再投資的技術指南。",
-                    surplusTitle: "公司盈餘陷阱",
-                    surplusDesc: "分析安省公司被動收入稅與 SBD 扣減效應。",
-                    engineTitle: "Par vs. UL 保單引擎",
-                    engineDesc: "針對 IFA 策略採用的兩種主要保單底盤的技術分析。",
-                    protectionTitle: "全面保障策略",
-                    protectionDesc: "透過危疾保險 (Critical Illness (CI) Insurance) 與保本基金 (Segregated Funds) 確保企業持續經營。",
-                    casesTitle: "案例研究",
-                    casesDesc: "針對專業人士與企業主的真實戰略應用。",
-                    aboutTitle: "關於 Alex",
-                    aboutDesc: "整合企業與家庭的保險與財富規劃，憑藉超過 28 年的專業經驗。",
-                    oneDollarTitle: "一塊錢，兩份工",
-                    back: "返回首頁", submit: "提交諮詢申請", received: "請求已接收",
-                    followup: "我將親自審核您的公司概況。預計在 48 小時內會收到回覆。",
-                    profileLabel: "客戶概況", challengeLabel: "面臨挑戰", outcomeLabel: "戰略成果",
-                    exploreIFA: "探索 IFA 運作機制", readDeepDive: "閱讀",
-                    job1: "工作 1：保障", job1Desc: "資助遺產稅與買斷協議",
-                    job2: "工作 2：流動性", job2Desc: "用於再投資的資本",
-                    oneDollarSubTitle: "企業與家庭的整合保險規劃",
-                    oneDollarSubBody: "我們協助安大略省的企業主與高淨值人士將保險策略設計為更廣泛的資本與財富計劃的一部分，而非孤立的產品。\n\n我們的方法專注於風險保障、保持流動性並減少不必要的機會成本，確保保險能支持業務增長、傳承及家族長期財富，而非限制其發展。",
-                    disclaimerTitle: "免責聲明",
-                    disclaimerBody: "本網站提供的資訊僅供一般教育及參考用途。其內容不應被視為財務、稅務、法律或投資建議。人壽保險策略（包括即時融資安排 IFA）具有複雜性，受限於個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）。稅率與規則（如 SBD 門檻和被動收入稅）可能因聯邦及省政府政策而變動。在執行任何本文討論的策略前，請務必諮詢符合資格的專業會計師、律師或財務顧問。過往表現並不代表未來結果。",
-                    oneDollarDetailTitle: "雙效能引擎",
-                    oneDollarDetail1: "傳統保險會產生「鎖定」的保費支出。我們的 IFA 工程將該支出轉化為循環資產。投入的每一塊錢都建立了永久的死亡賠償金以滿足遺產義務（工作 1），同時作為銀行信用額度的優質抵押品（工作 2）。",
-                    oneDollarDetail2: "這種架構使您能夠保持積極的資本管理。您不需要在「保障」與「增長」之間做選擇——您正在利用同一筆資本同時執行這兩項任務。其結果是消除了機會成本，並實現了公司資產負債表的最大化。",
-                    engineCompTitle: "戰略底盤對比",
-                    aboutBioTitle: "專業傳記",
-                    aboutCreedTitle: "專業信條",
-                    aboutReachTitle: "服務區域",
-                    aboutReachBody: "立足於萬錦市，我們服務列治文山、旺市、密西沙加、士嘉堡、北約克及多倫多的客戶。我們的專業策略適用於大多倫多地區 (GTA) 及所有尋求財富保值的安大略省居民。",
-                    formName: "姓名",
-                    formEmail: "電子郵件",
-                    formPhone: "電話號碼 (選填)",
-                    formCorp: "公司名稱 (選填)",
-                    jobTooltip: {
-                        title: "為何 IFA 具有吸引力",
-                        hnwTitle: "針對個人",
-                        hnwList: [
-                            "人壽保險保障與財富規劃",
-                            "具稅務優勢的現金流獲取",
-                            "無需動用個人流動資產即可借貸",
-                            "保單現金價值在延稅基礎上增長",
-                            "潛在的遺產規劃與遺產稅解決方案"
-                        ],
-                        corpTitle: "針對公司企業",
-                        corpList: [
-                            "保留營運現金流",
-                            "利用公司資本擔保貸款",
-                            "資金用於產生收入時，利息可抵稅",
-                            "受保人身故時增加資本紅利賬戶 (CDA) 額度",
-                            "支持傳承、退休或買賣協議融資"
-                        ]
-                    },
-                    serviceAreas: ["萬錦市", "列治文山", "多倫多", "旺市", "密西沙加", "士嘉堡", "北約克", "奧克維爾", "伯靈頓", "奧羅拉", "新市", "大多倫多地區", "安大略省"],
-                    navFactCheck: "專業核實",
-                    footerCopyright: "© 2026 VEVACI. 版權所有。",
-                    footerLocation: "安大略省 萬錦市 & 列治文山"
-                },
-                cn: {
-                    ...cnContent,
-                    navHome: "首页", navIFA: "IFA", navCases: "案例研究", navAbout: "关于 Alex",
-                    headline: "财富策略. 流动性解锁.",
-                    subheadline: "通过即时融资安排 (IFA) 的力量最大化您的公司资本。",
-                    studyCta: "预约财富策略咨询",
-                    disclosure: "保险产品销售由 VeVa Consultancy Inc. 创始人 Alex Kynn Lee 负责. Mr. Lee 为 iA Financial Group 赞助之持牌寿险经纪，并通过管理总代理 (MGA) A.T. Financial Group 提供服务。",
-                    ifaTitle: "IFA 运作机制指南",
-                    ifaDesc: "抵押保单现金价值以进行企业再投资的技术指南。",
-                    surplusTitle: "公司盈余陷阱",
-                    surplusDesc: "分析安省公司被动投资收入税与 SBD 扣减效应。",
-                    engineTitle: "Par vs. UL 保单引擎",
-                    engineDesc: "针对 IFA 策略采用的两种主要保险底盘的技术分析。",
-                    protectionTitle: "全面保障策略",
-                    protectionDesc: "通过危疾保险 (Critical Illness (CI) Insurance) 与保本基金 (Segregated Funds) 确保企业持续经营。",
-                    casesTitle: "案例研究",
-                    casesDesc: "针对专业人士与企业主的真实战略应用。",
-                    aboutTitle: "关于 Alex",
-                    aboutDesc: "整合企业与家庭的保险与财富规划，凭借超过 28 年的专业经验。",
-                    oneDollarTitle: "一块钱，两份工",
-                    back: "返回首页", submit: "提交咨询申请", received: "请求已接收",
-                    followup: "我将亲自审核您的公司概况. 预计在 48 小时内会收到回复。",
-                    profileLabel: "客户概况", challengeLabel: "面临挑战", outcomeLabel: "战略成果",
-                    exploreIFA: "探索 IFA 运作机制", readDeepDive: "阅读",
-                    job1: "工作 1：保障", job1Desc: "资助遗产税与买断协议",
-                    job2: "工作 2：流动性", job2Desc: "用于再投资的资本",
-                    oneDollarSubTitle: "企业与家庭的整合保险规划",
-                    oneDollarSubBody: "我们协助安大略省的企业主与高净值人士将保险策略设计为更广泛的资本与财富计划的一部分，而非孤立的产品。\n\n我们的方法专注于风险保障、保持流动性并减少不必要的机会成本，确保保险能支持业务增长、传承及家族长期财富，而非限制其发展。",
-                    disclaimerTitle: "免责声明",
-                    disclaimerBody: "本网站提供的信息仅供一般教育及参考用途。其内容应被视为财务、税务、法律或投资建议。人寿保险策略（包括即時融資安排 IFA）具有复杂性，受限于个人资格、贷款机构要求及现行加拿大税务法律（包括所得税法）。税率与规则（如 SBD 门槛和被动收入税）可能因联邦及省政府政策而变动。在执行任何本文讨论的策略前，请务必咨询符合资格的专业会计师、律师或财务顾问。过往表现并不代表未来结果。",
-                    oneDollarDetailTitle: "双效能引擎",
-                    oneDollarDetail1: "传统保险会产生“锁定”的保费支出。我们的 IFA 工程将该支出转化为循环资产. 投入的每一块钱都建立了永久的死亡赔偿金以满足遗产义务（工作 1），同时作为银行信用额度的优质抵押品（工作 2）。",
-                    oneDollarDetail2: "这种架构使您能够保持积极的资本 management。您不需要在“保障”与“增长”之间做选择——您正在利用同一笔资本同时执行这两项任务。其结果是消除了机会成本，并实现了公司资产负债表的最大化。",
-                    engineCompTitle: "战略底盤对比",
-                    aboutBioTitle: "专业传记",
-                    aboutCreedTitle: "专业信条",
-                    aboutReachTitle: "服务区域",
-                    aboutReachBody: "立足于万锦市，我们服务列治文山、旺市、密西沙加、士嘉堡、北约克及多伦多的客户。我们的专业策略适用于大多伦多地区 (GTA) 及所有寻求财富保值的安大略省居民。",
-                    formName: "姓名",
-                    formEmail: "电子邮件",
-                    formPhone: "电话号码 (选填)",
-                    formCorp: "公司名称 (选填)",
-                    jobTooltip: {
-                        title: "为何 IFA 具有吸引力",
-                        hnwTitle: "针对个人",
-                        hnwList: [
-                            "人壽保險保障與財富規劃",
-                            "具稅務優勢的現金流獲取",
-                            "無需動用個人流動資產即可借貸",
-                            "保單現金價值在延稅基礎上增長",
-                            "潛在的遺產規劃與遺產稅解決方案"
-                        ],
-                        corpTitle: "針對公司企業",
-                        corpList: [
-                            "保留營運現金流",
-                            "利用公司資本擔保貸款",
-                            "資金用於產生收入時，利息可抵稅",
-                            "受保人身故時增加資本紅利賬戶 (CDA) 額度",
-                            "支持傳承、退休或買賣協議融資"
-                        ]
-                    },
-                    serviceAreas: ["万锦市", "列治文山", "多伦多", "旺市", "密西沙加", "士嘉堡", "北约克", "奥克维尔", "伯灵顿", "奥罗拉", "新市", "大多伦多地区", "安大略省"],
-                    navFactCheck: "专业核实",
-                    footerCopyright: "© 2026 VEVACI. 版权所有。",
-                    footerLocation: "安大略省 万锦市 & 列治文山"
-                }
             };
 
             const t = content[language];
@@ -1328,22 +1244,39 @@
                     </div>
                     <div className="lg:col-span-9 space-y-12">
                         <div className="space-y-6 text-left">
-                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#c5a059] text-[10px] font-bold uppercase tracking-widest italic text-white">Founder of VeVa Consultancy Inc.</div>
+                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/20 text-[#c5a059] text-[10px] font-bold uppercase tracking-widest italic text-white">{t.aboutRole}</div>
                             <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white text-gradient-gold">Alex Kynn Lee</h2>
                         </div>
                         <div className="space-y-10">
+                            {/* Section 1: Philosophy */}
                             <section className="space-y-6 text-left">
-                                <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutBioTitle}</h3>
+                                <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutSection1Title}</h3>
                                 <div className="space-y-6 text-base md:text-lg text-gray-300 font-light leading-relaxed">
-                                    <p>{t.aboutBioP1}</p>
-                                    <p>{t.aboutBioP2}</p>
-                                    <p className="border-l-4 border-[#c5a059] pl-8 italic text-gray-400">{t.aboutBioP3}</p>
+                                    <p className="border-l-4 border-[#c5a059] pl-8 italic text-gray-400">{t.aboutSection1Body}</p>
                                 </div>
                             </section>
+
+                            {/* Section 2: Background */}
+                            <section className="space-y-6 text-left">
+                                <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutSection2Title}</h3>
+                                <div className="space-y-6 text-base md:text-lg text-gray-300 font-light leading-relaxed">
+                                    <p>{t.aboutSection2Body}</p>
+                                </div>
+                            </section>
+
+                            {/* Section 3: Mentorship */}
+                            <section className="space-y-6 text-left">
+                                <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutSection3Title}</h3>
+                                <div className="space-y-6 text-base md:text-lg text-gray-300 font-light leading-relaxed">
+                                    <p>{t.aboutSection3Body}</p>
+                                </div>
+                            </section>
+
+                            {/* Section 4: Creed & Reach */}
                             <section className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20 relative overflow-hidden group text-left">
                                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#c5a059]/5 to-transparent opacity-50"></div>
-                                <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6 relative z-10">{t.aboutCreedTitle}</h3>
-                                <p className="text-xl sm:text-2xl md:text-3xl text-white italic leading-relaxed font-light relative z-10 mb-12">{t.aboutCreedBody}</p>
+                                <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6 relative z-10">{t.aboutSection4Title}</h3>
+                                <p className="text-xl sm:text-2xl md:text-3xl text-white italic leading-relaxed font-light relative z-10 mb-12">{t.aboutSection4Body}</p>
                                 <div className="relative z-10 pt-8 border-t border-white/5 text-left text-justify">
                                     <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6">{t.aboutReachTitle}</h3>
                                     <div className="flex gap-5 items-start flex-wrap">
@@ -1364,7 +1297,7 @@
                         </div>
                     </div>
                 </div>
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
             </section>
         );
 
