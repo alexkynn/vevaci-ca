@@ -70,6 +70,26 @@
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
         }
+
+        @keyframes shine-spotlight {
+            0% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .title-shine {
+            background: linear-gradient(
+                to right, 
+                #c5a059 0%, 
+                #e5c185 40%, 
+                #ffffff 50%, 
+                #e5c185 60%, 
+                #c5a059 100%
+            );
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine-spotlight 4s ease-in-out infinite alternate;
+        }
         
         .bg-copper-gradient { 
             background: linear-gradient(to right, #b36b39, #8c6239); 
@@ -422,7 +442,7 @@
                 },
                 bottomLine: {
                     title: "總結",
-                    text: "產品固然重要，但架構更為關鍵。\n\n在 IFA 架構下，分紅人壽優先考慮確定性與傳承，而萬用壽險提供靈活性與潛在增長。正確的選擇取決於目標、風險承受能力以及保單從第一天起的設計方式。"
+                    text: "產品固然重要，但架構更為關鍵。\n\n在 IFA 架構下，分紅人壽優先考慮確定性與傳承，而萬用壽險提供靈活性與潛在增長。正確的選擇取決於目標、風險承受能力以及保單從第一天起設計方式。"
                 }
             },
             protectionPage: {
@@ -679,7 +699,7 @@
             ifaSteps: [
                 { num: "01", icon: "settings", title: "引擎选择", desc: "分析分红终身寿险或万能寿险，以实现最佳现金解约价值 (CSV) 表现。" },
                 { num: "02", icon: "piggy-bank", title: "公司注资", desc: "公司存入保费，在资产负债表上建立免税资产。" },
-                { num: "03", icon: "layers", title: "贷款槓杆", desc: "一线贷款机构提供高达 100% CSV 的信贷额度作为抵押贷款。" },
+                { num: "03", icon: "layers", title: "贷款杠杆", desc: "一线贷款机构提供高达 100% CSV 的信贷额度作为抵押贷款。" },
                 { num: "04", icon: "trending-up", title: "资金重部署", desc: "资金注入投资。根据 ITA 第 20(1)(c) 条，利息可能抵税。" },
                 { num: "05", icon: "unlock", title: "财富转移", desc: "身故时，贷款注销；剩余部分通过资本红利账户 (CDA) 免税流向继承人。" }
             ],
@@ -916,7 +936,7 @@
         const HomeView = ({ t, navigateTo, language }) => (
             <div className="px-6 animate-in fade-in duration-700">
                 <section className="pt-32 pb-24 text-center relative max-w-6xl mx-auto">
-                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-8 italic text-gradient-gold tracking-tighter leading-tight">{t.headline}</h1>
+                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-8 italic title-shine tracking-tighter leading-tight">{t.headline}</h1>
                     <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">{t.subheadline}</p>
                     <div className="flex flex-col sm:flex-row justify-center gap-5 mb-32">
                         <button onClick={() => navigateTo('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-12 py-5 rounded-full font-bold text-lg shadow-2xl active:scale-95 transition-transform">{t.studyCta}</button>
