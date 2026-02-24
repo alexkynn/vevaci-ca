@@ -310,7 +310,6 @@
                     icon: "briefcase" 
                 }
             ],
-            // Updated About Content Data
             aboutRole: "Insurance Strategist & Licensed Agent | Founder of VEVACI",
             aboutBioTitle: "Professional Biography", 
             
@@ -356,6 +355,8 @@
             limitReached: "Daily limit of 5 requests reached for this email. Please try again in 24 hours.",
             processing: "Sending...",
             networkError: "Network error. Please try later.",
+            notRobot: "I am not a robot",
+            robotError: "Please verify that you are not a robot before submitting.",
             profileLabel: "Profile", challengeLabel: "The Challenge", outcomeLabel: "Strategic Outcome",
             exploreIFA: "Explore IFA Mechanics", readDeepDive: "Read",
             job1: "Job 1: Protection", job1Desc: "Fund Estate Tax & Buy-Sell",
@@ -395,7 +396,6 @@
                 ]
             },
             serviceAreas: ["Markham", "Richmond Hill", "Toronto", "Vaughan", "Mississauga", "Scarborough", "North York", "Oakville", "Burlington", "Aurora", "Newmarket", "GTA", "Ontario"],
-            navFactCheck: "Verification",
             footerCopyright: "© 2026 VEVACI. All rights reserved.",
             footerLocation: "Markham & Richmond Hill, Ontario"
         };
@@ -578,6 +578,8 @@
             formEmail: "電子郵件",
             formPhone: "電話號碼 (選填)",
             formCorp: "公司名稱 (選填)",
+            notRobot: "我不是機器人",
+            robotError: "請在提交前驗證您不是機器人。",
             jobTooltip: {
                 title: "為何 IFA 具有吸引力",
                 hnwTitle: "針對個人",
@@ -598,7 +600,6 @@
                 ]
             },
             serviceAreas: ["萬錦市", "列治文山", "多倫多", "旺市", "密西沙加", "士嘉堡", "北約克", "奧克維爾", "伯靈頓", "奧羅拉", "新市", "大多倫多地區", "安大略省"],
-            navFactCheck: "專業核實",
             footerCopyright: "© 2026 VEVACI. 版權所有。",
             footerLocation: "安大略省 萬錦市 & 列治文山"
         };
@@ -771,8 +772,8 @@
             disclaimerBody: "本网站提供的信息仅供一般教育及参考用途。其内容应被视为财务、税务、法律或投资建议。人壽保險策略（包括即時融資安排 IFA）具有複雜性，受限于個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）。稅率與規則（如 SBD 門檻和被動收入稅）可能因聯邦及省政府政策而變動。在執行任何本文討論的策略前，請務必咨詢符合資格的專業會計師、律師或財務顧問。過往表現並不代表未來結果。",
             oneDollarDetailTitle: "雙效能引擎",
             oneDollarDetail1: "傳統保險會產生「鎖定」的保費支出。我們的 IFA 工程將該支出轉化為循環資產. 投入的每一塊錢都建立了永久的死亡賠償金以滿足遺產義務（工作 1），同時作為銀行信用額度的優質抵押品（工作 2）。",
-            oneDollarDetail2: "這種架構使您能夠保持積極的資本 management。您不需要在“保障”與“增長”之間做選擇——您正在利用同一筆資本同時執行這兩項任務。其結果是消除了機會成本，並實現了公司資產負債表的最大化。",
-            engineCompTitle: "戰略底盤对比",
+            oneDollarDetail2: "這種架構使您能夠保持積極的資本 management。您不需要在“保障”與“增長”之間做选择——您正在利用同一笔资本同时执行这两项任务。其结果是消除了机会成本，并实现了公司资产负债表的最大化。",
+            engineCompTitle: "战略底盤对比",
             aboutBioTitle: "专业传记",
             aboutCreedTitle: "专业信条",
             aboutReachTitle: "服务区域",
@@ -781,6 +782,8 @@
             formEmail: "电子邮件",
             formPhone: "电话号码 (选填)",
             formCorp: "公司名称 (选填)",
+            notRobot: "我不是机器人",
+            robotError: "请在提交前验证您不是机器人。",
             jobTooltip: {
                 title: "為何 IFA 具有吸引力",
                 hnwTitle: "針對個人",
@@ -801,7 +804,6 @@
                 ]
             },
             serviceAreas: ["万锦市", "列治文山", "多伦多", "旺市", "密西沙加", "士嘉堡", "北约克", "奥克维尔", "伯灵顿", "奥罗拉", "新市", "大多伦多地区", "安大略省"],
-            navFactCheck: "专业核实",
             footerCopyright: "© 2026 VEVACI. 版权所有。",
             footerLocation: "安大略省 万锦市 & 列治文山"
         };
@@ -898,7 +900,6 @@
                         {currentPage === 'cases' && <CaseView t={t} navigateTo={navigateTo} language={language} />}
                         {currentPage === 'about' && <AboutView t={t} navigateTo={navigateTo} language={language} />}
                         {currentPage === 'feasibility' && <FeasibilityView t={t} navigateTo={navigateTo} language={language} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />}
-                        {currentPage === 'factcheck' && <FactCheckView t={t} navigateTo={navigateTo} language={language} />}
                     </main>
 
                     <section className="max-w-7xl mx-auto px-6 py-12 border-t border-white/5">
@@ -1339,11 +1340,28 @@
         const FeasibilityView = ({ t, navigateTo, formSubmitted, setFormSubmitted, language }) => {
             const [submitError, setSubmitError] = useState('');
             const [isSubmitting, setIsSubmitting] = useState(false);
+            const [isHuman, setIsHuman] = useState(false);
+            const [isVerifying, setIsVerifying] = useState(false);
+
+            const handleCaptcha = () => {
+                if (isHuman) return;
+                setIsVerifying(true);
+                setSubmitError('');
+                setTimeout(() => {
+                    setIsVerifying(false);
+                    setIsHuman(true);
+                }, 750);
+            };
 
             const handleSubmit = async (e) => {
                 e.preventDefault();
                 setSubmitError(''); 
                 
+                if (!isHuman) {
+                    setSubmitError(t.robotError);
+                    return;
+                }
+
                 const form = e.target;
                 const name = form.name.value;
                 const email = form.email.value;
@@ -1417,6 +1435,28 @@
                                 <FormGroup label={t.formCorp} name="corp" placeholder="Your Co. Inc" />
                             </div>
                             
+                            <div className="flex items-center gap-4 bg-[#0a0a0a] border border-white/10 rounded-2xl p-4 w-full sm:w-fit shadow-inner">
+                                <button 
+                                    type="button"
+                                    onClick={handleCaptcha}
+                                    disabled={isVerifying || isHuman}
+                                    className={`w-7 h-7 rounded border flex items-center justify-center transition-all cursor-pointer ${
+                                        isHuman ? 'bg-emerald-500/20 border-emerald-500 text-emerald-500' : 
+                                        'bg-white/5 border-gray-500 text-transparent hover:border-gray-300'
+                                    }`}
+                                >
+                                    {isVerifying ? (
+                                        <div className="w-4 h-4 border-2 border-[#c5a059] border-t-transparent rounded-full animate-spin"></div>
+                                    ) : (
+                                        <Icon name="check" size={16} className={isHuman ? "text-emerald-500 block" : "hidden"} />
+                                    )}
+                                </button>
+                                <span className="text-sm text-gray-300 font-medium select-none">{t.notRobot}</span>
+                                <div className="ml-4 pl-4 border-l border-white/10 flex flex-col items-center">
+                                     <Icon name="shield-check" size={20} className="text-gray-500" />
+                                </div>
+                            </div>
+
                             {submitError && (
                                 <div className="text-red-500 text-sm font-bold text-center animate-in fade-in slide-in-from-top-2">
                                     {submitError}
@@ -1442,32 +1482,6 @@
                 </section>
             );
         };
-
-        const FactCheckView = ({ t, navigateTo, language }) => (
-            <section className="max-w-5xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <div className="mb-12">
-                    <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white mb-6">{t.factCheck.title}</h2>
-                    <p className="text-gray-400 text-lg font-light leading-relaxed max-w-3xl">{t.factCheck.intro}</p>
-                </div>
-                
-                <div className="grid gap-6">
-                    {t.factCheck.items.map((item, idx) => (
-                        <div key={idx} className="bg-[#121212] border border-white/10 rounded-2xl p-8 hover:border-[#c5a059]/30 transition-colors">
-                            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4">
-                                <h3 className="text-xl font-bold text-white italic">{item.claim}</h3>
-                                <div className="flex gap-2">
-                                    <span className="verification-badge badge-verified"><Icon name="check" size={12} /> {item.status}</span>
-                                    <span className="verification-badge badge-context">{item.source}</span>
-                                </div>
-                            </div>
-                            <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base border-l-2 border-[#c5a059]/50 pl-4">{item.context}</p>
-                        </div>
-                    ))}
-                </div>
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
-            </section>
-        );
 
         const Card = ({ icon, title, desc, onClick, label = "Read More" }) => (
             <div onClick={onClick} className="px-6 py-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full text-left text-white">
