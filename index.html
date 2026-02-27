@@ -94,19 +94,19 @@
         /* --- Loonie Coin Animation & Styles --- */
         @keyframes move-loonie-1-mobile {
             0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            100% { transform: translate(15px, 190px) scale(0.3); opacity: 0; }
+            100% { transform: translate(15px, 280px) scale(0.08); opacity: 0; }
         }
         @keyframes move-loonie-2-mobile {
             0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            100% { transform: translate(-15px, 310px) scale(0.3); opacity: 0; }
+            100% { transform: translate(-15px, 400px) scale(0.08); opacity: 0; }
         }
         @keyframes move-loonie-1-desktop {
             0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            100% { transform: translate(220px, -60px) scale(0.3); opacity: 0; }
+            100% { transform: translate(320px, -60px) scale(0.08); opacity: 0; }
         }
         @keyframes move-loonie-2-desktop {
             0% { transform: translate(0, 0) scale(1); opacity: 1; }
-            100% { transform: translate(220px, 60px) scale(0.3); opacity: 0; }
+            100% { transform: translate(320px, 60px) scale(0.08); opacity: 0; }
         }
         
         .animate-loonie-1 {
@@ -1102,7 +1102,7 @@
             const t = content[language];
 
             return (
-                <div className="min-h-screen text-gray-100 flex flex-col selection:bg-[#c5a059]/30">
+                <div className="min-h-screen text-gray-100 flex flex-col selection:bg-[#c5a059]/30 overflow-x-hidden">
                     <nav className="fixed w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5 h-20 flex items-center safe-top">
                         <div className="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
                             <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigateTo('home')}>
@@ -1215,14 +1215,14 @@
                         <div className="relative p-12 sm:p-16 z-20">
                             <h2 className="text-3xl font-black italic mb-16 text-white tracking-widest uppercase">{t.oneDollarTitle}</h2>
                             <div className="flex flex-col md:flex-row items-center justify-center gap-16 relative">
-                                <div className="flex flex-col items-center z-20 relative w-56">
-                                    <div className="w-48 h-48 relative mb-4 flex items-center justify-center">
+                                <div className="flex flex-col items-center z-20 relative w-96">
+                                    <div className="w-96 h-96 relative mb-4 flex items-center justify-center">
                                         {/* Loonie 1 (Moves to Job 1) */}
                                         <div className="absolute inset-0 flex items-center justify-center animate-loonie-1">
                                             <img 
                                                 src="loonie.png" 
                                                 alt="VEVACI Canadian Loonie" 
-                                                className="w-48 h-48 object-contain drop-shadow-[0_15px_25px_rgba(197,160,89,0.4)]" 
+                                                className="w-[48rem] h-[48rem] max-w-[160vw] max-h-[160vw] object-contain drop-shadow-[0_15px_25px_rgba(197,160,89,0.4)]" 
                                                 onError={(e) => {e.target.src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Loonie_reverse_view.png/240px-Loonie_reverse_view.png";}} 
                                             />
                                         </div>
@@ -1231,7 +1231,7 @@
                                             <img 
                                                 src="loonie.png" 
                                                 alt="VEVACI Canadian Loonie" 
-                                                className="w-48 h-48 object-contain drop-shadow-[0_15px_25px_rgba(197,160,89,0.4)]" 
+                                                className="w-[48rem] h-[48rem] max-w-[160vw] max-h-[160vw] object-contain drop-shadow-[0_15px_25px_rgba(197,160,89,0.4)]" 
                                                 onError={(e) => {e.target.src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Loonie_reverse_view.png/240px-Loonie_reverse_view.png";}} 
                                             />
                                         </div>
