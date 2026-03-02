@@ -1397,7 +1397,7 @@
                         }
                     } catch (error) {
                         console.error("Failed to fetch prime rate:", error);
-                        if (isMounted) setPrimeRate("N/A");
+                        if (isMounted) setPrimeRate(prev => prev === "..." ? "N/A" : prev);
                     }
                 };
 
@@ -1415,14 +1415,23 @@
                         }
                     } catch (error) {
                         console.error("Failed to fetch FX rates:", error);
-                        if (isMounted) setFxRates({ USD: "N/A", HKD: "N/A", CNH: "N/A" });
+                        if (isMounted) setFxRates(prev => prev.USD === "..." ? { USD: "N/A", HKD: "N/A", CNH: "N/A" } : prev);
                     }
                 };
                 
+                // Initial fetch
                 fetchPrimeRate();
                 fetchFxRates();
                 
-                return () => { isMounted = false; };
+                // Real-time auto-polling intervals
+                const fxInterval = setInterval(fetchFxRates, 60000); // Auto-update FX rates every 60 seconds
+                const primeInterval = setInterval(fetchPrimeRate, 3600000); // Auto-update Prime rate every hour
+                
+                return () => { 
+                    isMounted = false; 
+                    clearInterval(fxInterval);
+                    clearInterval(primeInterval);
+                };
             }, []);
 
             return (
