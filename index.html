@@ -453,6 +453,10 @@
             navFactCheck: "Verification",
             navBanner: "META",
             navPrivacy: "Privacy Policy",
+            navResources: "Resources",
+            navSurplus: "The Corporate Surplus Trap",
+            navCompare: "Par vs. UL Engines",
+            navProtection: "Holistic Protection",
             privacyPage: {
                 title: "PRIVACY AND DATA GOVERNANCE POLICY",
                 lastUpdated: "Last Updated: February 26, 2026",
@@ -731,6 +735,10 @@
             navFactCheck: "專業核實",
             navBanner: "META",
             navPrivacy: "隱私政策",
+            navResources: "資源",
+            navSurplus: "公司盈餘陷阱",
+            navCompare: "Par vs. UL 保單引擎",
+            navProtection: "全面保障策略",
             privacyPage: {
                 title: "隱私與數據管理政策",
                 lastUpdated: "最後更新：2026年2月26日",
@@ -1010,6 +1018,10 @@
             navFactCheck: "专业核实",
             navBanner: "META",
             navPrivacy: "隐私政策",
+            navResources: "资源",
+            navSurplus: "公司盈余陷阱",
+            navCompare: "Par vs. UL 保单引擎",
+            navProtection: "全面保障策略",
             privacyPage: {
                 title: "隐私与数据管理政策",
                 lastUpdated: "最后更新：2026年2月26日",
@@ -1090,6 +1102,7 @@
                 return window.location.hash.replace('#', '') || 'home';
             });
             const [isMenuOpen, setIsMenuOpen] = useState(false);
+            const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
             const [formSubmitted, setFormSubmitted] = useState(false);
 
             useEffect(() => {
@@ -1098,6 +1111,7 @@
                     setCurrentPage(page);
                     window.scrollTo(0, 0);
                     setIsMenuOpen(false);
+                    setIsMobileResourcesOpen(false);
                     setFormSubmitted(false);
                 };
                 
@@ -1129,6 +1143,20 @@
                                 <button onClick={() => navigateTo('home')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'home' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navHome}</button>
                                 <button onClick={() => navigateTo('ifa')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'ifa' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navIFA}</button>
                                 <button onClick={() => navigateTo('cases')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'cases' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navCases}</button>
+                                
+                                <div className="relative group">
+                                    <button className={`text-[13px] uppercase font-black tracking-widest flex items-center gap-1 ${(currentPage === 'surplus' || currentPage === 'compare' || currentPage === 'protection') ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>
+                                        {t.navResources} <Icon name="chevron-down" size={14} />
+                                    </button>
+                                    <div className="absolute left-1/2 -translate-x-1/2 top-full pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                                        <div className="bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#c5a059]/50 rounded-2xl p-3 w-64 shadow-2xl flex flex-col gap-1">
+                                            <button onClick={() => navigateTo('surplus')} className={`text-left px-4 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition-colors ${currentPage === 'surplus' ? 'bg-[#c5a059]/20 text-[#c5a059]' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}>{t.navSurplus}</button>
+                                            <button onClick={() => navigateTo('compare')} className={`text-left px-4 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition-colors ${currentPage === 'compare' ? 'bg-[#c5a059]/20 text-[#c5a059]' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}>{t.navCompare}</button>
+                                            <button onClick={() => navigateTo('protection')} className={`text-left px-4 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition-colors ${currentPage === 'protection' ? 'bg-[#c5a059]/20 text-[#c5a059]' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}>{t.navProtection}</button>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <button onClick={() => navigateTo('about')} className={`text-[13px] uppercase font-black tracking-widest ${currentPage === 'about' ? 'text-[#c5a059]' : 'text-gray-500 hover:text-white'}`}>{t.navAbout}</button>
                                 <div className="flex gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10 ml-2 items-center">
                                     <Icon name="globe" className="text-[#c5a059]" size={14} />
@@ -1143,13 +1171,27 @@
                     </nav>
 
                     {isMenuOpen && (
-                        <div className="fixed inset-0 z-40 bg-[#0a0a0a] pt-24 px-8 flex flex-col items-center space-y-6 animate-in slide-in-from-top-4 duration-300">
+                        <div className="fixed inset-0 z-40 bg-[#0a0a0a] pt-24 px-8 flex flex-col items-center space-y-6 animate-in slide-in-from-top-4 duration-300 overflow-y-auto pb-20">
                             <button onClick={() => navigateTo('home')} className="text-2xl font-black uppercase tracking-widest">{t.navHome}</button>
                             <button onClick={() => navigateTo('ifa')} className="text-2xl font-black uppercase tracking-widest">{t.navIFA}</button>
                             <button onClick={() => navigateTo('cases')} className="text-2xl font-black uppercase tracking-widest">{t.navCases}</button>
+                            
+                            <div className="flex flex-col items-center w-full">
+                                <button onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)} className="text-2xl font-black uppercase tracking-widest flex items-center gap-2">
+                                    {t.navResources} <Icon name={isMobileResourcesOpen ? "chevron-up" : "chevron-down"} size={20} className="text-[#c5a059]" />
+                                </button>
+                                {isMobileResourcesOpen && (
+                                    <div className="flex flex-col items-center gap-5 mt-6 mb-2 animate-in slide-in-from-top-2 w-full px-4">
+                                        <button onClick={() => navigateTo('surplus')} className="text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-[#c5a059] text-center">{t.navSurplus}</button>
+                                        <button onClick={() => navigateTo('compare')} className="text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-[#c5a059] text-center">{t.navCompare}</button>
+                                        <button onClick={() => navigateTo('protection')} className="text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-[#c5a059] text-center">{t.navProtection}</button>
+                                    </div>
+                                )}
+                            </div>
+
                             <button onClick={() => navigateTo('about')} className="text-2xl font-black uppercase tracking-widest">{t.navAbout}</button>
                             
-                            <div className="flex gap-4 bg-white/5 px-6 py-2 rounded-full border border-white/10 items-center">
+                            <div className="flex gap-4 bg-white/5 px-6 py-2 rounded-full border border-white/10 items-center mt-2">
                                 <Icon name="globe" className="text-[#c5a059]" size={18} />
                                 <button onClick={() => setLanguage('en')} className={`text-sm ${language === 'en' ? 'text-[#e5c185] font-black' : 'text-gray-500'}`}>EN</button>
                                 <button onClick={() => setLanguage('zh')} className={`text-sm ${language === 'zh' ? 'text-[#e5c185] font-black' : 'text-gray-500'}`}>繁</button>
