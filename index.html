@@ -400,7 +400,7 @@
             aboutTitle: "About Alex",
             aboutDesc: "Integrated insurance and wealth planning for businesses and families, backed by 28+ years of experience.",
             ifaPrimeTitle: "Current CAD Prime Rate",
-            ifaPrimeSource: "Live data from Bank of Canada",
+            ifaPrimeSource: "Source: BoC Daily Target + 2.20% Spread",
             ifaFxTitle: "Live Exchange Rates (1 CAD)",
             ifaFxSource: "Source: Google Finance",
             oneDollarTitle: "One Dollar, Two Jobs",
@@ -682,7 +682,7 @@
             aboutTitle: "關於 Alex",
             aboutDesc: "整合企業與家庭的保險與財富規劃，憑藉超過 28 年的專業經驗。",
             ifaPrimeTitle: "當前加拿大基準利率",
-            ifaPrimeSource: "加拿大央行實時數據",
+            ifaPrimeSource: "來源: 加拿大央行每日目標 + 2.20% 利差",
             ifaFxTitle: "實時匯率 (1 CAD)",
             ifaFxSource: "來源: Google Finance",
             oneDollarTitle: "一塊錢，兩份工",
@@ -742,7 +742,7 @@
             privacyPage: {
                 title: "隱私與數據管理政策",
                 lastUpdated: "最後更新：2026年2月26日",
-                intro: "在 VEVACI，我們運作於高階財富策略、企業金融與永久人壽保險的專業交匯點。我們深知，在提供高度結構化的金融解決方案（如即時融資安排 IFA、企業遺產轉移及企業傳承規劃）時，我們受託處理客戶最敏感的個人、醫療及企業數據。\n\n本《隱私與數據管理政策》概述了我們在收集、使用、保留及披露您的資訊方面嚴格的機構級標準。本政策旨在嚴格遵守《個人信息保護和電子文件法》(PIPEDA)、《犯罪收益（洗錢）和恐怖主義融資法》(PCMLTFA)，以及安大略省金融服務監管局 (FSRA) 所執行的市場行為監管框架。",
+                intro: "在 VEVACI，我们运作于高階財富策略、企業金融與永久人壽保險的專業交匯點。我們深知，在提供高度結構化的金融解決方案（如即時融資安排 IFA、企業遺產轉移及企業傳承規劃）時，我們受託處理客戶最敏感的個人、醫療及企業數據。\n\n本《隱私與數據管理政策》概述了我們在收集、使用、保留及披露您的資訊方面嚴格的機構級標準。本政策旨在嚴格遵守《個人信息保護和電子文件法》(PIPEDA)、《犯罪收益（洗錢）和恐怖主義融資法》(PCMLTFA)，以及安大略省金融服務監管局 (FSRA) 所執行的市場行為監管框架。",
                 
                 s1Title: "1. 責任與治理",
                 s1Body: "我們對控制下的所有個人與企業資訊負有不可推卸的責任。我們已指定一名首席隱私官 (CPO)，負責監督本公司對此政策及所有適用加拿大隱私法規的遵守情況。我們對數據安全的承諾延伸至我們授權的第三方合作夥伴（包括管理總代理 MGA、人壽保險公司及特許貸款機構）處理的資訊，確保他們採用同等且合規的數據保護水準。",
@@ -962,7 +962,7 @@
             aboutTitle: "关于 Alex",
             aboutDesc: "整合企业与家庭的保险与财富规划，凭借超过 28 年的专业经验。",
             ifaPrimeTitle: "当前加拿大基准利率",
-            ifaPrimeSource: "加拿大央行实时数据",
+            ifaPrimeSource: "来源: 加拿大央行每日目标 + 2.20% 利差",
             ifaFxTitle: "实时汇率 (1 CAD)",
             ifaFxSource: "来源: Google Finance",
             oneDollarTitle: "一块钱，两份工",
@@ -1388,12 +1388,13 @@
                 
                 const fetchPrimeRate = async () => {
                     try {
-                        const response = await fetch("https://www.bankofcanada.ca/valet/observations/V122495/json?recent=1");
+                        const response = await fetch("https://www.bankofcanada.ca/valet/observations/V39079/json?recent=1");
                         if (!response.ok) throw new Error("Network response was not ok");
                         const data = await response.json();
                         if (isMounted && data.observations && data.observations.length > 0) {
-                            const rate = parseFloat(data.observations[0].V122495.v).toFixed(2);
-                            setPrimeRate(`${rate}%`);
+                            const targetRate = parseFloat(data.observations[0].V39079.v);
+                            const realTimePrime = (targetRate + 2.20).toFixed(2);
+                            setPrimeRate(`${realTimePrime}%`);
                         }
                     } catch (error) {
                         console.error("Failed to fetch prime rate:", error);
