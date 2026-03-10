@@ -1765,7 +1765,7 @@
         const CaseView = ({ t, language, navigateTo }) => (
             <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
                 <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">Case <span className="text-[#c5a059]">{language === 'en' ? 'Studies' : '研究'}</span></h2>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">{language === 'en' ? 'Case ' : (language === 'zh' ? '案例' : '案例')}<span className="text-[#c5a059]">{language === 'en' ? 'Studies' : (language === 'zh' ? '研究' : '研究')}</span></h2>
                 <div className="space-y-24">
                     {t.caseStudies.map((caseStudy, idx) => (
                         <CaseItem 
