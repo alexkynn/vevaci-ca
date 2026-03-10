@@ -705,7 +705,7 @@
             disclaimerBody: "本網站提供的資訊僅供一般教育及參考用途。其內容不應被視為財務、稅務、法律或投資建議。人壽保險策略（包括即時融資安排 IFA）具有複雜性，受限於個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）。稅率與規則（如 SBD 門檻和被動收入稅）可能會變動。在執行任何本文討論的策略前，請務必諮詢符合資格的專業會計師、律師或財務顧問。過往表現並不代表未來結果。",
             oneDollarDetailTitle: "雙效能引擎",
             oneDollarDetail1: "傳統保險會產生「鎖定」的保費支出。我們的 IFA 工程將該支出轉化為循環資產。投入的每一塊錢都建立了永久的死亡賠償金以滿足遺產義務（工作 1），同時作為銀行信用額度的優質抵押品（工作 2）。",
-            oneDollarDetail2: "這種架構使您能夠保持積極的資本管理。您不需要在「保障」與「增長」之間做選擇——您正在利用同一筆資本同時執行這兩項任務。其結果是消除了機會成本，並實現了公司資產負債表的最大化。",
+            oneDollarDetail2: "這種架構使您能夠保持積極的資本管理。您不需要在「保障」與「增長」之間做選擇——您正在利用同一筆資本同时執行這兩項任務。其結果是消除了機會成本，並實現了公司資產負債表的最大化。",
             engineCompTitle: "戰略底盤對比",
             aboutBioTitle: "專業傳記",
             aboutCreedTitle: "專業信條",
@@ -1411,29 +1411,77 @@
                     }
                 };
 
-                const fetchCurrencyViaFallback = async () => {
-                    // Fallback using ExchangeRate-API since Google Finance scraping via proxy is failing due to CORS/Fetch blocks
-                    try {
-                        const response = await fetch("https://open.er-api.com/v6/latest/CAD");
-                        if (!response.ok) throw new Error("Network response was not ok");
-                        const data = await response.json();
-                        if (isMounted && data.rates) {
-                            setFxRates({
-                                USD: data.rates.USD.toFixed(4),
-                                HKD: data.rates.HKD.toFixed(4),
-                                CNH: (data.rates.CNH || data.rates.CNY).toFixed(4)
-                            });
+                const fetchGoogleFinance = async (pair) => {
+                    const targetUrl = `https://www.google.com/finance/quote/${pair}`;
+                    const proxies = [
+                        `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}&cb=${Date.now()}`,
+                        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
+                        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`
+                    ];
+
+                    let html = null;
+                    for (const proxy of proxies) {
+                        try {
+                            const response = await fetch(proxy);
+                            if (!response.ok) continue;
+                            
+                            if (proxy.includes('allorigins')) {
+                                const data = await response.json();
+                                html = data.contents;
+                            } else {
+                                html = await response.text();
+                            }
+                            
+                            if (html && (html.includes('data-last-price') || html.includes('YMlKec fxKbKc'))) break;
+                        } catch (err) {
+                            console.warn(`Proxy failed for ${pair}:`, err);
                         }
-                    } catch (error) {
-                        console.error("Failed to fetch FX rates from fallback:", error);
-                        if (isMounted) setFxRates(prev => prev.USD === "..." ? { USD: "N/A", HKD: "N/A", CNH: "N/A" } : prev);
+                    }
+
+                    if (!html) throw new Error(`All proxies failed for ${pair}`);
+
+                    const match = html.match(/class="[^"]*YMlKec fxKbKc[^"]*"[^>]*>([^<]+)</) || html.match(/data-last-price="([^"]+)"/);
+                    if (match && match[1]) {
+                        return parseFloat(match[1].replace(/,/g, '')).toFixed(4);
+                    }
+                    throw new Error(`Rate not found in HTML for ${pair}`);
+                };
+
+                const fetchFxRates = async () => {
+                    const pairs = [
+                        { key: 'USD', id: 'CAD-USD' },
+                        { key: 'HKD', id: 'CAD-HKD' },
+                        { key: 'CNH', id: 'CAD-CNH', fallbackId: 'CAD-CNY' }
+                    ];
+
+                    for (const p of pairs) {
+                        if (!isMounted) break;
+                        try {
+                            let rate = await fetchGoogleFinance(p.id);
+                            if (isMounted) setFxRates(prev => ({ ...prev, [p.key]: rate !== "NaN" ? rate : "N/A" }));
+                        } catch (error) {
+                            if (p.fallbackId) {
+                                try {
+                                    let rate = await fetchGoogleFinance(p.fallbackId);
+                                    if (isMounted) setFxRates(prev => ({ ...prev, [p.key]: rate !== "NaN" ? rate : "N/A" }));
+                                } catch (fallbackError) {
+                                    console.error(`Fallback failed for ${p.key}:`, fallbackError);
+                                    if (isMounted) setFxRates(prev => prev[p.key] === "..." ? { ...prev, [p.key]: "N/A" } : prev);
+                                }
+                            } else {
+                                console.error(`Failed to fetch ${p.key} from Google Finance:`, error);
+                                if (isMounted) setFxRates(prev => prev[p.key] === "..." ? { ...prev, [p.key]: "N/A" } : prev);
+                            }
+                        }
+                        // 2-second delay between sequential proxy requests to guarantee we don't trip rate limiters
+                        await new Promise(resolve => setTimeout(resolve, 2000));
                     }
                 };
                 
                 fetchPrimeRate();
-                fetchCurrencyViaFallback();
+                fetchFxRates();
                 
-                const fxInterval = setInterval(fetchCurrencyViaFallback, 60000); // 60s for stable API polling
+                const fxInterval = setInterval(fetchFxRates, 60000); 
                 const primeInterval = setInterval(fetchPrimeRate, 3600000); 
                 
                 return () => { 
