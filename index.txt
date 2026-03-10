@@ -1940,7 +1940,7 @@
 
             return (
                 <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                    <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left text-white">{language === 'en' ? 'Consultation' : '諮詢'}<span className="text-[#c5a059]">{language === 'en' ? 'Request' : '申請'}</span></h2>
+                    <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left text-white">{language === 'en' ? 'Consultation' : (language === 'zh' ? '諮詢' : '咨询')}<span className="text-[#c5a059]">{language === 'en' ? 'Request' : (language === 'zh' ? '申請' : '申请')}</span></h2>
                     {!formSubmitted ? (
                         <form onSubmit={handleSubmit} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8 text-left">
                             <div className="grid md:grid-cols-2 gap-6">
