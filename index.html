@@ -902,6 +902,8 @@
             },
             protectionPage: {
                 title: "全面保障策略",
+                subTitle: "服务于多伦多、万锦及整个大多伦多地区 (GTA) 的顶级风险管理与遗产规划解决方案。我们提供一流的策略以保护您的财富。",
+                faqTitle: "常见问题",
                 items: [
                     { title: "危疾保险 (CI)", desc: "免税的一次性赔付可用于资助企业持续经营，以及在诊断后执行股东买断协议。", color: "emerald" },
                     { title: "保本基金 (隔离基金) 与遗产认证策略", desc: "规避安大略省遗产管理税 (遗产认证费) 并根据保险法获得债权人保护。大多伦多地区投资者的理想选择。", color: "gold" },
@@ -926,7 +928,7 @@
                 back: "返回首页",
                 stats: [
                     { title: "被动收入税率", value: "50.17%", desc: "安大略省公司被动投资收入税率。", color: "red" },
-                    { title: "SBD 门槛", value: "$50,000", desc: "AAII 限制，超过此数额即开始 5:1 削减。", color: "gold" }
+                    { title: "SBD 门槛", value: "$50,000", desc: "AAII 限制，超过此数额即开始 5:1 扣减。", color: "gold" }
                 ],
                 definitions: [
                     { 
@@ -944,9 +946,8 @@
                 ]
             },
             ifaIntro: {
-                title: "IFA 运作机制指南",
-                desc: "抵押保单现金价值以进行企业再投资的技术指南。",
-                desc: "即时融资安排 (IFA) 是一种杠杆策略，允许企业主在购买永久人寿保险的同时保留资本。通过将保单的现金解约价值 (CSV) 作为抵押品，公司可向银行获得信用额度——通常高达已付保费的 100% 或保单现金价值——而不会实质减少现金流。这些资金可用于产生收入的商业或投资活动，且利息可能抵稅。未偿还贷款通常在受保人身故时由保险身故赔偿金偿还。"
+                title: "什么是即时融资安排 (IFA)？",
+                desc: "即时融资安排 (IFA) 是一种杠杆策略，允许企业主在购买永久人寿保险的同时保留资本。通过将保单的现金解约价值 (CSV) 作为抵押品，公司可向银行获得信用额度——通常高达已付保费的 100% 或保单现金价值——而不会实质减少现金流。这些资金可用于产生收入的商业或投资活动，且利息可能抵税。未偿还贷款通常在受保人身故时由保险身故赔偿金偿还。"
             },
             ifaSteps: [
                 { num: "01", icon: "settings", title: "引擎选择", desc: "分析分红终身寿险或万能寿险，以实现最佳现金解约价值 (CSV) 表现。" },
@@ -958,7 +959,7 @@
             caseStudies: [
                 { 
                     title: "专科医生的杠杆效应", 
-                    profile: "安大略省万锦市，45岁，执业醫師 (CCPC)。", 
+                    profile: "安大略省万锦市，45岁，执业医师 (CCPC)。", 
                     challenge: "需要 500 万加元保障，同时保留 150 万加元流动资金用于房地产投资。", 
                     outcome: "通过 IFA 获取 90% 的 CSV 用于投资。零净自付成本。", 
                     tag: "场景 01", 
@@ -993,7 +994,7 @@
             aboutSection4Body: "真正的专业意味着在合适的时间，向合适的人推荐合适的解决方案——并以始终如一、专注的后续服务来支持该建议。",
             aboutReachTitle: "服务区域",
             aboutReachBody: "立足于万锦市，我们服务列治文山、旺市、密西沙加、士嘉堡、北约克及多伦多的客户。我们的专业策略适用于大多伦多地区 (GTA) 及所有寻求财富保值的安大略省居民。",
-            navHome: "首页", navIFA: "IFA", navCases: "案例研究", navAbout: "关于 Alex",
+            navHome: "首页", navIFA: "IFA", navCases: "案例分析", navAbout: "关于 Alex",
             headline: "财富策略. 流动性解锁.",
             subheadline: "通过即时融资安排 (IFA) 的力量最大化您的公司资本。",
             studyCta: "预约财富策略咨询",
@@ -1006,7 +1007,7 @@
             engineDesc: "针对 IFA 策略采用的两种主要保险底盘的技术分析。",
             protectionTitle: "全面保障策略",
             protectionDesc: "通过危疾保险 (Critical Illness (CI) Insurance) 与保本基金 (Segregated Funds) 确保企业持续经营。",
-            casesTitle: "案例研究",
+            casesTitle: "案例分析",
             casesDesc: "针对专业人士与企业主的真实战略应用。",
             aboutTitle: "关于 Alex",
             aboutDesc: "整合企业与家庭的保险与财富规划，凭借超过 28 年的专业经验。",
@@ -1016,7 +1017,7 @@
             ifaFxSource: "来源: Google Finance",
             oneDollarTitle: "一块钱，两份工",
             back: "返回首页", submit: "提交咨询申请", received: "请求已接收",
-            followup: "我将亲自审核您的公司概况. 预计在 48 小时内会收到回复。",
+            followup: "我将亲自审核您的公司概况。预计在 48 小时内会收到回复。",
             limitReached: "此电子邮件已达到每日 5 次请求限制。请在 24 小时后重试。",
             processing: "发送中...",
             networkError: "网络错误。请稍后重试。",
@@ -1029,38 +1030,35 @@
             oneDollarSubTitle: "企业与家庭的整合保险规划",
             oneDollarSubBody: "我们协助安大略省的企业主与高净值人士将保险策略设计为更广泛的资本与财富计划的一部分，而非孤立的产品。\n\n我们的方法专注于风险保障、保持流动性并减少不必要的机会成本，确保保险能支持业务增长、传承及家族长期财富，而非限制其发展。",
             disclaimerTitle: "免责声明",
-            disclaimerBody: "本网站提供的信息仅供一般教育及参考用途。其内容应被视为财务、税务、法律或投资建议。人壽保險策略（包括即時融資安排 IFA）具有複雜性，受限于個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）。稅率與規則（如 SBD 門檻和被動收入稅）可能因聯邦及省政府政策而變動。在執行任何本文討論的策略前，請务必咨詢符合资格的专业会计师、律师或财务顾问。过往表现并不代表未来结果。",
-            oneDollarDetailTitle: "雙效能引擎",
-            oneDollarDetail1: "傳統保險會產生「鎖定」的保費支出。我們的 IFA 工程將該支出轉化為循環資產. 投入的每一塊錢都建立了永久的死亡賠償金以滿足遺產義務（工作 1），同時作為銀行信用額度的優質抵押品（工作 2）。",
-            oneDollarDetail2: "這種架構使您能夠保持積極的資本 management。您不需要在“保障”與“增長”之間做选择——您正在利用同一筆資本同时执行这两项任务。其结果是消除了机会成本，并实现了公司资产负债表的最大化。",
-            engineCompTitle: "战略底盤对比",
+            disclaimerBody: "本网站提供的信息仅供一般教育及参考用途。其内容不应被视为财务、税务、法律或投资建议。人寿保险策略（包括即时融资安排 IFA）具有复杂性，受限于个人资格、贷款机构要求及现行加拿大税务法律（包括所得税法）。税率与规则（如 SBD 门槛和被动收入税）可能会发生变动。在执行任何本文讨论的策略前，请务必咨询符合资格的专业会计师、律师或财务顾问。过往表现并不代表未来结果。",
+            oneDollarDetailTitle: "双效能引擎",
+            oneDollarDetail1: "传统保险会产生“锁定”的保费支出。我们的 IFA 工程将该支出转化为循环资产。投入的每一块钱都建立了永久的死亡赔偿金以满足遗产义务（工作 1），同时作为银行信用额度的优质抵押品（工作 2）。",
+            oneDollarDetail2: "这种架构使您能够保持积极的资本管理。您不需要在“保障”与“增长”之间做选择——您正在利用同一笔资本同时执行这两项任务。其结果是消除了机会成本，并实现了公司资产负债表的最大化。",
+            engineCompTitle: "战略底盘对比",
             aboutBioTitle: "专业传记",
             aboutCreedTitle: "专业信条",
             aboutReachTitle: "服务区域",
-            aboutReachBody: "立足于万锦市，我们服务列治文山、旺市、密西沙加、士嘉堡、北约克及多伦多的客户。我们的专业策略适用于大多伦多地区 (GTA) 及所有寻求财富保值的安大略省居民。",
             formName: "姓名",
             formEmail: "电子邮件",
             formPhone: "电话号码 (选填)",
             formCorp: "公司名称 (选填)",
-            notRobot: "我不是机器人",
-            robotError: "请在提交前验证您不是机器人。",
             jobTooltip: {
-                title: "為何 IFA 具有吸引力",
-                hnwTitle: "針對個人",
+                title: "为何 IFA 具有吸引力",
+                hnwTitle: "针对个人",
                 hnwList: [
-                    "人壽保險保障與財富規劃",
-                    "具稅務優勢的現金流獲取",
-                    "無需動用個人流動資產即可借貸",
-                    "保單現金價值在延稅基礎上增長",
-                    "潛在的遺產規劃與遺產稅解決方案"
+                    "人寿保险保障与财富规划",
+                    "具税务优势的现金流获取",
+                    "无需动用个人流动资产即可借贷",
+                    "保单现金价值在延税基础上增长",
+                    "潜在的遗产规划与遗产税解决方案"
                 ],
-                corpTitle: "針對公司企业",
+                corpTitle: "针对公司企业",
                 corpList: [
-                    "保留營運現金流",
-                    "利用公司資本擔保貸款",
-                    "資金用於產生收入時，利息可抵稅",
-                    "受保人身故時增加資本紅利賬戶 (CDA) 額度",
-                    "支持傳承、退休或買賣協議融資"
+                    "保留营运现金流",
+                    "利用公司资本担保贷款",
+                    "资金用于产生收入时，利息可抵税",
+                    "受保人身故时增加资本红利账户 (CDA) 额度",
+                    "支持传承、退休或买卖协议融资"
                 ]
             },
             serviceAreas: ["万锦市", "列治文山", "多伦多", "旺市", "密西沙加", "士嘉堡", "北约克", "奥克维尔", "伯灵顿", "奥罗拉", "新市", "大多伦多地区", "安大略省"],
@@ -1086,7 +1084,7 @@
                     "企业与财务信息：全面的净值报表、现金流分析、个人与企业的评估通知书 (NOA)、信用记录、银行详细资料及企业会议记录簿。对于企业实体，我们强制收集组织架构图与实益拥有权数据，以遵守 FINTRAC 规定。",
                     "医疗与生活方式信息：详细的病历、主治医师声明 (APS)、业余爱好与生活方式数据，以及驾驶记录 (MVR)。收集此数据严格用于人寿保险核保过程中评估死亡率与发病率风险。",
                     "社会保险号码 (SIN)：当金融产品产生应税收入时，根据加拿大税务局 (CRA) 的要求，我们必须收集您的 SIN 用于税务报告。如果要求提供您的 SIN 是为了执行信用局检查以获得 IFA 贷款，则为该特定目的提供的 SIN 完全是自愿的。",
-                    "数字与分析数据：IP 地址、浏览器类型，以及透过我们网站上的 cookies 收集的使用数据，以优化用户体验并监控网站安全。"
+                    "数字与分析数据：IP 地址、浏览器类型，以及通过我们网站上的 cookies 收集的使用数据，以优化用户体验并监控网站安全。"
                 ],
                 
                 s3Title: "3. 确定目的：我们如何使用您的数据",
@@ -1100,7 +1098,7 @@
                 ],
 
                 s4Title: "4. 同意与撤回的权利",
-                s4Body: "透过使用我们的咨询服务、提交申请或使用我们的数字平台，您对此处概述的数据收集、使用与披露给予了有意义的、知情的同意。\n\n明确同意：对于收集与传输高度敏感的数据——如 iA Financial Group 的医疗记录或贷款机构的信用局检查——我们将始终获得您的明确书面或电子同意。\n\n撤回同意：您保留随时撤回同意的权利，但须受法律或合同限制。请注意：撤销与保险公司或贷款人分享数据的同意将从根本上阻碍我们维持您的保单或为您的 IFA 信贷便利提供服务的能力，并可能导致保单失效或被要求偿还抵押贷款。",
+                s4Body: "通过使用我们的咨询服务、提交申请或使用我们的数字平台，您对此处概述的数据收集、使用与披露给予了有意义的、知情的同意。\n\n明确同意：对于收集与传输高度敏感的数据——如 iA Financial Group 的医疗记录或贷款机构的信用局检查——我们将始终获得您的明确书面或电子同意。\n\n撤回同意：您保留随时撤回同意的权利，但须受法律或合同限制。请注意：撤销与保险公司或贷款人分享数据的同意将从根本上阻碍我们维持您的保单或为您的 IFA 信贷便利提供服务的能力，并可能导致保单失效或被要求偿还抵押贷款。",
 
                 s5Title: "5. 限制披露：谁能看到您的信息",
                 s5Intro: "我们在严格的保密原则下运作。我们不会出售、出租或将您的个人数据商品化。您的信息严格按照“需要知道”的原则披露给以下授权实体：",
@@ -1357,7 +1355,7 @@
                     <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">{t.subheadline}</p>
                     <div className="flex flex-col sm:flex-row justify-center gap-5 mb-32">
                         <button onClick={() => navigateTo('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-12 py-5 rounded-full font-bold text-lg shadow-2xl active:scale-95 transition-transform">{t.studyCta}</button>
-                        <button onClick={() => navigateTo('ifa')} className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors">{language === 'en' ? 'Learn the Mechanics' : '了解運作機制'}</button>
+                        <button onClick={() => navigateTo('ifa')} className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors">{language === 'en' ? 'Learn the Mechanics' : (language === 'zh' ? '了解運作機制' : '了解运作机制')}</button>
                     </div>
 
                     <div className="max-w-4xl mx-auto mb-32 relative">
@@ -1659,7 +1657,7 @@
                         </div>
                     </div>
 
-                    <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">IFA <span className="text-[#c5a059]">{language === 'en' ? 'Mechanics' : '運作機制'}</span></h2>
+                    <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">IFA <span className="text-[#c5a059]">{language === 'en' ? 'Mechanics' : (language === 'zh' ? '運作機制' : '运作机制')}</span></h2>
                     <div className="space-y-16 border-l border-[#c5a059]/20 pl-8 ml-4 text-left">
                         {t.ifaSteps.map((step, idx) => (
                             <Step key={idx} num={step.num} icon={step.icon} title={step.title} desc={step.desc} />
@@ -1855,7 +1853,7 @@
         const CaseView = ({ t, language, navigateTo }) => (
             <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
                 <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">{language === 'en' ? 'Case ' : (language === 'zh' ? '案例' : '案例')}<span className="text-[#c5a059]">{language === 'en' ? 'Studies' : (language === 'zh' ? '研究' : '研究')}</span></h2>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">{language === 'en' ? 'Case ' : (language === 'zh' ? '案例' : '案例')}<span className="text-[#c5a059]">{language === 'en' ? 'Studies' : (language === 'zh' ? '研究' : '分析')}</span></h2>
                 <div className="space-y-24">
                     {t.caseStudies.map((caseStudy, idx) => (
                         <CaseItem 
