@@ -138,6 +138,7 @@
         .gold-drop-shadow {
             filter: drop-shadow(0 15px 25px rgba(197, 160, 89, 0.4));
         }
+        /* ------------------------------------ */
         
         .bg-copper-gradient { 
             background: linear-gradient(to right, #b36b39, #8c6239); 
@@ -148,11 +149,13 @@
         
         [data-lucide] { display: inline-block; }
         
+        /* Advanced Photo Mask */
         .photo-mask {
             mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
         }
 
+        /* Custom Table Styles */
         .glass-table {
             border-collapse: separate;
             border-spacing: 0;
@@ -182,6 +185,7 @@
             background: rgba(255,255,255,0.02);
         }
         
+        /* Fact Check Section Styles */
         .verification-badge {
             display: inline-flex;
             align-items: center;
@@ -211,6 +215,7 @@
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
 
+        // FIXED: Optimized Icon Component
         const Icon = ({ name, className = "", size = 24 }) => {
             const ref = useRef(null);
             
@@ -225,6 +230,9 @@
             );
         };
 
+        // --- CONTENT DATA DEFINITIONS ---
+
+        // English Data
         const englishContent = {
             brandName: "VEVACI",
             comparePage: {
@@ -352,16 +360,23 @@
                     icon: "briefcase" 
                 }
             ],
+            // Updated About Content Data
             aboutRole: "Insurance Strategist & Licensed Agent | Founder of VEVACI",
             aboutBioTitle: "Professional Biography", 
+            
+            // Section 1: Philosophy
             aboutSection1Title: "The VEVACI Philosophy: Precision meets Legacy",
             aboutSection1Body: "\"VEVACI\" is more than a brand—it is a legacy name formed from the names of my two daughters, Vera and Valarie. It reflects my deepest personal and professional commitment: ensuring continuity, responsibility, and long-term stewardship for the families and businesses I serve.",
+            
+            // Section 2: Background
             aboutSection2Title: "From Algorithmic Trading to Wealth Protection",
             aboutSection2Body: "With over 28 years of experience in the financial sector, my background is rooted in financial derivatives and algorithmic trading. In that world, precision, risk management, and structural integrity are paramount. Today, I apply those exact same rigorous principles to help business owners and families across Markham, Richmond Hill, and the Greater Toronto Area (GTA) thoughtfully structure and protect their wealth in an increasingly complex financial environment.",
+            
+            // Section 3: Mentorship
             aboutSection3Title: "Backed by Industry Excellence",
             aboutSection3Body: <span>My approach to insurance and wealth strategy was profoundly shaped by a pivotal mentorship under Amy Tong, CEO of <a href="https://atfinancialgroup.com/" target="_blank" rel="noopener noreferrer" className="text-[#c5a059] hover:underline decoration-[#c5a059] underline-offset-2 transition-all">A.T. Financial Group</a>. Operating alongside A.T. Financial Group, my practice is driven by a client-first philosophy grounded in discipline, clarity, and long-term thinking.</span>,
             
-            // Section 4: Creed - UPDATED SLOGAN
+            // Section 4: Creed
             aboutSection4Title: "My Professional Creed",
             aboutSection4Body: "Beyond the Obvious. Through Proactive Strategy. Independent Brokerage Where Your Growth is Our Success.",
 
@@ -584,7 +599,7 @@
                 faqTitle: "常見問題",
                 items: [
                     { title: "安大略省危疾保險 (CI)", desc: "免稅一次性賠付以資助企業持續經營及股東買斷。面對嚴重診斷的安大略省醫生與企業主的必要保障。", color: "emerald" },
-                    { title: "保本基金 (隔離基金) 與遺產認證策略", desc: "規避安大略省遺產管理稅 (遺產認證費) 並根據保險法獲得債權人保護. 大多倫多地區投資者的理想選擇。", color: "gold" },
+                    { title: "保本基金 (隔離基金) 與遺產認證策略", desc: "規避安大略省遺產管理稅 (遺產認證費) 並根據保險法獲得債權人保護。大多倫多地區投資者的理想選擇。", color: "gold" },
                     { title: "多倫多傷殘保險 (DI)", desc: "保護多倫多專業人士的賺錢能力。這往往是比死亡更大的風險，專為安大略省高收入者量身定制。", color: "emerald" },
                     { title: "企業營運開支保險", desc: "讓您的安大略省企業持續運轉。若企業主喪失工作能力，可支付固定成本（租金、薪資），確保業務連續性。", color: "gold" },
                     { title: "關鍵人物收入替代", desc: "為安大略省公司提供的專門保障，用於替代收入損失並支付關鍵員工的招聘成本。", color: "emerald" },
@@ -659,6 +674,7 @@
                     icon: "briefcase" 
                 }
             ],
+            // Updated About Content Data
             aboutRole: "保險策略師 & 持牌經紀 | 威發昇 創辦人", 
             aboutBioTitle: "專業傳記",
             aboutSection1Title: "威發昇 哲學：精準布局 · 世代傳承", 
@@ -708,12 +724,12 @@
             job1: "工作 1：保障", job1Desc: "資助遺產稅與買斷協議",
             job2: "工作 2：流動性", job2Desc: "用於再投資的資本",
             oneDollarSubTitle: "企業與家庭的整合保險規劃",
-            oneDollarSubBody: "我們協助安大略省的企業主與高淨值人士將保險策略設計為更廣泛的資本與財富計劃的一部分，而非孤立的產品。\n\n我們的方法專注於風險保障、保持流動性並減少不必要的機會成本，確保保險能支持業務增長、傳承及家族長期財富，而非限制其發展。",
+            oneDollarSubBody: "我們協助安大略省的企業主與高淨值人士將保險策略設計為更廣泛的資本與財富計劃的一部分，而非孤立的產品。\n\n我們的方法專注於風險保障、保持傳遞、減少不必要的機會成本，確保保險能支持業務增長、傳承及家族長期財富，而非限制其發展。",
             disclaimerTitle: "免責聲明",
             disclaimerBody: "本網站提供的資訊僅供一般教育及參考用途。其內容不應被視為財務、稅務、法律或投資建議。人壽保險策略（包括即時融資安排 IFA）具有複雜性，受限於個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）。稅率與規則（如 SBD 門檻和被動收入稅）可能會變動。在執行任何本文討論的策略前，請務必諮詢符合資格的專業會計師、律師或財務顧問。過往表現並不代表未來結果。",
             oneDollarDetailTitle: "雙效能引擎",
             oneDollarDetail1: "傳統保險會產生「鎖定」的保費支出。我們的 IFA 工程將該支出轉化為循環資產。投入的每一塊錢都建立了永久的死亡賠償金以滿足遺產義務（工作 1），同時作為銀行信用額度的優質抵押品（工作 2）。",
-            oneDollarDetail2: "這種架構使您能夠保持積極的資本管理. 您不需要在「保障」與「增長」之間做選擇——您正在利用同一筆資本同时執行這兩項任務。其結果是消除了機會成本，並實現了公司資產負債表的最大化。",
+            oneDollarDetail2: "這種架構使您能夠保持積極的資本管理。您不需要在「保障」與「增長」之間做選擇——您正在利用同一筆資本同时執行這兩項任務。其結果是消除了機會成本，並實現了公司資產負債表的最大化。",
             engineCompTitle: "戰略底盤對比",
             aboutBioTitle: "專業傳記",
             aboutCreedTitle: "專業信條",
@@ -755,13 +771,13 @@
                 intro: "在 威發昇，我們運作於高階財富策略、企業金融與永久人壽保險的專業交匯點。我們深知，在提供高度結構化的金融解決方案（如即時融資安排 IFA、企業遺產轉移及企業傳承規劃）時，我們受託處理客戶最敏感的個人、醫療及企業數據。\n\n本《隱私與數據管理政策》概述了我們在收集、使用、保留及披露您的資訊方面嚴格的機構級標準。本政策旨在嚴格遵守《個人信息保護和電子文件法》(PIPEDA)、《犯罪收益（洗錢）和恐怖主義融資法》(PCMLTFA)，以及安大略省金融服務監管局 (FSRA) 所執行的市場行為監管框架。",
                 
                 s1Title: "1. 責任與治理",
-                s1Body: "我們對控制下的所有個人與企業資訊負有不可推卸的責任。我們已指定一名首席隱私官 (CPO)，負責監督本公司對此政策及所有適用加拿大隱私法規的遵守情況。我們對數據安全的承诺延伸至我們授權的第三方合作伙伴（包括管理總代理 MGA、人壽保險公司及特許貸款機構）處理的資訊，確保他們採用同等且合規的數據保護水準。",
+                s1Body: "我們對控制下的所有個人與企業資訊負有不可推卸的責任。我們已指定一名首席隱私官 (CPO)，負責監督本公司對此政策及所有適用加拿大隱私法規的遵守情況。我們對數據安全的承諾延伸至我們授權的第三方合作夥伴（包括管理總代理 MGA、人壽保險公司及特許貸款機構）處理的資訊，確保他們採用同等且合規的數據保護水準。",
                 
                 s2Title: "2. 我們收集的資訊",
                 s2Intro: "為提供定制化的財富策略並履行我們的監管「了解您的客戶」(KYC) 義務，我們收集以下類別的資訊：",
                 s2Items: [
                     "身份與聯絡資訊：法定姓名、出生日期、居住及營業地址、電子郵件、電話號碼，以及根據反洗錢 (AML) 法規核實身份所需的政府簽發身份證明（如駕駛執照、護照）。",
-                    "企業與財務資訊：全面的淨值報表、現金流分析、個人與企業的評估通知書 (NOA)、信用記錄、銀行詳細資料及企業會議記錄簿. 對於企業實體，我們強制收集組織架構圖與實益擁有權數據，以遵守 FINTRAC 規定。",
+                    "企業與財務資訊：全面的淨值報表、現金流分析、個人與企業的評估通知書 (NOA)、信用記錄、銀行詳細資料及企業會議記錄簿。對於企業實體，我們強制收集組織架構圖與實益擁有權數據，以遵守 FINTRAC 規定。",
                     "醫療與生活方式資訊：詳細的病歷、主治醫師聲明 (APS)、業餘愛好與生活方式數據，以及駕駛記錄 (MVR)。收集此數據嚴格用於人壽保險核保過程中評估死亡率與發病率風險。",
                     "社會保險號碼 (SIN)：當金融產品產生應稅收入時，根據加拿大稅務局 (CRA) 的要求，我們必須收集您的 SIN 用於稅務報告。如果要求提供您的 SIN 是為了執行信用局檢查以獲得 IFA 貸款，則為該特定目的提供的 SIN 完全是自願的。",
                     "數字與分析數據：IP 地址、瀏覽器類型，以及透過我們網站上的 cookies 收集的使用數據，以優化用戶體驗並監控網站安全。"
@@ -778,7 +794,7 @@
                 ],
 
                 s4Title: "4. 同意與撤回的權利",
-                s4Body: "透過使用我們的諮詢服務、提交申請或使用我們的數字平台，您對此處概述的數據收集、使用與披露給予了有意義的、知情的同意。\n\n明確同意：對於收集與傳輸高度敏感的數據——如 iA Financial Group 的醫療記錄或貸款機構的信用局檢查——我們將始終獲得您的明確書面或電子同意。\n\n撤回同意：您保留隨時撤回同意的權利，但須受法律或合同限制。請注意：撤銷與保險公司或貸款人分享數據的同意將從根本上阻礙我們維持您的保單或為您的 IFA 信貸便利提供服務的能力，並可能導致保單失效或被要求償還抵押貸款。",
+                s4Body: "透過使用我們的諮詢服務、提交申請或使用我們的數字平台，您對此處概述的數據收集、使用與披露給予了有意義的、知情的同意。\n\n明確同意：對於收集與傳輸高度敏感的地數據——如 iA Financial Group 的醫療記錄或貸款機構的信用局檢查——我們將始終獲得您的明確書面或電子同意。\n\n撤回同意：您保留隨時撤回同意的權利，但須受法律或合同限制。請注意：撤銷與保險公司或貸款人分享數據的同意將從根本上阻礙我們維持您的保單或為您的 IFA 信貸便利提供服務的能力，並可能導致保單失效或被要求償還抵押貸款。",
 
                 s5Title: "5. 限制披露：誰能看到您的資訊",
                 s5Intro: "我們在嚴格的保密原則下運作。我們不會出售、出租或將您的個人數據商品化。您的資訊嚴格按照「需要知道」的原則披露給以下授權實體：",
@@ -791,7 +807,7 @@
                 ],
 
                 s6Title: "6. 數據保留與準確性",
-                s6Body: "我們僅在實現收集目的所需的時間內，或在法律與監管保留時間表（通常在保單終止或客戶關係結束後長達七年）強制規定的時間內保留個人與企業資訊。\n\n財富策略的有效性依賴於準確的數據。我們依賴您隨時向我們通報您的財務、企業或個人狀況的任何重大變化。我們將每 36 個月至少正式要求您更新一次 KYC 資訊，以確保我們的持續建議保持適用。",
+                s6Body: "我們僅在實現收集目的所需的時間內，或在法律與規制保留時間表（通常在保單終止或客戶關係結束後長達七年）強制規定的時間內保留個人與企業資訊。\n\n財富策略的有效性依賴於準確的數據。我們依賴您隨時向我們通報您的財務、企業或個人狀況的任何重大變化。我們將每 36 個月至少正式要求您更新一次 KYC 資訊，以確保我們的持續建議保持適用。",
 
                 s7Title: "7. 機構安全防護措施",
                 s7Intro: "我們採用強大、多層次的安全措施來保護您的數據免受未經授權的訪問、丟失或盜竊：",
@@ -871,7 +887,6 @@
                 table: {
                     title: "IFA 架构下的关键差异",
                     headers: ["构面", "分红终身寿险", "万能寿险"],
-                    headers: ["构面", "分红终身寿险", "万能寿险"],
                     rows: [
                         { aspect: "增长特征", par: "稳定、长期、基于分红", ul: "变动、驱动于市场与假设" },
                         { aspect: "风险敞口", par: "较低", ul: "较高 (投资与成本风险)" },
@@ -902,9 +917,9 @@
                     { title: "公司持有永久保险", desc: "利用公司盈余在资产负债表上建立具税务优势的资产类别。", color: "gold" }
                 ],
                 faqs: [
-                    { q: "为什么安大略省企业主需要专门的保险规划？", a: "安大略省有特定的税率和遗产认证费（遗产管理税）。我们的策略专为在安大略省法律环境中最大化财富保值而设计。" },
+                    { q: "为什么安大略省企业主需要专门的保险规划？", a: "安大略省有特定的税率和遗产认证费（遗产管理税）。我们的策略专为在安大略省法律环境中最大化财富保值而設計。" },
                     { q: "你们服务万锦市以外的客户吗？", a: "是的。虽然我们位于万锦，但 威发昇 服务整个大多伦多地区 (GTA)，包括多伦多、列治文山、旺市、密西沙加以及全安大略省。" },
-                    { q: "为什么 威发昇 是多伦多高净值保险的最佳选择？", a: "我们不只是销售产品；我们设计策略。我们整合税务规划、公司架构与保险产品，提供卓越的流动性与长期价值。" }
+                    { q: "为什么 威发昇 是多伦多高净值保险的最佳选择？", a: "我们不只是销售产品；我们设计策略。我们整合税务规划、公司架构與保險產品，提供卓越的流動性與長期價值。" }
                 ]
             },
             surplusPage: {
@@ -922,17 +937,17 @@
                     },
                     { 
                         term: "SBD (小型企业税务抵扣)", 
-                        desc: "一项优惠税务抵扣，可降低首 50 万加元主动业务收入的联邦税率。然而，当被动收入超过 5 万加元时，每增加 1 加元，SBD 额度便减少 5 加元，变相收回此税务优势。" 
+                        desc: "一项优惠税务抵扣，可降低首 50 万加元主动业务收入的联邦税率。然而，当被动收入超过 5 万加元时，每增加 1 加元，SBD 额度便減少 5 加元，变相收回此税务优势。" 
                     }
                 ],
                 body: [
-                    "在 CCPC 内部持有过剩现金会引发税务磨擦。一旦被动收入超过 5 万加元，就会侵蚀您的小型企业税务抵扣 (SBD) 资格。",
+                    "在 CCPC 內部持有过剩现金会引发税务磨擦。一旦被动收入超过 5 万加元，就会侵蚀您的小型企业税务抵扣 (SBD) 资格。",
                     "将盈余重新分配至免税保险引擎可以恢复您的 SBD 额度，同时通过资本红利账户 (CDA) 建立免税财富提取渠道。"
                 ]
             },
             ifaIntro: {
                 title: "什么是即时融资安排 (IFA)？",
-                desc: "即时融资安排 (IFA) 是一种杠杆策略，允许企业主在购买永久人寿保险的同时保留资本。通过将保单的现金解约价值 (CSV) 作为抵押品，公司可向银行获得信用额度——通常高达已付保费的 100% 或保单现金价值——而不会实质减少现金流。这些资金可用于产生收入的商业或投资活动，且利息可能抵税。未偿还贷款通常在受保人身故时由保险身故赔偿金偿还。"
+                desc: "即时融资安排 (IFA) 是一种杠杆策略，允许企业主在购买永久人寿保险的同时保留资本. 通过将保單的现金解约价值 (CSV) 作为抵押品，公司可向银行获得信用额度——通常高达已付保费的 100% 或保单现金价值——而不会实质减少现金流。这些资金可用于产生收入的商业或投资活动，且利息可能抵税。未偿还贷款通常在受保人身故时由保险身故赔偿金偿还。"
             },
             ifaSteps: [
                 { num: "01", icon: "settings", title: "引擎选择", desc: "分析分红终身寿险或万能寿险，以实现最佳现金解约价值 (CSV) 表现。" },
@@ -962,15 +977,16 @@
                     title: "家族传承基石", 
                     profile: "制造业主，65 岁，处于传承阶段。", 
                     challenge: "预计身故时有 540 万加元的税务负债，威胁企业的持续经营。", 
-                    outcome: "遗产债券策略。保险收益全額償還稅單，實現無債務轉移。", 
+                    outcome: "遗产债券策略. 保险收益全额償還稅單，實現無債務轉移。" , 
                     tag: "场景 03", 
                     icon: "briefcase" 
                 }
             ],
+            // Updated About Content Data
             aboutRole: "保险策略师 & 持牌经纪 | 威发昇 创始人", 
             aboutBioTitle: "专业传记",
             aboutSection1Title: "威发昇 哲学：精准布局 · 世代传承", 
-            aboutSection1Body: "“威发昇” (VEVACI) 不仅是一个品牌，更是一个传承之名，由我两位女儿 Vera 和 Valarie 的名字组成。这反映了我最深切的个人与专业承诺：确保我所服务的家庭与企业能够延续、负责任并获得长期的守护。",
+            aboutSection1Body: "“威发昇” (VEVACI) 不仅是一个品牌，更是一个传承之名，由我两位女儿 Vera 和 Valarie 的名字组成。这反映了我最深切的个人与专业承诺：确保我所服务的家庭與企业能夠延续、负责任并获得长期的守护。",
             aboutSection2Title: "从算法交易到财富保护",
             aboutSection2Body: "拥有超过 28 年的金融领域经验，我的背景植根于金融衍生品和算法交易。在那个世界里，精准度、风险 management 和结构完整性至关重要。今天，我运用同样严谨的原则，协助万锦 (Markham)、列治文山 (Richmond Hill) 及大多伦多地区 (GTA) 的企业主和家庭，在日益复杂的金融环境中，审慎地构建和保护他们的财富。",
             aboutSection3Title: "行业卓越支持",
@@ -990,22 +1006,22 @@
             ifaTitle: "IFA 运作机制指南",
             ifaDesc: "抵押保单现金价值以进行企业再投资的技术指南。",
             surplusTitle: "公司盈余陷阱",
-            surplusDesc: "分析安省公司被动投资收入税与 SBD 扣减效应。",
+            surplusDesc: "分析安省公司被动投资收入税與 SBD 扣减效应。",
             engineTitle: "Par vs. UL 保单引擎",
             engineDesc: "针对 IFA 策略采用的两种主要保险底盘的技术分析。",
             protectionTitle: "全面保障策略",
             protectionDesc: "通过危疾保险 (Critical Illness (CI) Insurance) 与保本基金 (Segregated Funds) 确保企业持续经营。",
             casesTitle: "案例分析",
-            casesDesc: "针对专业人士与企业主的真实战略应用。",
+            casesDesc: "针对专业人士與企业主的真实战略应用。",
             aboutTitle: "关于 Alex",
-            aboutDesc: "整合企业与家庭的保险与财富规划，凭借超过 28 年的专业经验。",
+            aboutDesc: "整合企业與家庭的保险與财富规划，凭借超过 28 年的专业经验。",
             ifaPrimeTitle: "当前加拿大基准利率",
             ifaPrimeSource: "来源: 加拿大央行每日目标 + 2.20% 利差",
             ifaFxTitle: "实时汇率 (1 CAD)",
             ifaFxSource: "来源: Google Finance",
             oneDollarTitle: "一块钱，两份工",
             back: "返回首页", submit: "提交咨询申请", received: "请求已接收",
-            followup: "我将亲自审核您的公司概况. 预计在 48 小时内会收到回复。",
+            followup: "我将亲自审核您的公司概况. 预计在 48 小时內会收到回复。",
             limitReached: "此电子邮件已达到每日 5 次请求限制。请在 24 小时后重试。",
             processing: "发送中...",
             networkError: "网络错误. 请稍后重试。",
@@ -1013,15 +1029,15 @@
             robotError: "请在提交前验证您不是机器人。",
             profileLabel: "客户概况", challengeLabel: "面临挑战", outcomeLabel: "战略成果",
             exploreIFA: "探索 IFA 运作机制", readDeepDive: "阅读",
-            job1: "工作 1：保障", job1Desc: "资助遗产税与买断协议",
+            job1: "工作 1：保障", job1Desc: "资助遗产税與买断协议",
             job2: "工作 2：流动性", job2Desc: "用于再投资的资本",
-            oneDollarSubTitle: "企业与家庭的整合保险规划",
-            oneDollarSubBody: "我们协助安大略省的企业主与高净值人士将保险策略设计为更广泛的资本与财富计划的一部分，而非孤立的产品.\n\n我们的方法专注于风险保障、保持流动性并减少不必要的机会成本，确保保险能支持业务增长、传承及家族长期财富，而非限制其发展。",
+            oneDollarSubTitle: "企业與家庭的整合保险规划",
+            oneDollarSubBody: "我们协助安大略省的企业主與高净值人士将保险策略设计为更广泛的资本與财富计划的一部分，而非孤立的产品.\n\n我们的方法专注于风险保障、保持流动性並減少不必要的机会成本，确保保险能支持业务增长、传承及家族长期财富，而非限制其发展。",
             disclaimerTitle: "免责声明",
-            disclaimerBody: "本网站提供的信息仅供一般教育及参考用途. 其内容不应被视为财务、税务、法律或投资建议. 人寿保险策略（包括即時融資安排 IFA）具有複雜性，受限於個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）. 税率与规则（如 SBD 门槛和被动收入税）可能会发生变动. 在执行任何本文讨论的策略前，请务必咨询符合资格的专业会计师、律师或财务顾问. 过往表现并不代表未来结果。",
+            disclaimerBody: "本网站提供的信息仅供一般教育及参考用途. 其内容不应被视为财务、税务、法律或投资建议. 人寿保险策略（包括即時融資安排 IFA）具有複雜性，受限於個人資格、貸款機構要求及現行加拿大稅務法律（包括所得稅法）. 税率與规则（如 SBD 门槛和被动收入税）可能会发生变动. 在执行任何本文讨论的策略前，请务必咨询符合资格的专业会计师、律师或财务顾问. 过往表现并不代表未来结果。",
             oneDollarDetailTitle: "双效能引擎",
             oneDollarDetail1: "传统保险会产生“锁定”的保费支出. 我们的 IFA 工程将该支出转化为循环资产. 投入的每一块钱都建立了永久的死亡赔偿金以满足遗产义务（工作 1），同时作为银行信用额度的优质抵押品（工作 2）。",
-            oneDollarDetail2: "这种架构使您能够保持积极的资本管理. 您不需要在“保障”与“增长”之间做选择——您正在利用同一笔资本同时执行这两项任务. 其结果是消除了机会成本，并实现了公司资产负债表的最大化。",
+            oneDollarDetail2: "这种架构使您能够保持积极的资本管理. 您不需要在“保障”與“增长”之间做选择——您正在利用同一笔资本同时执行这两项任务. 其结果是消除了机会成本，並实现了公司资产负债表的最大化。",
             engineCompTitle: "战略底盘对比",
             aboutBioTitle: "专业传记",
             aboutCreedTitle: "专业信条",
@@ -1058,59 +1074,59 @@
             navCompare: "Par vs. UL 保单引擎",
             navProtection: "全面保障策略",
             privacyPage: {
-                title: "隐私与数据管理政策",
+                title: "隐私與数据管理政策",
                 lastUpdated: "最后更新：2026年2月26日",
-                intro: "在 威发昇，我们运作于高阶财富策略、企业金融与永久人寿保险的专业交汇点. 我们深知，在提供高度结构化的金融解决方案（如即时融资安排 IFA、企业遗产转移及企业传承规划）时，我们受托处理客户最敏感的个人、医疗及企业数据.\n\n本《隐私与数据管理政策》概述了我们在收集、使用、保留及披露您的信息方面严格的机构级标准. 本政策旨在严格遵守《个人信息保护和电子文件法》(PIPEDA)、《犯罪收益（洗钱）和恐怖主义融资法》(PCMLTFA)，以及安大略省金融服务监管局 (FSRA) 所执行的市场行为监管框架。",
+                intro: "在 威发昇，我们运作于高阶财富策略、企业金融與永久人寿保险的专业交汇点. 我们深知，在提供高度结构化的金融解决方案（如即时融资安排 IFA、企业遗产转移及企业传承规划）时，我们受托处理客户最敏感的个人、医疗及企业数据.\n\n本《隐私與数据管理政策》概述了我们在收集、使用、保留及披露您的信息方面严格的机构级标准. 本政策旨在严格遵守《个人信息保护和电子文件法》(PIPEDA)、《犯罪收益（洗钱）和恐怖主义融资法》(PCMLTFA)，以及安大略省金融服务监管局 (FSRA) 所执行的市场行为监管框架。",
                 
-                s1Title: "1. 责任与治理",
-                s1Body: "我们对控制下的所有个人与企业信息负有不可推卸的责任. 我们已指定一名首席隐私官 (CPO)，负责监督本公司对此政策及所有适用加拿大隐私法规的遵守情况. 我们对数据安全的承诺延伸至我们授权的第三方合作伙伴（包括管理总代理 MGA、人寿保险公司及特许贷款机构）处理的信息，确保他们采用同等且合规的数据保护水准。",
+                s1Title: "1. 责任與治理",
+                s1Body: "我们对控制下的所有个人與企业信息负有不可推卸的责任. 我们已指定一名首席隐私官 (CPO)，负责监督本公司对此政策及所有适用加拿大隐私法规的遵守情况. 我们对数据安全的承诺延伸至我们授权的第三方合作伙伴（包括管理总代理 MGA、人寿保险公司及特许贷款机构）处理的信息，确保他们采用同等且合规的数据保护水准。",
                 
                 s2Title: "2. 我们收集的信息",
-                s2Intro: "为提供定制化的财富策略并履行我们的监管“了解您的客户”(KYC) 义务，我们收集以下类别的信息：",
+                s2Intro: "为提供定制化的财富策略並履行我们的监管“了解您的客户”(KYC) 义务，我们收集以下类别的信息：",
                 s2Items: [
-                    "身份与联络信息：法定姓名、出生日期、居住及营业地址、电子邮件、电话号码，以及根据反洗钱 (AML) 法规核实身份所需的政府签发身份证明（如驾驶执照、护照）。",
-                    "企业与财务信息：全面的净值报表、现金流分析、个人与企业的评估通知书 (NOA)、信用记录、银行详细资料及企业会议记录簿. 对于企业实体，我们强制收集组织架构图与实益拥有权数据，以遵守 FINTRAC 规定。",
-                    "医疗与生活方式信息：详细的病历、主治医师声明 (APS)、业余爱好与生活方式数据，以及驾驶记录 (MVR). 收集此数据严格用于人寿保险核保过程中评估死亡率与发病率风险。",
+                    "身份與联络信息：法定姓名、出生日期、居住及营业地址、电子邮件、电话号码，以及根据反洗钱 (AML) 法规核实身份所需的政府签发身份证明（如驾驶执照、护照）。",
+                    "企业與财务信息：全面的净值报表、现金流分析、个人與企业的评估通知书 (NOA)、信用记录、银行详细资料及企业会议记录簿. 对于企业实体，我们强制收集组织架构图與实益拥有权数据，以遵守 FINTRAC 规定。",
+                    "医疗與生活方式信息：详细的病历、主治医师声明 (APS)、业余爱好與生活方式数据，以及驾驶记录 (MVR). 收集此数据严格用于人寿保险核保过程中评估死亡率與发病率风险。",
                     "社会保险号码 (SIN)：当金融产品产生应税收入时，根据加拿大税务局 (CRA) 的要求，我们必须收集您的 SIN 用于税务报告. 如果要求提供您的 SIN 是为了执行信用局检查以获得 IFA 贷款，则为该特定目的提供的 SIN 完全是自愿的。",
-                    "数字与分析数据：IP 地址、浏览器类型，以及通过我们网站上的 cookies 收集的使用数据，以优化用户体验并监控网站安全。"
+                    "数字與分析数据：IP 地址、浏览器类型，以及通过我们网站上的 cookies 收集的使用数据，以优化用户体验並监控网站安全。"
                 ],
                 
                 s3Title: "3. 确定目的：我们如何使用您的数据",
-                s3Intro: "我们仅为以下明确界定的目的收集与使用您的信息：",
+                s3Intro: "我们仅为以下明确界定的目的收集與使用您的信息：",
                 s3Items: [
-                    "适用性与需求分析：进行详尽的 KYC 评估，评估您的风险状况、投资时间范围及财务目标，以制定高度适合的财富与保险建议。",
-                    "核保与保单签发：协助我们的主要保险公司合作伙伴 iA Financial Group 进行风险评估，使他们能够准确定价并签发人寿、危疾及伤残保单。",
-                    "杠杆策略 (IFA) 的信贷审批：与第三方特许银行、信用合作社或信托公司分享必要的企业财务状况与保单说明，以保单的现金解约价值为抵押获得贷款与信用额度。",
-                    "监管合规与审计：履行联邦 AML 身份识别要求并遵守 FSRA 市场行为规则，这需要与我们的监督 MGA 分享适用性文件。",
-                    "持续服务与专业协调：处理保单续期、处理理赔，并与您的相关专业人士（如注册会计师 CPA 和企业律师）协调您的策略的复杂税务机制（例如，资本红利账户 CDA 的记入）。"
+                    "适用性與需求分析：进行详尽的 KYC 评估，评估您的风险状况、投资时间范围及财务目标，以制定高度适合的财富與保险建议。",
+                    "核保與保单签发：协助我们的主要保险公司合作伙伴 iA Financial Group 进行风险评估，使他们能够准确定价並签发人寿、危疾及伤残保单。",
+                    "杠杆策略 (IFA) 的信贷审批：与第三方特许银行、信用合作社或信託公司分享必要的企业财务状况與保单说明，以保单的现金解约价值为抵押获得贷款與信用额度。",
+                    "监管合规與审计：履行联邦 AML 身份识别要求並遵守 FSRA 市场行为规则，这需要与我们的监督 MGA 分享适用性文件。",
+                    "持续服务與专业协调：处理保单续期、处理理赔，並与您的相关专业人士（如注册会计师 CPA 和企业律师）协调您的策略的复杂税务机制（例如，资本红利账户 CDA 的记入）。"
                 ],
 
-                s4Title: "4. 同意与撤回的权利",
-                s4Body: "通过使用我们的咨询服务、提交申请或使用我们的数字平台，您对此处概述的数据收集、使用与披露给予了有意义的、知情的同意.\n\n明确同意：对于收集与传输高度敏感的数据——如 iA Financial Group 的医疗记录或贷款机构的信用局检查——我们将始终获得您的明确书面或电子同意.\n\n撤回同意：您保留随时撤回同意的权利，但须受法律或合同限制. 请注意：撤销与保险公司或贷款人分享数据的同意将从根本上阻碍我们维持您的保单或为您的 IFA 信贷便利提供服务的能力，并可能导致保单失效或被要求偿还抵押贷款。",
+                s4Title: "4. 同意與撤回的权利",
+                s4Body: "通过使用我们的咨询服务、提交申请或使用我们的数字平台，您对此处概述的数据收集、使用與披露给予了有意义的、知情的同意.\n\n明确同意：对于收集與传输高度敏感的数据——如 iA Financial Group 的医疗记录或贷款机构的信用局检查——我们将始终获得您的明确书面或电子同意.\n\n撤回同意：您保留随时撤回同意的权利，但须受法律或合同限制. 请注意：撤销与保险公司或贷款人分享数据的同意将从根本上阻碍我们维持您的保单或为您的 IFA 信贷便利提供服务的能力，並可能导致保单失效或被要求偿还抵押贷款。",
 
                 s5Title: "5. 限制披露：谁能看到您的信息",
                 s5Intro: "我们在严格的保密原则下运作. 我们不会出售、出租或将您的个人数据商品化. 您的信息严格按照“需要知道”的原则披露给以下授权实体：",
                 s5Items: [
-                    "保险公司：特别是 iA Financial Group 及其附属公司，用于核保与管理您的保单. 与保险公司分享的数据可能会被保险公司与医疗信息局 (MIB) 交叉比对，以核实准确性并防止行业欺诈。",
-                    "管理总代理 (MGA)：A.T. Financial Group. 作为我们的 MGA，他们提供必要的合规监督、后勤管理与质量保证，以确保我们的执业遵守所有 FSRA 法规与适用性标准。",
-                    "金融机构与贷款人：参与核保与资助您的即时融资安排 (IFA) 的特定特许银行或信用合作社。",
-                    "相关专业人士：您指定的会计师、税务专家与法律顾问，用于企业架构与税务合规。",
-                    "监管与 government 机构：当我们受到传票、搜查令或法定报告要求的法律强迫时，FINTRAC、CRA 或省级监管机构。"
+                    "保险公司：特别是 iA Financial Group 及其附属公司，用于核保與管理您的保单. 与保险公司分享的数据可能会被保险公司與医疗信息局 (MIB) 交叉比对，以核实准确性並防止行业欺诈。",
+                    "管理总代理 (MGA)：A.T. Financial Group. 作为我们的 MGA，他们提供必要的合规监督、后勤管理與质量保证，以确保我们的执业遵守所有 FSRA 法规與适用性标准。",
+                    "金融机构與贷款人：参与核保與资助您的即时融资安排 (IFA) 的特定特许银行或信用合作社。",
+                    "相关专业人士：您指定的会计师、税务专家與法律顾问，用于企业架构與税务合規。",
+                    "监管與 government 机构：当我们受到传票、搜查令或法定报告要求的法律强迫时，FINTRAC、CRA 或省级监管机构。"
                 ],
 
-                s6Title: "6. 数据保留与准确性",
-                s6Body: "我们仅在实现收集目的所需的时间内，或在法律与监管保留时间表（通常在保单终止或客户关系结束后长达七年）强制规定的时间内保留个人与企业信息.\n\n财富策略的有效性依赖于准确的数据. 我们依赖您随时向我们通报您的财务、企业或个人状况的任何重大变化. 我们将每 36 个月至少正式要求您更新一次 KYC 信息，以确保我们的持续建议保持适用。",
+                s6Title: "6. 数据保留與准确性",
+                s6Body: "我们仅在实现收集目的所需的时间內，或在法律與监管保留时间表（通常在保单终止或客户关系结束后长达七年）强制规定的時間內保留个人與企业信息.\n\n财富策略的有效性依赖于准确的数据. 我们依赖您随时向我们通报您的财务、企业或个人状况的任何重大变化. 我们将每 36 个月至少正式要求您更新一次 KYC 信息，以确保我们的持续建议保持适用。",
 
                 s7Title: "7. 机构安全防护措施",
                 s7Intro: "我们采用强大、多层次的安全措施来保护您的数据免受未经授权的访问、丢失或盗窃：",
                 s7Items: [
-                    "技术防护：数字文件的端到端加密、安全的客户门户网站、所有员工系统的强制多重要素验证 (MFA)，以及托管在加拿大境内的安全云存储环境。",
-                    "物理防护：限制访问物理场所、用于物理文件的带警报与上锁的档案柜，以及用于销毁数据的安全粉碎协议。",
+                    "技术防护：数字文件的端到端加密、安全的客户门户网站、所有员工系统的强制多重要素验证 (MFA)，以及托管在加拿大境內的安全云存储环境。",
+                    "物理防护：限制访问物理场所、用于物理文件的带警报與上锁的档案柜，以及用于销毁数据的安全粉碎协议。",
                     "行政防护：所有员工强制持续接受隐私培训、严格的保密协议以及严格的供应商管理协议。"
                 ],
 
-                s8Title: "8. 透明度与个人访问权",
-                s8Body: "您拥有要求访问我们持有的关于您的个人信息的基本权利. 根据书面要求，我们将为您提供有关您的数据、其目前使用方式以及已向其披露的第三方的详细记录. 如果您发现不准确之处，您有权质疑数据并要求立即更正.\n\n注意：在核保过程中获得的某些特定医疗数据的访问可能会受到法律限制，必须直接向保险公司（例如 iA Financial Group）或您的主治医师提出要求。",
+                s8Title: "8. 透明度與个人访问权",
+                s8Body: "您拥有要求访问我们持有的关于您的个人信息的基本权利. 根据书面要求，我们将为您提供有关您的数据、其目前使用方式以及已向其披露的第三方的详细记录. 如果您发现不准确之处，您有权质疑数据並要求立即更正.\n\n注意：在核保过程中获得的某些特定医疗数据的访问可能会受到法律限制，必须直接向保险公司（例如 iA Financial Group）或您的主治医师提出要求。",
 
                 s9Title: "9. 质疑合规性",
                 s9Body: "我们致力于持续改进我们的数据 management 实践. 如果您对我们的隐私协议有疑问、担忧或希望提出正式投诉，请联系我们的首席隐私官：\n\n首席隐私官\n电子邮件：privacy@vevaci.ca\n\n我们将彻底调查所有投诉. 如果您对我们的答复或对您数据的处理仍不满意，您有权将您的投诉升级至加拿大隐私专员办公室 (OPC) 或相关的省级隐私机构。"
@@ -1134,14 +1150,14 @@
                     { title: "关键合规标记", desc: "关于“干净管道 (Clean Pipeline)”和 CDA 错配的即时警告。" }
                 ]
             },
-            diagnosticConsent: "我同意提供我的信息进行分析，并同意通过电子邮件接收我的免费诊断报告。",
+            diagnosticConsent: "我同意提供我的信息进行分析，並同意通过电子邮件接收我的免费诊断报告。",
             diagnosticLink: "开始免费诊断",
             diagnosticDisclaimer: "此诊断是 VEVACI 提供的教育工具。旨在引发专业对话，不构成正式的法律或税务建议. 所有杠杆建议均须遵守加拿大税务局 (CRA) 的“干净管道 (Clean Pipeline)”规则。",
             bannerPageTitle: "Meta 商业主页横幅",
             bannerPageDesc: "请截取下方框架的屏幕截图，用作您的 Facebook 商业主页封面照片（820 x 312 像素）。",
-            bannerTitle: "财富与 IFA 策略",
+            bannerTitle: "财富與 IFA 策略",
             bannerSubtitle: "精准布局 · 世代传承",
-            bannerDesc: "为安大略省企业主提供高阶、全面的保险规划，最大化公司盈余并保留资金流动性。",
+            bannerDesc: "为安大略省企业主提供高阶、全面的保险规划，最大化公司盈余並保留资金流动性。",
             footerCopyright: "© 2026 威发昇. 版权所有。",
             footerLocation: "安大略省 万锦市 & 列治文山"
         };
@@ -1357,6 +1373,7 @@
                             <div className="flex flex-col md:flex-row items-center justify-center gap-16 relative">
                                 <div className="flex flex-col items-center z-20 relative w-96">
                                     <div className="w-96 h-96 relative mb-4 flex items-center justify-center">
+                                        {/* Loonie 1 (Moves to Job 1) */}
                                         <div className="absolute inset-0 flex items-center justify-center animate-loonie-1">
                                             <img 
                                                 src="loonie.png" 
@@ -1365,6 +1382,7 @@
                                                 onError={(e) => {e.target.src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Loonie_reverse_view.png/240px-Loonie_reverse_view.png";}} 
                                             />
                                         </div>
+                                        {/* Loonie 2 (Moves to Job 2) */}
                                         <div className="absolute inset-0 flex items-center justify-center animate-loonie-2">
                                             <img 
                                                 src="loonie.png" 
@@ -1378,30 +1396,46 @@
                                 </div>
                                 
                                 <div className="flex flex-col gap-10 relative group z-30">
-                                    {/* Tooltip content remains unchanged */}
+                                    {/* Fancy Tooltip - Visible on Hover */}
                                     <div className="absolute left-1/2 -translate-x-1/2 bottom-[115%] mb-2 w-[90vw] max-w-[360px] lg:left-auto lg:right-full lg:top-1/2 lg:-translate-y-1/2 lg:bottom-auto lg:translate-x-0 lg:mr-8 lg:w-[400px] bg-[#0a0a0a]/95 backdrop-blur-xl border border-[#c5a059]/50 rounded-3xl p-5 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 text-left pointer-events-none group-hover:pointer-events-auto">
                                         <h4 className="text-[#c5a059] font-black text-sm uppercase tracking-widest mb-3 border-b border-white/10 pb-2">{t.jobTooltip.title}</h4>
+                                        
                                         <div className="space-y-4">
                                             <div>
-                                                <h5 className="text-white font-bold text-xs mb-2 flex items-center gap-2"><div className="bg-[#c5a059]/20 p-1 rounded-md"><Icon name="user" size={12} className="text-[#c5a059]" /></div>{t.jobTooltip.hnwTitle}</h5>
+                                                <h5 className="text-white font-bold text-xs mb-2 flex items-center gap-2">
+                                                    <div className="bg-[#c5a059]/20 p-1 rounded-md"><Icon name="user" size={12} className="text-[#c5a059]" /></div>
+                                                    {t.jobTooltip.hnwTitle}
+                                                </h5>
                                                 <ul className="space-y-1">
                                                     {t.jobTooltip.hnwList.map((item, i) => (
-                                                        <li key={i} className="text-[10px] text-gray-300 flex gap-2 font-light leading-snug"><span className="text-[#c5a059] mt-0.5">•</span> {item}</li>
+                                                        <li key={i} className="text-[10px] text-gray-300 flex gap-2 font-light leading-snug">
+                                                            <span className="text-[#c5a059] mt-0.5">•</span> {item}
+                                                        </li>
                                                     ))}
                                                 </ul>
                                             </div>
+                                            
                                             <div>
-                                                <h5 className="text-white font-bold text-xs mb-2 flex items-center gap-2"><div className="bg-emerald-500/20 p-1 rounded-md"><Icon name="building-2" size={12} className="text-emerald-500" /></div>{t.jobTooltip.corpTitle}</h5>
+                                                <h5 className="text-white font-bold text-xs mb-2 flex items-center gap-2">
+                                                    <div className="bg-emerald-500/20 p-1 rounded-md"><Icon name="building-2" size={12} className="text-emerald-500" /></div>
+                                                    {t.jobTooltip.corpTitle}
+                                                </h5>
                                                 <ul className="space-y-1">
                                                     {t.jobTooltip.corpList.map((item, i) => (
-                                                        <li key={i} className="text-[10px] text-gray-300 flex gap-2 font-light leading-snug"><span className="text-emerald-500 mt-0.5">•</span> {item}</li>
+                                                        <li key={i} className="text-[10px] text-gray-300 flex gap-2 font-light leading-snug">
+                                                            <span className="text-emerald-500 mt-0.5">•</span> {item}
+                                                        </li>
                                                     ))}
                                                 </ul>
                                             </div>
                                         </div>
+                                        
+                                        {/* Decorative arrow pointing down on mobile */}
                                         <div className="block lg:hidden absolute -bottom-2 left-1/2 w-4 h-4 bg-[#0a0a0a] border-b border-r border-[#c5a059]/50 transform rotate-45 -translate-x-1/2"></div>
+                                        {/* Decorative arrow pointing right on desktop */}
                                         <div className="hidden lg:block absolute top-1/2 -right-2 w-4 h-4 bg-[#0a0a0a] border-t border-r border-[#c5a059]/50 transform rotate-45 -translate-y-1/2"></div>
                                     </div>
+
                                     <div className="flex items-center gap-6 p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl emerald-glow transition-all hover:border-emerald-500/30 cursor-pointer">
                                         <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500"><Icon name="shield-check" /></div>
                                         <div className="text-left"><h4 className="font-bold text-white italic">{t.job1}</h4><p className="text-xs text-gray-500">{t.job1Desc}</p></div>
@@ -1412,13 +1446,29 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div className="mt-12 text-justify">
-                                <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-4 italic tracking-wide">{t.oneDollarSubTitle}</h3>
-                                <p className="text-gray-400 text-base sm:text-lg md:text-xl italic font-light whitespace-pre-line leading-relaxed">{t.oneDollarSubBody}</p>
+                                <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-4 italic tracking-wide">
+                                    {t.oneDollarSubTitle}
+                                </h3>
+                                <p className="text-gray-400 text-base sm:text-lg md:text-xl italic font-light whitespace-pre-line leading-relaxed">
+                                    {t.oneDollarSubBody}
+                                </p>
                             </div>
                         </div>
                     </div>
+
+                    <div className="max-w-4xl mx-auto mt-12 grid md:grid-cols-2 gap-8 text-left">
+                        <div className="space-y-4">
+                            <h4 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.oneDollarDetailTitle}</h4>
+                            <p className="text-gray-400 font-light leading-relaxed text-sm text-justify">{t.oneDollarDetail1}</p>
+                        </div>
+                        <div className="flex items-center">
+                            <p className="text-gray-400 font-light leading-relaxed text-sm border-l border-white/10 pl-8 text-justify">{t.oneDollarDetail2}</p>
+                        </div>
+                    </div>
                 </section>
+
                 <section className="py-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 sm:px-0 text-white">
                     <Card icon="layers" title={t.ifaTitle} desc={t.ifaDesc} onClick={() => navigateTo('ifa')} label={t.readDeepDive} />
                     <Card icon="unlock" title={t.surplusTitle} desc={t.surplusDesc} onClick={() => navigateTo('surplus')} label={t.readDeepDive} />
@@ -1433,119 +1483,392 @@
         const IFAView = ({ t, navigateTo, language }) => {
             const [primeRate, setPrimeRate] = useState("...");
             const [fxRates, setFxRates] = useState({ USD: "...", HKD: "...", CNH: "..." });
+
             useEffect(() => {
                 let isMounted = true;
+                
                 const fetchPrimeRate = async () => {
                     try {
                         const response = await fetch("https://www.bankofcanada.ca/valet/observations/V39079/json?recent=1");
+                        if (!response.ok) throw new Error("Network response was not ok");
                         const data = await response.json();
-                        if (isMounted && data.observations?.[0]?.V39079?.v) {
-                            setPrimeRate(`${(parseFloat(data.observations[0].V39079.v) + 2.20).toFixed(2)}%`);
+                        if (isMounted && data.observations && data.observations.length > 0) {
+                            const targetRate = parseFloat(data.observations[0].V39079.v);
+                            const realTimePrime = (targetRate + 2.20).toFixed(2);
+                            setPrimeRate(`${realTimePrime}%`);
                         }
-                    } catch (e) { if (isMounted) setPrimeRate("N/A"); }
+                    } catch (error) {
+                        console.error("Failed to fetch prime rate:", error);
+                        if (isMounted) setPrimeRate(prev => prev === "..." ? "N/A" : prev);
+                    }
                 };
+
+                const fetchGoogleFinance = async (pair) => {
+                    const targetUrl = `https://www.google.com/finance/quote/${pair}`;
+                    const proxies = [
+                        `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}&cb=${Date.now()}`,
+                        `https://corsproxy.io/?${encodeURIComponent(targetUrl)}`,
+                        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`
+                    ];
+
+                    let html = null;
+                    for (const proxy of proxies) {
+                        try {
+                            const response = await fetch(proxy);
+                            if (!response.ok) continue;
+                            
+                            if (proxy.includes('allorigins')) {
+                                const data = await response.json();
+                                html = data.contents;
+                            } else {
+                                html = await response.text();
+                            }
+                            
+                            if (html && (html.includes('data-last-price') || html.includes('YMlKec fxKbKc'))) break;
+                        } catch (err) {
+                            console.warn(`Proxy failed for ${pair}:`, err);
+                        }
+                    }
+
+                    if (!html) throw new Error(`All proxies failed for ${pair}`);
+
+                    const match = html.match(/class="[^"]*YMlKec fxKbKc[^"]*"[^>]*>([^<]+)</) || html.match(/data-last-price="([^"]+)"/);
+                    if (match && match[1]) {
+                        return parseFloat(match[1].replace(/,/g, '')).toFixed(4);
+                    }
+                    throw new Error(`Rate not found in HTML for ${pair}`);
+                };
+
+                const fetchFxRates = async () => {
+                    const pairs = [
+                        { key: 'USD', id: 'CAD-USD' },
+                        { key: 'HKD', id: 'CAD-HKD' },
+                        { key: 'CNH', id: 'CAD-CNH', fallbackId: 'CAD-CNY' }
+                    ];
+
+                    for (const p of pairs) {
+                        if (!isMounted) break;
+                        try {
+                            let rate = await fetchGoogleFinance(p.id);
+                            if (isMounted) setFxRates(prev => ({ ...prev, [p.key]: rate !== "NaN" ? rate : "N/A" }));
+                        } catch (error) {
+                            if (p.fallbackId) {
+                                try {
+                                    let rate = await fetchGoogleFinance(p.fallbackId);
+                                    if (isMounted) setFxRates(prev => ({ ...prev, [p.key]: rate !== "NaN" ? rate : "N/A" }));
+                                } catch (fallbackError) {
+                                    console.error(`Fallback failed for ${p.key}:`, fallbackError);
+                                    if (isMounted) setFxRates(prev => prev[p.key] === "..." ? { ...prev, [p.key]: "N/A" } : prev);
+                                }
+                            } else {
+                                console.error(`Failed to fetch ${p.key} from Google Finance:`, error);
+                                if (isMounted) setFxRates(prev => prev[p.key] === "..." ? { ...prev, [p.key]: "N/A" } : prev);
+                            }
+                        }
+                        // 2-second delay between sequential proxy requests to guarantee we don't trip rate limiters
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                    }
+                };
+                
                 fetchPrimeRate();
-                return () => { isMounted = false; };
+                fetchFxRates();
+                
+                const fxInterval = setInterval(fetchFxRates, 60000); 
+                const primeInterval = setInterval(fetchPrimeRate, 3600000); 
+                
+                return () => { 
+                    isMounted = false; 
+                    clearInterval(fxInterval);
+                    clearInterval(primeInterval);
+                };
             }, []);
+
             return (
                 <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 duration-500 text-left text-white">
                     <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                    
                     <div className="mb-12 bg-[#121212] border border-[#c5a059]/30 rounded-[2rem] p-8 md:p-10 relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-[#c5a059]/5 blur-[80px]"></div>
                         <h3 className="text-[#c5a059] font-black text-xl md:text-2xl uppercase tracking-widest mb-4">{t.ifaIntro.title}</h3>
                         <p className="text-gray-300 font-light leading-relaxed text-justify text-sm md:text-base">{t.ifaIntro.desc}</p>
                     </div>
+
+                    {/* Real-time Prime Rate Block */}
                     <div className="mb-6 p-8 md:p-10 rounded-[2.5rem] bg-gradient-to-r from-[#121212] to-[#1a1a1a] border border-[#c5a059]/30 relative overflow-hidden group shadow-2xl">
+                        <div className="absolute top-1/2 -translate-y-1/2 right-0 w-64 h-64 bg-[#c5a059]/10 blur-[80px]"></div>
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
                             <div>
-                                <h4 className="text-[#c5a059] font-black text-sm uppercase tracking-widest mb-2 flex items-center gap-3"><Icon name="activity" size={18} className="animate-pulse" /> {t.ifaPrimeTitle}</h4>
-                                <p className="text-gray-400 font-light text-sm max-w-lg leading-relaxed">{language === 'en' ? 'IFAs rely on leverage.' : 'IFA 依賴於槓桿。'}</p>
+                                <h4 className="text-[#c5a059] font-black text-sm uppercase tracking-widest mb-2 flex items-center gap-3">
+                                    <Icon name="activity" size={18} className="animate-pulse" /> {t.ifaPrimeTitle}
+                                </h4>
+                                <p className="text-gray-400 font-light text-sm max-w-lg leading-relaxed">
+                                    {language === 'en' ? 'IFAs rely on leverage. The current chartered bank prime rate dictates the base cost of borrowing, which is often tax-deductible when reinvested for income.' : 
+                                     language === 'zh' ? 'IFA 依賴於槓桿。當前的特許銀行基準利率決定了借款的基礎成本，當這筆資金用於再投資以產生收入時，利息通常可依法抵稅。' : 
+                                     'IFA 依赖于杠杆。当前的特许银行基准利率决定了借款的基础成本，当这笔资金用于再投资以产生收入时，利息通常可依法抵税。'}
+                                </p>
                             </div>
                             <div className="flex flex-col items-start md:items-end shrink-0">
-                                <div className="text-5xl md:text-6xl font-black italic text-white mb-2 tracking-tighter">{primeRate}</div>
-                                <div className="text-gray-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>{t.ifaPrimeSource}</div>
+                                <div className="text-5xl md:text-6xl font-black italic text-white mb-2 tracking-tighter">
+                                    {primeRate === "..." ? (
+                                        <div className="w-10 h-10 border-4 border-[#c5a059] border-t-transparent rounded-full animate-spin my-4 mx-4"></div>
+                                    ) : primeRate}
+                                </div>
+                                <div className="text-gray-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                                    {t.ifaPrimeSource}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">IFA <span className="text-[#c5a059]">{language === 'en' ? 'Mechanics' : '運作機制'}</span></h2>
-                    <div className="space-y-16 border-l border-[#c5a059]/20 pl-8 ml-4 text-left">
-                        {t.ifaSteps.map((step, idx) => (<Step key={idx} num={step.num} icon={step.icon} title={step.title} desc={step.desc} />))}
+
+                    {/* Real-time Exchange Rates Block */}
+                    <div className="mb-16 p-8 md:p-10 rounded-[2.5rem] bg-[#121212] border border-white/10 relative overflow-hidden group shadow-2xl">
+                        <div className="absolute top-1/2 -translate-y-1/2 left-0 w-64 h-64 bg-emerald-500/5 blur-[80px]"></div>
+                        <div className="relative z-10">
+                            <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 border-b border-white/5 pb-6 gap-4">
+                                <h4 className="text-white font-black text-sm uppercase tracking-widest flex items-center gap-3">
+                                    <Icon name="globe" size={18} className="text-[#c5a059]" /> {t.ifaFxTitle}
+                                </h4>
+                                <div className="text-gray-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-[#c5a059] animate-pulse"></div>
+                                    {t.ifaFxSource}
+                                </div>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
+                                {/* CAD/USD */}
+                                <div className="flex flex-col items-center justify-center pt-4 md:pt-0">
+                                    <span className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] mb-2">CAD / USD</span>
+                                    <span className="text-4xl md:text-5xl font-black italic text-[#c5a059] tracking-tighter">
+                                        {fxRates.USD === "..." ? <div className="w-8 h-8 border-4 border-[#c5a059] border-t-transparent rounded-full animate-spin my-2"></div> : fxRates.USD}
+                                    </span>
+                                </div>
+                                {/* CAD/HKD */}
+                                <div className="flex flex-col items-center justify-center pt-8 md:pt-0">
+                                    <span className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] mb-2">CAD / HKD</span>
+                                    <span className="text-4xl md:text-5xl font-black italic text-emerald-500 tracking-tighter">
+                                        {fxRates.HKD === "..." ? <div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin my-2"></div> : fxRates.HKD}
+                                    </span>
+                                </div>
+                                {/* CAD/CNH */}
+                                <div className="flex flex-col items-center justify-center pt-8 md:pt-0">
+                                    <span className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] mb-2">CAD / CNH</span>
+                                    <span className="text-4xl md:text-5xl font-black italic text-white tracking-tighter">
+                                        {fxRates.CNH === "..." ? <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin my-2"></div> : fxRates.CNH}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">IFA <span className="text-[#c5a059]">{language === 'en' ? 'Mechanics' : (language === 'zh' ? '運作機制' : '运作机制')}</span></h2>
+                    <div className="space-y-16 border-l border-[#c5a059]/20 pl-8 ml-4 text-left">
+                        {t.ifaSteps.map((step, idx) => (
+                            <Step key={idx} num={step.num} icon={step.icon} title={step.title} desc={step.desc} />
+                        ))}
+                    </div>
+
                     <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
                 </section>
             );
         };
 
-        const SurplusView = ({ t, language, navigateTo }) => (
-            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="font-black italic mb-10 tracking-tighter leading-none text-white text-center">
-                    <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl">{t.surplusPage.titlePrefix}</span>
-                    <span className="text-[#c5a059] block mt-2 text-xl sm:text-2xl md:text-4xl">{t.surplusPage.titleSuffix}</span>
-                </h2>
-                <div className="grid md:grid-cols-2 gap-6 mb-16 text-white text-left">
-                    {t.surplusPage.stats.map((stat, idx) => (
-                        <div key={idx} className={`p-8 rounded-[2.5rem] bg-[#121212] border border-[#c5a059]/20 relative`}>
-                            <h4 className={`text-[#c5a059] font-black text-xs uppercase tracking-widest mb-4`}>{stat.title}</h4>
-                            <div className="text-4xl font-black mb-2 italic">{stat.value}</div>
-                            <p className="text-gray-500 text-sm italic">{stat.desc}</p>
+        const SurplusView = ({ t, language, navigateTo }) => {
+            const { titlePrefix, titleSuffix, stats, definitions, body } = t.surplusPage;
+            
+            return (
+                <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                    <h2 className="font-black italic mb-10 tracking-tighter leading-none text-white text-center">
+                        <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl whitespace-nowrap">{titlePrefix}</span>
+                        <span className="text-[#c5a059] block mt-2 text-xl sm:text-2xl md:text-4xl text-center">{titleSuffix}</span>
+                    </h2>
+                    
+                    <div className="grid md:grid-cols-2 gap-6 mb-16 text-white text-left">
+                        {stats.map((stat, idx) => (
+                            <div key={idx} className={`p-8 rounded-[2.5rem] bg-[#121212] border ${stat.color === 'red' ? 'border-red-500/20 emerald-glow' : 'border-[#c5a059]/20'} relative`}>
+                                <h4 className={`${stat.color === 'red' ? 'text-red-500' : 'text-[#c5a059]'} font-black text-xs uppercase tracking-widest mb-4`}>{stat.title}</h4>
+                                <div className="text-4xl font-black mb-2 italic">{stat.value}</div>
+                                <p className="text-gray-500 text-sm italic">{stat.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                        {definitions.map((def, idx) => (
+                            <div key={idx} className="bg-white/5 border border-white/10 p-6 rounded-3xl">
+                                <h4 className="text-white font-bold text-sm mb-2">{def.term}</h4>
+                                <p className="text-gray-400 text-xs font-light leading-relaxed text-justify">{def.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="space-y-8 text-xl text-gray-300 font-light leading-relaxed text-justify">
+                        {body.map((paragraph, idx) => (
+                            <p key={idx}>{paragraph}</p>
+                        ))}
+                    </div>
+
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                </section>
+            );
+        };
+
+        const CompareView = ({ t, language, navigateTo }) => {
+            const { mainTitle, subTitle, par, ul, table, bottomLine } = t.comparePage;
+            
+            return (
+                <section className="max-w-7xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                    
+                    <div className="text-center md:text-left mb-16">
+                        <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white mb-2">{mainTitle}</h2>
+                        <p className="text-[#c5a059] text-xl font-light italic">{subTitle}</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
+                        {/* PAR Card */}
+                        <div className="bg-[#121212] border border-[#c5a059]/30 rounded-[3rem] p-8 md:p-12 relative overflow-hidden flex flex-col h-full group">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-[#c5a059]/5 blur-[80px]"></div>
+                            <h3 className="text-2xl font-black text-white italic mb-6 uppercase border-b border-white/10 pb-6">{par.title}</h3>
+                            
+                            <div className="mb-8">
+                                <span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest block mb-2">Best Suited For:</span>
+                                <p className="text-gray-300 font-light italic leading-relaxed">{par.bestSuited}</p>
+                            </div>
+
+                            <ul className="space-y-4 mb-8 flex-grow">
+                                {par.features.map((feature, idx) => (
+                                    <li key={idx} className="flex gap-3 text-sm text-gray-400 font-light leading-relaxed">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-[#c5a059] mt-2 shrink-0"></div>
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="bg-[#c5a059]/10 border border-[#c5a059]/20 p-6 rounded-2xl mt-auto">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <Icon name="zap" size={16} className="text-[#c5a059]" />
+                                    <span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest">IFA Value-Add</span>
+                                </div>
+                                <p className="text-xs text-white font-light leading-relaxed text-justify">{par.valueAdd}</p>
+                            </div>
                         </div>
-                    ))}
-                </div>
-                <div className="space-y-8 text-xl text-gray-300 font-light leading-relaxed text-justify">
-                    {t.surplusPage.body.map((p, i) => (<p key={i}>{p}</p>))}
-                </div>
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
-            </section>
-        );
+
+                        {/* UL Card */}
+                        <div className="bg-[#121212] border border-white/10 rounded-[3rem] p-8 md:p-12 relative overflow-hidden flex flex-col h-full group">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 blur-[80px]"></div>
+                            <h3 className="text-2xl font-black text-white italic mb-6 uppercase border-b border-white/10 pb-6">{ul.title}</h3>
+                            
+                            <div className="mb-8">
+                                <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest block mb-2">Best Suited For:</span>
+                                <p className="text-gray-300 font-light italic leading-relaxed">{ul.bestSuited}</p>
+                            </div>
+
+                            <ul className="space-y-4 mb-8 flex-grow">
+                                {ul.features.map((feature, idx) => (
+                                    <li key={idx} className="flex gap-3 text-sm text-gray-400 font-light leading-relaxed">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="bg-emerald-500/10 border border-emerald-500/20 p-6 rounded-2xl mt-auto">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <Icon name="sliders" size={16} className="text-emerald-500" />
+                                    <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">IFA Value-Add</span>
+                                </div>
+                                <p className="text-xs text-white font-light leading-relaxed text-justify">{ul.valueAdd}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Comparison Table */}
+                    <div className="mb-20">
+                        <h3 className="text-3xl font-black italic text-white mb-8">{table.title}</h3>
+                        <div className="overflow-x-auto bg-[#121212] border border-white/10 rounded-3xl p-6">
+                            <table className="glass-table">
+                                <thead>
+                                    <tr>
+                                        {table.headers.map((h, i) => <th key={i}>{h}</th>)}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {table.rows.map((row, i) => (
+                                        <tr key={i}>
+                                            <td className="font-bold text-white">{row.aspect}</td>
+                                            <td className="text-[#c5a059]">{row.par}</td>
+                                            <td className="text-emerald-500">{row.ul}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    {/* Bottom Line */}
+                    <div className="max-w-3xl mx-auto text-center border-t border-white/10 pt-16">
+                         <h4 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6">{bottomLine.title}</h4>
+                         <p className="text-xl md:text-2xl text-white font-light italic leading-relaxed whitespace-pre-line">
+                            {bottomLine.text}
+                         </p>
+                    </div>
+
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                </section>
+            );
+        };
+
+        const ProtectionView = ({ t, language, navigateTo }) => {
+            const { title, subTitle, items, faqTitle, faqs } = t.protectionPage;
+            
+            return (
+                <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                    <h2 className="text-5xl md:text-7xl font-black italic mb-6 tracking-tighter leading-none text-white">{title}</h2>
+                    <p className="text-xl text-gray-400 max-w-4xl mx-auto mb-16 font-light leading-relaxed text-center">{subTitle}</p>
+                    <div className="grid md:grid-cols-2 gap-8 text-sm md:text-base text-left">
+                        {items.map((item, idx) => (
+                            <div key={idx} className={`p-10 rounded-[3rem] bg-[#121212] border ${item.color === 'emerald' ? 'border-emerald-500/20' : 'border-[#c5a059]/20'}`}>
+                                <h3 className={`text-xl font-bold mb-4 italic ${item.color === 'emerald' ? 'text-emerald-500' : 'text-[#c5a059]'}`}>{item.title}</h3>
+                                <p className="text-gray-400 font-light leading-relaxed text-justify">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                    
+                    <div className="mt-20 max-w-4xl mx-auto">
+                        <h3 className="text-3xl font-black text-white italic mb-10 text-center tracking-tight">{faqTitle}</h3>
+                        <div className="space-y-6">
+                            {faqs.map((faq, idx) => (
+                                <div key={idx} className="bg-[#121212] border border-white/10 rounded-2xl p-6 hover:border-[#c5a059]/30 transition-colors">
+                                    <h4 className="text-[#c5a059] font-bold text-lg mb-2">{faq.q}</h4>
+                                    <p className="text-gray-400 font-light leading-relaxed text-sm">{faq.a}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                </section>
+            );
+        };
 
         const CaseView = ({ t, language, navigateTo }) => (
             <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
                 <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">{language === 'en' ? 'Case ' : '案例'}<span className="text-[#c5a059]">{language === 'en' ? 'Studies' : (language === 'zh' ? '研究' : '分析')}</span></h2>
+                <h2 className="text-5xl md:text-7xl font-black italic mb-20 tracking-tighter leading-none text-white">{language === 'en' ? 'Case ' : (language === 'zh' ? '案例' : '案例')}<span className="text-[#c5a059]">{language === 'en' ? 'Studies' : (language === 'zh' ? '研究' : '分析')}</span></h2>
                 <div className="space-y-24">
                     {t.caseStudies.map((caseStudy, idx) => (
-                        <CaseItem key={idx} title={caseStudy.title} profile={caseStudy.profile} challenge={caseStudy.challenge} outcome={caseStudy.outcome} tag={caseStudy.tag} icon={caseStudy.icon} />
-                    ))}
-                </div>
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
-            </section>
-        );
-
-        const CompareView = ({ t, language, navigateTo }) => (
-            <section className="max-w-7xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter text-white mb-16">{t.comparePage.mainTitle}</h2>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-                    <div className="bg-[#121212] border border-[#c5a059]/30 rounded-[3rem] p-8 md:p-12 relative overflow-hidden flex flex-col group h-full">
-                        <h3 className="text-2xl font-black text-white italic mb-6 uppercase border-b border-white/10 pb-6">{t.comparePage.par.title}</h3>
-                        <p className="text-gray-300 font-light italic mb-8">{t.comparePage.par.bestSuited}</p>
-                        <ul className="space-y-4 mb-8">
-                            {t.comparePage.par.features.map((f, i) => (<li key={i} className="flex gap-3 text-sm text-gray-400 font-light leading-relaxed"><div className="w-1.5 h-1.5 rounded-full bg-[#c5a059] mt-2 shrink-0"></div>{f}</li>))}
-                        </ul>
-                    </div>
-                    <div className="bg-[#121212] border border-white/10 rounded-[3rem] p-8 md:p-12 relative overflow-hidden flex flex-col group h-full">
-                        <h3 className="text-2xl font-black text-white italic mb-6 uppercase border-b border-white/10 pb-6">{t.comparePage.ul.title}</h3>
-                        <p className="text-gray-300 font-light italic mb-8">{t.comparePage.ul.bestSuited}</p>
-                        <ul className="space-y-4 mb-8">
-                            {t.comparePage.ul.features.map((f, i) => (<li key={i} className="flex gap-3 text-sm text-gray-400 font-light leading-relaxed"><div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0"></div>{f}</li>))}
-                        </ul>
-                    </div>
-                </div>
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
-            </section>
-        );
-
-        const ProtectionView = ({ t, language, navigateTo }) => (
-            <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-5xl md:text-7xl font-black italic mb-16 text-white">{t.protectionPage.title}</h2>
-                <div className="grid md:grid-cols-2 gap-8">
-                    {t.protectionPage.items.map((item, idx) => (
-                        <div key={idx} className={`p-10 rounded-[3rem] bg-[#121212] border ${item.color === 'emerald' ? 'border-emerald-500/20' : 'border-[#c5a059]/20'}`}>
-                            <h3 className={`text-xl font-bold mb-4 italic ${item.color === 'emerald' ? 'text-emerald-500' : 'text-[#c5a059]'}`}>{item.title}</h3>
-                            <p className="text-gray-400 font-light leading-relaxed text-justify">{item.desc}</p>
-                        </div>
+                        <CaseItem 
+                            key={idx}
+                            title={caseStudy.title} 
+                            profile={caseStudy.profile} 
+                            challenge={caseStudy.challenge} 
+                            outcome={caseStudy.outcome} 
+                            tag={caseStudy.tag} 
+                            icon={caseStudy.icon} 
+                        />
                     ))}
                 </div>
                 <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
@@ -1568,25 +1891,48 @@
                             <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white text-gradient-gold">Alex Kynn Lee</h2>
                         </div>
                         <div className="space-y-10">
+                            {/* Section 1: Philosophy */}
                             <section className="space-y-6 text-left">
                                 <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutSection1Title}</h3>
-                                <p className="border-l-4 border-[#c5a059] pl-8 italic text-gray-400 text-lg">{t.aboutSection1Body}</p>
+                                <div className="space-y-6 text-base md:text-lg text-gray-300 font-light leading-relaxed">
+                                    <p className="border-l-4 border-[#c5a059] pl-8 italic text-gray-400">{t.aboutSection1Body}</p>
+                                </div>
                             </section>
+
+                            {/* Section 2: Background */}
                             <section className="space-y-6 text-left">
                                 <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutSection2Title}</h3>
-                                <p className="text-gray-300 font-light text-lg leading-relaxed">{t.aboutSection2Body}</p>
+                                <div className="space-y-6 text-base md:text-lg text-gray-300 font-light leading-relaxed">
+                                    <p>{t.aboutSection2Body}</p>
+                                </div>
                             </section>
+
+                            {/* Section 3: Mentorship */}
+                            <section className="space-y-6 text-left">
+                                <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest">{t.aboutSection3Title}</h3>
+                                <div className="space-y-6 text-base md:text-lg text-gray-300 font-light leading-relaxed">
+                                    <p>{t.aboutSection3Body}</p>
+                                </div>
+                            </section>
+
+                            {/* Section 4: Creed & Reach */}
                             <section className="p-10 rounded-[3rem] bg-[#121212] border border-[#c5a059]/20 relative overflow-hidden group text-left">
                                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#c5a059]/5 to-transparent opacity-50"></div>
                                 <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6 relative z-10">{t.aboutSection4Title}</h3>
                                 <p className="text-xl sm:text-2xl md:text-3xl text-white italic leading-relaxed font-light relative z-10 mb-12">{t.aboutSection4Body}</p>
-                                <div className="relative z-10 pt-8 border-t border-white/5">
+                                <div className="relative z-10 pt-8 border-t border-white/5 text-left text-justify">
                                     <h3 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6">{t.aboutReachTitle}</h3>
                                     <div className="flex gap-5 items-start flex-wrap">
                                         <Icon name="map-pin" className="text-emerald-500 shrink-0 mt-1" size={24} />
                                         <p className="text-sm sm:text-base text-white font-light leading-relaxed mb-4 w-full">{t.aboutReachBody}</p>
+                                        
+                                        {/* Visual Tag Cloud for Local SEO */}
                                         <div className="w-full flex flex-wrap gap-2 mt-2">
-                                            {t.serviceAreas.map((area, idx) => (<span key={idx} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-gray-400 uppercase tracking-wider hover:border-[#c5a059]/50 hover:text-white transition-colors cursor-default">{area}</span>))}
+                                            {t.serviceAreas.map((area, idx) => (
+                                                <span key={idx} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] text-gray-400 uppercase tracking-wider hover:border-[#c5a059]/50 hover:text-white transition-colors cursor-default">
+                                                    {area}
+                                                </span>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>
@@ -1598,27 +1944,325 @@
             </section>
         );
 
-        const FeasibilityView = ({ t, navigateTo, formSubmitted, setFormSubmitted, language }) => (
-            <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left text-white">{language === 'en' ? 'Consultation' : '諮詢'}<span className="text-[#c5a059]">{language === 'en' ? 'Request' : '申請'}</span></h2>
-                <div className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8">
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <FormGroup label={t.formName} name="name" placeholder="Alex Lee" required />
-                        <FormGroup label={t.formEmail} name="email" type="email" placeholder="alex@example.com" required />
-                    </div>
-                    <button onClick={() => setFormSubmitted(true)} className="w-full bg-copper-gradient py-5 rounded-full font-bold text-lg shadow-xl active:scale-95 transition-transform uppercase tracking-widest text-white">{t.submit}</button>
-                </div>
-            </section>
-        );
+        const FeasibilityView = ({ t, navigateTo, formSubmitted, setFormSubmitted, language }) => {
+            const [submitError, setSubmitError] = useState('');
+            const [isSubmitting, setIsSubmitting] = useState(false);
+            const [isHuman, setIsHuman] = useState(false);
+            const [isVerifying, setIsVerifying] = useState(false);
 
-        const DiagnosticView = ({ t, navigateTo, language }) => (
-            <section className="max-w-5xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
-                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-4xl md:text-6xl font-black italic mb-10 tracking-tighter text-white">VEVACI {language === 'en' ? 'Client ' : '客戶'}<span className="text-[#c5a059]">{language === 'en' ? 'Diagnostic' : '診斷'}</span></h2>
-                <div className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8 flex flex-col items-center text-center">
-                    <p className="text-2xl md:text-3xl text-white font-bold italic mb-4">{t.diagnosticSubtitle.intro1}</p>
-                    <a href="https://vevaci.fillout.com/vevaciclientdiagnostic_eng" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 w-full sm:w-auto bg-copper-gradient py-5 px-12 rounded-full font-bold text-base md:text-lg uppercase tracking-widest text-white shadow-2xl hover:scale-105 active:scale-95 transition-all"><Icon name="external-link" size={20} />{t.diagnosticLink}</a>
-                    <p className="text-[10px] text-gray-500 italic px-4">{t.diagnosticDisclaimer}</p>
+            const handleCaptcha = () => {
+                if (isHuman) return;
+                setIsVerifying(true);
+                setSubmitError('');
+                setTimeout(() => {
+                    setIsVerifying(false);
+                    setIsHuman(true);
+                }, 750);
+            };
+
+            const handleSubmit = async (e) => {
+                e.preventDefault();
+                setSubmitError(''); 
+                
+                if (!isHuman) {
+                    setSubmitError(t.robotError);
+                    return;
+                }
+
+                const form = e.target;
+                const name = form.name.value;
+                const email = form.email.value;
+                const phone = form.phone.value;
+                const corp = form.corp.value;
+
+                // Rate Limiting Logic
+                const STORAGE_KEY = 'vevaci_consultation_requests';
+                const now = Date.now();
+                const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+                
+                // Get existing data from localStorage
+                let allRequests = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+                let userRequests = allRequests[email] || [];
+                
+                // Filter out requests older than 24 hours
+                userRequests = userRequests.filter(timestamp => (now - timestamp) < ONE_DAY_MS);
+                
+                // Check if limit reached (5 requests in last 24h)
+                if (userRequests.length >= 5) {
+                    setSubmitError(t.limitReached);
+                    return;
+                }
+
+                setIsSubmitting(true);
+
+                try {
+                    // Send request to FormSubmit.co
+                    const response = await fetch("https://formsubmit.co/ajax/info@vevaci.ca", {
+                        method: "POST",
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            phone: phone,
+                            corp: corp,
+                            _subject: `New Consultation Request from ${name}`,
+                            _template: "table"
+                        })
+                    });
+
+                    if (response.ok) {
+                        // Rate limit update
+                        userRequests.push(now);
+                        allRequests[email] = userRequests;
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(allRequests));
+                        
+                        setFormSubmitted(true);
+                    } else {
+                        setSubmitError(t.networkError);
+                    }
+                } catch (err) {
+                    setSubmitError(t.networkError);
+                } finally {
+                    setIsSubmitting(false);
+                }
+            };
+
+            return (
+                <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                    <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left text-white">{language === 'en' ? 'Consultation' : (language === 'zh' ? '諮詢' : '咨询')}<span className="text-[#c5a059]">{language === 'en' ? 'Request' : (language === 'zh' ? '申請' : '申请')}</span></h2>
+                    {!formSubmitted ? (
+                        <form onSubmit={handleSubmit} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8 text-left">
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <FormGroup label={t.formName} name="name" placeholder="Alex Lee" required={true} />
+                                <FormGroup label={t.formEmail} name="email" type="email" placeholder="alex@example.com" required={true} />
+                                <FormGroup label={t.formPhone} name="phone" type="tel" placeholder="+1 (555) 000-0000" />
+                                <FormGroup label={t.formCorp} name="corp" placeholder="Your Co. Inc" />
+                            </div>
+                            
+                            <div className="flex items-center gap-4 bg-[#0a0a0a] border border-white/10 rounded-2xl p-4 w-full sm:w-fit shadow-inner">
+                                <button 
+                                    type="button"
+                                    onClick={handleCaptcha}
+                                    disabled={isVerifying || isHuman}
+                                    className={`w-7 h-7 rounded border flex items-center justify-center transition-all cursor-pointer ${
+                                        isHuman ? 'bg-emerald-500/20 border-emerald-500 text-emerald-500' : 
+                                        'bg-white/5 border-gray-500 text-transparent hover:border-gray-300'
+                                    }`}
+                                >
+                                    {isVerifying ? (
+                                        <div className="w-4 h-4 border-2 border-[#c5a059] border-t-transparent rounded-full animate-spin"></div>
+                                    ) : (
+                                        <Icon name="check" size={16} className={isHuman ? "text-emerald-500 block" : "hidden"} />
+                                    )}
+                                </button>
+                                <span className="text-sm text-gray-300 font-medium select-none">{t.notRobot}</span>
+                                <div className="ml-4 pl-4 border-l border-white/10 flex flex-col items-center">
+                                     <Icon name="shield-check" size={20} className="text-gray-500" />
+                                </div>
+                            </div>
+
+                            {submitError && (
+                                <div className="text-red-500 text-sm font-bold text-center animate-in fade-in slide-in-from-top-2">
+                                    {submitError}
+                                </div>
+                            )}
+
+                            <button 
+                                type="submit" 
+                                disabled={isSubmitting}
+                                className={`w-full bg-copper-gradient py-5 rounded-full font-bold text-lg shadow-xl active:scale-95 transition-transform uppercase tracking-widest text-white ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            >
+                                {isSubmitting ? t.processing : t.submit}
+                            </button>
+                        </form>
+                    ) : (
+                        <div className="bg-[#121212] p-16 rounded-[3rem] text-center border border-[#c5a059]/30 space-y-8 text-white">
+                            <Icon name="check-circle-2" className="text-[#c5a059] mx-auto mb-6" size={64} />
+                            <h3 className="text-3xl font-bold italic tracking-tight">{t.received}</h3>
+                            <p className="text-gray-400 font-light">{t.followup}</p>
+                            <button onClick={() => {setFormSubmitted(false); navigateTo('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-[10px] underline">Return Home</button>
+                        </div>
+                    )}
+                </section>
+            );
+        };
+
+        const DiagnosticView = ({ t, navigateTo, language }) => {
+            const [isHuman, setIsHuman] = useState(false);
+            const [isVerifying, setIsVerifying] = useState(false);
+            const [hasConsent, setHasConsent] = useState(false);
+
+            const handleCaptcha = () => {
+                if (isHuman) return;
+                setIsVerifying(true);
+                setTimeout(() => {
+                    setIsVerifying(false);
+                    setIsHuman(true);
+                }, 750);
+            };
+
+            return (
+                <section className="max-w-5xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                    
+                    <h2 className="text-4xl md:text-6xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left text-white">
+                        VEVACI {language === 'en' ? 'Client ' : (language === 'zh' ? '客戶' : '客户')}
+                        <span className="text-[#c5a059]">{language === 'en' ? 'Diagnostic' : (language === 'zh' ? '診斷' : '诊断')}</span>
+                    </h2>
+                    
+                    <div className="mb-16 md:mb-20 text-center md:text-left">
+                        <p className="text-2xl md:text-3xl text-white font-bold italic mb-4">{t.diagnosticSubtitle.intro1}</p>
+                        <p className="text-gray-400 text-base md:text-lg font-light leading-relaxed mb-10 max-w-3xl mx-auto md:mx-0">{t.diagnosticSubtitle.intro2}</p>
+                        
+                        <div className="grid sm:grid-cols-2 gap-6 mb-16 max-w-4xl mx-auto md:mx-0">
+                            {t.diagnosticSubtitle.pillars.map((item, idx) => (
+                                <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-left hover:border-[#c5a059]/30 transition-colors">
+                                    <h4 className="text-[#c5a059] font-bold mb-2 flex items-center gap-2"><Icon name="check-circle" size={18} /> {item.title}</h4>
+                                    <p className="text-gray-400 font-light text-sm">{item.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="max-w-3xl mx-auto md:mx-0 text-left bg-[#121212] border border-[#c5a059]/20 p-8 rounded-[2.5rem] shadow-xl">
+                            <h3 className="text-xl font-bold text-white italic mb-8 flex items-center gap-3 border-b border-white/10 pb-4">
+                                <Icon name="sparkles" className="text-[#c5a059]" size={24} />
+                                {t.diagnosticSubtitle.reportTitle}
+                            </h3>
+                            <ul className="space-y-6">
+                                {t.diagnosticSubtitle.reportItems.map((item, idx) => (
+                                    <li key={idx} className="flex gap-5 items-start">
+                                        <div className="bg-emerald-500/10 p-2.5 rounded-xl mt-0.5 shrink-0"><Icon name="file-text" size={18} className="text-emerald-500" /></div>
+                                        <div>
+                                            <strong className="text-white block mb-1 text-base">{item.title}</strong>
+                                            <span className="text-gray-400 font-light text-sm leading-relaxed block">{item.desc}</span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8 flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#c5a059]/5 blur-[80px]"></div>
+                        
+                        <p className="text-gray-300 font-light max-w-lg mb-4 relative z-10 text-sm md:text-base">
+                            {language === 'en' ? 'Please verify you are human to access the secure diagnostic form.' : (language === 'zh' ? '請驗證您是真人以獲取安全診斷表。' : '请验证您是真人以获取安全诊断表。')}
+                        </p>
+                        
+                        <div className="flex items-center gap-4 bg-[#0a0a0a] border border-white/10 rounded-2xl p-4 w-full sm:w-fit shadow-inner relative z-10">
+                            <button 
+                                type="button"
+                                onClick={handleCaptcha}
+                                disabled={isVerifying || isHuman}
+                                className={`w-7 h-7 rounded border flex items-center justify-center transition-all cursor-pointer ${
+                                    isHuman ? 'bg-emerald-500/20 border-emerald-500 text-emerald-500' : 
+                                    'bg-white/5 border-gray-500 text-transparent hover:border-gray-300'
+                                }`}
+                            >
+                                {isVerifying ? (
+                                    <div className="w-4 h-4 border-2 border-[#c5a059] border-t-transparent rounded-full animate-spin"></div>
+                                ) : (
+                                    <Icon name="check" size={16} className={isHuman ? "text-emerald-500 block" : "hidden"} />
+                                )}
+                            </button>
+                            <span className="text-sm text-gray-300 font-medium select-none">{t.notRobot}</span>
+                            <div className="ml-4 pl-4 border-l border-white/10 flex flex-col items-center">
+                                 <Icon name="shield-check" size={20} className="text-gray-500" />
+                            </div>
+                        </div>
+
+                        <div className={`transition-all duration-500 mt-8 w-full relative z-10 flex flex-col items-center gap-6 ${isHuman ? 'opacity-100 translate-y-0' : 'opacity-40 translate-y-4 pointer-events-none grayscale'}`}>
+                            
+                            <label className="flex items-start gap-3 text-left max-w-lg cursor-pointer group bg-white/5 border border-white/10 p-4 rounded-2xl hover:border-[#c5a059]/30 transition-colors">
+                                <div className="relative flex items-center justify-center mt-0.5 shrink-0">
+                                    <input 
+                                        type="checkbox" 
+                                        className="peer appearance-none w-5 h-5 border border-white/20 rounded bg-[#0a0a0a] checked:bg-[#c5a059] checked:border-[#c5a059] transition-all cursor-pointer"
+                                        checked={hasConsent}
+                                        onChange={(e) => setHasConsent(e.target.checked)}
+                                    />
+                                    <Icon name="check" size={14} className="absolute text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" />
+                                </div>
+                                <span className="text-[11px] md:text-xs text-gray-400 font-light leading-relaxed select-none group-hover:text-gray-300 transition-colors">
+                                    {t.diagnosticConsent}
+                                </span>
+                            </label>
+
+                            {/* NOTE: Update the href below to your actual Fillout form URL */}
+                            <a 
+                                href="https://vevaci.fillout.com/vevaciclientdiagnostic_eng" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className={`inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-copper-gradient py-5 px-12 rounded-full font-bold text-base md:text-lg uppercase tracking-widest text-white transition-all duration-300 ${hasConsent ? 'shadow-[0_0_20px_rgba(197,160,89,0.3)] hover:scale-105 active:scale-95' : 'opacity-50 grayscale cursor-not-allowed'}`}
+                                onClick={(e) => {
+                                    if (!isHuman || !hasConsent) e.preventDefault();
+                                }}
+                            >
+                                <Icon name="external-link" size={20} />
+                                {t.diagnosticLink}
+                            </a>
+                            <p className="text-[10px] text-gray-500 max-w-2xl text-center leading-relaxed italic px-4">
+                                {t.diagnosticDisclaimer}
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const BannerView = ({ t, navigateTo }) => (
+            <section className="max-w-6xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-center">
+                <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10 mx-auto md:mx-0"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                <h2 className="text-4xl font-black italic mb-10 text-white tracking-widest uppercase">{t.bannerPageTitle}</h2>
+                <p className="text-gray-400 text-sm mb-12 max-w-2xl mx-auto">{t.bannerPageDesc}</p>
+                
+                <div className="flex justify-center overflow-x-auto pb-8">
+                    <div id="meta-banner" className="relative w-[820px] h-[312px] shrink-0 bg-[#0a0a0a] border border-white/10 overflow-hidden shadow-2xl flex flex-col justify-center px-16 text-left group">
+                        {/* Background Effects */}
+                        <div className="absolute top-[-20%] right-[-10%] w-96 h-96 bg-[#c5a059]/15 blur-[80px] rounded-full"></div>
+                        <div className="absolute bottom-[-20%] left-[-10%] w-80 h-80 bg-emerald-500/10 blur-[80px] rounded-full"></div>
+                        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+                        
+                        <div className="relative z-10 flex w-full justify-between items-center">
+                            <div className="max-w-[480px]">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="relative w-10 h-10 flex items-center justify-center">
+                                        <img src="logo.png" alt="Logo" className="absolute inset-0 w-full h-full object-contain z-10" onError={(e) => {e.target.style.display='none';}}/>
+                                        <div className="w-full h-full bg-gradient-to-br from-[#c5a059] to-[#8c6239] rounded flex items-center justify-center font-bold text-white text-lg shadow-lg">V</div>
+                                    </div>
+                                    <span className="text-2xl font-black tracking-tighter text-white uppercase">{t.brandName || 'VEVACI'}</span>
+                                </div>
+                                <h1 className="text-4xl font-black mb-3 italic text-transparent bg-clip-text bg-gradient-to-r from-[#c5a059] via-[#e5c185] to-[#c5a059] tracking-tighter leading-tight uppercase">
+                                    {t.bannerTitle}
+                                </h1>
+                                <p className="text-white font-black uppercase tracking-widest text-xs mb-5">{t.bannerSubtitle}</p>
+                                <p className="text-gray-400 font-light text-sm leading-relaxed mb-6">
+                                    {t.bannerDesc}
+                                </p>
+                                
+                                <div>
+                                    <div className="inline-block bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-6 py-2.5 rounded-full font-bold text-[10px] tracking-widest uppercase shadow-lg border border-white/10 pointer-events-none">
+                                        {t.studyCta}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="relative flex items-center justify-center w-48 h-48 mr-8">
+                                <div className="absolute inset-0 border border-[#c5a059]/20 rounded-full"></div>
+                                <div className="absolute inset-4 border border-emerald-500/20 rounded-full"></div>
+                                <div className="absolute inset-8 border border-[#c5a059]/40 rounded-full"></div>
+                                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#c5a059] to-[#8c6239] flex items-center justify-center shadow-[0_0_30px_rgba(197,160,89,0.3)] relative z-10">
+                                    <Icon name="shield-check" className="text-white" size={36} />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* Bottom accent line */}
+                        <div className="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#b36b39] via-[#e5c185] to-[#b36b39]"></div>
+                    </div>
                 </div>
             </section>
         );
@@ -1626,9 +2270,125 @@
         const PrivacyView = ({ t, navigateTo }) => (
             <section className="max-w-5xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
                 <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
-                <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white mb-6 uppercase">{t.privacyPage.title}</h2>
-                <div className="space-y-8 text-gray-300 font-light leading-relaxed text-justify whitespace-pre-line">{t.privacyPage.intro}</div>
-                <div className="mt-12 space-y-8"><h3 className="text-[#c5a059] font-black uppercase tracking-widest">{t.privacyPage.s9Title}</h3><p className="text-gray-400 text-justify">{t.privacyPage.s9Body}</p></div>
+                <div className="mb-12 border-b border-white/10 pb-8">
+                    <h2 className="text-4xl md:text-6xl font-black italic tracking-tighter leading-none text-white mb-6">{t.privacyPage.title}</h2>
+                    <p className="text-[#c5a059] text-sm font-bold uppercase tracking-widest">{t.privacyPage.lastUpdated}</p>
+                </div>
+                
+                <div className="space-y-12">
+                    <div className="text-gray-300 font-light leading-relaxed text-sm md:text-base whitespace-pre-line text-justify">
+                        {t.privacyPage.intro}
+                    </div>
+
+                    <div className="bg-[#121212] border border-white/10 rounded-3xl p-8 hover:border-[#c5a059]/30 transition-colors">
+                        <h3 className="text-2xl font-black text-white italic mb-4">{t.privacyPage.s1Title}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base text-justify">{t.privacyPage.s1Body}</p>
+                    </div>
+
+                    <div className="bg-[#121212] border border-white/10 rounded-3xl p-8 hover:border-[#c5a059]/30 transition-colors">
+                        <h3 className="text-2xl font-black text-white italic mb-4">{t.privacyPage.s2Title}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base mb-4 text-justify">{t.privacyPage.s2Intro}</p>
+                        <ul className="space-y-4">
+                            {t.privacyPage.s2Items.map((item, idx) => {
+                                const splitIndex = item.indexOf(':');
+                                if (splitIndex > -1) {
+                                    return (
+                                        <li key={idx} className="text-sm md:text-base text-gray-400 font-light leading-relaxed flex gap-3 text-justify">
+                                            <span className="text-[#c5a059] shrink-0 mt-1">•</span>
+                                            <span>
+                                                <strong className="text-white">{item.substring(0, splitIndex + 1)}</strong>{item.substring(splitIndex + 1)}
+                                            </span>
+                                        </li>
+                                    );
+                                }
+                                return <li key={idx} className="text-sm md:text-base text-gray-400 font-light leading-relaxed flex gap-3 text-justify"><span className="text-[#c5a059] shrink-0 mt-1">•</span>{item}</li>
+                            })}
+                        </ul>
+                    </div>
+
+                    <div className="bg-[#121212] border border-white/10 rounded-3xl p-8 hover:border-[#c5a059]/30 transition-colors">
+                        <h3 className="text-2xl font-black text-white italic mb-4">{t.privacyPage.s3Title}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base mb-4 text-justify">{t.privacyPage.s3Intro}</p>
+                        <ul className="space-y-4">
+                            {t.privacyPage.s3Items.map((item, idx) => {
+                                const splitIndex = item.indexOf(':');
+                                if (splitIndex > -1) {
+                                    return (
+                                        <li key={idx} className="text-sm md:text-base text-gray-400 font-light leading-relaxed flex gap-3 text-justify">
+                                            <span className="text-emerald-500 shrink-0 mt-1">•</span>
+                                            <span>
+                                                <strong className="text-white">{item.substring(0, splitIndex + 1)}</strong>{item.substring(splitIndex + 1)}
+                                            </span>
+                                        </li>
+                                    );
+                                }
+                                return <li key={idx} className="text-sm md:text-base text-gray-400 font-light leading-relaxed flex gap-3 text-justify"><span className="text-emerald-500 shrink-0 mt-1">•</span>{item}</li>
+                            })}
+                        </ul>
+                    </div>
+
+                    <div className="bg-[#121212] border border-white/10 rounded-3xl p-8 hover:border-[#c5a059]/30 transition-colors">
+                        <h3 className="text-2xl font-black text-white italic mb-4">{t.privacyPage.s4Title}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base whitespace-pre-line text-justify">{t.privacyPage.s4Body}</p>
+                    </div>
+
+                    <div className="bg-[#121212] border border-white/10 rounded-3xl p-8 hover:border-[#c5a059]/30 transition-colors">
+                        <h3 className="text-2xl font-black text-white italic mb-4">{t.privacyPage.s5Title}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base mb-4 text-justify">{t.privacyPage.s5Intro}</p>
+                        <ul className="space-y-4">
+                            {t.privacyPage.s5Items.map((item, idx) => {
+                                const splitIndex = item.indexOf(':');
+                                if (splitIndex > -1) {
+                                    return (
+                                        <li key={idx} className="text-sm md:text-base text-gray-400 font-light leading-relaxed flex gap-3 text-justify">
+                                            <span className="text-[#c5a059] shrink-0 mt-1">•</span>
+                                            <span>
+                                                <strong className="text-white">{item.substring(0, splitIndex + 1)}</strong>{item.substring(splitIndex + 1)}
+                                            </span>
+                                        </li>
+                                    );
+                                }
+                                return <li key={idx} className="text-sm md:text-base text-gray-400 font-light leading-relaxed flex gap-3 text-justify"><span className="text-[#c5a059] shrink-0 mt-1">•</span>{item}</li>
+                            })}
+                        </ul>
+                    </div>
+
+                    <div className="bg-[#121212] border border-white/10 rounded-3xl p-8 hover:border-[#c5a059]/30 transition-colors">
+                        <h3 className="text-2xl font-black text-white italic mb-4">{t.privacyPage.s6Title}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base whitespace-pre-line text-justify">{t.privacyPage.s6Body}</p>
+                    </div>
+
+                    <div className="bg-[#121212] border border-white/10 rounded-3xl p-8 hover:border-[#c5a059]/30 transition-colors">
+                        <h3 className="text-2xl font-black text-white italic mb-4">{t.privacyPage.s7Title}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base mb-4 text-justify">{t.privacyPage.s7Intro}</p>
+                        <ul className="space-y-4">
+                            {t.privacyPage.s7Items.map((item, idx) => {
+                                const splitIndex = item.indexOf(':');
+                                if (splitIndex > -1) {
+                                    return (
+                                        <li key={idx} className="text-sm md:text-base text-gray-400 font-light leading-relaxed flex gap-3 text-justify">
+                                            <span className="text-emerald-500 shrink-0 mt-1">•</span>
+                                            <span>
+                                                <strong className="text-white">{item.substring(0, splitIndex + 1)}</strong>{item.substring(splitIndex + 1)}
+                                            </span>
+                                        </li>
+                                    );
+                                }
+                                return <li key={idx} className="text-sm md:text-base text-gray-400 font-light leading-relaxed flex gap-3 text-justify"><span className="text-emerald-500 shrink-0 mt-1">•</span>{item}</li>
+                            })}
+                        </ul>
+                    </div>
+
+                    <div className="bg-[#121212] border border-white/10 rounded-3xl p-8 hover:border-[#c5a059]/30 transition-colors">
+                        <h3 className="text-2xl font-black text-white italic mb-4">{t.privacyPage.s8Title}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base whitespace-pre-line text-justify">{t.privacyPage.s8Body}</p>
+                    </div>
+
+                    <div className="bg-[#121212] border border-white/10 rounded-3xl p-8 hover:border-[#c5a059]/30 transition-colors">
+                        <h3 className="text-2xl font-black text-white italic mb-4">{t.privacyPage.s9Title}</h3>
+                        <p className="text-gray-400 font-light leading-relaxed text-sm md:text-base whitespace-pre-line text-justify">{t.privacyPage.s9Body}</p>
+                    </div>
+                </div>
                 <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
             </section>
         );
@@ -1636,9 +2396,9 @@
         const Card = ({ icon, title, desc, onClick, label = "Read More" }) => (
             <div onClick={onClick} className="px-6 py-10 rounded-[2.5rem] bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full text-left text-white">
                 <div className="text-[#c5a059] mb-8 group-hover:scale-110 transition-transform"><Icon name={icon} size={32} /></div>
-                <h3 className="text-xl font-bold mb-4 leading-tight tracking-tight uppercase">{title}</h3>
+                <h3 className="text-xl font-bold mb-4 leading-tight tracking-tight whitespace-nowrap">{title}</h3>
                 <p className="text-xs text-gray-500 font-light mb-8 flex-grow text-justify leading-relaxed">{desc}</p>
-                <div className="mt-auto text-[10px] font-black uppercase tracking-widest text-[#c5a059] flex items-center gap-2">{label} <Icon name="chevron-right" size={12} /></div>
+                <div className="mt-auto text-[10px] font-black uppercase tracking-widest text-[#c5a059] flex items-center gap-2 font-black">{label} <Icon name="chevron-right" size={12} /></div>
             </div>
         );
 
@@ -1650,19 +2410,29 @@
             </div>
         );
 
-        const CaseItem = ({ title, profile, challenge, outcome, tag, icon }) => (
+        const CaseItem = ({ title, profile, challenge, outcome, tag, icon, t, lang }) => (
             <div className="grid md:grid-cols-2 gap-12 items-center text-white text-left">
                 <div className="space-y-6">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[9px] font-black uppercase tracking-widest italic"><Icon name={icon} size={12} /> {tag}</div>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[9px] font-black uppercase tracking-widest mb-2 italic"><Icon name={icon} size={12} /> {tag}</div>
                     <h3 className="text-3xl font-black italic underline decoration-[#c5a059] decoration-4 underline-offset-8 leading-tight">{title}</h3>
-                    <div className="space-y-4 pt-4 text-left"><div className="space-y-1"><span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest">Profile</span><p className="text-gray-300 font-medium italic text-sm">{profile}</p></div><div className="space-y-1"><span className="text-[10px] font-black text-red-500 uppercase tracking-widest">Challenge</span><p className="text-gray-400 font-light leading-relaxed text-sm text-justify">{challenge}</p></div></div>
+                    <div className="space-y-4 pt-4">
+                        <div className="space-y-1 text-left"><span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest">Profile</span><p className="text-gray-300 font-medium italic text-sm">{profile}</p></div>
+                        <div className="space-y-1 text-left"><span className="text-[10px] font-black text-red-500 uppercase tracking-widest">Challenge</span><p className="text-gray-400 font-light leading-relaxed text-sm text-justify">{challenge}</p></div>
+                    </div>
                 </div>
-                <div className="p-10 rounded-[3rem] bg-[#121212] border border-white/5 relative group emerald-glow transition-all hover:border-[#c5a059]/30"><span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest block mb-4 italic">Outcome</span><p className="text-xl text-white font-light leading-relaxed italic text-justify">"{outcome}"</p></div>
+                <div className="p-10 rounded-[3rem] bg-[#121212] border border-white/5 relative group emerald-glow transition-all hover:border-[#c5a059]/30">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-3xl"></div>
+                    <span className="text-[10px] font-black text-[#c5a059] uppercase tracking-widest block mb-4 italic">Outcome</span>
+                    <p className="text-xl text-white font-light leading-relaxed italic text-justify">"{outcome}"</p>
+                </div>
             </div>
         );
 
         const FormGroup = ({ label, placeholder, type = "text", required = false, name }) => (
-            <div className="space-y-2 text-left text-white"><label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{label}</label><input type={type} name={name} placeholder={placeholder} className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors text-white text-sm" required={required} /></div>
+            <div className="space-y-2 text-left text-white">
+                <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{label}</label>
+                <input type={type} name={name} placeholder={placeholder} className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors text-white text-sm" required={required} />
+            </div>
         );
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
