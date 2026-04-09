@@ -1229,6 +1229,9 @@
                                             <button onClick={() => navigateTo('surplus')} className={`text-left px-4 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition-colors ${currentPage === 'surplus' ? 'bg-[#c5a059]/20 text-[#c5a059]' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}>{t.navSurplus}</button>
                                             <button onClick={() => navigateTo('compare')} className={`text-left px-4 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition-colors ${currentPage === 'compare' ? 'bg-[#c5a059]/20 text-[#c5a059]' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}>{t.navCompare}</button>
                                             <button onClick={() => navigateTo('protection')} className={`text-left px-4 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition-colors ${currentPage === 'protection' ? 'bg-[#c5a059]/20 text-[#c5a059]' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}>{t.navProtection}</button>
+                                            <a href="https://www.youtube.com/@VeVaCI" target="_blank" rel="noopener noreferrer" className="text-left px-4 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition-colors text-gray-400 hover:bg-white/5 hover:text-white flex items-center justify-between">
+                                                {language === 'en' ? 'Learn the Mechanics' : (language === 'zh' ? '了解運作機制' : '了解运作机制')} <Icon name="external-link" size={12} className="opacity-50" />
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -1261,6 +1264,9 @@
                                         <button onClick={() => navigateTo('surplus')} className="text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-[#c5a059] text-center">{t.navSurplus}</button>
                                         <button onClick={() => navigateTo('compare')} className="text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-[#c5a059] text-center">{t.navCompare}</button>
                                         <button onClick={() => navigateTo('protection')} className="text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-[#c5a059] text-center">{t.navProtection}</button>
+                                        <a href="https://www.youtube.com/@VeVaCI" target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-[#c5a059] text-center flex items-center gap-2">
+                                            {language === 'en' ? 'Learn the Mechanics' : (language === 'zh' ? '了解運作機制' : '了解运作机制')} <Icon name="external-link" size={14} className="opacity-50" />
+                                        </a>
                                     </div>
                                 )}
                             </div>
