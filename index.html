@@ -1362,17 +1362,19 @@
                     {/* Floating Action Button (Always on Top) */}
                     <button 
                         onClick={() => navigateTo('diagnostic')} 
-                        className="fixed bottom-4 right-4 md:bottom-10 md:right-10 z-[100] bg-gradient-to-br from-[#c5a059] to-[#8c6239] text-white w-12 h-12 md:w-32 md:h-32 rounded-full flex flex-col md:flex-row items-center justify-center shadow-[0_0_20px_rgba(197,160,89,0.4)] hover:scale-110 hover:shadow-[0_0_30px_rgba(197,160,89,0.6)] transition-all group"
+                        className="fixed bottom-4 right-4 md:bottom-10 md:right-10 z-[100] bg-gradient-to-br from-[#c5a059] to-[#8c6239] text-white w-16 h-16 md:w-32 md:h-32 rounded-full flex flex-col md:flex-row items-center justify-center shadow-[0_0_20px_rgba(197,160,89,0.4)] hover:scale-110 hover:shadow-[0_0_30px_rgba(197,160,89,0.6)] transition-all group"
                         aria-label={t.diagnosticFab}
                     >
-                        {/* Desktop Icon */}
-                        <Icon name="clipboard-list" size={48} className="hidden md:block md:w-14 md:h-14" />
+                        {/* Desktop Icon - Wrapped to prevent inline style display override */}
+                        <div className="hidden md:flex items-center justify-center">
+                            <Icon name="clipboard-list" size={48} className="md:w-14 md:h-14" />
+                        </div>
                         
-                        {/* Mobile Text (Smaller Font Size to fit smaller w-12 h-12 button) */}
+                        {/* Mobile Text (Smaller Font Size to fit smaller w-16 h-16 button) */}
                         <div className="flex flex-col items-center justify-center w-full px-1 text-center md:hidden">
-                            <Icon name="clipboard-list" size={14} className="mb-0.5" />
-                            <span className="text-[4px] font-bold leading-tight">{t.diagnosticFabDesc}</span>
-                            <span className="text-[3.5px] font-black text-white/90 uppercase tracking-wider mt-0.5">{t.diagnosticFabSub}</span>
+                            <Icon name="clipboard-list" size={18} className="mb-0.5" />
+                            <span className="text-[5px] font-bold leading-tight">{t.diagnosticFabDesc}</span>
+                            <span className="text-[4.5px] font-black text-white/90 uppercase tracking-wider mt-0.5">{t.diagnosticFabSub}</span>
                         </div>
 
                         {/* Desktop Tooltip (Center Aligned) */}
