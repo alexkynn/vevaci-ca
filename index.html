@@ -2109,6 +2109,8 @@
 
             return (
                 <section className="max-w-4xl mx-auto pt-20 px-6 pb-32 animate-in slide-in-from-bottom-4 text-left text-white">
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mb-10"><Icon name="arrow-left" size={14} /> {t.back}</button>
+                    
                     <h2 className="text-5xl md:text-7xl font-black italic mb-10 tracking-tighter leading-none text-center md:text-left text-white">{language === 'en' ? 'Consultation ' : (language === 'zh' ? '諮詢' : '咨询')}<span className="text-[#c5a059]">{language === 'en' ? 'Request' : (language === 'zh' ? '申請' : '申请')}</span></h2>
                     {!formSubmitted ? (
                         <form onSubmit={handleSubmit} className="bg-[#121212] p-8 md:p-12 rounded-[3rem] border border-white/5 space-y-8 text-left">
@@ -2163,6 +2165,8 @@
                             <button onClick={() => {setFormSubmitted(false); navigateTo('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-[10px] underline">Return Home</button>
                         </div>
                     )}
+                    
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
                 </section>
             );
         };
@@ -2307,6 +2311,8 @@
                             <button onClick={() => {setIsSubmitted(false); navigateTo('home');}} className="text-[#c5a059] font-black uppercase tracking-widest text-[10px] underline">Return Home</button>
                         </div>
                     )}
+                    
+                    <button onClick={() => navigateTo('home')} className="text-[#c5a059] text-[10px] font-black uppercase flex items-center gap-2 mt-20"><Icon name="arrow-left" size={14} /> {t.back}</button>
                 </section>
             );
         };
