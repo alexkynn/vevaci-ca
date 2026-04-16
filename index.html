@@ -2177,6 +2177,7 @@
             const [isHuman, setIsHuman] = useState(false);
             const [isVerifying, setIsVerifying] = useState(false);
             const [isSubmitted, setIsSubmitted] = useState(false);
+            const [messageText, setMessageText] = useState('');
 
             const handleCaptcha = () => {
                 if (isHuman) return;
@@ -2212,8 +2213,13 @@
                 
                 userRequests = userRequests.filter(timestamp => (now - timestamp) < ONE_DAY_MS);
                 
-                if (userRequests.length >= 5) {
-                    setSubmitError(t.limitReached);
+                if (userRequests.length >= 3) {
+                    const limitMsg = language === 'en' 
+                        ? 'Daily limit of 3 feedback submissions reached for this email. Please try again in 24 hours.' 
+                        : (language === 'zh' 
+                            ? '此電子郵件已達到每日 3 次意見反饋限制。請在 24 小時後重試。' 
+                            : '此电子邮件已达到每日 3 次意见反馈限制。请在 24 小时后重试。');
+                    setSubmitError(limitMsg);
                     return;
                 }
 
@@ -2241,6 +2247,7 @@
                         localStorage.setItem(STORAGE_KEY, JSON.stringify(allRequests));
                         
                         setIsSubmitted(true);
+                        setMessageText('');
                     } else {
                         setSubmitError(t.networkError);
                     }
@@ -2264,7 +2271,21 @@
                             
                             <div className="space-y-2 text-left text-white">
                                 <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{t.formMessage}</label>
-                                <textarea name="message" rows="5" required placeholder="..." className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 outline-none focus:border-[#c5a059]/50 transition-colors text-white text-sm resize-none"></textarea>
+                                <div className="relative">
+                                    <textarea 
+                                        name="message" 
+                                        rows="5" 
+                                        required 
+                                        maxLength={1000}
+                                        value={messageText}
+                                        onChange={(e) => setMessageText(e.target.value)}
+                                        placeholder="..." 
+                                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 pb-8 outline-none focus:border-[#c5a059]/50 transition-colors text-white text-sm resize-none"
+                                    ></textarea>
+                                    <span className="absolute bottom-3 right-4 text-[10px] text-gray-500 select-none">
+                                        {messageText.length} / 1000
+                                    </span>
+                                </div>
                             </div>
                             
                             <div className="flex items-center gap-4 bg-[#0a0a0a] border border-white/10 rounded-2xl p-4 w-full sm:w-fit shadow-inner">
