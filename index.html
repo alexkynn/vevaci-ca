@@ -539,6 +539,8 @@
             diagnosticConsent: "I agree to provide my information for analysis and consent to receiving my free diagnostic report via email.",
             diagnosticLink: "Begin my FREE Diagnostic",
             diagnosticDisclaimer: "This diagnostic is an educational tool provided by VEVACI. It is designed to spark professional conversation and does not constitute formal legal or tax advice. All leverage recommendations are subject to the 'Clean Pipeline' rule per CRA guidelines.",
+            diagnosticHomeBtnDesc: "Get your free insurance health report.",
+            diagnosticHomeBtnSub: "No obligation — just your email.",
             bannerPageTitle: "Meta Business Page Banner",
             bannerPageDesc: "Take a screenshot of the frame below to use as your Facebook Business Page cover photo (820 x 312 pixels).",
             bannerTitle: "Wealth & IFA Strategies",
@@ -854,6 +856,8 @@
             diagnosticConsent: "我同意提供我的資訊進行分析，並同意透過電子郵件接收我的免費診斷報告。",
             diagnosticLink: "開始免費診斷",
             diagnosticDisclaimer: "此診斷是 VEVACI 提供的教育工具。旨在引發專業對話，不構成正式的法律或稅務建議. 所有槓桿建議均須遵守加拿大稅務局 (CRA) 的「乾淨管道 (Clean Pipeline)」規則。",
+            diagnosticHomeBtnDesc: "獲取您的免費保險健康報告。",
+            diagnosticHomeBtnSub: "無需任何承諾 — 只需您的電子郵件。",
             bannerPageTitle: "Meta 商業專頁橫幅",
             bannerPageDesc: "請截取下方框架的螢幕截圖，用作您的 Facebook 商業專頁封面照片（820 x 312 像素）。",
             bannerTitle: "財富與 IFA 策略",
@@ -1170,6 +1174,8 @@
             diagnosticConsent: "我同意提供我的信息进行分析，並同意通过电子邮件接收我的免费诊断报告。",
             diagnosticLink: "开始免费诊断",
             diagnosticDisclaimer: "此诊断是 VEVACI 提供的教育工具。旨在引发专业对话，不构成正式的法律或税务建议. 所有杠杆建议均须遵守加拿大税务局 (CRA) 的“干净管道 (Clean Pipeline)”规则。",
+            diagnosticHomeBtnDesc: "获取您的免费保险健康报告。",
+            diagnosticHomeBtnSub: "无需任何承诺 — 只需您的电子邮件。",
             bannerPageTitle: "Meta 商业主页横幅",
             bannerPageDesc: "请截取下方框架的屏幕截图，用作您的 Facebook 商业主页封面照片（820 x 312 像素）。",
             bannerTitle: "财富與 IFA 策略",
@@ -1458,15 +1464,15 @@
                                         >
                                             <Icon name="clipboard-list" size={64} className="md:w-20 md:h-20 mb-2 md:mb-4" />
                                             <div className="flex flex-col items-center justify-center w-full px-6 text-center">
-                                                <span className="text-xs md:text-sm font-bold leading-tight mb-1">{t.diagnosticFabDesc}</span>
-                                                <span className="text-[9px] md:text-[11px] font-black text-white/90 uppercase tracking-widest mt-1">{t.diagnosticFabSub}</span>
+                                                <span className="text-xs md:text-sm font-bold leading-tight mb-1">{t.diagnosticHomeBtnDesc}</span>
+                                                <span className="text-[9px] md:text-[10px] font-black text-white/90 uppercase tracking-widest mt-1">{t.diagnosticHomeBtnSub}</span>
                                             </div>
 
                                             {/* Tooltip (Center Aligned top) */}
                                             <div className="absolute bottom-[105%] left-1/2 -translate-x-1/2 bg-[#0a0a0a]/95 backdrop-blur-md border border-[#c5a059]/50 shadow-2xl px-6 py-5 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none hidden md:flex flex-col items-center justify-center min-w-max translate-y-2 group-hover:translate-y-0 text-center z-[100]">
                                                 <span className="text-[22px] font-black text-white uppercase tracking-widest mb-2">{t.diagnosticFab}</span>
-                                                <span className="text-[20px] text-gray-400 font-light whitespace-nowrap">{t.diagnosticFabDesc}</span>
-                                                <span className="text-[16px] text-[#c5a059] font-bold uppercase tracking-widest whitespace-nowrap mt-1">{t.diagnosticFabSub}</span>
+                                                <span className="text-[18px] text-gray-400 font-light whitespace-nowrap">{t.diagnosticHomeBtnDesc}</span>
+                                                <span className="text-[14px] text-[#c5a059] font-bold uppercase tracking-widest whitespace-nowrap mt-1">{t.diagnosticHomeBtnSub}</span>
                                                 <div className="absolute -bottom-2 left-1/2 w-4 h-4 bg-[#0a0a0a] border-b border-r border-[#c5a059]/50 transform rotate-45 -translate-x-1/2"></div>
                                             </div>
                                         </button>
