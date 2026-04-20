@@ -404,7 +404,7 @@
             ifaPrimeSource: "Source: BoC Daily Target + 2.20% Spread",
             ifaFxTitle: "Live Exchange Rates (1 CAD)",
             ifaFxSource: "Source: Google Finance",
-            oneDollarTitle: "One Dollar, Two Jobs",
+            oneDollarTitle: "IFA - One Shot, Two Goals",
             back: "Back to Home", submit: "Request Strategic Consultation", received: "Request Received",
             followup: "Request has been received and we will try to reach out within 48 hours.",
             limitReached: "Daily limit of 5 requests reached for this email. Please try again in 24 hours.",
@@ -719,7 +719,7 @@
             ifaPrimeSource: "來源: 加拿大央行每日目標 + 2.20% 利差",
             ifaFxTitle: "實時匯率 (1 CAD)",
             ifaFxSource: "來源: Google Finance",
-            oneDollarTitle: "一塊錢，兩份工",
+            oneDollarTitle: "IFA - 一舉兩得",
             back: "返回首頁", submit: "提交諮詢申請", received: "請求已接收",
             followup: "我將親自審核您的公司概況。預計在 48 小時內會收到回覆。",
             limitReached: "此電子郵件已達到每日 5 次請求限制。請在 24 小時後重試。",
@@ -1035,7 +1035,7 @@
             ifaPrimeSource: "来源: 加拿大央行每日目标 + 2.20% 利差",
             ifaFxTitle: "实时汇率 (1 CAD)",
             ifaFxSource: "来源: Google Finance",
-            oneDollarTitle: "一块钱，两份工",
+            oneDollarTitle: "IFA - 一举两得",
             back: "返回首页", submit: "提交咨询申请", received: "请求已接收",
             followup: "我将亲自审核您的公司概况. 预计在 48 小时內会收到回复。",
             limitReached: "此电子邮件已达到每日 5 次请求限制。请在 24 小时后重试。",
@@ -1063,22 +1063,22 @@
             formPhone: "电话号码 (选填)",
             formCorp: "公司名称 (选填)",
             jobTooltip: {
-                title: "為何 IFA 具有吸引力",
-                hnwTitle: "針對個人",
+                title: "为何 IFA 具有吸引力",
+                hnwTitle: "针对个人",
                 hnwList: [
-                    "人壽保險保障與財富規劃",
-                    "具稅務優勢的現金流獲取",
-                    "無需動用個人流動資產即可借貸",
-                    "保單現金價值在延稅基礎上增長",
-                    "潛在的遺產規劃與遺產稅解決方案"
+                    "人寿保险保障与财富规划",
+                    "具税务优势的现金流获取",
+                    "无需动用个人流动资产即可借贷",
+                    "保单现金价值在延税基础上增长",
+                    "潜在的遗产规划与遗产税解决方案"
                 ],
-                corpTitle: "針對公司企業",
+                corpTitle: "针对公司企业",
                 corpList: [
-                    "保留營運現金流",
-                    "利用公司資本擔保貸款",
-                    "資金用於產生收入時，利息可抵稅",
-                    "受保人身故時增加資本紅利賬戶 (CDA) 額度",
-                    "支持傳承、退休或買賣協議融資"
+                    "保留营运现金流",
+                    "利用公司资本担保贷款",
+                    "资金用于产生收入时，利息可抵税",
+                    "受保人身故时增加资本红利账户 (CDA) 额度",
+                    "支持传承、退休或买卖协议融资"
                 ]
             },
             serviceAreas: ["万锦市", "列治文山", "多伦多", "旺市", "密西沙加", "士嘉堡", "北约克", "奥克维尔", "伯灵顿", "奥罗拉", "新市", "大多伦多地区", "安大略省"],
@@ -1448,28 +1448,29 @@
                         <div className="relative p-12 sm:p-16 z-20">
                             <h2 className="text-3xl font-black italic mb-16 text-white tracking-widest uppercase">{t.oneDollarTitle}</h2>
                             <div className="flex flex-col md:flex-row items-center justify-center gap-16 relative">
+                                
                                 <div className="flex flex-col items-center z-20 relative w-96">
-                                    <div className="w-96 h-96 relative mb-4 flex items-center justify-center">
-                                        {/* Loonie 1 (Moves to Job 1) */}
-                                        <div className="absolute inset-0 flex items-center justify-center animate-loonie-1">
-                                            <img 
-                                                src="loonie.png" 
-                                                alt="VEVACI Canadian Loonie" 
-                                                className="w-[38.4rem] h-[38.4rem] max-w-[128vw] max-h-[128vw] object-contain drop-shadow-[0_15px_25px_rgba(197,160,89,0.4)]" 
-                                                onError={(e) => {e.target.src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Loonie_reverse_view.png/240px-Loonie_reverse_view.png";}} 
-                                            />
-                                        </div>
-                                        {/* Loonie 2 (Moves to Job 2) */}
-                                        <div className="absolute inset-0 flex items-center justify-center animate-loonie-2">
-                                            <img 
-                                                src="loonie.png" 
-                                                alt="VEVACI Canadian Loonie" 
-                                                className="w-[38.4rem] h-[38.4rem] max-w-[128vw] max-h-[128vw] object-contain drop-shadow-[0_15px_25px_rgba(197,160,89,0.4)]" 
-                                                onError={(e) => {e.target.src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Loonie_reverse_view.png/240px-Loonie_reverse_view.png";}} 
-                                            />
-                                        </div>
+                                    <div className="w-full h-96 relative flex items-center justify-center">
+                                        <button 
+                                            onClick={() => navigateTo('diagnostic')} 
+                                            className="bg-gradient-to-br from-[#c5a059] to-[#8c6239] text-white w-48 h-48 md:w-64 md:h-64 rounded-full flex flex-col items-center justify-center shadow-[0_0_40px_rgba(197,160,89,0.4)] hover:scale-110 hover:shadow-[0_0_60px_rgba(197,160,89,0.6)] transition-all group relative z-50"
+                                            aria-label={t.diagnosticFab}
+                                        >
+                                            <Icon name="clipboard-list" size={64} className="md:w-20 md:h-20 mb-2 md:mb-4" />
+                                            <div className="flex flex-col items-center justify-center w-full px-6 text-center">
+                                                <span className="text-xs md:text-sm font-bold leading-tight mb-1">{t.diagnosticFabDesc}</span>
+                                                <span className="text-[9px] md:text-[11px] font-black text-white/90 uppercase tracking-widest mt-1">{t.diagnosticFabSub}</span>
+                                            </div>
+
+                                            {/* Tooltip (Center Aligned top) */}
+                                            <div className="absolute bottom-[105%] left-1/2 -translate-x-1/2 bg-[#0a0a0a]/95 backdrop-blur-md border border-[#c5a059]/50 shadow-2xl px-6 py-5 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none hidden md:flex flex-col items-center justify-center min-w-max translate-y-2 group-hover:translate-y-0 text-center z-[100]">
+                                                <span className="text-[22px] font-black text-white uppercase tracking-widest mb-2">{t.diagnosticFab}</span>
+                                                <span className="text-[20px] text-gray-400 font-light whitespace-nowrap">{t.diagnosticFabDesc}</span>
+                                                <span className="text-[16px] text-[#c5a059] font-bold uppercase tracking-widest whitespace-nowrap mt-1">{t.diagnosticFabSub}</span>
+                                                <div className="absolute -bottom-2 left-1/2 w-4 h-4 bg-[#0a0a0a] border-b border-r border-[#c5a059]/50 transform rotate-45 -translate-x-1/2"></div>
+                                            </div>
+                                        </button>
                                     </div>
-                                    <span className="text-[10px] font-black uppercase text-gray-500 tracking-[0.2em] relative z-30 bg-[#0a0a0a] px-3 py-1 rounded-full">{language === 'en' ? 'Deploy $1.00' : '投入 $1.00'}</span>
                                 </div>
                                 
                                 <div className="flex flex-col gap-10 relative group z-30">
