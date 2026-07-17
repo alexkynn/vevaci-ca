@@ -1450,32 +1450,37 @@
                 };
 
                 const fetchFxRates = async () => {
-                    const pairs = [
-                        { key: 'USD', id: `${t.currency || 'CAD'}-USD` },
-                        { key: 'HKD', id: `${t.currency || 'CAD'}-HKD` },
-                        { key: 'CNH', id: `${t.currency || 'CAD'}-CNH`, fallbackId: `${t.currency || 'CAD'}-CNY` }
-                    ];
-
-                    for (const p of pairs) {
-                        if (!isMounted) break;
-                        try {
-                            let rate = await fetchGoogleFinance(p.id);
-                            if (isMounted) setFxRates(prev => ({ ...prev, [p.key]: rate !== "NaN" ? rate : "N/A" }));
-                        } catch (error) {
-                            if (p.fallbackId) {
-                                try {
-                                    let rate = await fetchGoogleFinance(p.fallbackId);
-                                    if (isMounted) setFxRates(prev => ({ ...prev, [p.key]: rate !== "NaN" ? rate : "N/A" }));
-                                } catch (fallbackError) {
-                                    console.error(`Fallback failed for ${p.key}:`, fallbackError);
-                                    if (isMounted) setFxRates(prev => prev[p.key] === "..." ? { ...prev, [p.key]: "N/A" } : prev);
-                                }
-                            } else {
-                                console.error(`Failed to fetch ${p.key} from Google Finance:`, error);
-                                if (isMounted) setFxRates(prev => prev[p.key] === "..." ? { ...prev, [p.key]: "N/A" } : prev);
-                            }
+                    if (!isMounted) return;
+                    const base = "cad"; // Using 'cad' as base as requested
+                    try {
+                        // Using a reliable free currency API that supports CORS
+                        let response = await fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${base}.json`);
+                        
+                        if (!response.ok) {
+                            response = await fetch(`https://latest.currency-api.pages.dev/v1/currencies/${base}.json`);
                         }
-                        await new Promise(resolve => setTimeout(resolve, 2000));
+                        
+                        if (!response.ok) throw new Error("Failed to fetch exchange rates");
+                        
+                        const data = await response.json();
+                        const rates = data[base];
+                        
+                        if (isMounted && rates) {
+                            setFxRates({
+                                USD: rates.usd ? rates.usd.toFixed(4) : "N/A",
+                                HKD: rates.hkd ? rates.hkd.toFixed(4) : "N/A",
+                                CNH: rates.cnh ? rates.cnh.toFixed(4) : (rates.cny ? rates.cny.toFixed(4) : "N/A")
+                            });
+                        }
+                    } catch (error) {
+                        console.error("Currency fetch error:", error);
+                        if (isMounted) {
+                            setFxRates(prev => ({
+                                USD: prev.USD === "..." ? "N/A" : prev.USD,
+                                HKD: prev.HKD === "..." ? "N/A" : prev.HKD,
+                                CNH: prev.CNH === "..." ? "N/A" : prev.CNH
+                            }));
+                        }
                     }
                 };
                 
