@@ -91,13 +91,61 @@
             animation: shine-spotlight 4s ease-in-out infinite alternate;
         }
 
+        /* --- Loonie Coin Animation & Styles --- */
+        @keyframes move-loonie-1-mobile {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(15px, 280px) scale(0.1); opacity: 0; }
+        }
+        @keyframes move-loonie-2-mobile {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(-15px, 400px) scale(0.1); opacity: 0; }
+        }
+        @keyframes move-loonie-1-desktop {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(320px, -60px) scale(0.1); opacity: 0; }
+        }
+        @keyframes move-loonie-2-desktop {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(320px, 60px) scale(0.1); opacity: 0; }
+        }
+        
+        .animate-loonie-1 {
+            animation: move-loonie-1-mobile 1.5s ease-in-out infinite alternate;
+        }
+        .animate-loonie-2 {
+            animation: move-loonie-2-mobile 1.5s ease-in-out infinite alternate;
+        }
+        
+        @media (min-width: 768px) {
+            .animate-loonie-1 {
+                animation: move-loonie-1-desktop 1.5s ease-in-out infinite alternate;
+            }
+            .animate-loonie-2 {
+                animation: move-loonie-2-desktop 1.5s ease-in-out infinite alternate;
+            }
+        }
+        .loonie-coin {
+            background: linear-gradient(135deg, #ffe599 0%, #e5c185 30%, #c5a059 70%, #8c6239 100%);
+        }
+        .loonie-inner {
+            position: absolute;
+            inset: 5px;
+            border: 2px dashed rgba(140, 98, 57, 0.5);
+        }
+        .loonie-11-sided {
+            clip-path: polygon(50% 0%, 78.18% 7.94%, 97.49% 30.58%, 98.7% 59.55%, 83.27% 85.58%, 56.4% 99.3%, 27.2% 96.06%, 4.5% 75.6%, 1.25% 46.12%, 18.06% 18.7%, 45.42% 1.25%);
+        }
+        .gold-drop-shadow {
+            filter: drop-shadow(0 15px 25px rgba(197, 160, 89, 0.4));
+        }
+        /* ------------------------------------ */
+        
         .bg-copper-gradient { 
             background: linear-gradient(to right, #b36b39, #8c6239); 
         }
         
         .emerald-glow { filter: drop-shadow(0 0 15px rgba(16, 185, 129, 0.3)); }
         .gold-glow { filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.3)); }
-        .red-glow { filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.3)); }
         
         [data-lucide] { display: inline-block; }
         
@@ -638,7 +686,7 @@
             ifaPrimeTitle: "當前加拿大基準利率",
             ifaPrimeSource: "來源: 加拿大央行每日目標 + 2.20% 利差",
             ifaFxTitle: "實時匯率 (1 CAD)",
-            ifaFxSource: "來源: 實時市場匯率",
+            ifaFxSource: "來源: Google Finance",
             oneDollarTitle: "一塊錢，兩份工",
             back: "返回首頁", submit: "提交諮詢申請", received: "請求已接收",
             followup: "我將親自審核您的公司概況。預計在 48 小時內會收到回覆。",
@@ -740,7 +788,7 @@
                 s7Title: "7. 機構安全防護措施",
                 s7Intro: "我們採用強大、多層次的安全措施來保護您的數據免受未經授權的訪問、丟失或盜竊：",
                 s7Items: [
-                    "技術防護：數字文件的端到端加密、數字文件安全雲存儲環境、所有員工系統的強制多重要素驗證 (MFA)，以及託管在加拿大境內的安全雲存儲環境。",
+                    "技術防護：數字文件的端到端加密、安全的客戶入口網站、所有員工系統的強制多重要素驗證 (MFA)，以及託管在加拿大境內的安全雲存儲環境。",
                     "物理防護：限制訪問物理場所、用於物理文件的帶警報與上鎖的檔案櫃，以及用於銷毀數據的安全粉碎協議。",
                     "行政防護：所有員工強制持續接受隱私培訓、嚴格的保密協議以及嚴格的供應商管理協議。"
                 ],
@@ -851,6 +899,7 @@
             },
             ifaIntro: {
                 title: "IFA 运作机制指南",
+                desc: "抵押保单现金价值以进行企业再投资的技术指南。",
                 desc: "即时融资安排 (IFA) 是一种杠杆策略，允许企业主在购买永久人寿保险的同时保留资本。通过将保单的现金解约价值 (CSV) 作为抵押品，公司可向银行获得信用额度——通常高达已付保费的 100% 或保单现金价值——而不会实质减少现金流。这些资金可用于产生收入的商业或投资活动，且利息可能抵稅。未偿还贷款通常在受保人身故时由保险身故赔偿金偿还。"
             },
             ifaSteps: [
@@ -918,7 +967,7 @@
             ifaPrimeTitle: "当前加拿大基准利率",
             ifaPrimeSource: "来源: 加拿大央行每日目标 + 2.20% 利差",
             ifaFxTitle: "实时汇率 (1 CAD)",
-            ifaFxSource: "来源: 实时市场汇率",
+            ifaFxSource: "来源: Google Finance",
             oneDollarTitle: "一块钱，两份工",
             back: "返回首页", submit: "提交咨询申请", received: "请求已接收",
             followup: "我将亲自审核您的公司概况. 预计在 48 小时内会收到回复。",
@@ -942,10 +991,13 @@
             aboutBioTitle: "专业传记",
             aboutCreedTitle: "专业信条",
             aboutReachTitle: "服务区域",
+            aboutReachBody: "立足于万锦市，我们服务列治文山、旺市、密西沙加、士嘉堡、北约克及多伦多的客户。我们的专业策略适用于大多伦多地区 (GTA) 及所有寻求财富保值的安大略省居民。",
             formName: "姓名",
             formEmail: "电子邮件",
             formPhone: "电话号码 (选填)",
             formCorp: "公司名称 (选填)",
+            notRobot: "我不是机器人",
+            robotError: "请在提交前验证您不是机器人。",
             jobTooltip: {
                 title: "為何 IFA 具有吸引力",
                 hnwTitle: "針對個人",
@@ -1058,13 +1110,13 @@
 
             useEffect(() => {
                 const handleHashChange = () => {
-                    const page = window.location.hash.replace('#', '') || 'home';
-                    setCurrentPage(page);
-                    window.scrollTo(0, 0);
-                    setIsMenuOpen(false);
-                    setIsMobileResourcesOpen(false);
-                    setFormSubmitted(false);
-                };
+                const page = window.location.hash.replace('#', '') || 'home';
+                setCurrentPage(page);
+                window.scrollTo(0, 0);
+                setIsMenuOpen(false);
+                setIsMobileResourcesOpen(false);
+                setFormSubmitted(false);
+            };
                 
                 window.addEventListener('hashchange', handleHashChange);
                 
@@ -1349,6 +1401,71 @@
                         <p className="text-gray-300 font-light leading-relaxed text-justify text-sm md:text-base">{t.ifaIntro.desc}</p>
                     </div>
 
+                    {}
+                    <div className="mb-12 relative group z-20">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+                            {/* Job 1 Card */}
+                            <div className="p-8 rounded-[2.5rem] bg-gradient-to-br from-[#121212] to-[#1a1a1a] border border-emerald-500/20 emerald-glow relative overflow-hidden flex flex-col items-center justify-center text-center cursor-help transition-all duration-300 hover:border-emerald-500/50">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 blur-[50px] rounded-full pointer-events-none"></div>
+                                <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-4 border border-emerald-500/20">
+                                    <Icon name="shield" size={24} />
+                                </div>
+                                <h4 className="text-white font-black text-xl italic tracking-tight mb-2">{t.job1}</h4>
+                                <p className="text-gray-400 text-sm font-light uppercase tracking-widest">{t.job1Desc}</p>
+                            </div>
+
+                            {/* Job 2 Card */}
+                            <div className="p-8 rounded-[2.5rem] bg-gradient-to-br from-[#121212] to-[#1a1a1a] border border-[#c5a059]/20 gold-glow relative overflow-hidden flex flex-col items-center justify-center text-center cursor-help transition-all duration-300 hover:border-[#c5a059]/50">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#c5a059]/5 blur-[50px] rounded-full pointer-events-none"></div>
+                                <div className="w-12 h-12 rounded-full bg-[#c5a059]/10 flex items-center justify-center text-[#c5a059] mb-4 border border-[#c5a059]/20">
+                                    <Icon name="droplets" size={24} />
+                                </div>
+                                <h4 className="text-white font-black text-xl italic tracking-tight mb-2">{t.job2}</h4>
+                                <p className="text-gray-400 text-sm font-light uppercase tracking-widest">{t.job2Desc}</p>
+                            </div>
+                        </div>
+
+                        {/* Tooltip Content */}
+                        <div className="absolute left-0 right-0 top-full mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 z-50 transform translate-y-2 group-hover:translate-y-0">
+                            <div className="bg-[#0a0a0a]/95 backdrop-blur-2xl border border-[#c5a059]/30 rounded-[2.5rem] p-8 md:p-10 shadow-2xl shadow-black/50">
+                                <div className="flex items-center gap-3 mb-8 pb-6 border-b border-white/10">
+                                    <Icon name="info" className="text-[#c5a059]" size={28} />
+                                    <h4 className="text-2xl font-black text-white italic tracking-tight">{t.jobTooltip.title}</h4>
+                                </div>
+                                <div className="grid md:grid-cols-2 gap-10 text-left">
+                                    {/* HNW List */}
+                                    <div>
+                                        <h5 className="text-[#c5a059] font-black text-xs uppercase tracking-widest mb-6 flex items-center gap-2">
+                                            <Icon name="user" size={16} /> {t.jobTooltip.hnwTitle}
+                                        </h5>
+                                        <ul className="space-y-4">
+                                            {t.jobTooltip.hnwList.map((item, i) => (
+                                                <li key={i} className="flex gap-4 text-sm text-gray-300 font-light leading-relaxed">
+                                                    <span className="text-[#c5a059] mt-1 shrink-0">•</span>
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    {/* Corp List */}
+                                    <div>
+                                        <h5 className="text-emerald-500 font-black text-xs uppercase tracking-widest mb-6 flex items-center gap-2">
+                                            <Icon name="building-2" size={16} /> {t.jobTooltip.corpTitle}
+                                        </h5>
+                                        <ul className="space-y-4">
+                                            {t.jobTooltip.corpList.map((item, i) => (
+                                                <li key={i} className="flex gap-4 text-sm text-gray-300 font-light leading-relaxed">
+                                                    <span className="text-emerald-500 mt-1 shrink-0">•</span>
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Real-time Prime Rate Block */}
                     <div className="mb-6 p-8 md:p-10 rounded-[2.5rem] bg-gradient-to-r from-[#121212] to-[#1a1a1a] border border-[#c5a059]/30 relative overflow-hidden group shadow-2xl">
                         <div className="absolute top-1/2 -translate-y-1/2 right-0 w-64 h-64 bg-[#c5a059]/10 blur-[80px]"></div>
@@ -1402,15 +1519,10 @@
                     
                     <div className="grid md:grid-cols-2 gap-6 mb-16 text-white text-left">
                         {stats.map((stat, idx) => (
-                            <div key={idx} className={`p-8 rounded-[2.5rem] bg-[#121212] border ${stat.color === 'red' ? 'border-red-500/30 red-glow' : 'border-[#c5a059]/30 gold-glow'} relative overflow-hidden group`}>
-                                <div className={`absolute top-0 right-0 w-32 h-32 blur-[60px] opacity-20 pointer-events-none transition-opacity group-hover:opacity-40 ${stat.color === 'red' ? 'bg-red-500' : 'bg-[#c5a059]'}`}></div>
-                                <h4 className={`${stat.color === 'red' ? 'text-red-500' : 'text-[#c5a059]'} font-black text-xs uppercase tracking-widest mb-4 relative z-10 flex items-center gap-2`}>
-                                    {stat.color === 'red' && <Icon name="alert-triangle" size={14} />}
-                                    {stat.color === 'gold' && <Icon name="lock" size={14} />}
-                                    {stat.title}
-                                </h4>
-                                <div className="text-5xl font-black mb-3 italic tracking-tighter relative z-10">{stat.value}</div>
-                                <p className="text-gray-400 text-sm font-light leading-relaxed relative z-10">{stat.desc}</p>
+                            <div key={idx} className={`p-8 rounded-[2.5rem] bg-[#121212] border ${stat.color === 'red' ? 'border-red-500/20 emerald-glow' : 'border-[#c5a059]/20'} relative`}>
+                                <h4 className={`${stat.color === 'red' ? 'text-red-500' : 'text-[#c5a059]'} font-black text-xs uppercase tracking-widest mb-4`}>{stat.title}</h4>
+                                <div className="text-4xl font-black mb-2 italic">{stat.value}</div>
+                                <p className="text-gray-500 text-sm italic">{stat.desc}</p>
                             </div>
                         ))}
                     </div>
