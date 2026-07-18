@@ -947,7 +947,7 @@
                 s7Title: "7. 機構安全防護措施",
                 s7Intro: "我們採用強大、多層次的安全措施來保護您的數據免受未經授權的訪問、丟失或盜竊：",
                 s7Items: [
-                    "技術防護：數字文件的端到端加密、安全的客戶入口網站、所有員工系統的強制多重要素驗證 (MFA)，以及託管在加拿大境內的安全雲存儲環境。",
+                    "技術防護：數字文件的端到端加密、數字文件與安全的客戶入口網站、所有員工系統的強制多重要素驗證 (MFA)，以及託管在加拿大境內的安全雲存儲環境。",
                     "物理防護：限制訪問物理場所、用於物理文件的帶警報與上鎖的檔案櫃，以及用於銷毀數據的安全粉碎協議。",
                     "行政防護：所有員工強制持續接受隱私培訓、嚴格的保密協議以及嚴格的供應商管理協議。"
                 ],
@@ -1234,7 +1234,7 @@
                 blocks: {
                     b1: { title: "收入与健康风险", warning: "⚠️ 盲点：“金手铐”与收入风险。您目前依赖雇主福利或配偶来度过收入冲击。如果您失业或面临长期受伤，您的安全网将立即消失。", fix: "🛡️ VEVACI 解决方案：我们建立一个可携带的个人健康计划和个性化的收入替代（伤残）策略，该策略将跟随您，而不是您的雇主。" },
                     b2: { title: "危疾流动性陷阱", warning: "⚠️ 盲点：蚕食退休金。如果发生重大疾病，您目前的计划迫使您耗尽 RRSP/TFSA 或举债来支付康复费用。", fix: "🛡️ VEVACI 解决方案：我们在您的投资组合中加入过渡性危疾保单。它可作为即时的流动性注入（5 万加元以上），让您专注于战胜疾病，而不是避免破产。" },
-                    b3: { title: "市场与债权人风险", warning: "⚠️ 盲点：未受保护的资本。您目前的投资完全暴露于市场崩盘和潜在的法律/债权人索赔中。", fix: "🛡️ VEVACI 解决方案：我们将脆弱的资本转移到保本基金中。这能在结构上保护您的资金免受诉讼，并在到期或身故时保证 75% 到 100% 的资本，无论股市表现如何。" },
+                    b3: { title: "市场与债权人风险", warning: "⚠️ 盲点：未受保护的资本。您目前的投资完全暴露于市场崩盘和潜在的法律/债权人索赔中。", fix: "🛡️ VEVACI 解决方案：我们将脆弱的资本转移到保本基金中。这能在结构上保护您的资金免受诉訟，并在到期或身故时保证 75% 到 100% 的资本，无论股市表现如何。" },
                     b4: { title: "无资金准备的遗产负债", warning: "⚠️ 盲点：债务遗产。意外身故将使您的家人在单份收入下难以支付房贷、育儿费用或最终税款。", fix: "🛡️ VEVACI 解决方案：我们部署快速的简化核保保险，以立即中和该债务，为您的受抚养人锁定免税现金，而无需复杂的体检。" }
                 },
                 ctaTitle: "不要将您的财富交给运气。",
@@ -1633,12 +1633,12 @@
                 </section>
 
                 <section className="py-24 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 sm:px-0 text-white">
-                    <Card icon="layers" title={t.ifaTitle} desc={t.ifaDesc} onClick={() => navigateTo('ifa')} label={t.readDeepDive} />
-                    <Card icon="unlock" title={t.surplusTitle} desc={t.surplusDesc} onClick={() => navigateTo('surplus')} label={t.readDeepDive} />
-                    <Card icon="bar-chart-3" title={t.casesTitle} desc={t.casesDesc} onClick={() => navigateTo('cases')} label={t.readDeepDive} />
-                    <Card icon="scale" title={t.engineTitle} desc={t.engineDesc} onClick={() => navigateTo('compare')} label={t.readDeepDive} />
-                    <Card icon="shield-check" title={t.protectionTitle} desc={t.protectionDesc} onClick={() => navigateTo('protection')} label={t.readDeepDive} />
-                    <Card icon="users" title={t.aboutTitle} desc={t.aboutDesc} onClick={() => navigateTo('about')} label={t.readDeepDive} />
+                    <Card icon="layers" title={t.ifaTitle} desc="" onClick={() => navigateTo('ifa')} label={t.readDeepDive} />
+                    <Card icon="unlock" title={t.surplusTitle} desc="" onClick={() => navigateTo('surplus')} label={t.readDeepDive} />
+                    <Card icon="bar-chart-3" title={t.casesTitle} desc="" onClick={() => navigateTo('cases')} label={t.readDeepDive} />
+                    <Card icon="scale" title={t.engineTitle} desc="" onClick={() => navigateTo('compare')} label={t.readDeepDive} />
+                    <Card icon="shield-check" title={t.protectionTitle} desc="" onClick={() => navigateTo('protection')} label={t.readDeepDive} />
+                    <Card icon="users" title={t.aboutTitle} desc="" onClick={() => navigateTo('about')} label={t.readDeepDive} />
                 </section>
             </div>
         );
