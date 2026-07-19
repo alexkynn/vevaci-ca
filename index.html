@@ -1611,15 +1611,15 @@
                     <div className="w-[1px] h-12 bg-gradient-to-t from-transparent to-[#c5a059]/50 mt-2"></div>
                 </div>
 
-                <section className="pt-32 pb-24 text-center relative max-w-6xl mx-auto">
-                    <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-8 italic title-shine tracking-tighter leading-tight">{t.headline}</h1>
-                    <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">{t.subheadline}</p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-5 mb-32">
-                        <button onClick={() => navigateTo('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-12 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-[0_10px_40px_rgba(197,160,89,0.4)] active:scale-95 hover:scale-105 transition-all duration-300">{t.studyCta}</button>
+                <section className="pt-20 pb-12 text-center relative max-w-6xl mx-auto">
+                    <h1 className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 italic title-shine tracking-tighter leading-tight">{t.headline}</h1>
+                    <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto mb-8 font-light leading-relaxed">{t.subheadline}</p>
+                    <div className="flex flex-col sm:flex-row justify-center gap-5 mb-12">
+                        <button onClick={() => navigateTo('feasibility')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-10 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-[0_10px_40px_rgba(197,160,89,0.4)] active:scale-95 hover:scale-105 transition-all duration-300">{t.studyCta}</button>
                         
                         <button 
                             onClick={() => navigateTo('stresstest')}
-                            className="bg-white/5 border border-white/10 px-12 py-5 rounded-full font-bold text-lg hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(255,255,255,0.05)] active:scale-95 hover:scale-105 transition-all duration-300 relative group flex items-center justify-center text-center"
+                            className="bg-white/5 border border-white/10 px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 hover:shadow-[0_10px_40px_rgba(255,255,255,0.05)] active:scale-95 hover:scale-105 transition-all duration-300 relative group flex items-center justify-center text-center"
                         >
                             {t.navStressTest}
                             
@@ -1632,7 +1632,7 @@
 
                 </section>
 
-                <section className="py-12 max-w-[90rem] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 px-6 text-white">
+                <section className="py-6 max-w-[90rem] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 px-6 text-white">
                     <Card icon="layers" title={t.ifaTitle} desc="" onClick={() => navigateTo('ifa')} label={t.readDeepDive} />
                     <Card icon="unlock" title={t.surplusTitle} desc="" onClick={() => navigateTo('surplus')} label={t.readDeepDive} />
                     <Card icon="bar-chart-3" title={t.casesTitle} desc="" onClick={() => navigateTo('cases')} label={t.readDeepDive} />
