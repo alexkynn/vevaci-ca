@@ -404,7 +404,7 @@
             engineTitle: "Par vs. UL Engines",
             engineDesc: "A technical comparison of Participating Whole Life and Universal Life chassis.",
             protectionTitle: "Holistic Protection",
-            protectionDesc: "Securing continuity through Critical Illness (CI) Insurance and Segregated Fund protection.",
+            protectionDesc: "Securing continuity through Term Life, Critical Illness (CI) Insurance, and Segregated Fund protection.",
             casesTitle: "Case Studies",
             casesDesc: "Real-world strategies for Specialists and Business Owners.",
             aboutTitle: "About Alex",
@@ -1562,10 +1562,10 @@
                     <div className="w-[1px] h-12 bg-gradient-to-t from-transparent to-[#c5a059]/50 mt-2"></div>
                 </div>
 
-                <section className="pt-32 pb-24 text-center relative max-w-6xl mx-auto">
+                <section className="pt-32 pb-8 text-center relative max-w-6xl mx-auto">
                     <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-8 italic title-shine tracking-tighter leading-tight">{t.headline}</h1>
                     <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">{t.subheadline}</p>
-                    <div className="flex flex-col sm:flex-row justify-center items-center sm:items-stretch gap-5 mb-16">
+                    <div className="flex flex-col sm:flex-row justify-center items-center sm:items-stretch gap-5 mb-8">
                         <button onClick={() => navigateTo('diagnostic')} className="bg-gradient-to-r from-[#b36b39] to-[#8c6239] text-white px-8 md:px-12 py-4 md:py-5 rounded-full shadow-2xl hover:shadow-[0_10px_40px_rgba(197,160,89,0.4)] active:scale-95 hover:scale-105 transition-all duration-300 flex flex-col items-center justify-center min-w-[280px]">
                             <div className="flex items-center gap-2 mb-1">
                                 <Icon name="clipboard-list" size={22} />
@@ -2747,10 +2747,10 @@
         );
 
         const Card = ({ icon, title, desc, onClick }) => (
-            <div onClick={onClick} className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full text-left text-white shadow-lg hover:shadow-[0_0_15px_rgba(197,160,89,0.2)]">
-                <div className="text-[#c5a059] mb-4 group-hover:scale-110 transition-transform"><Icon name={icon} size={24} /></div>
-                <h3 className="text-sm md:text-base font-bold mb-2 leading-tight tracking-tight uppercase">{title}</h3>
-                <p className="text-[10px] md:text-xs text-gray-500 font-light mb-4 flex-grow text-left leading-relaxed line-clamp-3">{desc}</p>
+            <div onClick={onClick} className="p-5 sm:p-6 min-h-[220px] sm:min-h-[250px] lg:min-h-[280px] rounded-2xl sm:rounded-3xl bg-[#121212] border border-white/5 hover:border-[#c5a059]/40 transition-all cursor-pointer group flex flex-col h-full text-left text-white shadow-lg hover:shadow-[0_0_15px_rgba(197,160,89,0.2)]">
+                <div className="text-[#c5a059] mb-5 sm:mb-6 group-hover:scale-110 transition-transform"><Icon name={icon} size={28} /></div>
+                <h3 className="text-sm md:text-base font-bold mb-3 leading-tight tracking-tight uppercase">{title}</h3>
+                <p className="text-[10px] md:text-xs text-gray-400 font-light flex-grow text-left leading-relaxed">{desc}</p>
             </div>
         );
 
