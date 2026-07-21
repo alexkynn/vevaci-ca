@@ -1431,7 +1431,7 @@
                                     <button onClick={() => setLanguage('zh')} className={`text-[9px] ${language === 'zh' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>繁</button>
                                     <button onClick={() => setLanguage('cn')} className={`text-[9px] ${language === 'cn' ? 'text-[#e5c185] font-black' : 'text-gray-600'}`}>簡</button>
                                 </div>
-                                <button onClick={() => navigateTo('feasibility')} className="bg-copper-gradient text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">{t.studyCta}</button>
+                                <button onClick={() => navigateTo('consultation')} className="bg-copper-gradient text-white px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">{t.studyCta}</button>
                             </div>
                             <button className="lg:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}><Icon name={isMenuOpen ? "x" : "menu"} /></button>
                         </div>
@@ -1470,7 +1470,7 @@
                                 <button onClick={() => setLanguage('cn')} className={`text-sm ${language === 'cn' ? 'text-[#e5c185] font-black' : 'text-gray-500'}`}>簡</button>
                             </div>
 
-                            <button onClick={() => navigateTo('feasibility')} className="text-2xl font-black text-[#c5a059] uppercase tracking-widest">{t.studyCta}</button>
+                            <button onClick={() => navigateTo('consultation')} className="text-2xl font-black text-[#c5a059] uppercase tracking-widest">{t.studyCta}</button>
                         </div>
                     )}
 
@@ -1483,7 +1483,7 @@
                         {currentPage === 'stresstest' && <StressTestView t={t} navigateTo={navigateTo} language={language} />}
                         {currentPage === 'cases' && <CaseView t={t} navigateTo={navigateTo} language={language} />}
                         {currentPage === 'about' && <AboutView t={t} navigateTo={navigateTo} language={language} />}
-                        {currentPage === 'feasibility' && <FeasibilityView t={t} navigateTo={navigateTo} language={language} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />}
+                        {currentPage === 'consultation' && <FeasibilityView t={t} navigateTo={navigateTo} language={language} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />}
                         {currentPage === 'feedback' && <FeedbackView t={t} navigateTo={navigateTo} language={language} />}
                         {currentPage === 'diagnostic' && <DiagnosticView t={t} navigateTo={navigateTo} language={language} />}
                         {currentPage === 'banner' && <BannerView t={t} navigateTo={navigateTo} />}
@@ -1591,7 +1591,7 @@
 
                 </section>
 
-                <section className="pb-24 max-w-[90rem] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 px-4 sm:px-6 text-white">
+                <section className="pb-24 max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 px-4 sm:px-6 text-white">
                     <Card icon="layers" title={t.ifaTitle} desc={t.ifaDesc} onClick={() => navigateTo('ifa')} />
                     <Card icon="unlock" title={t.surplusTitle} desc={t.surplusDesc} onClick={() => navigateTo('surplus')} />
                     <Card icon="bar-chart-3" title={t.casesTitle} desc={t.casesDesc} onClick={() => navigateTo('cases')} />
@@ -2024,7 +2024,7 @@
                                 <div className="absolute top-0 right-0 w-80 h-80 bg-[#c5a059]/10 blur-[100px]"></div>
                                 <h3 className="text-3xl md:text-5xl font-black italic text-white mb-6 relative z-10 tracking-tight">{data.ctaTitle}</h3>
                                 <p className="text-gray-300 font-light mb-12 text-lg md:text-xl max-w-3xl mx-auto relative z-10 leading-relaxed">{data.ctaDesc}</p>
-                                <button onClick={() => navigateTo('feasibility')} className="relative z-10 w-full sm:w-auto bg-copper-gradient py-5 px-12 rounded-full font-black text-sm md:text-lg shadow-[0_0_25px_rgba(197,160,89,0.3)] active:scale-95 transition-transform uppercase tracking-widest text-white hover:shadow-[0_0_40px_rgba(197,160,89,0.6)]">
+                                <button onClick={() => navigateTo('consultation')} className="relative z-10 w-full sm:w-auto bg-copper-gradient py-5 px-12 rounded-full font-black text-sm md:text-lg shadow-[0_0_25px_rgba(197,160,89,0.3)] active:scale-95 transition-transform uppercase tracking-widest text-white hover:shadow-[0_0_40px_rgba(197,160,89,0.6)]">
                                     {data.ctaBtn}
                                 </button>
                             </div>
